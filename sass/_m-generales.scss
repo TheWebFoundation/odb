@@ -1,0 +1,96 @@
+//## FONTS ##//
+.fmerriw {
+	font-family: 'Merriweather', serif;
+}
+.fosc {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+
+//## CONTENT ##//
+
+.bg-section {
+	background-color:$bg-gray;
+}
+
+.bg-highlights {
+	background-color:$bg-highlights;
+}
+
+.bg-hero-map {
+	background-color: $bgmap;
+}
+
+.top-filters {
+	background-color:$bgfilters;
+}
+
+
+//## TABLE DATA ##//
+
+.cover-help {
+	width:24px;
+	height: 24px;
+	text-align:center;
+	line-height:29px; //line-height:24px;
+	background-color:$cprimbr;
+	border-radius:50px;
+	display:inline-block;
+}
+
+.th-main {
+	background-color: $cprimary;
+	color:$ccontrast;
+	border-bottom:4px solid $cprimbr;
+	box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.20);
+}
+
+.ct-th, .ct-td {
+	padding: 1em 0.6em;
+	border-bottom:1px solid $c-g10;
+}
+
+.ct-th {
+	border-right:1px solid $cprimbr;
+}
+
+.ct-th-st, .ct-td-st {
+	display:block;
+	font-weight:normal;
+}
+
+//## DETAIL MODAL ##//
+.ilist {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+.cm-h-rdata {
+	padding-left:0px;
+	padding-top: 10px;
+
+	@include modular-mq(sm) {
+		padding-left:40px;
+		padding-top: 10px;
+	}
+}
+
+.il-item {
+	display: inline-block;
+	float: left;
+}
+
+.il-item-resp {
+	display:block;
+	padding-left:0px;
+	text-align:center;
+	padding: 10px 0px;;
+	@include modular-mq(sm) {
+		display: inline-block;
+		float: left;
+		padding: 10px 20px 10px 20px;
+	}
+}
+
+

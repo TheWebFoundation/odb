@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+   
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ODB</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+
+        <!--Fonts-->
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Merriweather:400,300,700,900|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/svg-fonts.css">
+
+
+        <!--3 parties/vendor styles-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Map styles -->
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="js/vendor/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
+        <!--Main styles-->
+        <link rel="stylesheet" href="css/screen.css">
+        
+        <!--[if lt IE 9]>
+            <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-default">
+        
+        <section class="wrapper-header bg-hero-map">
+            
+            <div class="top-header">
+                
+                <div class="logo-header fleft visible-xs visible-md"><img src="img/odb-logo-top-md.png" class="m-l-top"></div>
+                <div class="logo-header fleft hidden-xs hidden-md"><img src="img/odb-logo-top.png" class="m-s-top p-xs-top"></div>
+
+                <div class="fright hidden-xs hidden-sm">
+                        
+                        <div class="main-c-filters">
+                            
+                            <div class="main-cf-group1 top-filters displayib m-right-xl">
+
+                                <div class="displayib">
+                                    <div class="rinput m-left">
+                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Year</label>
+                                        <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                            <option>Select...</option>
+                                            <option>2014</option>
+                                            <option>2013</option>
+                                        </select>
+                                        <span class="rinput-button rinput-button-search">
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="displayib">
+                                    <div class="rinput m-left p-right-l">
+                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
+                                        <select name="syear" id="syear" class="cinput cinput-search cinput-s-arrow">
+                                            <option>Select...</option>
+                                            <option>Flexible, technology & service neutral ICT licensing frameworks</option>
+                                        </select>
+                                        <span class="rinput-button rinput-button-search">
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="main-cf-group1 top-filters displayib">
+                            
+                                <div class="displayib">
+                                    <div class="rinput m-left p-right">
+                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Country</label>
+                                        <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                            <option>Select...</option>
+                                            <option>Dominican Republic</option>
+                                        </select>
+                                        <span class="rinput-button rinput-button-search">
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">Search</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                </div>
+                
+
+                <div class="header-acc-buttons">
+                    <a href="#" class="btn-acc-h btn-download">Download</a>
+                    <a href="#" class="btn-acc-h btn-info">Info</a>
+                    <a href="#" class="btn-acc-h btn-share">Share</a>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="wrapper-map"><h3>Mapa</h3></div>
+                    </div>
+                </div>
+            </div>
+           
+            
+
+        </section>
+
+        <section class="wrapper-filters">
+            
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Region</label>
+                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                <option>Select...</option>
+                                <option>Flexible, technology & service neutral ICT licensing frameworks</option>
+                            </select>
+                            <span class="rinput-button rinput-button-search">
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Income</label>
+                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <span class="rinput-button rinput-button-search">
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                       <div class="rinput displayib">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">HDI Rate</label>
+                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <span class="rinput-button rinput-button-search">
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Group</label>
+                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <span class="rinput-button rinput-button-search">
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="wrapper-ranking bg-section">
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 txt-c">
+                        <h3 class="m-xs-bottom fosc txt-big fwbold">Ranking</h3>
+                        <p class="fmerriw">Flexible, technology & service neutral ICT licensing frameworks</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 txt-c">
+                        <div id="column-graph"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+        <section class="wrapper-table">
+            
+            <div class="container-fluid">
+                
+                <div class="row">
+                  
+                    <div class="col-xs-12 txt-c no-p-lat">
+                        
+                        <div class="table-responsive">
+                       
+                            <table class="ctable ctable-light w100" id="table-data">
+                                
+                                <thead class="th-main">
+                                    <tr>
+                                       <th class="ct-th txt-al p-left-l">Country <span class="ct-th-st"></span></th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span> <span class="ct-th-st txt-xs uppc">Rank</span> </th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Readliness <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Impact <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st uppc txt-xs">change</span></th>
+                                    </tr>
+                                   
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Costa Rica</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">1</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al grafica">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Colombia</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">2</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Turkey</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">3</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Malaysia</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">4</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Peru</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">5</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Brazil</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">6</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Mauritius</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">7</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Ecuador</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">8</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+
+                                    <tr>
+                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Argentina</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-c txt-med">9</td>
+                                       <td class="ct-td txt-c txt-med">87</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 21</td>
+                                       <td class="ct-td txt-al">(graphic) 11</td>
+                                       <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+            
+
+        <div class="overlay">
+
+        <!-- ## MODAL DETAIL COUNTRY ## -->
+        <div class="cmodal cmodal-detail">
+            
+            <div class="cmodal-d-global">
+
+                <header class="cm-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                           
+                            <div class="col-md-12 txt-c p-xs-top p-s-bottom">
+                               
+                                <div class="cm-h-item cm-h-tit fleft txt-al displayib">
+                                    <h4 class="no-m-bottom">Costa Rica</h4>
+                                    <p class="no-m-bottom">Latin American & Carivean</p>
+                                </div>
+                               
+                                <div class="cm-h-item cm-h-rdata fleft displayib">
+                                    <ul class="ilist overfh displayib txt-al">
+                                        <li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">High</span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">High</span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt">High</span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt">High</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="cm-h-item cm-h-acc fright txt-ar p-s-top m-xs-top">
+                                    <button class="ctn-icon"><span class="cicon-share txt-xl displayb"></span><span class="uppc txt-xs">share</span></button>
+                                    <button class="ctn-icon close-cmodal-detail"><span class="cicon-cross txt-xl displayb"></span> <span class="uppc txt-xs">close</span></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                  
+
+                    <div class="cm-h-data-resume bg-section p-s-top p-s-bottom">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 txt-c">
+                                    <ul class="ilist overfh displayib ">
+                                        <li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">1</span></li>
+                                        <li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">97</span></li>
+                                        <li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readliness</label>
+                                            <span class="displayb m-s-top">
+                                                <img src="img/readliness.png">
+                                            </span>
+                                        </li>
+                                        <li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Implementation</label>
+                                            <span class="displayb m-s-top">
+                                                <img src="img/implementation.png">
+                                            </span>
+                                        </li>
+
+                                        <li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Impact</label>
+                                            <span class="displayb m-s-top">
+                                                <img src="img/impact.png">
+                                            </span>
+                                        </li>
+                                        <li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med">16</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </header>
+                
+
+                <div class="container-fluid">
+                    
+                    <div class="row m-l-bottom cb-bottom-2">
+                        
+                        <div class="col-md-4">
+                            <div class="rinputm displayib">
+                                <label class="clbl uppc txt-s c-g40 displayb p-s-top">Year</label>
+                                <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                    <option>Select...</option>
+                                </select>
+                                <span class="rinput-button rinput-button-search">
+                                    <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="rinputm displayib">
+                                <label class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
+                                <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                    <option>Select...</option>
+                                </select>
+                                <span class="rinput-button rinput-button-search">
+                                    <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+    
+                        
+                        
+                        <div class="col-md-4">
+                            <p>araña</p>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12 cb-bottom-2">
+                                    <div class="rinputm displayib">
+                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Compare with</label>
+                                        <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                            <option>Select country...</option>
+                                        </select>
+                                        <span class="rinput-button rinput-button-search">
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 cb-right-2">
+                                    <div class="country-area country-selected p-l-top" data-id="0">
+                                        <header class="ca-header txt-c">
+                                                <h5 class="txt-al no-m-top no-m-bottom displayib c-obj">
+                                                    <span class="flag-md flag-country"><img src="img/flags/cr.jpg" class="adj-img-ca-h img-responsive"></span>
+                                                    <span class="ca-h-tit displayib m-xs-top">Costa Rica 
+                                                     <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                                                    </span>
+                                                </h5>
+                                        </header>
+                                        
+                                        <div class="static-indicator">
+                                            <h5 class="txt-m">ODB index</h5>
+                                            <div class="indicator-cover">
+                                                <div class="indicator-progress" style="width:85%"></div>
+                                            </div>   
+                                        </div>
+
+                                        <div class="ca-content ca-current">
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="country-area country-compare p-l-top" data-id="1">
+                                        <header class="ca-header txt-c">
+                                            <h5 class="txt-al no-m-top no-m-bottom displayib c-obj">
+                                                <span class="flag-md flag-country"><img src="img/flags/ec.jpg" class="adj-img-ca-h img-responsive"></span>
+                                                <span class="ca-h-tit displayib m-xs-top">Ecuador
+                                                 <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                                                </span>
+                                            </h5>
+                                        </header>
+
+                                        <div class="static-indicator">
+                                            <h5 class="txt-m">ODB index</h5>
+                                            <div class="indicator-cover">
+                                                <div class="indicator-progress" style="width:85%"></div>
+                                            </div>   
+                                        </div>
+                                        
+                                        <div class="ca-content">
+
+
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+            </div><!--end global-wrapper-->
+
+        </div><!--end cmodal-->
+
+
+       </div>
+
+        
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!--Main scripts-->
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+
+        
+        <!--3 Parties vendor-->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <!--script src="https://code.highcharts.com/maps/highmaps.js"></script-->
+        <script src="https://code.highcharts.com/maps/modules/map.js">
+        <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+        <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script src="js/vendor/DataTables/datatables.min.js" type="text/javascript"></script>
+
+
+        <script type="text/javascript">
+            
+
+            $(document).ready(function() {
+
+                $(".cicon-help").on("click", function(e){
+                    e.stopPropagation();
+                    alert("help!");
+                })
+
+                $(".more-info, .close-cmodal-detail").on("click", function(e){
+
+                   e.preventDefault();
+
+                   if(!$(".cmodal-detail").is(".cmodal-detail-open")) {
+                        $(".cmodal-detail").addClass("cmodal-detail-open");
+                        $(".overlay").addClass("overlay-open");
+                        $("body").addClass("noscroll");
+                   }else{
+                        $(".cmodal-detail").removeClass("cmodal-detail-open");
+                        $(".overlay").removeClass("overlay-open");
+                        $("body").removeClass("noscroll");
+                   }
+                })
+
+
+
+                $(document).keyup(function(e) {
+            
+                    //if (e.keyCode == 13) $('.save').click();     // enter
+                    if (e.keyCode == 27) {
+                        //Escape solo para cerrar la ventana de detalle de usuario
+                        if($(".cmodal-detail").is(".cmodal-detail-open")) {
+                            $(".cmodal-detail").removeClass("cmodal-detail-open");
+                            $(".overlay").removeClass("overlay-open");
+                            $("body").removeClass("noscroll");
+                        }
+                    }
+                });
+
+                //Preproceso para el json de barras y paises
+                var processed_json = new Array(); 
+
+                //Iniciamos la tabla
+                var table = $('#table-data').DataTable({
+                    fixedHeader: true,
+                    paging: false,
+                    info: false
+                });
+
+            
+                $(".modal-data").on("click", function(){
+                    $(this).removeClass("modal-data-visible");
+                });
+
+                $(function () {
+
+                    $.getJSON('json/countries-population.json', function (data) {
+                        
+                        for (i = 0; i < data.length; i++){
+                            processed_json.push([data[i].name, data[i].value]);
+                        }
+
+                        // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
+                        $.each(data, function () {
+                            this.flag = this.code.replace('UK', 'GB').toLowerCase();
+                        });
+                        
+                        function pointClick() {
+                            //alert("Pais: "+this.name+ " | D.Población: "+this.value); 
+                            
+                            if(!$(".modal-data").is(".modal-data-visible")) {
+                                $(".modal-data").addClass("modal-data-visible");
+                                $(".data-ciudad").html(this.name+" ("+this.code+")");
+                                $(".data-poblacion").html(this.value);
+                            }else{
+                                $(".data-ciudad").html(this.name+" ("+this.code+")");
+                                $(".data-poblacion").html(this.value);
+                            }
+                            
+                            $div = $(".grafica");
+                            
+                            window.chart = new Highcharts.Chart({
+                               
+                                chart: {
+                                    renderTo: $div[0],
+                                    type: 'column',
+                                    width: 280,
+                                    height: 240,
+                                    backgroundColor: null,
+                                    borderWidth: 0,
+                                    type: 'column',
+                                    //margin: [2, 0, 2, 0],
+                                    width: 290,
+                                    height: 120,
+                                    style: {
+                                        overflow: 'visible'
+                                    }
+                                },
+                                title: {
+                                    text: null
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                xAxis: {
+                                    labels: {
+                                        enabled: false
+                                    },
+                                    title: {
+                                        text: null
+                                    },
+                                    startOnTick: false,
+                                    endOnTick: false,
+                                    tickPositions: []
+                                },
+                                yAxis: {
+                                    endOnTick: false,
+                                    startOnTick: false,
+                                    labels: {
+                                        enabled: false
+                                    },
+                                    title: {
+                                        text: null
+                                    },
+                                    tickPositions: [0]
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Population',
+                                    data: [{
+                                        name: 'Min population knowing',
+                                        color: '#79B042',
+                                        y: 3
+                                    }, {
+                                        name: 'Population of '+this.name,
+                                        color: '#FFE064',
+                                        y: this.value
+                                    }],
+                                    dataLabels: {
+                                        format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
+                                    },
+                                    column: {
+                                        borderColor: 'silver'
+                                    }
+                                }]
+                            
+                            });
+                            
+                        }
+                
+                        // Initiate the chart
+                        $('#wrapper-map').highcharts('Map', {
+                            
+                            chart: {
+                                backgroundColor: 'transparent'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                  //enabled:false,
+                                  //name: 'Densidad de población',
+                            },  
+                            legend: {
+                                title: {
+                                    text: 'Densidad de población por km²',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                                    }
+                                }
+                            },
+                            mapNavigation: {
+                                enabled: true,
+                                buttonOptions: {
+                                    verticalAlign: 'bottom'
+                                },
+                                enableMouseWheelZoom: false
+                            },
+                
+/*
+                            tooltip: {
+                                backgroundColor: 'none',
+                                borderWidth: 0,
+                                shadow: false,
+                                useHTML: true,
+                                padding: 0,
+                                pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
+                                    ' {point.name}: <b>{point.value}</b>/km²',
+                                positioner: function () {
+                                    return { x: 0, y: 250 };
+                                }
+                            }
+,*/
+                
+                            colorAxis: {
+                                min: 1,
+                                max: 1000,
+                                type: 'logarithmic',
+                                maxColor: "#495E32",
+                                minColor: "#A8CF7C"
+                            },
+                            series : [{
+                                data : data,
+                                mapData: Highcharts.maps['custom/world'],
+                                joinBy: ['iso-a2', 'code'], //cambiar a iso-a3 con los datos del ODB
+                                name: 'Densidad de población',
+                                borderColor :"rgba(84, 199, 252, 0.2)",
+                                states: {
+                                    hover: {
+                                        color: '#F8E71C'
+                                    }
+                                },
+                                point: {
+                                    events: {
+                                        click: pointClick
+                                    }
+                                }
+                            }]
+                        });
+                        
+
+                        $('#column-graph').highcharts({
+                            chart: {
+                                type: 'column',
+                                backgroundColor: 'transparent'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                //text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+                            },
+                            xAxis: {
+                                type: 'category',
+                                caregories: ['data.name'],
+                                labels: {
+                                    rotation: -45,
+                                    style: {
+                                        fontSize: '10px',
+                                        //fontFamily: 'Verdana, sans-serif'
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                max:1000,
+                                //categories: ['data.name'],
+                                title: {
+                                    text: 'Population (millions)'
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            tooltip: {
+                                pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+                            },
+                            series: [{
+                                name: 'values',
+                                data: processed_json,
+                                dataLabels: {
+                                    enabled: true,
+                                    rotation: -90,
+                                    color: '#FFFFFF',
+                                    align: 'right',
+                                    //format: '{point.y:.1f}', // one decimal
+                                    y: 10, // 10 pixels down from the top
+                                    style: {
+                                        fontSize: '13px',
+                                        fontFamily: 'Verdana, sans-serif'
+                                    }
+                                }
+                            }]
+                        });
+
+                    });
+
+                });
+
+            });
+        
+        </script>
+
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+        
+    </body>
+</html>

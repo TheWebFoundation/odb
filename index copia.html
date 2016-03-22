@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+   
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ODB</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+
+        <!--Fonts-->
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Merriweather:400,300,700,900|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/svg-fonts.css">
+
+
+        <!--3 parties/vendor styles-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Map styles -->
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css" />
+      
+        <!--Main styles-->
+        <link rel="stylesheet" href="css/screen.css">
+        
+        <!--[if lt IE 9]>
+            <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        
+        <section class="main-header bg-hero-map">
+            
+            <div class="top-header">
+                
+                <div class="logo-header fleft visible-xs visible-md"><img src="img/odb-logo-top-md.png" class="m-l-top"></div>
+                <div class="logo-header fleft hidden-xs hidden-md"><img src="img/odb-logo-top.png" class="m-s-top p-xs-top"></div>
+
+                <div class="top-filters fright hidden-xs hidden-sm">
+                        
+                        <div class="main-c-filters">
+                            
+                            <div class="rinput displayib p-xs-bottom">
+                                <label class="clbl uppc txt-s c-g40 displayb p-s-top ">Year</label>
+                                <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                    <option>Select...</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                </select>
+                                <button name="go_year" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </div>
+                            
+                            <div class="rinput displayib m-left p-xs-bottom">
+                                <label class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
+                                <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                    <option>Select...</option>
+                                    <option>Flexible, technology & service neutral ICT licensing frameworks</option>
+                                </select>
+                                <button name="go_indicator" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </div>
+
+                            <div class="rinput displayib m-left m-right-l p-xs-bottom">
+                                <label class="clbl uppc txt-s c-g40 displayb p-s-top">Country</label>
+                                <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                    <option>Select...</option>
+                                    <option>Dominican Republic</option>
+                                </select>
+                                <button name="go_country" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                            </div>
+
+                        </div>
+
+                </div>
+                
+
+                <div class="header-acc-buttons">
+                    <a href="#" class="btn-acc-h btn-download">Download</a>
+                    <a href="#" class="btn-acc-h btn-info">Info</a>
+                    <a href="#" class="btn-acc-h btn-share">Share</a>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="wrapper-map"><h3>Mapa</h3></div>
+                    </div>
+                </div>
+            </div>
+           
+            
+
+        </section>
+        
+
+        <section class="wrapper-filters">
+            
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib m-left p-xs-bottom">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Region</label>
+                            <select name="syear" id="syear" class="cinput w100 cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <button name="go_indicator" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib m-left p-xs-bottom">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Income</label>
+                            <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <button name="go_indicator" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                       <div class="rinput displayib m-left p-xs-bottom">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">HDI Rate</label>
+                            <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <button name="go_indicator" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-12">
+                        <div class="rinput displayib m-left p-xs-bottom">
+                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Group</label>
+                            <select name="syear" id="syear" class="cinput cinput-mxw cinput-s-arrow">
+                                <option>Select...</option>
+                            </select>
+                            <button name="go_indicator" class="cbtn cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        </section>
+
+        <section class="wrapper-data">
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        
+                        <h3>tabla</h3>
+                        <p class="fmerriw">Esto es un texto convencional</p>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!--Main scripts-->
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+
+        
+        <!--3 Parties vendor-->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <!--script src="https://code.highcharts.com/maps/highmaps.js"></script-->
+        <script src="https://code.highcharts.com/maps/modules/map.js">
+        <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+        <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        
+
+
+        <script type="text/javascript">
+            
+
+            $(document).ready(function() {
+            
+                $(".modal-data").on("click", function(){
+                    $(this).removeClass("modal-data-visible");
+                });
+
+                $(function () {
+
+                    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population-density.json&callback=?', function (data) {
+                
+                        // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
+                        $.each(data, function () {
+                            this.flag = this.code.replace('UK', 'GB').toLowerCase();
+                        });
+                        
+                        function pointClick() {
+                            //alert("Pais: "+this.name+ " | D.Población: "+this.value); 
+                            
+                            if(!$(".modal-data").is(".modal-data-visible")) {
+                                $(".modal-data").addClass("modal-data-visible");
+                                $(".data-ciudad").html(this.name+" ("+this.code+")");
+                                $(".data-poblacion").html(this.value);
+                            }else{
+                                $(".data-ciudad").html(this.name+" ("+this.code+")");
+                                $(".data-poblacion").html(this.value);
+                            }
+                            
+                            $div = $(".grafica");
+                            
+                            window.chart = new Highcharts.Chart({
+                               
+                                chart: {
+                                    renderTo: $div[0],
+                                    type: 'column',
+                                    width: 280,
+                                    height: 240,
+                                    backgroundColor: null,
+                                    borderWidth: 0,
+                                    type: 'column',
+                                    //margin: [2, 0, 2, 0],
+                                    width: 290,
+                                    height: 120,
+                                    style: {
+                                        overflow: 'visible'
+                                    }
+                                },
+                                title: {
+                                    text: null
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                xAxis: {
+                                    labels: {
+                                        enabled: false
+                                    },
+                                    title: {
+                                        text: null
+                                    },
+                                    startOnTick: false,
+                                    endOnTick: false,
+                                    tickPositions: []
+                                },
+                                yAxis: {
+                                    endOnTick: false,
+                                    startOnTick: false,
+                                    labels: {
+                                        enabled: false
+                                    },
+                                    title: {
+                                        text: null
+                                    },
+                                    tickPositions: [0]
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Population',
+                                    data: [{
+                                        name: 'Min population knowing',
+                                        color: '#79B042',
+                                        y: 3
+                                    }, {
+                                        name: 'Population of '+this.name,
+                                        color: '#FFE064',
+                                        y: this.value
+                                    }],
+                                    dataLabels: {
+                                        format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
+                                    },
+                                    column: {
+                                        borderColor: 'silver'
+                                    }
+                                }]
+                            
+                            });
+                            
+                        }
+                
+                        // Initiate the chart
+                        $('#wrapper-map').highcharts('Map', {
+                            
+                            chart: {
+                                backgroundColor: 'transparent'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                  //enabled:false,
+                                  //name: 'Densidad de población',
+                            },  
+                            legend: {
+                                title: {
+                                    text: 'Densidad de población por km²',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                                    }
+                                }
+                            },
+                            mapNavigation: {
+                                enabled: true,
+                                buttonOptions: {
+                                    verticalAlign: 'bottom'
+                                },
+                                enableMouseWheelZoom: false
+                            },
+                
+/*
+                            tooltip: {
+                                backgroundColor: 'none',
+                                borderWidth: 0,
+                                shadow: false,
+                                useHTML: true,
+                                padding: 0,
+                                pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
+                                    ' {point.name}: <b>{point.value}</b>/km²',
+                                positioner: function () {
+                                    return { x: 0, y: 250 };
+                                }
+                            }
+,*/
+                
+                            colorAxis: {
+                                min: 1,
+                                max: 1000,
+                                type: 'logarithmic',
+                                maxColor: "#495E32",
+                                minColor: "#A8CF7C"
+                            },
+                            series : [{
+                                data : data,
+                                mapData: Highcharts.maps['custom/world'],
+                                joinBy: ['iso-a2', 'code'],
+                                name: 'Densidad de población',
+                                borderColor :"rgba(84, 199, 252, 0.2)",
+                                states: {
+                                    hover: {
+                                        color: '#F8E71C'
+                                    }
+                                },
+                                point: {
+                                    events: {
+                                        click: pointClick
+                                    }
+                                }
+                            }]
+                        });
+                    });
+                });
+
+            });
+        
+        </script>
+
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+        
+    </body>
+</html>

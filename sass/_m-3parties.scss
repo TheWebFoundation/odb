@@ -1,0 +1,12 @@
+//## AJUSTES DATATABLE ##//
+.dataTables_filter {
+	padding:17px 20px 10px 0px;
+}
+
+table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
+	padding-right:5px!important;
+}
+
+table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after {
+	top:25px;
+}
