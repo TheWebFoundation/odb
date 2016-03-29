@@ -501,7 +501,7 @@
                                             <option>Ecuador</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">add</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-md-add-country">add</button>
                                         </span>
                                     </div>
                                 </div>
@@ -1217,15 +1217,9 @@
             $(document).ready(function() {
 
 
-                $("select.cinput-md-country").on("change", function() {
-
-
-
-
-
-
+                $(".cbtn-md-add-country").on("click", function() {
+                    console.log("Posicion: "+rmItemCount);
                 })
-
 
 
                 var owl =  $('.carousel-countries').owlCarousel({
@@ -1248,7 +1242,7 @@
                     rmItemCount = event.item.count;
                     
                     if(rmItemCount == 0) {
-                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select any country to compare with ...</p></div></div>',0);
+                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
                         owl.trigger('refresh.owl.carousel');
                     }
 
