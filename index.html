@@ -492,8 +492,13 @@
                                 <div class="col-md-12 cb-bottom-2">
                                     <div class="rinputm displayib">
                                         <label class="clbl uppc txt-s c-g40 displayb p-s-top">Compare with</label>
-                                        <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
-                                            <option>Select country...</option>
+                                        <select name="syear" id="syear" class="cinput cinput-search cinput-s-arrow cinput-md-country">
+                                            <option>Select country...</option> 
+                                            <option>Argentina</option>
+                                            <option>Brazil</option>
+                                            <option>Colombia</option>
+                                            <option>Costa Rica</option>
+                                            <option>Ecuador</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
                                             <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">add</button>
@@ -1211,6 +1216,16 @@
 
             $(document).ready(function() {
 
+
+                $("select.cinput-md-country").on("change", function() {
+                    
+
+
+
+                })
+
+
+
                 var owl =  $('.carousel-countries').owlCarousel({
                     loop:false,
                     margin:10,
@@ -1231,7 +1246,7 @@
                     rmItemCount = event.item.count;
                     
                     if(rmItemCount == 0) {
-                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country to compare with ...</p></div></div>',0);
+                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select any country to compare with ...</p></div></div>',0);
                         owl.trigger('refresh.owl.carousel');
                     }
 
@@ -1251,6 +1266,10 @@
                     owl.trigger('refresh.owl.carousel');
                    
                 })
+
+
+
+
 
 
 
