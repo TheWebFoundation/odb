@@ -1182,6 +1182,41 @@
 
        </div>
 
+
+
+        <!-- CLONED COUNTRY COMPARATOR -->
+        <div class="country-item country-item-cloned hddn">
+                                            
+            <div class="country-area country-compare p-l-top" data-id="1">
+                <header class="ca-header txt-c">
+                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
+                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
+                        <span class="flag-md flag-country"><img src="img/flags/tr.svg" class="adj-img-ca-h img-responsive"></span>
+                        <span class="ca-h-tit displayib m-xs-top">Turkey
+                         <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                        </span>
+                    </h5>
+                </header>
+
+                <div class="static-indicator r-pos">
+                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
+                    <div class="indicator-cover">
+                        <div class="indicator-progress" style="width:45%"></div>
+                    </div>   
+                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
+                </div>
+                
+                <div class="ca-content m-xl-top txt-c">
+                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                </div> 
+
+                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
+                    
+                </div>
+
+            </div>
+
+        </div><!--end item-->
         
 
         <!--[if lt IE 7]>
@@ -1217,8 +1252,31 @@
             $(document).ready(function() {
 
 
-                $(".cbtn-md-add-country").on("click", function() {
+                $(".cbtn-md-add-country").on("click", function(e) {
+                    
+                    e.preventDefault();
                     console.log("Posicion: "+rmItemCount);
+                    
+                    var ncountry = $(".owl-stage").find(".country-area-empty").length;
+                    
+                    if(ncountry == 1) {
+                        owl.trigger('remove.owl.carousel', 0); 
+                    }
+
+                    //return false;
+                   
+                    //Clonamos el div inicial y cambiamos los datos
+                    var $div = $('div.country-item-cloned');
+                    var $cloned =  $div.clone();
+                    
+                    //console.log("clon4: "+$cloned.attr("class"));
+                    
+                    var $end = $cloned.removeClass('country-item-cloned'),
+                    $end = $cloned.removeClass('hddn');  
+                    owl.trigger('add.owl.carousel', $cloned,rmItemCount);
+                    owl.trigger('refresh.owl.carousel');
+                    owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
+
                 })
 
 
@@ -1255,7 +1313,9 @@
                     console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
                 });
 
-                $(".md-h-removec").on("click", function(e) {
+
+                $(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
+                //$(".md-h-removec").on("click", function(e) {
                     e.preventDefault();
                    //console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
                     owl.trigger('remove.owl.carousel', rmItemOwl);
