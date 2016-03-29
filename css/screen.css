@@ -408,288 +408,362 @@ body {
 }
 
 /* line 355, ../sass/_base.scss */
+.w33f {
+  width: -moz-calc(32%);
+  width: calc(32%);
+}
+@media (min-width: 480px) {
+  /* line 355, ../sass/_base.scss */
+  .w33f {
+    width: calc(32.3%);
+  }
+}
+@media (min-width: 768px) {
+  /* line 355, ../sass/_base.scss */
+  .w33f {
+    width: calc(32.9%);
+  }
+}
+@media (min-width: 992px) {
+  /* line 355, ../sass/_base.scss */
+  .w33f {
+    width: calc(33%);
+  }
+}
+
+/* line 373, ../sass/_base.scss */
 .w30 {
   width: 30% !important;
 }
 
-/* line 359, ../sass/_base.scss */
+/* line 377, ../sass/_base.scss */
 .w20 {
   width: 20%;
 }
 
-/* line 363, ../sass/_base.scss */
+/* line 381, ../sass/_base.scss */
 .w10 {
   width: 10%;
 }
 
-/* line 367, ../sass/_base.scss */
+/* line 385, ../sass/_base.scss */
 .w50 {
   width: 49%;
 }
 
-/* line 374, ../sass/_base.scss */
+/* line 392, ../sass/_base.scss */
 .h100 {
   height: 100%;
 }
 
-/* line 378, ../sass/_base.scss */
+/* line 396, ../sass/_base.scss */
 .h61px {
   height: 61px !important;
 }
 
-/* line 382, ../sass/_base.scss */
+/* line 400, ../sass/_base.scss */
 .h62px {
   height: 62px !important;
 }
 
-/* line 391, ../sass/_base.scss */
+/* line 409, ../sass/_base.scss */
 .cinput-w100 {
   width: 100%;
 }
 
-/* line 395, ../sass/_base.scss */
+/* line 413, ../sass/_base.scss */
 .cinput-w90 {
   width: 90%;
 }
 
-/* line 399, ../sass/_base.scss */
+/* line 417, ../sass/_base.scss */
 .cinput-w80 {
   width: 80%;
 }
 
-/* line 403, ../sass/_base.scss */
+/* line 421, ../sass/_base.scss */
 .cinput-w75 {
   width: 74.3%;
 }
 
-/* line 407, ../sass/_base.scss */
+/* line 425, ../sass/_base.scss */
 .cinput-w60 {
   width: 59%;
 }
 
-/* line 411, ../sass/_base.scss */
+/* line 429, ../sass/_base.scss */
 .cinput-w50 {
   width: 49.2%;
 }
 
-/* line 415, ../sass/_base.scss */
+/* line 433, ../sass/_base.scss */
 .cinput-w49 {
   width: 49%;
 }
 
-/* line 419, ../sass/_base.scss */
+/* line 437, ../sass/_base.scss */
 .cinput-w40 {
   width: 40%;
 }
 
-/* line 423, ../sass/_base.scss */
+/* line 441, ../sass/_base.scss */
 .cinput-w25 {
   width: 25%;
 }
 
-/* line 427, ../sass/_base.scss */
+/* line 445, ../sass/_base.scss */
 .cinput-w20 {
   width: 20%;
 }
 
-/* line 431, ../sass/_base.scss */
+/* line 449, ../sass/_base.scss */
 .cinput-w33 {
   width: 33%;
 }
 
-/* line 442, ../sass/_base.scss */
+/* line 460, ../sass/_base.scss */
 .txt-xxs {
   font-size: 0.5em;
 }
 
-/* line 446, ../sass/_base.scss */
+/* line 464, ../sass/_base.scss */
 .txt-xs {
   font-size: 0.625em;
 }
 
-/* line 450, ../sass/_base.scss */
+/* line 468, ../sass/_base.scss */
 .txt-s {
   font-size: 0.750em;
 }
 
-/* line 454, ../sass/_base.scss */
+/* line 472, ../sass/_base.scss */
 .txt-m {
   font-size: 0.875em;
 }
 
-/* line 458, ../sass/_base.scss */
+/* line 476, ../sass/_base.scss */
 .txt-l {
   font-size: 1.286em;
 }
 
-/* line 462, ../sass/_base.scss */
+/* line 480, ../sass/_base.scss */
 .txt-xl {
   font-size: 1.375em;
 }
 
-/* line 466, ../sass/_base.scss */
+/* line 484, ../sass/_base.scss */
 .txt-xxl {
   font-size: 1.5em;
 }
 
-/* line 470, ../sass/_base.scss */
+/* line 488, ../sass/_base.scss */
 .txt-small {
   font-size: 1.8em;
 }
 
-/* line 474, ../sass/_base.scss */
+/* line 492, ../sass/_base.scss */
 .txt-med {
   font-size: 2em;
 }
 
-/* line 478, ../sass/_base.scss */
+/* line 496, ../sass/_base.scss */
 .txt-big {
   font-size: 2.5em;
 }
 
-/* line 482, ../sass/_base.scss */
+/* line 500, ../sass/_base.scss */
 .txt-xbig {
   font-size: 3em;
 }
 
-/* line 491, ../sass/_base.scss */
+/* line 509, ../sass/_base.scss */
 .cb-top-1 {
   border-top: 2px solid #ECF0F1;
 }
 
-/* line 495, ../sass/_base.scss */
+/* line 513, ../sass/_base.scss */
 .cb-bottom-1 {
   border-bottom: 2px solid #ECF0F1;
 }
 
-/* line 500, ../sass/_base.scss */
+/* line 518, ../sass/_base.scss */
 .cb-top-2 {
   border-top: 1px solid #D6DBDC;
 }
 
-/* line 504, ../sass/_base.scss */
+/* line 522, ../sass/_base.scss */
 .cb-bottom-2 {
   border-bottom: 1px solid #D6DBDC;
 }
 
-/* line 508, ../sass/_base.scss */
+/* line 526, ../sass/_base.scss */
+.cb-bottom-lh {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* line 530, ../sass/_base.scss */
 .cb-left-2 {
   border-left: 1px solid #D6DBDC;
 }
 
-/* line 512, ../sass/_base.scss */
+/* line 534, ../sass/_base.scss */
 .cb-right-2 {
   border-right: 1px solid #D6DBDC;
 }
 
-/* line 516, ../sass/_base.scss */
+/* line 538, ../sass/_base.scss */
 .cb-right-3 {
   border-right: 1px solid #FFFFFF;
 }
 
-/* line 520, ../sass/_base.scss */
+/* line 542, ../sass/_base.scss */
+.cb-left-4 {
+  border-left: 3px solid #D6DBDC;
+}
+
+/* line 546, ../sass/_base.scss */
 .no-border-top {
   border-top: 0px;
 }
 
-/* line 524, ../sass/_base.scss */
+/* line 550, ../sass/_base.scss */
 .no-border-bottom {
   border-bottom: 0px;
 }
 
-/* line 528, ../sass/_base.scss */
+/* line 554, ../sass/_base.scss */
 .no-border-right {
   border-right: 0px;
 }
 
-/* line 532, ../sass/_base.scss */
+/* line 558, ../sass/_base.scss */
 .no-border {
   border: 0px;
 }
 
-/* line 542, ../sass/_base.scss */
+/* line 568, ../sass/_base.scss */
 .cprimary {
   color: #79B042;
 }
 
-/* line 546, ../sass/_base.scss */
+/* line 572, ../sass/_base.scss */
 .csecondary  {
   color: #C38089;
 }
 
-/* line 550, ../sass/_base.scss */
+/* line 576, ../sass/_base.scss */
 .copposite  {
   color: #C38089;
 }
 
-/* line 554, ../sass/_base.scss */
+/* line 580, ../sass/_base.scss */
 .c-contrast {
   color: #fff;
 }
 
-/* line 558, ../sass/_base.scss */
+/* line 584, ../sass/_base.scss */
+.c-check {
+  color: #44DB5E;
+}
+
+/* line 588, ../sass/_base.scss */
+.c-error {
+  color: #E74C3C;
+}
+
+/* line 592, ../sass/_base.scss */
 .c-g100 {
   color: #000;
 }
 
-/* line 562, ../sass/_base.scss */
+/* line 596, ../sass/_base.scss */
 .c-g80 {
   color: #333;
 }
 
-/* line 566, ../sass/_base.scss */
+/* line 600, ../sass/_base.scss */
 .c-g60 {
   color: #666;
 }
 
-/* line 570, ../sass/_base.scss */
+/* line 604, ../sass/_base.scss */
 .c-g50 {
   color: #7F7F7F;
 }
 
-/* line 574, ../sass/_base.scss */
+/* line 608, ../sass/_base.scss */
 .c-g40 {
   color: #999;
 }
 
-/* line 578, ../sass/_base.scss */
+/* line 612, ../sass/_base.scss */
 .c-g30 {
   color: #B2B2B2;
 }
 
-/* line 582, ../sass/_base.scss */
+/* line 616, ../sass/_base.scss */
 .c-g20 {
   color: #CCC;
 }
 
-/* line 586, ../sass/_base.scss */
+/* line 620, ../sass/_base.scss */
 .c-g10 {
   color: #F0F0F0;
 }
 
-/* line 590, ../sass/_base.scss */
+/* line 624, ../sass/_base.scss */
 .c-g05 {
   color: #F2F2F2;
 }
 
-/* line 594, ../sass/_base.scss */
+/* line 628, ../sass/_base.scss */
 .c-bg-10 {
   background-color: #F0F0F0;
 }
 
-/* line 598, ../sass/_base.scss */
+/* line 632, ../sass/_base.scss */
 .c-bg-05 {
   background-color: #F2F2F2;
 }
 
-/* line 602, ../sass/_base.scss */
+/* line 636, ../sass/_base.scss */
 .c-bg-10 {
   background-color: #F0F0F0;
 }
 
-/* line 606, ../sass/_base.scss */
+/* line 640, ../sass/_base.scss */
 .c-bg-contrast {
   background-color: #fff;
+}
+
+/* line 648, ../sass/_base.scss */
+.bg-readliness {
+  background-color: #F1C40F;
+}
+
+/* line 652, ../sass/_base.scss */
+.bg-implementation {
+  background-color: #92EFDA;
+}
+
+/* line 656, ../sass/_base.scss */
+.bg-impact {
+  background-color: #CB97F9;
+}
+
+/* line 660, ../sass/_base.scss */
+.br-left-readliness {
+  border-left: 4px solid #F1C40F;
+}
+
+/* line 664, ../sass/_base.scss */
+.br-left-implementation {
+  border-left: 4px solid #92EFDA;
+}
+
+/* line 668, ../sass/_base.scss */
+.br-left-impact {
+  border-left: 4px solid #CB97F9;
 }
 
 /* line 1, ../sass/_layout.scss */
@@ -754,7 +828,13 @@ body {
 
 /* line 52, ../sass/_layout.scss */
 .country-area {
-  min-height: 320px;
+  min-height: 470px;
+}
+
+/* line 56, ../sass/_layout.scss */
+.country-area-empty {
+  min-height: 490px;
+  width: 100%;
 }
 
 /* line 2, ../sass/_m-3parties.scss */
@@ -772,7 +852,106 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   top: 25px;
 }
 
-/* line 1, ../sass/_m-modales.scss */
+/* line 14, ../sass/_m-3parties.scss */
+table.dataTable thead .sorting::after {
+  content: '';
+  background-image: url("../img/ico-order-reset.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 28px;
+}
+
+/* line 23, ../sass/_m-3parties.scss */
+table.dataTable thead .sorting_asc::after {
+  content: '';
+  background-image: url("../img/ico-order-asc.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 28px;
+}
+
+/* line 33, ../sass/_m-3parties.scss */
+table.dataTable thead .sorting_desc::after {
+  content: '';
+  background-image: url("../img/ico-order-desc.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 28px;
+}
+
+/* line 44, ../sass/_m-3parties.scss */
+.owl-carousel .owl-item img {
+  width: auto !important;
+}
+
+/* line 48, ../sass/_m-3parties.scss */
+.owl-dots {
+  padding-top: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* line 59, ../sass/_m-3parties.scss */
+.owl-dots .owl-dot {
+  margin: 0px 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50em;
+  display: inline-block;
+  background-color: #CCC;
+}
+
+/* line 72, ../sass/_m-3parties.scss */
+.owl-dots .owl-dot.active {
+  background-color: #79B042;
+}
+
+/* line 76, ../sass/_m-3parties.scss */
+.owl-nav {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+}
+
+/* line 82, ../sass/_m-3parties.scss */
+.owl-nav .owl-prev {
+  background-image: url("../img/_svg/aleft.svg");
+  background-position: center center;
+  display: block;
+  width: 28px;
+  height: 28px;
+  text-indent: -9999px;
+  position: absolute;
+  left: 0px;
+}
+
+/* line 93, ../sass/_m-3parties.scss */
+.owl-nav .owl-next {
+  background-image: url("../img/_svg/aright.svg");
+  background-position: center center;
+  display: block;
+  width: 28px;
+  height: 28px;
+  text-indent: -9999px;
+  position: absolute;
+  right: 0px;
+}
+
+/* line 104, ../sass/_m-3parties.scss */
+.owl-nav .disabled {
+  opacity: .2;
+  cursor: disabled;
+}
+
+/* line 1, ../sass/_m-modal-detail.scss */
 .overlay {
   position: fixed;
   top: 0;
@@ -789,39 +968,38 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   overflow-y: scroll;
 }
 
-/* line 23, ../sass/_m-modales.scss */
+/* line 23, ../sass/_m-modal-detail.scss */
 .overlay-open {
   opacity: 1;
   visibility: visible;
 }
 
-/* line 28, ../sass/_m-modales.scss */
+/* line 28, ../sass/_m-modal-detail.scss */
 .cmodal {
   position: absolute;
+  bottom: 0;
   left: 50%;
   width: 100%;
   height: auto;
   z-index: 50;
   transform: translate(-50%, 100%);
   visibility: hidden;
-  background-color: #fff;
   opacity: 0;
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 28, ../sass/_m-modales.scss */
+  /* line 28, ../sass/_m-modal-detail.scss */
   .cmodal {
     width: 90%;
   }
 }
 
-/* line 52, ../sass/_m-modales.scss */
+/* line 53, ../sass/_m-modal-detail.scss */
 .cmodal-detail {
   height: 90%;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.6);
 }
 
-/* line 58, ../sass/_m-modales.scss */
+/* line 58, ../sass/_m-modal-detail.scss */
 .cmodal-detail-open {
   bottom: 0;
   visibility: visible;
@@ -829,16 +1007,112 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   opacity: 1;
 }
 
-/* line 66, ../sass/_m-modales.scss */
+/* line 66, ../sass/_m-modal-detail.scss */
 .cmodal-d-global {
   background-color: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.6);
+  position: relative;
+  padding-bottom: 160px;
 }
 
 /*.adj-img-ca-h {
 	margin-top:-15px;
 }*/
-/* line 74, ../sass/_m-modales.scss */
-.flag-md {
+/* line 77, ../sass/_m-modal-detail.scss */
+.ilist {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* line 83, ../sass/_m-modal-detail.scss */
+.cm-h-rdata {
+  padding-left: 0px;
+  padding-top: 10px;
+}
+@media (min-width: 768px) {
+  /* line 83, ../sass/_m-modal-detail.scss */
+  .cm-h-rdata {
+    padding-left: 40px;
+    padding-top: 10px;
+  }
+}
+
+/* line 93, ../sass/_m-modal-detail.scss */
+.il-item {
+  display: inline-block;
+  float: left;
+}
+
+/* line 98, ../sass/_m-modal-detail.scss */
+.il-item-resp {
+  display: block;
+  padding-left: 0px;
+  text-align: center;
+  padding: 10px 0px;
+}
+@media (min-width: 768px) {
+  /* line 98, ../sass/_m-modal-detail.scss */
+  .il-item-resp {
+    display: inline-block;
+    float: left;
+    padding: 10px 20px 10px 20px;
+  }
+}
+
+/* line 110, ../sass/_m-modal-detail.scss */
+.ca-header {
+  display: block;
+  width: 100%;
+}
+
+/* line 115, ../sass/_m-modal-detail.scss */
+.md-h-nav {
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+  top: 10px;
+}
+
+/* line 122, ../sass/_m-modal-detail.scss */
+.md-h-removec {
+  left: -14px;
+  border-radius: 50em;
+  background-color: #E74C3C;
+  height: 23px;
+  width: 23px;
+  line-height: 6px;
+  text-align: center;
+  top: 6px;
+  color: #fff;
+  z-index: 10;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* line 139, ../sass/_m-modal-detail.scss */
+.md-h-arrow-right {
+  right: 0px;
+}
+
+/* line 143, ../sass/_m-modal-detail.scss */
+.md-h-arrow-left {
+  left: 0px;
+}
+
+/* line 147, ../sass/_m-modal-detail.scss */
+.no-country-select {
+  width: 290px;
+  height: 210px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 159, ../sass/_m-modal-detail.scss */
+.flag-md, .flag-md-small {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -847,9 +1121,18 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   border-radius: 50em;
   background-color: #efefef;
   top: -2px;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* line 85, ../sass/_m-modales.scss */
+/* line 171, ../sass/_m-modal-detail.scss */
+.flag-md-small {
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+}
+
+/* line 180, ../sass/_m-modal-detail.scss */
 .indicator-cover {
   position: relative;
   width: 100%;
@@ -858,7 +1141,7 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   overflow: hidden;
 }
 
-/* line 94, ../sass/_m-modales.scss */
+/* line 189, ../sass/_m-modal-detail.scss */
 .indicator-cover:after {
   content: '';
   position: absolute;
@@ -872,10 +1155,111 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   transform: rotate(-90deg);
 }
 
-/* line 107, ../sass/_m-modales.scss */
+/* line 202, ../sass/_m-modal-detail.scss */
+.indicator-st {
+  position: absolute;
+  bottom: -20px;
+}
+
+/* line 207, ../sass/_m-modal-detail.scss */
+.i-init {
+  left: 0;
+}
+
+/* line 211, ../sass/_m-modal-detail.scss */
+.i-end {
+  right: 0;
+}
+
+/* line 216, ../sass/_m-modal-detail.scss */
 .indicator-progress {
   background-color: #73E500;
   height: 20px;
+}
+
+/* line 221, ../sass/_m-modal-detail.scss */
+.ca-content {
+  min-height: 300px;
+}
+
+/* line 225, ../sass/_m-modal-detail.scss */
+.leg {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50em;
+  background-color: #ededed;
+}
+
+/* line 233, ../sass/_m-modal-detail.scss */
+.leg-odb {
+  background-color: #4A4A4A;
+}
+
+/* line 236, ../sass/_m-modal-detail.scss */
+.leg-readliness {
+  background-color: #F1C40F;
+}
+
+/* line 239, ../sass/_m-modal-detail.scss */
+.leg-implementation {
+  background-color: #92EFDA;
+}
+
+/* line 242, ../sass/_m-modal-detail.scss */
+.leg-impact {
+  background-color: #CB97F9;
+}
+
+/* line 246, ../sass/_m-modal-detail.scss */
+.global-content-indicators {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  max-height: 160px;
+  transition: max-height 1s ease-in;
+  background-color: #fff;
+  z-index: 100;
+}
+
+/* line 257, ../sass/_m-modal-detail.scss */
+.gci-mnu-item {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  border-bottom: 1px solid #D6DBDC;
+  color: #999;
+}
+
+/* line 264, ../sass/_m-modal-detail.scss */
+.gci-mnu-item-ac {
+  border-bottom: 1px solid #fff;
+  color: #000;
+}
+
+/*.gci-content {
+	max-height: 120px;
+	overflow-y:scroll;
+	transition: max-height 1s ease-in;
+	background-color: $ccontrast;
+}*/
+/* line 276, ../sass/_m-modal-detail.scss */
+.cgi-c-expanded {
+  max-height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* line 287, ../sass/_m-modal-detail.scss */
+.cth-md, .ctd-md {
+  padding: 0.5em 0.5em;
+}
+
+/* line 291, ../sass/_m-modal-detail.scss */
+.ctd-md {
+  border-left: 1px solid #f0f0f0;
 }
 
 /* line 2, ../sass/_m-generales.scss */
@@ -908,7 +1292,21 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   background-color: #fff;
 }
 
-/* line 31, ../sass/_m-generales.scss */
+/* line 28, ../sass/_m-generales.scss */
+.list-inl {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  list-style-type: none;
+}
+
+/* line 36, ../sass/_m-generales.scss */
+.item-lin {
+  display: inline-block;
+}
+
+/* line 42, ../sass/_m-generales.scss */
 .cover-help {
   width: 24px;
   height: 24px;
@@ -919,7 +1317,7 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   display: inline-block;
 }
 
-/* line 41, ../sass/_m-generales.scss */
+/* line 52, ../sass/_m-generales.scss */
 .th-main {
   background-color: #79B042;
   color: #fff;
@@ -927,63 +1325,43 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* line 48, ../sass/_m-generales.scss */
+/* line 59, ../sass/_m-generales.scss */
 .ct-th, .ct-td {
   padding: 1em 0.6em;
   border-bottom: 1px solid #F0F0F0;
 }
 
-/* line 53, ../sass/_m-generales.scss */
+/* line 64, ../sass/_m-generales.scss */
 .ct-th {
   border-right: 1px solid #73E500;
 }
 
-/* line 57, ../sass/_m-generales.scss */
+/* line 68, ../sass/_m-generales.scss */
 .ct-th-st, .ct-td-st {
   display: block;
   font-weight: normal;
 }
 
-/* line 63, ../sass/_m-generales.scss */
-.ilist {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-/* line 69, ../sass/_m-generales.scss */
-.cm-h-rdata {
-  padding-left: 0px;
-  padding-top: 10px;
-}
-@media (min-width: 768px) {
-  /* line 69, ../sass/_m-generales.scss */
-  .cm-h-rdata {
-    padding-left: 40px;
-    padding-top: 10px;
-  }
-}
-
-/* line 79, ../sass/_m-generales.scss */
-.il-item {
+/* line 73, ../sass/_m-generales.scss */
+.flag, .flag-md-header {
   display: inline-block;
-  float: left;
+  width: 38px;
+  height: 38px;
+  border-radius: 50em;
+  overflow: hidden;
+  margin-right: 5px;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* line 84, ../sass/_m-generales.scss */
-.il-item-resp {
-  display: block;
-  padding-left: 0px;
-  text-align: center;
-  padding: 10px 0px;
+/* line 86, ../sass/_m-generales.scss */
+.flag-md-header {
+  width: 32px;
+  height: 32px;
 }
-@media (min-width: 768px) {
-  /* line 84, ../sass/_m-generales.scss */
-  .il-item-resp {
-    display: inline-block;
-    float: left;
-    padding: 10px 20px 10px 20px;
-  }
+
+/* line 92, ../sass/_m-generales.scss */
+.ct-country {
+  display: inline-block;
 }
 
 /* line 3, ../sass/_m-formularios.scss */
@@ -1109,48 +1487,54 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
 /* line 126, ../sass/_m-formularios.scss */
 .cbtn-s-acc:hover, .cbtn-s-acc:focus, .cbtn-s-acc:active {
   color: #fff;
-  background-color: #2d4118;
+  background-color: #93c461;
+}
+/* line 130, ../sass/_m-formularios.scss */
+.cbtn-s-acc:active {
+  /* Rectangle 86 Copy 3: */
+  background-color: #608b34;
+  box-shadow: inset 0px 3px 1px 0px #396407;
 }
 
-/* line 132, ../sass/_m-formularios.scss */
+/* line 137, ../sass/_m-formularios.scss */
 .cbtn-s-succ {
   background-color: #2ECC71;
   color: #fff;
 }
-/* line 135, ../sass/_m-formularios.scss */
+/* line 140, ../sass/_m-formularios.scss */
 .cbtn-s-succ:hover, .cbtn-s-succ:focus, .cbtn-s-succ:active {
   color: #fff;
   background-color: black;
 }
 
-/* line 142, ../sass/_m-formularios.scss */
+/* line 147, ../sass/_m-formularios.scss */
 .cbtn-s-cancel {
   background-color: #F0F0F0;
   color: #666;
 }
-/* line 145, ../sass/_m-formularios.scss */
+/* line 150, ../sass/_m-formularios.scss */
 .cbtn-s-cancel:hover, .cbtn-s-cancel:focus, .cbtn-s-cancel:active {
   color: #666;
   background-color: #fff;
 }
 
-/* line 153, ../sass/_m-formularios.scss */
+/* line 158, ../sass/_m-formularios.scss */
 .cbtn-s-dis {
   cursor: default;
   background-color: #CCC;
   color: #fff;
 }
-/* line 157, ../sass/_m-formularios.scss */
+/* line 162, ../sass/_m-formularios.scss */
 .cbtn-s-dis:hover, .cbtn-s-dis:focus, .cbtn-s-dis:active {
   background-color: #CCC;
 }
 
-/* line 162, ../sass/_m-formularios.scss */
+/* line 167, ../sass/_m-formularios.scss */
 .clbl {
   padding-left: 1em;
 }
 
-/* line 168, ../sass/_m-formularios.scss */
+/* line 173, ../sass/_m-formularios.scss */
 .rinput {
   border-collapse: separate;
   display: table;
@@ -1158,13 +1542,13 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   width: 100%;
 }
 @media (min-width: 992px) {
-  /* line 168, ../sass/_m-formularios.scss */
+  /* line 173, ../sass/_m-formularios.scss */
   .rinput {
     max-width: 300px;
   }
 }
 
-/* line 187, ../sass/_m-formularios.scss */
+/* line 192, ../sass/_m-formularios.scss */
 .rinputm {
   border-collapse: separate;
   display: table;
@@ -1172,20 +1556,20 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   width: 100%;
 }
 
-/* line 206, ../sass/_m-formularios.scss */
+/* line 211, ../sass/_m-formularios.scss */
 .rinput-button {
   display: table-cell;
   vertical-align: bottom;
   white-space: nowrap;
 }
 
-/* line 212, ../sass/_m-formularios.scss */
+/* line 217, ../sass/_m-formularios.scss */
 .rinput-button-search {
   width: 48px;
 }
 
-/* line 217, ../sass/_m-formularios.scss */
-.cinput {
+/* line 222, ../sass/_m-formularios.scss */
+.cinput, .cinput-table-search {
   width: 100%;
   padding: 0.5em 1.2em 0.5em 0.5em;
   display: table-cell;
@@ -1196,20 +1580,28 @@ table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after
   border: none;
   border-radius: 0px;
 }
-/* line 238, ../sass/_m-formularios.scss */
-.cinput:focus {
+/* line 243, ../sass/_m-formularios.scss */
+.cinput:focus, .cinput-table-search:focus {
   outline-width: 0;
   outline: 0 none;
   outline-color: transparent;
 }
 
-/* line 245, ../sass/_m-formularios.scss */
+/* line 250, ../sass/_m-formularios.scss */
 .cinput-search {
   float: left;
   text-overflow: ellipsis;
 }
 
-/* line 250, ../sass/_m-formularios.scss */
+/* line 255, ../sass/_m-formularios.scss */
+.cinput-table-search {
+  padding: 1.2em 1.2em 1em 2em;
+  background-image: url("../img/img-cinput-table-search.svg");
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+/* line 263, ../sass/_m-formularios.scss */
 .cinput-s-arrow {
   background-image: url("../img/toggle-arrow.png");
   background-repeat: no-repeat;

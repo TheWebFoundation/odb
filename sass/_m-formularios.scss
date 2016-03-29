@@ -125,7 +125,12 @@
 	color: $ccontrast;
 	&:hover, &:focus, &:active {
 		color: $ccontrast;
-		background-color:darken($cprimary, 30%);
+		background-color:lighten($cprimary, 10%);
+	}
+	&:active {
+		/* Rectangle 86 Copy 3: */
+		background-color:darken($cprimary, 10%);
+		box-shadow: inset 0px 3px 1px 0px #396407;
 	}
 }
 //Success
@@ -245,6 +250,14 @@
 .cinput-search {
 	float:left;
 	text-overflow: ellipsis; 
+}
+
+.cinput-table-search {
+	@extend .cinput;
+	padding: 1.2em 1.2em 1em 2em;
+	background-image: url("../img/img-cinput-table-search.svg");
+	background-repeat: no-repeat;
+	background-position: center left;
 }
 
 .cinput-s-arrow {

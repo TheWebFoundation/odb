@@ -80,10 +80,17 @@ $bgfilters: #fff;
 $bg-in-base:#79B042;
 $bg-in-comp:#73E500;
 
+//Indicadores base:
+$odb: #4A4A4A;
+$readliness:#F1C40F;
+$implementation:#92EFDA;
+$impact:#CB97F9;
+
 //Bordes
 $c-borde-1:#ECF0F1;
 $c-borde-2:#D6DBDC;
 $c-borde-3:#FFFFFF;
+$c-borde-4:#f0f0f0;
 
 //Grey scale
 $c-g100:#000;
@@ -121,9 +128,13 @@ $c-gen:#E74C3C;
 $c-eje:#F5A623;
 
 //Alertas
-$adv-0:#fcf8e3; //advertencia = rojo
+$adv-0:#fcf8e3; //advertencia = amarillo
 $adv-1:#dff0d8; //confirmacion = verde
 $adv-2:#f2dede; //error = rojo
+
+//Estados
+$ckechk:#44DB5E; 
+$cerror:#E74C3C;
 
 $adv-txt-0:#8a6d3b;
 $adv-txt-1:#3c763d;

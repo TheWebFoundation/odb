@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>ODB</title>
-        <meta name="description" content="odb data player">
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
 
@@ -17,12 +17,18 @@
         <link rel="stylesheet" href="css/svg-fonts.css">
 
 
-        <!--3 parties/vendor styles-->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        
         <!-- Map styles -->
-        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <!--link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
         <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css" />
         <link href="js/vendor/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
+       
+        <!--3 parties/vendor styles-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        
+
         <!--Main styles-->
         <link rel="stylesheet" href="css/screen.css">
         
@@ -85,7 +91,7 @@
                                             <option>Dominican Republic</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">Search</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">Show</button>
                                         </span>
                                     </div>
                                 </div>
@@ -99,9 +105,9 @@
                 
 
                 <div class="header-acc-buttons">
-                    <a href="#" class="btn-acc-h btn-download">Download</a>
-                    <a href="#" class="btn-acc-h btn-info">Info</a>
-                    <a href="#" class="btn-acc-h btn-share">Share</a>
+                    <a href="#" class="cbtn-acc-h cbtn-download">Download</a>
+                    <a href="#" class="cbtn-acc-h cbtn-info">Info</a>
+                    <a href="#" class="cbtn-acc-h cbtn-share">Share</a>
                 </div>
 
             </div>
@@ -201,6 +207,12 @@
         <section class="wrapper-table">
             
             <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xs-12 txt-c no-p-lat">
+                        <input type="text" id="cinput-table-search" class="cinput-table-search txt-l" placeholder="Search country ...">
+                    </div>
+                </div>
                 
                 <div class="row">
                   
@@ -226,17 +238,23 @@
                                 <tbody>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Costa Rica</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/cr.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Costa Rica</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">1</td>
                                        <td class="ct-td txt-c txt-med">87</td>
-                                       <td class="ct-td txt-al grafica">(graphic) 42</td>
+                                       <td class="ct-td txt-al">(graphic) 42</td>
                                        <td class="ct-td txt-al">(graphic) 21</td>
                                        <td class="ct-td txt-al">(graphic) 11</td>
                                        <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
                                     </tr>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Colombia</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/co.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Colombia</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">2</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -246,7 +264,10 @@
                                     </tr>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Turkey</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/tr.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Turkey</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">3</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -256,7 +277,10 @@
                                     </tr>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Malaysia</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/my.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Malaysia</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">4</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -266,7 +290,10 @@
                                     </tr>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Peru</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/pe.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Peru</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">5</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -276,7 +303,10 @@
                                     </tr>
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Brazil</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/br.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Brazil</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">6</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -287,7 +317,10 @@
 
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Mauritius</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/mu.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Mauritius</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">7</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -298,7 +331,10 @@
 
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Ecuador</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/ec.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Ecuador</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">8</td>
                                        <td class="ct-td txt-c txt-med">87</td>
                                        <td class="ct-td txt-al">(graphic) 42</td>
@@ -309,10 +345,13 @@
 
 
                                     <tr>
-                                       <td class="ct-td txt-al p-left-l"><span class="flag flag-cr"></span> <span class="txt-l">Argentina</span> <span class="ct-td-st"><a href="#" class="txt-s more-info"> See details</a></span></td>
+                                       <td class="ct-td txt-al p-left-l">
+                                            <span class="flag"><img src="img/flags/ar.svg" class="img-responsive"></span>
+                                            <span class="ct-country"><span class="txt-l">Argentina</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
+                                       </td>
                                        <td class="ct-td txt-c txt-med">9</td>
                                        <td class="ct-td txt-c txt-med">87</td>
-                                       <td class="ct-td txt-al">(graphic) 42</td>
+                                       <td class="ct-td txt-al grafica">(graphic) 42</td>
                                        <td class="ct-td txt-al">(graphic) 21</td>
                                        <td class="ct-td txt-al">(graphic) 11</td>
                                        <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
@@ -348,16 +387,21 @@
                             <div class="col-md-12 txt-c p-xs-top p-s-bottom">
                                
                                 <div class="cm-h-item cm-h-tit fleft txt-al displayib">
-                                    <h4 class="no-m-bottom">Costa Rica</h4>
-                                    <p class="no-m-bottom">Latin American & Carivean</p>
+                                    <h4 class="no-m-bottom txt-l">
+                                        <span class="flag-md-header"><img src="img/flags/cr.svg" class="img-responsive"></span>
+                                        <span class="ct-country"><span class="txt-m">Costa Rica</span> <span class="txt-s c-g40 more-info displayb"> Latin America & Caribean</span></span>
+                                    </h4>
+                                    
                                 </div>
                                
                                 <div class="cm-h-item cm-h-rdata fleft displayib">
                                     <ul class="ilist overfh displayib txt-al">
                                         <li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">High</span></li>
                                         <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">High</span></li>
-                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt">High</span></li>
-                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt">High</span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="cicon-check c-check"></span></span></li>
+                                        <li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="cicon-cross txt-s c-error"></span></span></li>
                                     </ul>
                                 </div>
 
@@ -406,7 +450,7 @@
 
                 <div class="container-fluid">
                     
-                    <div class="row m-l-bottom cb-bottom-2">
+                    <div class="row cb-bottom-2">
                         
                         <div class="col-md-4">
                             <div class="rinputm displayib">
@@ -434,16 +478,17 @@
 
                     </div>
 
-                    <div class="row">
-    
-                        
-                        
+                    <!-- posible ajuste p-l-top -->
+                    <div class="row"> 
+
                         <div class="col-md-4">
                             <p>araña</p>
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 cb-left-4">
+                           
                             <div class="row">
+                                
                                 <div class="col-md-12 cb-bottom-2">
                                     <div class="rinputm displayib">
                                         <label class="clbl uppc txt-s c-g40 displayb p-s-top">Compare with</label>
@@ -451,7 +496,7 @@
                                             <option>Select country...</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">add</button>
                                         </span>
                                     </div>
                                 </div>
@@ -460,23 +505,33 @@
                                     <div class="country-area country-selected p-l-top" data-id="0">
                                         <header class="ca-header txt-c">
                                                 <h5 class="txt-al no-m-top no-m-bottom displayib c-obj">
-                                                    <span class="flag-md flag-country"><img src="img/flags/cr.jpg" class="adj-img-ca-h img-responsive"></span>
+                                                    <span class="flag-md flag-country"><img src="img/flags/cr.svg" class="adj-img-ca-h img-responsive"></span>
                                                     <span class="ca-h-tit displayib m-xs-top">Costa Rica 
                                                      <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
                                                     </span>
                                                 </h5>
                                         </header>
                                         
-                                        <div class="static-indicator">
-                                            <h5 class="txt-m">ODB index</h5>
+                                        <div class="static-indicator r-pos">
+                                            <h5 class="txt-m displayb">ODB index  <span class="displayib fright txt-xl">85%</span></h5>
                                             <div class="indicator-cover">
                                                 <div class="indicator-progress" style="width:85%"></div>
                                             </div>   
+                                            
+                                            <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
                                         </div>
 
-                                        <div class="ca-content ca-current">
+                                        <div class="ca-content ca-current m-xl-top txt-c">
+                                            <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                                        </div>
 
-
+                                        <div class="cac-current-actions txt-c p-s-top p-s-bottom">
+                                            <ul class="list-inl c-obj">
+                                                <li class="item-lin txt-s uppc c-g40"><span class="leg leg-odb"></span> ODB</li>
+                                                <li class="item-lin txt-s uppc c-g40"><span class="leg leg-readliness"></span> Readliness</li>
+                                                <li class="item-lin txt-s uppc c-g40"><span class="leg leg-implementation"></span> Implementation</li>
+                                                <li class="item-lin txt-s uppc c-g40"><span class="leg leg-impact"></span> Impact</li>
+                                            </ul>
                                         </div>
 
 
@@ -484,36 +539,635 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="country-area country-compare p-l-top" data-id="1">
-                                        <header class="ca-header txt-c">
-                                            <h5 class="txt-al no-m-top no-m-bottom displayib c-obj">
-                                                <span class="flag-md flag-country"><img src="img/flags/ec.jpg" class="adj-img-ca-h img-responsive"></span>
-                                                <span class="ca-h-tit displayib m-xs-top">Ecuador
-                                                 <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
-                                                </span>
-                                            </h5>
-                                        </header>
-
-                                        <div class="static-indicator">
-                                            <h5 class="txt-m">ODB index</h5>
-                                            <div class="indicator-cover">
-                                                <div class="indicator-progress" style="width:85%"></div>
-                                            </div>   
-                                        </div>
+                                   
+                                    <div class="carousel-countries owl-carousel">
                                         
-                                        <div class="ca-content">
+                                        <div class="country-item">
+                                            
+                                            <div class="country-area country-compare p-l-top" data-id="1">
+                                                <header class="ca-header txt-c">
+<!--                                                <span class="cicon-aright a-pos md-h-nav md-h-arrow-right"></span>
+                                                    <span class="cicon-aleft a-pos md-h-nav md-h-arrow-left"></span> -->
+                                                    
+                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
+                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
+                                                        <span class="flag-md flag-country"><img src="img/flags/ec.svg" class="adj-img-ca-h img-responsive"></span>
+                                                        <span class="ca-h-tit displayib m-xs-top">Ecuador
+                                                        <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                                                        </span>
+                                                    </h5>
+                                                </header>
+
+                                                <div class="static-indicator r-pos">
+                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
+                                                    <div class="indicator-cover">
+                                                        <div class="indicator-progress" style="width:45%"></div>
+                                                    </div>   
+                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
+                                                </div>
+                                                
+                                                <div class="ca-content m-xl-top txt-c">
+                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                                                </div> 
+
+                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
+                                                    <!--span class="displayb">Nav</span-->
+                                                </div>
+
+                                            </div>
+
+                                        </div><!--end item-->
 
 
-                                        </div> 
+                                        <div class="country-item">
+                                            
+                                            <div class="country-area country-compare p-l-top" data-id="1">
+                                                <header class="ca-header txt-c">
+                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
+                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
+                                                        <span class="flag-md flag-country"><img src="img/flags/my.svg" class="adj-img-ca-h img-responsive"></span>
+                                                        <span class="ca-h-tit displayib m-xs-top">Malaysia
+                                                         <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                                                        </span>
+                                                    </h5>
+                                                </header>
+
+                                                <div class="static-indicator r-pos">
+                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
+                                                    <div class="indicator-cover">
+                                                        <div class="indicator-progress" style="width:45%"></div>
+                                                    </div>   
+                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
+                                                </div>
+                                                
+                                                <div class="ca-content m-xl-top txt-c">
+                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                                                </div> 
+
+                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
+                                                   
+                                                </div>
+
+                                            </div>
+
+                                        </div><!--end item-->
+
+
+                                        <div class="country-item">
+                                            
+                                            <div class="country-area country-compare p-l-top" data-id="1">
+                                                <header class="ca-header txt-c">
+                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
+                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
+                                                        <span class="flag-md flag-country"><img src="img/flags/tr.svg" class="adj-img-ca-h img-responsive"></span>
+                                                        <span class="ca-h-tit displayib m-xs-top">Turkey
+                                                         <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
+                                                        </span>
+                                                    </h5>
+                                                </header>
+
+                                                <div class="static-indicator r-pos">
+                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
+                                                    <div class="indicator-cover">
+                                                        <div class="indicator-progress" style="width:45%"></div>
+                                                    </div>   
+                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
+                                                </div>
+                                                
+                                                <div class="ca-content m-xl-top txt-c">
+                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                                                </div> 
+
+                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                        </div><!--end item-->
 
                                     </div>
+
+                                </div><!--end col 6-->
+
+
+                                <div class="col-md-12 cb-top-2 p-s-top p-s-bottom txt-c">
+                                    <p class="no-m-top no-m-bottom txt-s"><span class="c-g40">source: </span><a href="#">TU (International Telecommunication Union)</a></p>
                                 </div>
+
                             </div>
 
                         </div>
                     
                     </div>
 
+
+                </div>
+
+                <div class="global-content-indicators cb-top-2 overfh">
+                        
+                    <div class="mnu-c-ind">
+                        <ul class="gci-mnu list-inl no-m-bottom">
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-readliness uppc txt-s">Readliness</li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-implementation uppc txt-s gci-mnu-item-ac">Implementation <a href="#" class="cbtn-expand-table">Expand</a></li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-impact txt-s uppc">Impact</li>
+                        </ul>
+                    </div>
+
+                    <div class="gci-content gci-c-readliness">
+                        
+                        <div class="table-responsive">
+
+                            <table class="w100">
+                                
+                                <thead>
+                                    <tr class="cb-bottom-2">
+                                        <th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>
+                                        <th class="cth-md txt-c uppc txt-xs">Acron.</th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d1.png" width="16" height="16" alt="Map Data " title="Map Data " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d2.png" width="16" height="16" alt="Land ownership data " title="Land ownership data " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d4.png" width="16" height="16" alt="Detailed census data " title="Detailed census data " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d5.png" width="16" height="16" alt="Detailed government budget " title="Detailed government budget " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d6.png" width="16" height="16" alt="Detailed data on government spend " title="Detailed data on government spend " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d7.png" width="16" height="16" alt="Company register" title="Company register" data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d8.png" width="16" height="16"  alt="Legislation " title="Legislation " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d9.png" width="16" height="16" alt="Public transport timetables " title="Public transport timetables " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d10.png" width="16" height="16" alt="International trade data " title="International trade data " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d11.png" width="16" height="16" alt="Health sector performance" title="Health sector performance" data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d12.png" width="16" height="16" alt="Primary or secondary education performance data" title="Primary or secondary education performance data" data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d13.png" width="16" height="16" alt="Crime statistics " title="Crime statistics " data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d14.png" width="16" height="16" alt="National environment statistics" title="National environment statistics" data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d15.png" width="16" height="16" alt="National election results" title="National election results" data-toggle="tooltip" data-placement="top"></th>
+                                        <th class="cth-md txt-c"><img src="img/clusters/d16.png" width="16" height="16" alt="Public Contracts" title="Public Contracts" data-toggle="tooltip" data-placement="top"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/cr.jpg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">Costa Rica</span></td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/ec.jpg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">Ecuador</span></td>
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Exist</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Available</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Machine readable</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh"> 
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Bulk</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Free</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Licenced</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Updated</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Sustainable</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Discoverable</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+
+                                    <tr class="cb-bottom-lh">
+                                        <td class = "ctd-md uppc txt-s" rowspan="2">Linked</td>
+                                        <td class="ctd-md txt-c uppc txt-s">c1</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                        <td class="ctd-md txt-c">0</td>
+                                    </tr>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md txt-c uppc txt-s">c2</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                        <td class="ctd-md txt-c">1</td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+
+                            <table class="w100">
+                                <tbody>
+                                    <tr>
+                                        
+                                        
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div> <!-- end table resonsive -->
+
+
+                    </div>
+
+                    <div class="gci-content gci-c-implementation">
+
+
+                    </div>
+
+                    <div class="gci-content gci-c-impact">
+
+
+                    </div>
+            
                 </div>
 
             </div><!--end global-wrapper-->
@@ -541,19 +1195,74 @@
         <script src="https://code.highcharts.com/maps/modules/map.js">
         <script src="https://code.highcharts.com/maps/modules/data.js"></script>
         <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <!--script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script-->
         <script src="js/vendor/DataTables/datatables.min.js" type="text/javascript"></script>
+        <!-- owl carousel -->   
+        <script src="js/vendor/owl.carousel.min.js" type="text/javascript"></script>
 
 
         <script type="text/javascript">
             
+            var rmItemCount = 0;
+            function dosomething(event) {
+                rmItemCount = event.item.count;
+                console.log("quedan: "+rmItemCount);
+            }
 
             $(document).ready(function() {
+
+                var owl =  $('.carousel-countries').owlCarousel({
+                    loop:false,
+                    margin:10,
+                    nav:true,
+                    dots:true,
+                    onInitialized: dosomething,
+                    responsive:{
+                        0:{
+                            items:1
+                        }
+                    }
+                });
+
+                owl.owlCarousel();
+                var rmItemOwl = 0; //remove item owl carousel
+                
+                owl.on('refreshed.owl.carousel', function(event) {
+                    rmItemCount = event.item.count;
+                    
+                    if(rmItemCount == 0) {
+                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country to compare with ...</p></div></div>',0);
+                        owl.trigger('refresh.owl.carousel');
+                    }
+
+                    console.log("quedan: "+rmItemCount);
+                });
+               
+                owl.on('changed.owl.carousel', function(event) {
+                    rmItemOwl = event.item.index;
+                    rmItemCount = event.page.count;
+                    console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
+                });
+
+                $(".md-h-removec").on("click", function(e) {
+                    e.preventDefault();
+                   //console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
+                    owl.trigger('remove.owl.carousel', rmItemOwl);
+                    owl.trigger('refresh.owl.carousel');
+                   
+                })
+
+
+
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                })
 
                 $(".cicon-help").on("click", function(e){
                     e.stopPropagation();
                     alert("help!");
                 })
+
 
                 $(".more-info, .close-cmodal-detail").on("click", function(e){
 
@@ -568,6 +1277,17 @@
                         $(".overlay").removeClass("overlay-open");
                         $("body").removeClass("noscroll");
                    }
+                })
+
+                $(".cbtn-expand-table").on("click", function(e){
+                    e.preventDefault();
+                    if($(".global-content-indicators").is(".cgi-c-expanded")) {
+                        $(".global-content-indicators").removeClass("cgi-c-expanded");
+                        $(".cbtn-expand-table").text("Expand");
+                    }else{
+                        $(".global-content-indicators").addClass("cgi-c-expanded");
+                        $(".cbtn-expand-table").text("Collapse");
+                    }
                 })
 
 
@@ -591,9 +1311,20 @@
                 //Iniciamos la tabla
                 var table = $('#table-data').DataTable({
                     fixedHeader: true,
-                    paging: false,
-                    info: false
+                    //paging: false,
+                    //info: false,
+                    sDom: 't' //Que solo renderice la tabla
+                    // language: {
+                    //     search: "_INPUT_",
+                    //     searchPlaceholder: "Search country ..."
+                    // }
                 });
+
+                //Custom Search
+                $('#cinput-table-search').keyup(function(){
+                      console.log($(this).val());
+                      table.search($(this).val()).draw() ;
+                })
 
             
                 $(".modal-data").on("click", function(){
@@ -632,14 +1363,14 @@
                                 chart: {
                                     renderTo: $div[0],
                                     type: 'column',
-                                    width: 280,
-                                    height: 240,
+                                    width: 156,
+                                    height: 30,
                                     backgroundColor: null,
                                     borderWidth: 0,
                                     type: 'column',
-                                    //margin: [2, 0, 2, 0],
-                                    width: 290,
-                                    height: 120,
+                                    margin: [2, 0, 2, 0],
+                                    //width: 290,
+                                    //height: 120,
                                     style: {
                                         overflow: 'visible'
                                     }
@@ -679,12 +1410,20 @@
                                     name: 'Population',
                                     data: [{
                                         name: 'Min population knowing',
-                                        color: '#79B042',
+                                        color: '#FFE064',
                                         y: 3
                                     }, {
                                         name: 'Population of '+this.name,
                                         color: '#FFE064',
                                         y: this.value
+                                    }, {
+                                        name: 'Budget of'+this.name,
+                                        color: '#FFE064',
+                                        y: 17
+                                    }, {
+                                        name: 'Debt of'+this.name,
+                                        color: '#FFE064',
+                                        y: 12
                                     }],
                                     dataLabels: {
                                         format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'

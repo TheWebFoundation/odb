@@ -352,6 +352,24 @@
 	width: 32.3%!important;
 }
 
+.w33f {
+	width:-moz-calc(32%);
+ 	width:calc(32%);
+	//width: 33%!important;
+	
+	@include modular-mq(xs) {
+		width:calc(32.3%);
+	}
+
+	@include modular-mq(sm) {
+		width:calc(32.9%);
+	}
+
+	@include modular-mq(md) {
+		width:calc(33%);
+	}
+}
+
 .w30 {
 	width: 30%!important;
 }
@@ -505,6 +523,10 @@
 	border-bottom: 1px solid $c-borde-2;
 }
 
+.cb-bottom-lh {
+	border-bottom: 1px solid $c-borde-4;
+}
+
 .cb-left-2 {
 	border-left: 1px solid $c-borde-2;
 }
@@ -515,6 +537,10 @@
 
 .cb-right-3 {
 	border-right: 1px solid $c-borde-3;
+}
+
+.cb-left-4 {
+	border-left: 3px solid $c-borde-2;
 }
 
 .no-border-top {
@@ -553,6 +579,14 @@
 
 .c-contrast {
 	color: $ccontrast;
+}
+
+.c-check {
+	color:$ckechk
+}
+
+.c-error {
+	color:$cerror;
 }
 
 .c-g100 {
@@ -605,5 +639,33 @@
 
 .c-bg-contrast {
 	background-color: $ccontrast;
+}
+
+//###################################
+//######### SPECIFIC COLOURS
+//###################################
+
+.bg-readliness {
+	background-color:$readliness;
+}
+
+.bg-implementation {
+	background-color:$implementation;
+}
+
+.bg-impact {
+	background-color:$impact;
+}
+
+.br-left-readliness {
+	border-left: 4px solid $readliness;
+}
+
+.br-left-implementation {
+	border-left: 4px solid $implementation;
+}
+
+.br-left-impact {
+	border-left: 4px solid $impact;
 }
 
