@@ -1,6 +1,6 @@
 //VARIABLES PARA LOS FILTROS
-var selected_year = 2015;
-var selected_indicator = "ODB.2013.C.SUPIN";
+var selected_year = 2014;
+var selected_indicator = "ODB";
 var selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
 var selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
 var selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
@@ -173,9 +173,9 @@ function dosomething(event) {
 			   '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb+ '</td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].readiness_data_labels + '" data-sparkline="' + data[i].readiness_data + ' ; column"></span>' + data[i].readiness + '</td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].implementation_data_labels + '" data-sparkline="' + data[i].implementation_data + ' ; column"></span>' + data[i].implementation + '</td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].impact_data_labels + '" data-sparkline="' + data[i].impact_data + ' ; column"></span>' + data[i].impact + '</td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].readiness_data_labels + '" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span>' + data[i].readiness + '</span></td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].implementation_data_labels + '" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span>' + data[i].implementation + '</span></td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].impact_data_labels + '" data-sparkline="' + data[i].impact_data + ' ; column"></span><span>' + data[i].impact + '</span></td>' +
 			   '<td class="ct-td txt-c txt-med">' + rank_change + '</td>' +
 			'</tr>';
 		}
@@ -401,20 +401,23 @@ function dosomething(event) {
             $span,
             stringdata,
 			stringlabels,
+			labels = new Array(),
             arr,
             data,
             chart;
 
-        for (i = 0; i < len; i += 1) {
+        for (i=0; i<len; i++) {
             $span = $($spans[i]);
             stringlabels = $span.data('labels');
 			stringdata = $span.data('sparkline');
 			arr = stringdata.split('; ');
-			//labels = stringlabels.split(',');
-			var labels = new Function("return [" + stringlabels + "];")();
+			labels = [" "];
+			labels = labels.concat(stringlabels.split(','));
+			//var labels = new Function("return [" + stringlabels + "];")();
 			//var labels = (new Function("return [" + stringlabels+ "];")());
-			console.log(labels);
+			//console.log(labels);
             data = $.map(arr[0].split(','), parseFloat);
+			//console.log(data);
 			//labels = $.map(stringlabels.split(','));
             chart = {};
 
@@ -429,10 +432,10 @@ function dosomething(event) {
 				xAxis: {
 				   type: 'category',
 				   // minRange: 1,
-					categories: labels,//countries,
-					labels: {
+					categories: labels//countries,
+					/*labels: {
 						enabled:false
-					}
+					}*/
 				},
                 tooltip: {
                     headerFormat: '<span style="font-size: 10px">{point.x}:</span>',
@@ -451,9 +454,9 @@ function dosomething(event) {
             }
 
             // Print a feedback on the performance
-            if (n === fullLen) {
-                $('#result').html('Generated ' + fullLen + ' sparklines in ' + (new Date() - start) + ' ms');
-            }
+            //if (n === fullLen) {
+            //    $('#result').html('Generated ' + fullLen + ' sparklines in ' + (new Date() - start) + ' ms');
+            //}
         }
     }
     doChunk();
