@@ -106,5 +106,23 @@ table.dataTable thead .sorting_desc::after {
 	cursor:disabled;
 }
 
+//## AJUSTES AUTOCOMPLETADOR DE PAISES ##//
+.adj-txt-country-autoc {
+	position:relative;
+	top:-5px;
+	left:5px;
+	display:inline-block;
+}
+
+.adj-img-flag-ac {
+	position:relative;
+	top:2px!important;
+}
+
+/*El plugin establece un width dinámico que hay que ajustar a auto para que no de problemas con la parte responsive*/
+.easy-autocomplete {
+	width:auto!important;
+}
+
 
 
