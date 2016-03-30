@@ -1,6 +1,6 @@
 //VARIABLES PARA LOS FILTROS
-var selected_year = 2013;
-var selected_indicator = "ODB";
+var selected_year = 2015;
+var selected_indicator = "ODB.2013.C.SUPIN";
 var selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
 var selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
 var selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
@@ -10,6 +10,7 @@ var selected_indicator_range_min = selected_indicator_range.substr(0, selected_i
 var selected_indicator_range_max = selected_indicator_range.substr(selected_indicator_range.indexOf("-")+1, selected_indicator_range.length);
 var number_of_countries;
 var series = [];
+var indicators_select;
 
 var filter_data;
 
@@ -22,7 +23,7 @@ $(document).ready(function() {
   var rmItemCount = 0;
 function dosomething(event) {
 	rmItemCount = event.item.count;
-	console.log("quedan: "+rmItemCount);
+	//console.log("quedan: "+rmItemCount);
 }
 
 	$(".cbtn-md-add-country").on("click", function(e) {
@@ -162,18 +163,20 @@ function dosomething(event) {
 		//For each object in data
 		var current_row = "";
 		var my_table = $("#table-data tbody");
+		var rank_change;
 		for(i=0; i<data.length; i++){
+			if(data[i].odb_rank_change!=null){rank_change = data[i].odb_rank_change}else{rank_change = "NA"}
 		current_row = current_row + '<tr>' +	
 			'<td class="ct-td txt-al p-left-l">' +
 					'<span class="flag"><img src="img/flags/' + data[i].iso2 + '.svg" class="img-responsive"></span>' +
-					'<span class="ct-country"><span class="txt-l">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>' +
+					'<span class="ct-country"><span class="txt-l">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 			   '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb+ '</td>' +
-			   '<td class="ct-td txt-al" data-sparkline="-6, 25, 5, 32 ; column">' + data[i].readiness + '</td>' +
-			   '<td class="ct-td txt-al">' + data[i].implementation + '</td>' +
-			   '<td class="ct-td txt-al">' + data[i].impact + '</td>' +
-			   '<td class="ct-td txt-c txt-med"><span class="arrow-up">A</span> ' + data[i].odb_rank_change + '</td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].readiness_data_labels + '" data-sparkline="' + data[i].readiness_data + ' ; column"></span>' + data[i].readiness + '</td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].implementation_data_labels + '" data-sparkline="' + data[i].implementation_data + ' ; column"></span>' + data[i].implementation + '</td>' +
+			   '<td class="ct-td txt-al"><span data-labels="' + data[i].impact_data_labels + '" data-sparkline="' + data[i].impact_data + ' ; column"></span>' + data[i].impact + '</td>' +
+			   '<td class="ct-td txt-c txt-med">' + rank_change + '</td>' +
 			'</tr>';
 		}
 		console.log(current_row);
@@ -202,10 +205,11 @@ function dosomething(event) {
 				var current_country = _.find(window.countries, {iso3:iso3});
 				if(area["ODB"] != null){
 					if(selected_year>=2015){
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};
+						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
+						/*readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
 					}
 					else{
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};
+						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, readiness_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; /*readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
 					}
 				}
 			})
@@ -214,6 +218,30 @@ function dosomething(event) {
 			.reverse()
 			.value();
 			drawTable(table_data);
+			
+			//DATOS PARA EL SELECTOR DE INDICADORES
+			indicators_select = _(window.indicators)
+			  .filter(function(i) {
+
+				return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
+			  })
+			  .map(function(i) {
+				var type;
+				if (!i.index)
+				  type = 'INDEX';
+				else if (!i.subindex)
+				  type = 'SUBINDEX';
+				else if (!i.component)
+				  type = 'COMPONENT'
+				else type = 'INDICATOR';
+
+				return {
+				  name: i.name,
+				  indicator: i.indicator,
+				  type: type
+				};
+			  }).value();
+
 			//Iniciamos la tabla
 			var table = $('#table-data').DataTable({
 				fixedHeader: true,
@@ -359,8 +387,8 @@ function dosomething(event) {
     };
 
     var start = +new Date(),
-        $tds = $('td[data-sparkline]'),
-        fullLen = $tds.length,
+        $spans = $('span[data-sparkline]'),
+        fullLen = $spans.length,
         n = 0;
 
     // Creating 153 sparkline charts is quite fast in modern browsers, but IE8 and mobile
@@ -369,31 +397,45 @@ function dosomething(event) {
     function doChunk() {
         var time = +new Date(),
             i,
-            len = $tds.length,
-            $td,
+            len = $spans.length,
+            $span,
             stringdata,
+			stringlabels,
+			labels,
             arr,
             data,
             chart;
 
         for (i = 0; i < len; i += 1) {
-            $td = $($tds[i]);
-            stringdata = $td.data('sparkline');
-            arr = stringdata.split('; ');
-            data = $.map(arr[0].split(', '), parseFloat);
+            $span = $($spans[i]);
+            stringlabels = $span.data('labels');
+			stringdata = $span.data('sparkline');
+			arr = stringdata.split('; ');
+			labels = stringlabels.split(',');
+			console.log(labels);
+            data = $.map(arr[0].split(','), parseFloat);
+			//labels = $.map(stringlabels[0].split(','));
             chart = {};
 
             if (arr[1]) {
                 chart.type = arr[1];
             }
-            $td.highcharts('SparkLine', {
+            $span.highcharts('SparkLine', {
                 series: [{
                     data: data,
                     pointStart: 1
                 }],
+				xAxis: {
+				   type: 'category',
+				   // minRange: 1,
+					categories: labels,//countries,
+					labels: {
+						enabled:false
+					}
+				},
                 tooltip: {
-                    headerFormat: '<span style="font-size: 10px">' + $td.parent().find('th').html() + ', Q{point.x}:</span><br/>',
-                    pointFormat: '<b>{point.y}.000</b> USD'
+                    headerFormat: '<span style="font-size: 10px">{point.x}:</span>',
+                    pointFormat: '<b>{point.y}</b>'
                 },
                 chart: chart
             });
@@ -402,7 +444,7 @@ function dosomething(event) {
 
             // If the process takes too much time, run a timeout to allow interaction with the browser
             if (new Date() - time > 500) {
-                $tds.splice(0, i + 1);
+                $spans.splice(0, i + 1);
                 setTimeout(doChunk, 0);
                 break;
             }
