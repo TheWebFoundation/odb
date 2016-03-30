@@ -401,7 +401,6 @@ function dosomething(event) {
             $span,
             stringdata,
 			stringlabels,
-			labels,
             arr,
             data,
             chart;
@@ -411,10 +410,12 @@ function dosomething(event) {
             stringlabels = $span.data('labels');
 			stringdata = $span.data('sparkline');
 			arr = stringdata.split('; ');
-			labels = stringlabels.split(',');
+			//labels = stringlabels.split(',');
+			var labels = new Function("return [" + stringlabels + "];")();
+			//var labels = (new Function("return [" + stringlabels+ "];")());
 			console.log(labels);
             data = $.map(arr[0].split(','), parseFloat);
-			//labels = $.map(stringlabels[0].split(','));
+			//labels = $.map(stringlabels.split(','));
             chart = {};
 
             if (arr[1]) {
