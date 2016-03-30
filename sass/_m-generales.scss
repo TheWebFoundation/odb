@@ -6,6 +6,24 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
+//## HEADER ##//
+
+.header-acc-buttons {
+	position:absolute;
+	right:20px;
+	top:50%;
+	margin-top:-96px;
+	z-index:20;
+}
+
+.cbtn-acc-h {
+	display:block;
+	width:64px;
+	height:64px;
+	background-color:$ccontrast;
+	margin-top:2px;
+}
+
 
 //## CONTENT ##//
 
@@ -35,6 +53,58 @@
 
 .item-lin {
 	display:inline-block;
+}
+
+.leg-region {
+	display:inline-block;
+	margin-left:10px;
+}
+
+.leg-region:before {
+	content:'';
+	
+	width: 11px;
+	height:11px;
+
+	display:inline-block;
+	float:left;
+	margin-right:5px;
+
+	//background-color:#ff0000;
+
+	border-radius:50em;
+
+	position:relative;
+	top:3px;
+
+}
+
+.leg-region.leg-r-1:before {
+	background-color:#FF3700;
+}
+
+.leg-region.leg-r-2:before {
+	background-color:#7E85AF;
+}
+
+.leg-region.leg-r-3:before {
+	background-color:#0C5D8E;
+}
+
+.leg-region.leg-r-4:before {
+	background-color:#8D9B00;
+}
+
+.leg-region.leg-r-5:before {
+	background-color:#8B572A;
+}
+
+.leg-region.leg-r-6:before {
+	background-color:#00B3D7;
+}
+
+.leg-region.leg-r-7:before {
+	background-color:#BD10E0;
 }
 
 //## TABLE DATA ##//
@@ -91,6 +161,36 @@
 
 .ct-country {
 	display:inline-block;
+}
+
+.arrow-up {
+	
+	display:inline-block;
+
+	width: 0; 
+	height: 0; 
+
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid $aup;
+
+	position:relative;
+	top:-8px;
+}
+
+.arrow-down {
+	
+	display:inline-block;
+
+	width: 0; 
+	height: 0; 
+
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid $adw;
+
+	position:relative;
+	top:-8px;
 }
 
 
