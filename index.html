@@ -236,8 +236,7 @@
                                 </thead>
 
                                 <tbody>
-
-                                    <tr>
+                                   <!-- <tr>
                                        <td class="ct-td txt-al p-left-l">
                                             <span class="flag"><img src="img/flags/cr.svg" class="img-responsive"></span>
                                             <span class="ct-country"><span class="txt-l">Costa Rica</span> <a href="#" class="txt-s more-info displayb"> See details</a></span>
@@ -356,7 +355,7 @@
                                        <td class="ct-td txt-al">(graphic) 11</td>
                                        <td class="ct-td txt-c txt-med"><span class="arrow-up">A</span>+16</td>
                                     </tr>
-
+-->
 
                                 </tbody>
 
@@ -1230,7 +1229,8 @@
 
         
         <!--3 Parties vendor-->
-        <script src="https://code.highcharts.com/highcharts.js"></script>
+       <!--script src="https://code.highcharts.com/highcharts.js"></script-->
+		<script src="http://code.highcharts.com/stock/highstock.js"></script>
         <!--script src="https://code.highcharts.com/maps/highmaps.js"></script-->
         <script src="https://code.highcharts.com/maps/modules/map.js">
         <script src="https://code.highcharts.com/maps/modules/data.js"></script>
@@ -1239,417 +1239,20 @@
         <script src="js/vendor/DataTables/datatables.min.js" type="text/javascript"></script>
         <!-- owl carousel -->   
         <script src="js/vendor/owl.carousel.min.js" type="text/javascript"></script>
+		<!--scripts para la carga y manipulación de datos-->
+		<script src="js/lodash.js" type="text/javascript"></script>
+		<script src="js/countries.js" type="text/javascript"></script>
+		<script src="js/regions.js" type="text/javascript"></script>
+		<script src="js/indicators.js" type="text/javascript"></script>
 
+        <script src="js/dataload.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-            
-            var rmItemCount = 0;
-            function dosomething(event) {
-                rmItemCount = event.item.count;
-                console.log("quedan: "+rmItemCount);
-            }
-
-            $(document).ready(function() {
-
-
-                $(".cbtn-md-add-country").on("click", function(e) {
-                    
-                    e.preventDefault();
-                    console.log("Posicion: "+rmItemCount);
-                    
-                    var ncountry = $(".owl-stage").find(".country-area-empty").length;
-                    
-                    if(ncountry == 1) {
-                        owl.trigger('remove.owl.carousel', 0); 
-                    }
-
-                    //return false;
-                   
-                    //Clonamos el div inicial y cambiamos los datos
-                    var $div = $('div.country-item-cloned');
-                    var $cloned =  $div.clone();
-                    
-                    //console.log("clon4: "+$cloned.attr("class"));
-                    
-                    var $end = $cloned.removeClass('country-item-cloned'),
-                    $end = $cloned.removeClass('hddn');  
-                    owl.trigger('add.owl.carousel', $cloned,rmItemCount);
-                    owl.trigger('refresh.owl.carousel');
-                    owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
-
-                })
-
-
-                var owl =  $('.carousel-countries').owlCarousel({
-                    loop:false,
-                    margin:10,
-                    nav:true,
-                    dots:true,
-                    onInitialized: dosomething,
-                    responsive:{
-                        0:{
-                            items:1
-                        }
-                    }
-                });
-
-                owl.owlCarousel();
-                var rmItemOwl = 0; //remove item owl carousel
-                
-                owl.on('refreshed.owl.carousel', function(event) {
-                    rmItemCount = event.item.count;
-                    
-                    if(rmItemCount == 0) {
-                        owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
-                        owl.trigger('refresh.owl.carousel');
-                    }
-
-                    console.log("quedan: "+rmItemCount);
-                });
-               
-                owl.on('changed.owl.carousel', function(event) {
-                    rmItemOwl = event.item.index;
-                    rmItemCount = event.page.count;
-                    console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
-                });
-
-
-                $(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
-                //$(".md-h-removec").on("click", function(e) {
-                    e.preventDefault();
-                   //console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
-                    owl.trigger('remove.owl.carousel', rmItemOwl);
-                    owl.trigger('refresh.owl.carousel');
-                   
-                })
-
-
-
-
-
-
-
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip();
-                })
-
-                $(".cicon-help").on("click", function(e){
-                    e.stopPropagation();
-                    alert("help!");
-                })
-
-
-                $(".more-info, .close-cmodal-detail").on("click", function(e){
-
-                   e.preventDefault();
-
-                   if(!$(".cmodal-detail").is(".cmodal-detail-open")) {
-                        $(".cmodal-detail").addClass("cmodal-detail-open");
-                        $(".overlay").addClass("overlay-open");
-                        $("body").addClass("noscroll");
-                   }else{
-                        $(".cmodal-detail").removeClass("cmodal-detail-open");
-                        $(".overlay").removeClass("overlay-open");
-                        $("body").removeClass("noscroll");
-                   }
-                })
-
-                $(".cbtn-expand-table").on("click", function(e){
-                    e.preventDefault();
-                    if($(".global-content-indicators").is(".cgi-c-expanded")) {
-                        $(".global-content-indicators").removeClass("cgi-c-expanded");
-                        $(".cbtn-expand-table").text("Expand");
-                    }else{
-                        $(".global-content-indicators").addClass("cgi-c-expanded");
-                        $(".cbtn-expand-table").text("Collapse");
-                    }
-                })
-
-
-
-                $(document).keyup(function(e) {
-            
-                    //if (e.keyCode == 13) $('.save').click();     // enter
-                    if (e.keyCode == 27) {
-                        //Escape solo para cerrar la ventana de detalle de usuario
-                        if($(".cmodal-detail").is(".cmodal-detail-open")) {
-                            $(".cmodal-detail").removeClass("cmodal-detail-open");
-                            $(".overlay").removeClass("overlay-open");
-                            $("body").removeClass("noscroll");
-                        }
-                    }
-                });
-
-                //Preproceso para el json de barras y paises
-                var processed_json = new Array(); 
-
-                //Iniciamos la tabla
-                var table = $('#table-data').DataTable({
-                    fixedHeader: true,
-                    //paging: false,
-                    //info: false,
-                    sDom: 't' //Que solo renderice la tabla
-                    // language: {
-                    //     search: "_INPUT_",
-                    //     searchPlaceholder: "Search country ..."
-                    // }
-                });
-
-                //Custom Search
-                $('#cinput-table-search').keyup(function(){
-                      console.log($(this).val());
-                      table.search($(this).val()).draw() ;
-                })
-
-            
-                $(".modal-data").on("click", function(){
-                    $(this).removeClass("modal-data-visible");
-                });
-
-                $(function () {
-
-                    $.getJSON('json/countries-population.json', function (data) {
-                        
-                        for (i = 0; i < data.length; i++){
-                            processed_json.push([data[i].name, data[i].value]);
-                        }
-
-                        // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
-                        $.each(data, function () {
-                            this.flag = this.code.replace('UK', 'GB').toLowerCase();
-                        });
-                        
-                        function pointClick() {
-                            //alert("Pais: "+this.name+ " | D.Población: "+this.value); 
-                            
-                            if(!$(".modal-data").is(".modal-data-visible")) {
-                                $(".modal-data").addClass("modal-data-visible");
-                                $(".data-ciudad").html(this.name+" ("+this.code+")");
-                                $(".data-poblacion").html(this.value);
-                            }else{
-                                $(".data-ciudad").html(this.name+" ("+this.code+")");
-                                $(".data-poblacion").html(this.value);
-                            }
-                            
-                            $div = $(".grafica");
-                            
-                            window.chart = new Highcharts.Chart({
-                               
-                                chart: {
-                                    renderTo: $div[0],
-                                    type: 'column',
-                                    width: 156,
-                                    height: 30,
-                                    backgroundColor: null,
-                                    borderWidth: 0,
-                                    type: 'column',
-                                    margin: [2, 0, 2, 0],
-                                    //width: 290,
-                                    //height: 120,
-                                    style: {
-                                        overflow: 'visible'
-                                    }
-                                },
-                                title: {
-                                    text: null
-                                },
-                                credits: {
-                                    enabled: false
-                                },
-                                xAxis: {
-                                    labels: {
-                                        enabled: false
-                                    },
-                                    title: {
-                                        text: null
-                                    },
-                                    startOnTick: false,
-                                    endOnTick: false,
-                                    tickPositions: []
-                                },
-                                yAxis: {
-                                    endOnTick: false,
-                                    startOnTick: false,
-                                    labels: {
-                                        enabled: false
-                                    },
-                                    title: {
-                                        text: null
-                                    },
-                                    tickPositions: [0]
-                                },
-                                legend: {
-                                    enabled: false
-                                },
-                                series: [{
-                                    name: 'Population',
-                                    data: [{
-                                        name: 'Min population knowing',
-                                        color: '#FFE064',
-                                        y: 3
-                                    }, {
-                                        name: 'Population of '+this.name,
-                                        color: '#FFE064',
-                                        y: this.value
-                                    }, {
-                                        name: 'Budget of'+this.name,
-                                        color: '#FFE064',
-                                        y: 17
-                                    }, {
-                                        name: 'Debt of'+this.name,
-                                        color: '#FFE064',
-                                        y: 12
-                                    }],
-                                    dataLabels: {
-                                        format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
-                                    },
-                                    column: {
-                                        borderColor: 'silver'
-                                    }
-                                }]
-                            
-                            });
-                            
-                        }
-                
-                        // Initiate the chart
-                        $('#wrapper-map').highcharts('Map', {
-                            
-                            chart: {
-                                backgroundColor: 'transparent'
-                            },
-                            title: {
-                                text: ''
-                            },
-                            tooltip: {
-                                  //enabled:false,
-                                  //name: 'Densidad de población',
-                            },  
-                            legend: {
-                                title: {
-                                    text: 'Densidad de población por km²',
-                                    style: {
-                                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                                    }
-                                }
-                            },
-                            mapNavigation: {
-                                enabled: true,
-                                buttonOptions: {
-                                    verticalAlign: 'bottom'
-                                },
-                                enableMouseWheelZoom: false
-                            },
-                
-/*
-                            tooltip: {
-                                backgroundColor: 'none',
-                                borderWidth: 0,
-                                shadow: false,
-                                useHTML: true,
-                                padding: 0,
-                                pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
-                                    ' {point.name}: <b>{point.value}</b>/km²',
-                                positioner: function () {
-                                    return { x: 0, y: 250 };
-                                }
-                            }
-,*/
-                
-                            colorAxis: {
-                                min: 1,
-                                max: 1000,
-                                type: 'logarithmic',
-                                maxColor: "#495E32",
-                                minColor: "#A8CF7C"
-                            },
-                            series : [{
-                                data : data,
-                                mapData: Highcharts.maps['custom/world'],
-                                joinBy: ['iso-a2', 'code'], //cambiar a iso-a3 con los datos del ODB
-                                name: 'Densidad de población',
-                                borderColor :"rgba(84, 199, 252, 0.2)",
-                                states: {
-                                    hover: {
-                                        color: '#F8E71C'
-                                    }
-                                },
-                                point: {
-                                    events: {
-                                        click: pointClick
-                                    }
-                                }
-                            }]
-                        });
-                        
-
-                        $('#column-graph').highcharts({
-                            chart: {
-                                type: 'column',
-                                backgroundColor: 'transparent'
-                            },
-                            title: {
-                                text: ''
-                            },
-                            subtitle: {
-                                //text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-                            },
-                            xAxis: {
-                                type: 'category',
-                                caregories: ['data.name'],
-                                labels: {
-                                    rotation: -45,
-                                    style: {
-                                        fontSize: '10px',
-                                        //fontFamily: 'Verdana, sans-serif'
-                                    }
-                                }
-                            },
-                            yAxis: {
-                                min: 0,
-                                max:1000,
-                                //categories: ['data.name'],
-                                title: {
-                                    text: 'Population (millions)'
-                                }
-                            },
-                            legend: {
-                                enabled: false
-                            },
-                            tooltip: {
-                                pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
-                            },
-                            series: [{
-                                name: 'values',
-                                data: processed_json,
-                                dataLabels: {
-                                    enabled: true,
-                                    rotation: -90,
-                                    color: '#FFFFFF',
-                                    align: 'right',
-                                    //format: '{point.y:.1f}', // one decimal
-                                    y: 10, // 10 pixels down from the top
-                                    style: {
-                                        fontSize: '13px',
-                                        fontFamily: 'Verdana, sans-serif'
-                                    }
-                                }
-                            }]
-                        });
-
-                    });
-
-                });
-
-            });
-        
-        </script>
 
 
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
+   <!--     <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
@@ -1657,6 +1260,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
-        
+        -->
     </body>
 </html>
