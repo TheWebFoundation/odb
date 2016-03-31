@@ -23,6 +23,58 @@ $(document).ready(function() {
  	
 	//Pruebas para autocompletado de búsquedas de countries
 
+
+
+	// function processAjaxData(response, urlPath){
+	//      document.getElementById("content").innerHTML = response.html;
+	//      document.title = response.pageTitle;
+	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+	//  }
+
+	
+	//Controlamos lo que nos pasan por variables
+	function getUrlVars() {
+    	var vars = {};
+    	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        	vars[key] = value;
+    	});
+    	return vars;
+	}
+
+	var year = getUrlVars()["_year"];
+	var indicator = getUrlVars()["indicator"];
+
+	if(year == undefined || indicator == undefined) {
+		//Aplicar esto sino se pasan parametros..
+		window.history.pushState("", "ODB, Open Data Barometer", "?_year=2015&indicator=ODB");
+		if(year == undefined)year = 2015;
+		if(indicator == undefined)indicator = ODB;
+	}
+
+	//year = 10;
+	if(!$.isNumeric(year)) alert("nope");
+
+
+	//Ejemplo de funcion de recarga
+	function recargarPais(opais) {
+		var $selPais = $(".select--ad-pais");
+		$.getJSON("ajax/ajax_get_paises.php",function(data){
+			$selPais.html('');
+			$selPais.append('<option value="0">Seleccione ...</option>');
+			$.each(data.paises, function(key,val){
+				$selPais.append('<option value="'+val.id_pais+'">'+val.pais+'</option>');
+			});
+		});
+		
+		if(opais!=undefined) {
+			setTimeout(function(){
+				$('select[name="data-pais"] option[value="'+opais+'"]').prop('selected', 'selected');
+			}, 500);
+		}
+	}
+
+
+
 	var options = {
         url: 'json/countries.json',
         theme: "none",
