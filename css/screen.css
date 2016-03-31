@@ -1481,6 +1481,21 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
+/* line 200, ../sass/_m-generales.scss */
+.data-readiness {
+  color: #F1C40F;
+}
+
+/* line 204, ../sass/_m-generales.scss */
+.data-implementation {
+  color: #92EFDA;
+}
+
+/* line 208, ../sass/_m-generales.scss */
+.data-impact {
+  color: #CB97F9;
+}
+
 /* line 3, ../sass/_m-formularios.scss */
 .cbtn, .ctn-icon {
   display: inline-block;

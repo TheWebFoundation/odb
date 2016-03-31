@@ -36,4 +36,4 @@ window.regions = [
   }
 ];
 
-window.regions_colors = {"East Asia & Pacific":'#ff3801', "Europe & Central Asia": '0c5c8d', "Latin America & Caribbean":'#919b04', "Middle East & North Africa": '#8a572c', "North America":'#01b1d6', "South Asia":'#ba0ede', "Sub-Saharan Africa":'#f5994d'};
+window.regions_colors = {"East Asia & Pacific":'#00B3D7', "Europe & Central Asia": '#0C5D8E', "Latin America & Caribbean":'#7E85AF', "Middle East & North Africa": '#8D9B00', "North America":'#FF3700', "South Asia":'#BD10E0', "Sub-Saharan Africa":'#8B572A'};

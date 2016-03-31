@@ -20,11 +20,104 @@ var table_data;
 var map_data;
 
 $(document).ready(function() {
-  var rmItemCount = 0;
-function dosomething(event) {
-	rmItemCount = event.item.count;
-	//console.log("quedan: "+rmItemCount);
-}
+ 	
+	//Pruebas para autocompletado de búsquedas de countries
+
+	var options = {
+        url: 'json/countries.json',
+        theme: "none",
+        //getValue: "character",
+        getValue: function(element) {
+            return element.search;
+            //console.log("Element: "+element.search);
+        },
+        template: {
+            type: "custom",
+            method: function(value,item) {
+                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
+            }
+        },
+        list: {
+            match: {
+                enabled: true
+            },
+            onChooseEvent: function() {
+                //var value = $("#cinput-s-country").getSelectedItemData().country;
+                var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
+                //$("#cinput-s-country").val(value).trigger("change");
+                console.log("ID1: "+selectedItemId);
+
+            },
+            onSelectItemEvent: function() {
+                var value = $("#cinput-s-country").getSelectedItemData().name;
+                $("#cinput-s-country").val(value).trigger("change");
+
+            },
+            onKeyEnterEvent: function() {
+                var value = $("#cinput-s-country").getSelectedItemData().name;
+                $("#cinput-s-country").val(value).trigger("change");
+
+            }
+        }
+       
+    };
+
+    var options_modal = {
+        url: 'json/countries.json',
+        theme: "none",
+        //getValue: "character",
+        getValue: function(data) {
+            return data.find;
+        },
+        template: {
+            type: "custom",
+            method: function(value,item) {
+                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
+            }
+        },
+        list: {
+            match: {
+                enabled: true
+            },
+            onChooseEvent: function() {
+                //var value = $("#cinput-s-country").getSelectedItemData().country;
+                var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
+                //$("#cinput-s-country").val(value).trigger("change");
+                console.log("ID2: "+selectedItemId);
+
+            },
+            onSelectItemEvent: function() {
+                var value = $("#cinput-s-country-modal").getSelectedItemData().name;
+                $("#cinput-s-country-modal").val(value).trigger("change");
+
+            },
+            onKeyEnterEvent: function() {
+                var value = $("#cinput-s-country-modal").getSelectedItemData().name;
+                $("#cinput-s-country-modal").val(value).trigger("change");
+
+            }
+        }
+       
+    };
+
+    //Búsqueda general
+    $("#cinput-s-country").easyAutocomplete(options);
+    //Búsqueda en modal
+    $("#cinput-s-country-modal").easyAutocomplete(options_modal);
+
+
+
+    //Cargamos selects top:
+
+
+
+
+
+ 	var rmItemCount = 0;
+	function dosomething(event) {
+		rmItemCount = event.item.count;
+		//console.log("quedan: "+rmItemCount);
+	}
 
 	$(".cbtn-md-add-country").on("click", function(e) {
 
@@ -88,6 +181,8 @@ function dosomething(event) {
 	});
 
 
+
+	//Borrado de countries en el carousel
 	$(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
 	//$(".md-h-removec").on("click", function(e) {
 		e.preventDefault();
@@ -97,15 +192,20 @@ function dosomething(event) {
 
 	})
 
+	//Iniciamos los tooltips
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip();
 	})
 
+
+	//Prueba de iconos de ayuda en cabecera de tabla
 	$(".cicon-help").on("click", function(e){
 		e.stopPropagation();
 		alert("help!");
 	})
 
+
+	//Apertura / cierre del modal detalle de countries
 	$(document).delegate(".more-info, .close-cmodal-detail","click", function(e){
 	//$(".more-info, .close-cmodal-detail").on("click", function(e){
 
@@ -134,7 +234,7 @@ function dosomething(event) {
 	})
 
 
-
+	//Cierre presionando esc del modal detalle de countries
 	$(document).keyup(function(e) {
 
 		//if (e.keyCode == 13) $('.save').click();     // enter
@@ -148,11 +248,11 @@ function dosomething(event) {
 		}
 	});
 
+
+
+
 	//Preproceso para el json de barras y paises
 	var processed_json = new Array(); 
-
-	
-
 
 	$(".modal-data").on("click", function(){
 		$(this).removeClass("modal-data-visible");
@@ -163,20 +263,35 @@ function dosomething(event) {
 		//For each object in data
 		var current_row = "";
 		var my_table = $("#table-data tbody");
+		
 		var rank_change;
+
+
 		for(i=0; i<data.length; i++){
-			if(data[i].odb_rank_change!=null){rank_change = data[i].odb_rank_change}else{rank_change = "NA"}
-		current_row = current_row + '<tr>' +	
+
+			if(data[i].odb_rank_change!=null){rank_change = data[i].odb_rank_change}else{rank_change = 0} //Antes NA
+
+			if(rank_change<0){
+				var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+			}else{
+				var rank_print = '<span class="arrow-up"></span> ' + rank_change;
+				if (rank_change == 0) {
+					rank_print = '<span class="txt-xs c-g40">NA</span>';
+				}
+			}
+
+			
+			current_row = current_row + '<tr>' +	
 			'<td class="ct-td txt-al p-left-l">' +
 					'<span class="flag"><img src="img/flags/' + data[i].iso2 + '.svg" class="img-responsive"></span>' +
 					'<span class="ct-country"><span class="txt-l">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 			   '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb+ '</td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].readiness_data_labels + '" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span>' + data[i].readiness + '</span></td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].implementation_data_labels + '" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span>' + data[i].implementation + '</span></td>' +
-			   '<td class="ct-td txt-al"><span data-labels="' + data[i].impact_data_labels + '" data-sparkline="' + data[i].impact_data + ' ; column"></span><span>' + data[i].impact + '</span></td>' +
-			   '<td class="ct-td txt-c txt-med">' + rank_change + '</td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-small m-left">' + data[i].readiness + '</span></td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-small m-left">' + data[i].implementation + '</span></td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-small m-left">' + data[i].impact + '</span></td>' +
+			   '<td class="ct-td txt-c txt-med displayib">' + rank_print + '</td>' +
 			'</tr>';
 		}
 		console.log(current_row);
@@ -222,7 +337,6 @@ function dosomething(event) {
 			//DATOS PARA EL SELECTOR DE INDICADORES
 			indicators_select = _(window.indicators)
 			  .filter(function(i) {
-
 				return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
 			  })
 			  .map(function(i) {
@@ -300,10 +414,10 @@ function dosomething(event) {
                     renderTo: (options.chart && options.chart.renderTo) || this,
                     backgroundColor: null,
                     borderWidth: 0,
-                    type: 'area',
+                    type: 'column',
                     margin: [2, 0, 2, 0],
                     width: 120,
-                    height: 20,
+                    height: 40,
                     style: {
                         overflow: 'visible'
                     },
@@ -329,6 +443,8 @@ function dosomething(event) {
                 yAxis: {
                     endOnTick: false,
                     startOnTick: false,
+                    min: 0,
+					max: 100,
                     labels: {
                         enabled: false
                     },
@@ -373,8 +489,9 @@ function dosomething(event) {
                         fillOpacity: 0.25
                     },
                     column: {
+                    	color: '#FFE064',
                         negativeColor: '#910000',
-                        borderColor: 'silver'
+                        borderColor: 'none'
                     }
                 }
             };
@@ -401,6 +518,9 @@ function dosomething(event) {
             $span,
             stringdata,
 			stringlabels,
+			stringsubindex,
+			subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
+			colums_color,
 			labels = new Array(),
             arr,
             data,
@@ -409,10 +529,20 @@ function dosomething(event) {
         for (i=0; i<len; i++) {
             $span = $($spans[i]);
             stringlabels = $span.data('labels');
+            stringsubindex = $span.data('subindex');
 			stringdata = $span.data('sparkline');
 			arr = stringdata.split('; ');
 			labels = [" "];
 			labels = labels.concat(stringlabels.split(','));
+			switch(stringsubindex){
+				case "readiness": 	  colums_color = subindex_colors[0];
+									  break; 
+				case "implementation":colums_color = subindex_colors[1];
+									  break; 
+				case "impact":        colums_color = subindex_colors[2];
+									  break; 
+			}
+		
 			//var labels = new Function("return [" + stringlabels + "];")();
 			//var labels = (new Function("return [" + stringlabels+ "];")());
 			//console.log(labels);
@@ -427,6 +557,7 @@ function dosomething(event) {
             $span.highcharts('SparkLine', {
                 series: [{
                     data: data,
+                    color:colums_color,
                     pointStart: 1
                 }],
 				xAxis: {
@@ -556,7 +687,8 @@ function dosomething(event) {
 			$('#wrapper-map').highcharts('Map', {
 
 				chart: {
-					backgroundColor: 'transparent'
+					backgroundColor: 'transparent',
+					margin: 0
 				},
 				title: {
 					text: ''
@@ -574,12 +706,37 @@ function dosomething(event) {
 					}
 				},
 				mapNavigation: {
-					enabled: true,
-					buttonOptions: {
-						verticalAlign: 'bottom'
-					},
-					enableMouseWheelZoom: false
-				},
+                    enabled: true,
+                    buttonOptions: {
+                        theme: {
+                            fill: 'white',
+                            'stroke-width': 0,
+                            stroke: 'silver',
+                            r: 0,
+                            states: {
+                                hover: {
+                                    fill: '#79B042'
+                                },
+                                select: {
+                                    stroke: '#039',
+                                    fill: '#bada55'
+                                }
+                            }
+                        },
+                        verticalAlign: 'bottom'
+                    },
+                    enableMouseWheelZoom: false,
+                    buttons: {
+                        zoomIn: {
+                            y:-25,
+                            x: 20
+                        },
+                        zoomOut: {
+                            y: 5,
+                            x: 20
+                        }
+                    }
+                },
 
 /*
 				tooltip: {
