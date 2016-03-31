@@ -21,7 +21,6 @@ var map_data;
 
 $(document).ready(function() {
  	
-	//Pruebas para autocompletado de búsquedas de countries
 
 
 
@@ -44,17 +43,25 @@ $(document).ready(function() {
 	var year = getUrlVars()["_year"];
 	var indicator = getUrlVars()["indicator"];
 
-	if(year == undefined || indicator == undefined) {
+	if(!$.isNumeric(year)) year = 2015;
+
+	if(year == undefined || indicator == undefined || year == "" || indicator == "") {
 		//Aplicar esto sino se pasan parametros..
-		window.history.pushState("", "ODB, Open Data Barometer", "?_year=2015&indicator=ODB");
-		if(year == undefined)year = 2015;
-		if(indicator == undefined)indicator = ODB;
+		if(year == undefined) year = 2015;
+		if(indicator == undefined) indicator = "ODB";
+		if(year == "") year = 2015;
+		if(indicator == "") indicator = "ODB";
+		//Manipulamos el estado con el indicador :-m
+		window.history.pushState("", "ODB, Open Data Barometer", "?_year="+year+"&indicator="+indicator+"");
+		
 	}
 
 	//year = 10;
-	if(!$.isNumeric(year)) alert("nope");
+	console.log("Año :"+year+" Indicator: "+indicator);
 
 
+	//Pruebas para autocompletado de búsquedas de countries
+	
 	//Ejemplo de funcion de recarga
 	function recargarPais(opais) {
 		var $selPais = $(".select--ad-pais");
@@ -72,6 +79,16 @@ $(document).ready(function() {
 			}, 500);
 		}
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 
