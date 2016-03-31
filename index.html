@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>ODB</title>
+        <title>ODB, Open Data Barometer</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -54,28 +54,27 @@
 
                                 <div class="displayib">
                                     <div class="rinput m-left">
-                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Year</label>
-                                        <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                                        <label for="syear" class="clbl uppc txt-s c-g40 displayb p-s-top">Year</label>
+                                        <select name="syear" id="syear" class="cinput cinput-search cinput-s-arrow">
                                             <option>Select...</option>
                                             <option value="2013">2013</option>
                                             <option value="2014">2014</option>
                                             <option value="2015">2015</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
                                         </span>
                                     </div>
                                 </div>
                                 
                                 <div class="displayib">
                                     <div class="rinput m-left p-right-l">
-                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
-                                        <select name="syear" id="syear" class="cinput cinput-search cinput-s-arrow">
+                                        <label for="sindicator" class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
+                                        <select name="sindicator" id="sindicator" class="cinput cinput-search cinput-s-arrow ">
                                             <option>Select...</option>
-                                            <option>Flexible, technology & service neutral ICT licensing frameworks</option>
                                         </select>
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
                                         </span>
                                     </div>
                                 </div>
@@ -87,10 +86,10 @@
                             
                                 <div class="displayib">
                                     <div class="rinput m-left p-right">
-                                        <label class="clbl uppc txt-s c-g40 displayb p-s-top">Country</label>
+                                        <label for="country" class="clbl uppc txt-s c-g40 displayb p-s-top">Country</label>
                                         <input type="text" class="cinput cinput-s-country" name="country" id="cinput-s-country" placeholder="Type a country ...">
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">Show</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-input">Show</button>
                                         </span>
                                     </div>
                                 </div>
@@ -121,45 +120,53 @@
 
                     <div class="col-md-3 col-xs-12">
                         <div class="rinput displayib">
-                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Region</label>
-                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                            <label for="sregion" class="clbl uppc txt-s c-g40 displayb p-s-top">Region</label>
+                            <select name="sregion" id="sregion" class="cinput cinput-search  cinput-s-arrow">
                                 <option>Select...</option>
-                                <option>Flexible, technology & service neutral ICT licensing frameworks</option>
                             </select>
                             <span class="rinput-button rinput-button-search">
-                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
                             </span>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-12">
                         <div class="rinput displayib">
-                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Income</label>
-                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
-                                <option>Select...</option>
+                            <label for="sincome" class="clbl uppc txt-s c-g40 displayb p-s-top">Income</label>
+                            <select name="sincome" id="sincome" class="cinput cinput-search cinput-s-arrow">
+                                <option value="0">All...</option>
+                                <option value="1">Lower middle income</option>
+                                <option value="2">Low income</option>
+                                <option value="3">High income</option>
+                                <option value="4">Upper middle income</option>
                             </select>
                             <span class="rinput-button rinput-button-search">
-                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
                             </span>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-12">
                        <div class="rinput displayib">
-                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">HDI Rate</label>
-                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
-                                <option>Select...</option>
+                            <label for="shdirate" class="clbl uppc txt-s c-g40 displayb p-s-top">HDI Rate</label>
+                            <select name="shdirate" id="shdirate" class="cinput cinput-search cinput-s-arrow">
+                                <option value="0">All...</option>
+                                <option value="1">Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
+                                <option value="4">Very High</option>
+
                             </select>
                             <span class="rinput-button rinput-button-search">
-                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
                             </span>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-12">
                         <div class="rinput displayib">
-                            <label class="clbl uppc txt-s c-g40 displayb p-s-top">Group</label>
-                            <select name="syear" id="syear" class="cinput cinput-search  cinput-s-arrow">
+                            <label for="sgroup" class="clbl uppc txt-s c-g40 displayb p-s-top">Group</label>
+                            <select name="sgroup" id="sgroup" class="cinput cinput-search cinput-s-arrow">
                                 <option>Select...</option>
                             </select>
                             <span class="rinput-button rinput-button-search">
@@ -231,7 +238,7 @@
                                        <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>
                                        <th class="ct-th txt-al">Readliness <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
                                        <th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
-                                       <th class="ct-th txt-al">Impact <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Emerging Impact <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
                                        <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st uppc txt-xs">change</span></th>
                                     </tr>
                                    

@@ -1,36 +1,115 @@
-//VARIABLES PARA LOS FILTROS
-var selected_year = 2014;
-var selected_indicator = "ODB";
-var selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
-var selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
-var selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
-var selected_indicator_average;
-var selected_indicator_range = _.find(window.indicators, {indicator:selected_indicator}).range;
-var selected_indicator_range_min = selected_indicator_range.substr(0, selected_indicator_range.indexOf("-"));
-var selected_indicator_range_max = selected_indicator_range.substr(selected_indicator_range.indexOf("-")+1, selected_indicator_range.length);
-var number_of_countries;
-var series = [];
-var indicators_select;
-
-var filter_data;
-
 //variables de preproceso para el json de barras y paises
 var columns_data;
 var table_data;
 var map_data;
 
+
+//Cargamos los indicadores
+indicators_select = _(window.indicators)
+	.filter(function(i) {
+		return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
+	})
+	.map(function(i) {
+	var type;
+	if (!i.index)
+		type = 'INDEX';
+	else if (!i.subindex)
+		type = 'SUBINDEX';
+	else if (!i.component)
+		type = 'COMPONENT'
+	else type = 'INDICATOR';
+
+	return {
+		name: i.name,
+		indicator: i.indicator,
+		type: type
+	};
+}).value();
+
+
+	function refreshData() {
+		var year=2015,indicator="",region="",income="",hdirate="";
+		if($("#syear").val()!=0) var year = '?_year='+$("#syear").val();
+		if($("#sindicator").val()!=0) var indicator = '&indicator='+$("#sindicator").val();
+		if($("#sregion").val()!=0) var region = '&region='+$("#sregion").val();
+		if($("#sincome").val()!=0) var income = '&income='+$("#sincome").val();
+		if($("#shdirate").val()!=0) var hdirate = '&hdirate='+$("#shdirate").val();
+		window.location.href = "./"+year+indicator+region+income+hdirate;
+	}
+
+	function setYear(syear) {
+		if(syear!="") {
+			$("#syear").val(syear);
+		}
+	}
+
+	function setIndicators(sindicator) {
+		var $selIndicator = $("#sindicator");
+		$selIndicator.html('');
+		$selIndicator.append('<option value="0">Select ...</option>');
+		$.each(indicators_select, function( index, value ) {
+			console.log("indicator: "+value.indicator+" name: "+value.name+" Value: "+value.type);
+			var style = "margin-left:0";
+			switch(value.type) {
+				case "INDEX":
+					style = "margin-left:0;";
+					break;
+				case "SUBINDEX":
+					style = "margin-left:10px;font-weight:bold";
+					break;
+				case "COMPONENT":
+					style = "margin-left:20px;font-style:italic;";
+					break;
+				case "INDICATOR":
+					style = "margin-left:30px;";
+					break;
+				default:
+					style = "margin-left:0px;";
+					break;
+			}
+			if(value.indicator == sindicator) { 
+				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+value.name+'</option>');
+			}else{
+				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'">'+value.name+'</option>');
+			}
+		});
+	}
+
+	function setRegion(sregion) {
+		var $selRegion = $("#sregion");
+		$selRegion.html('');
+		$selRegion.append('<option value="0">All ...</option>');
+		$.each(window.regions, function( index, value ) {
+			if(value.iso3 == sregion) { 
+				$selRegion.append('<option value="'+value.iso3+'" selected="selected">'+value.name+'</option>');
+			}else{
+				$selRegion.append('<option value="'+value.iso3+'">'+value.name+'</option>');
+			}
+		});
+	}
+
+	function setIncome(sincome) {
+		if(sincome!=0) {
+			$("#sincome").val(sincome);
+		}
+	}
+
+	function setHdiRate(shdirate) {
+		if(shdirate!=0) {
+			$("#shdirate").val(shdirate);
+		}
+	}
+
+
+
 $(document).ready(function() {
  	
-
-
-
 	// function processAjaxData(response, urlPath){
 	//      document.getElementById("content").innerHTML = response.html;
 	//      document.title = response.pageTitle;
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
-	
 	//Controlamos lo que nos pasan por variables
 	function getUrlVars() {
     	var vars = {};
@@ -42,54 +121,55 @@ $(document).ready(function() {
 
 	var year = getUrlVars()["_year"];
 	var indicator = getUrlVars()["indicator"];
+	var region = getUrlVars()["region"];
+	var income = getUrlVars()["income"];
+	var hdirate = getUrlVars()["hdirate"];
+	//var text = getUrlVars()["text"];
+
+	if(region == undefined || region == "") region = 0;
+	if(income == undefined || income == "") income = 0;
+	if(hdirate == undefined || hdirate == "") hdirate = 0;
 
 	if(!$.isNumeric(year)) year = 2015;
 
 	if(year == undefined || indicator == undefined || year == "" || indicator == "") {
 		//Aplicar esto sino se pasan parametros..
-		if(year == undefined) year = 2015;
-		if(indicator == undefined) indicator = "ODB";
-		if(year == "") year = 2015;
-		if(indicator == "") indicator = "ODB";
+		if(year == undefined || year == "") year = 2015;
+		if(indicator == undefined || indicator == "") indicator = "ODB";
 		//Manipulamos el estado con el indicador :-m
 		window.history.pushState("", "ODB, Open Data Barometer", "?_year="+year+"&indicator="+indicator+"");
 		
 	}
-
-	//year = 10;
 	console.log("Año :"+year+" Indicator: "+indicator);
-
-
-	//Pruebas para autocompletado de búsquedas de countries
 	
-	//Ejemplo de funcion de recarga
-	function recargarPais(opais) {
-		var $selPais = $(".select--ad-pais");
-		$.getJSON("ajax/ajax_get_paises.php",function(data){
-			$selPais.html('');
-			$selPais.append('<option value="0">Seleccione ...</option>');
-			$.each(data.paises, function(key,val){
-				$selPais.append('<option value="'+val.id_pais+'">'+val.pais+'</option>');
-			});
-		});
-		
-		if(opais!=undefined) {
-			setTimeout(function(){
-				$('select[name="data-pais"] option[value="'+opais+'"]').prop('selected', 'selected');
-			}, 500);
-		}
-	}
+	var selected_year = year;
+	var selected_indicator =indicator;
+	var selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
+	var selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
+	var selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
+	var selected_indicator_average;
+	var selected_indicator_range = _.find(window.indicators, {indicator:selected_indicator}).range;
+	var selected_indicator_range_min = selected_indicator_range.substr(0, selected_indicator_range.indexOf("-"));
+	var selected_indicator_range_max = selected_indicator_range.substr(selected_indicator_range.indexOf("-")+1, selected_indicator_range.length);
+	var number_of_countries;
+	var series = [];
+	var indicators_select;
 
+	var filter_data;
 
+	//Cargamos los selects
+	setYear(year);
+	setIndicators(indicator);
+	setRegion(region);
+	setIncome(income);
+	setHdiRate(hdirate);
+	
 
-
-
-
-
-
-
-
-
+	//Buscadores
+	$(".cbtn-search-home-select").on("click", function(){
+		var option = $(this).parent().parent().find("option:selected").val();
+		refreshData();
+	});
 
 
 	var options = {
@@ -110,6 +190,7 @@ $(document).ready(function() {
             match: {
                 enabled: true
             },
+            maxNumberOfElements: 15,
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
@@ -148,6 +229,7 @@ $(document).ready(function() {
             match: {
                 enabled: true
             },
+            maxNumberOfElements: 15,
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
@@ -403,32 +485,13 @@ $(document).ready(function() {
 			.value();
 			drawTable(table_data);
 			
-			//DATOS PARA EL SELECTOR DE INDICADORES
-			indicators_select = _(window.indicators)
-			  .filter(function(i) {
-				return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
-			  })
-			  .map(function(i) {
-				var type;
-				if (!i.index)
-				  type = 'INDEX';
-				else if (!i.subindex)
-				  type = 'SUBINDEX';
-				else if (!i.component)
-				  type = 'COMPONENT'
-				else type = 'INDICATOR';
+			
 
-				return {
-				  name: i.name,
-				  indicator: i.indicator,
-				  type: type
-				};
-			  }).value();
-
-			//Iniciamos la tabla
+			//Iniciamos la tabla ordenada por ODB Rank y ODB asc
 			var table = $('#table-data').DataTable({
 				fixedHeader: true,
 				paging: false,
+				order: [[1,"asc"], [2,"asc"]],
 				//info: false,
 				sDom: 't' //Que solo renderice la tabla
 				// language: {
@@ -485,7 +548,7 @@ $(document).ready(function() {
                     borderWidth: 0,
                     type: 'column',
                     margin: [2, 0, 2, 0],
-                    width: 120,
+                    width: 70,
                     height: 40,
                     style: {
                         overflow: 'visible'
@@ -679,76 +742,76 @@ $(document).ready(function() {
 					$(".data-poblacion").html(this.value);
 				}
 
-				$div = $(".grafica");
+			// 	$div = $(".grafica");
 
-				window.chart = new Highcharts.Chart({
+			// 	window.chart = new Highcharts.Chart({
 
-					chart: {
-						renderTo: $div[0],
-						type: 'column',
-						width: 280,
-						height: 240,
-						backgroundColor: null,
-						borderWidth: 0,
-						type: 'column',
-						//margin: [2, 0, 2, 0],
-						width: 290,
-						height: 120,
-						style: {
-							overflow: 'visible'
-						}
-					},
-					title: {
-						text: null
-					},
-					credits: {
-						enabled: false
-					},
-					xAxis: {
-						labels: {
-							enabled: false
-						},
-						title: {
-							text: null
-						},
-						startOnTick: false,
-						endOnTick: false,
-						tickPositions: []
-					},
-					yAxis: {
-						endOnTick: false,
-						startOnTick: false,
-						labels: {
-							enabled: false
-						},
-						title: {
-							text: null
-						},
-						tickPositions: [0]
-					},
-					legend: {
-						enabled: false
-					},
-					series: [{
-						name: 'Population',
-						data: [{
-							name: 'Min population knowing',
-							color: '#79B042',
-							y: 3
-						}, {
-							name: 'Population of '+this.name,
-							color: '#FFE064',
-							y: this.value
-						}],
-						dataLabels: {
-							format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
-						},
-						column: {
-							borderColor: 'silver'
-						}
-					}]
+			// 		chart: {
+			// 			renderTo: $div[0],
+			// 			type: 'column',
+			// 			width: 280,
+			// 			height: 240,
+			// 			backgroundColor: null,
+			// 			borderWidth: 0,
+			// 			type: 'column',
+			// 			//margin: [2, 0, 2, 0],
+			// 			width: 290,
+			// 			height: 120,
+			// 			style: {
+			// 				overflow: 'visible'
+			// 			}
+			// 		},
+			// 		title: {
+			// 			text: null
+			// 		},
+			// 		credits: {
+			// 			enabled: false
+			// 		},
+			// 		xAxis: {
+			// 			labels: {
+			// 				enabled: false
+			// 			},
+			// 			title: {
+			// 				text: null
+			// 			},
+			// 			startOnTick: false,
+			// 			endOnTick: false,
+			// 			tickPositions: []
+			// 		},
+			// 		yAxis: {
+			// 			endOnTick: false,
+			// 			startOnTick: false,
+			// 			labels: {
+			// 				enabled: false
+			// 			},
+			// 			title: {
+			// 				text: null
+			// 			},
+			// 			tickPositions: [0]
+			// 		},
+			// 		legend: {
+			// 			enabled: false
+			// 		},
+			// 		series: [{
+			// 			name: 'Population',
+			// 			data: [{
+			// 				name: 'Min population knowing',
+			// 				color: '#79B042',
+			// 				y: 3
+			// 			}, {
+			// 				name: 'Population of '+this.name,
+			// 				color: '#FFE064',
+			// 				y: this.value
+			// 			}],
+			// 			dataLabels: {
+			// 				format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
+			// 			},
+			// 			column: {
+			// 				borderColor: 'silver'
+			// 			}
+			// 		}]
 
-				});
+			// 	});
 
 			}
 
@@ -842,7 +905,7 @@ $(document).ready(function() {
 					},
 					point: {
 						events: {
-							click: pointClick
+							//click: pointClick
 						}
 					}
 				}]

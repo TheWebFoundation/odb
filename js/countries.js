@@ -1354,7 +1354,7 @@ window.countries = [
   {
     "name": "Namibia",
     "short_name": "Namibia",
-    "iso2": "",
+    "iso2": "NA",
     "oecd": 0,
     "iodch": 0,
     "uri": "http://data.opendatabarometer.org/areas/NAM",
