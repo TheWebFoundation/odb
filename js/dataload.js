@@ -1,30 +1,30 @@
-//variables de preproceso para el json de barras y paises
-var columns_data;
-var table_data;
-var map_data;
+	//variables de preproceso para el json de barras y paises
+	var columns_data;
+	var table_data;
+	var map_data;
 
 
-//Cargamos los indicadores
-indicators_select = _(window.indicators)
-	.filter(function(i) {
-		return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
-	})
-	.map(function(i) {
-	var type;
-	if (!i.index)
-		type = 'INDEX';
-	else if (!i.subindex)
-		type = 'SUBINDEX';
-	else if (!i.component)
-		type = 'COMPONENT'
-	else type = 'INDICATOR';
+	//Cargamos los indicadores
+	indicators_select = _(window.indicators)
+		.filter(function(i) {
+			return i.component !== 'CLASSIFICATION' && i.component !== 'DATASET_ASSESSMENT';
+		})
+		.map(function(i) {
+		var type;
+		if (!i.index)
+			type = 'INDEX';
+		else if (!i.subindex)
+			type = 'SUBINDEX';
+		else if (!i.component)
+			type = 'COMPONENT'
+		else type = 'INDICATOR';
 
-	return {
-		name: i.name,
-		indicator: i.indicator,
-		type: type
-	};
-}).value();
+		return {
+			name: i.name,
+			indicator: i.indicator,
+			type: type
+		};
+	}).value();
 
 
 	function refreshData() {
@@ -34,7 +34,20 @@ indicators_select = _(window.indicators)
 		if($("#sregion").val()!=0) var region = '&region='+$("#sregion").val();
 		if($("#sincome").val()!=0) var income = '&income='+$("#sincome").val();
 		if($("#shdirate").val()!=0) var hdirate = '&hdirate='+$("#shdirate").val();
-		window.location.href = "./"+year+indicator+region+income+hdirate;
+		
+		var group="";
+		var ngroup = $("div.ms-options ul li.selected").length;
+		if(ngroup > 0) {
+			$("div.ms-options ul li.selected input").each(function() {
+				//alert("valor: "+$(this).val());
+				group += '&'+$(this).val()+'=1';
+			});
+		}else{
+			var group = "";
+		}
+
+
+		window.location.href = "./"+year+indicator+region+income+hdirate+group;
 	}
 
 	function setYear(syear) {
@@ -72,6 +85,19 @@ indicators_select = _(window.indicators)
 			}else{
 				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'">'+value.name+'</option>');
 			}
+
+			if (sindicator !=0) {
+				$("#sindicator").parent().addClass("bg-selected");
+			}else{
+				$("#sindicator").parent().removeClass("bg-selected");
+			}
+
+
+			// if (option !=0) {
+			// 	$(this).parent().parent().addClass("bg-selected");
+			// }else{
+			// 	$(this).parent().parent().removeClass("bg-selected");
+			// }
 		});
 	}
 
@@ -86,18 +112,37 @@ indicators_select = _(window.indicators)
 				$selRegion.append('<option value="'+value.iso3+'">'+value.name+'</option>');
 			}
 		});
+
+		if(sregion!=0) {
+			$("#sregion").parent().addClass("bg-selected");
+		}else{
+			$("#sregion").parent().removeClass("bg-selected");
+		}
 	}
 
 	function setIncome(sincome) {
 		if(sincome!=0) {
 			$("#sincome").val(sincome);
+			$("#sincome").parent().addClass("bg-selected");
+		}else{
+			$("#sincome").parent().removeClass("bg-selected");
 		}
 	}
 
 	function setHdiRate(shdirate) {
 		if(shdirate!=0) {
 			$("#shdirate").val(shdirate);
+			$("#shdirate").parent().addClass("bg-selected");
+		}else{
+			$("#shdirate").parent().removeClass("bg-selected");
 		}
+	}
+
+	function setGroup(g20,g7,oecd,iodch) {
+		if(g20 !=0) $("#sgroup option[value='G20']").attr("selected","selected");
+		if(g7 !=0) $("#sgroup option[value='G7']").attr("selected","selected");
+		if(oecd !=0) $("#sgroup option[value='OECD']").attr("selected","selected");
+		if(iodch !=0) $("#sgroup option[value='IODCH']").attr("selected","selected");
 	}
 
 
@@ -124,10 +169,19 @@ $(document).ready(function() {
 	var region = getUrlVars()["region"];
 	var income = getUrlVars()["income"];
 	var hdirate = getUrlVars()["hdirate"];
+	var G20 = getUrlVars()["G20"];
+	var G7 = getUrlVars()["G7"];
+	var OECD = getUrlVars()["OECD"];
+	var IODCH = getUrlVars()["IODCH"];
 	//var text = getUrlVars()["text"];
 
 	if(region == undefined || region == "") region = 0;
 	if(income == undefined || income == "") income = 0;
+	if(G20 == undefined || G20 == "") G20 = 0;
+	if(G7 == undefined || G7 == "") G7 = 0;
+	if(OECD == undefined || OECD == "") OECD = 0;
+	if(IODCH == undefined || IODCH == "") IODCH = 0;
+
 	if(hdirate == undefined || hdirate == "") hdirate = 0;
 
 	if(!$.isNumeric(year)) year = 2015;
@@ -164,11 +218,12 @@ $(document).ready(function() {
 	setRegion(region);
 	setIncome(income);
 	setHdiRate(hdirate);
+	setGroup(G20,G7,OECD,IODCH);
 	
 
 	//Buscadores
 	$(".cbtn-search-home-select").on("click", function(){
-		var option = $(this).parent().parent().find("option:selected").val();
+		//var option = $(this).parent().parent().find("option:selected").val();
 		refreshData();
 	});
 
@@ -259,12 +314,14 @@ $(document).ready(function() {
 
 
 
-    //Cargamos selects top:
+    //Iniciamos el dropdown con checbox...
+    $("#sgroup").multiselect({
+	    placeholder: 'Choose...'
+	});
 
+	
 
-
-
-
+    //Carousel de comparaciones
  	var rmItemCount = 0;
 	function dosomething(event) {
 		rmItemCount = event.item.count;
@@ -432,17 +489,25 @@ $(document).ready(function() {
 				}
 			}
 
-			
+			//Manipulamos la cifra para estilarla un poco
+			if(data[i].odb % 1 != 0){
+				var odbRaw = data[i].odb;
+				var odbDec = odbRaw.toString().split('.');
+				var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+			}else{
+				var odbPrint = data[i].odb;
+			}
+
 			current_row = current_row + '<tr>' +	
 			'<td class="ct-td txt-al p-left-l">' +
 					'<span class="flag"><img src="img/flags/' + data[i].iso2 + '.svg" class="img-responsive"></span>' +
-					'<span class="ct-country"><span class="txt-l">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
+					'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 			   '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
-			   '<td class="ct-td txt-c txt-med">' + data[i].odb+ '</td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-small m-left">' + data[i].readiness + '</span></td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-small m-left">' + data[i].implementation + '</span></td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-small m-left">' + data[i].impact + '</span></td>' +
+			   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
+			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
 			   '<td class="ct-td txt-c txt-med displayib">' + rank_print + '</td>' +
 			'</tr>';
 		}

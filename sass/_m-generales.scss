@@ -27,6 +27,10 @@
 
 //## CONTENT ##//
 
+.bg-selected {
+	border-top:4px solid $bg-selected;
+}
+
 .bg-section {
 	background-color:$bg-gray;
 }
@@ -194,7 +198,8 @@
 }
 
 .data-sp {
-	
+	position: relative;
+	top:-2px;
 }
 
 .data-readiness {

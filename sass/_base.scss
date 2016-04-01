@@ -477,6 +477,13 @@
 	font-size: 1.286em; //18px
 }
 
+.txt-l-res {
+	font-size: 0.875em; //14px
+	@include modular-mq(md) {
+		font-size: 1.286em; //18px
+	}
+}
+
 .txt-xl {
 	font-size: 1.375em; //22px
 }

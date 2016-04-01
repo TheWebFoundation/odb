@@ -24,6 +24,7 @@
         <link href="js/vendor/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
        
         <!--3 parties/vendor styles-->
+        <link rel="stylesheet" href="css/jquery.multiselect.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -124,9 +125,9 @@
                             <select name="sregion" id="sregion" class="cinput cinput-search  cinput-s-arrow">
                                 <option>Select...</option>
                             </select>
-                            <span class="rinput-button rinput-button-search">
+                            <!--span class="rinput-button rinput-button-search">
                                 <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
-                            </span>
+                            </span-->
                         </div>
                     </div>
 
@@ -140,9 +141,9 @@
                                 <option value="3">High income</option>
                                 <option value="4">Upper middle income</option>
                             </select>
-                            <span class="rinput-button rinput-button-search">
+                            <!--span class="rinput-button rinput-button-search">
                                 <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
-                            </span>
+                            </span-->
                         </div>
                     </div>
 
@@ -157,20 +158,23 @@
                                 <option value="4">Very High</option>
 
                             </select>
-                            <span class="rinput-button rinput-button-search">
+                            <!--span class="rinput-button rinput-button-search">
                                 <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
-                            </span>
+                            </span-->
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-12">
                         <div class="rinput displayib">
-                            <label for="sgroup" class="clbl uppc txt-s c-g40 displayb p-s-top">Group</label>
-                            <select name="sgroup" id="sgroup" class="cinput cinput-search cinput-s-arrow">
-                                <option>Select...</option>
+                            <label for="sgroup" class="m-left uppc txt-s c-g40 displayb p-s-top">Group</label>
+                            <select name="sgroup" id="sgroup" class="cinput cinput-search cinput-s-arrow" multiple="true">
+                                <option value="G20">G20</option>
+                                <option value="G7">G7</option>
+                                <option value="OECD">OECD</option>
+                                <option value="IODCH">IODCH</option>
                             </select>
                             <span class="rinput-button rinput-button-search">
-                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold">go</button>
+                                <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">Apply</button>
                             </span>
                         </div>
                     </div>
@@ -1252,6 +1256,11 @@
 
         <!-- Autocomplete countries -->   
         <script src="js/vendor/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
+        
+        <!-- Dropdwon Multiselect -->   
+        <script src="js/vendor/jquery.multiselect.js" type="text/javascript"></script>
+                  
+
 
 
 
