@@ -584,7 +584,11 @@ $(document).ready(function() {
 			case "4":filter_applied.hdi = "Very High";
 				   break;
 		}
-	}				
+	}	
+	if(G20 == 1){filter_applied.g20 = 1};
+	if(G7 == 1){filter_applied.g7 = 1};
+	if(OECD == 1){filter_applied.oecd = 1};
+	if(IODCH == 1){filter_applied.iodch = 1};
 			
 	
 			console.log(filter_applied);
@@ -1049,7 +1053,7 @@ $(document).ready(function() {
 						text: null
 					},
 					plotLines: [{
-						color: '#79b042',
+						color: '#000000',//'#79b042',
 						//dashStyle: 'shortdash',
 						width: 1,
 						value: selected_indicator_average, // average here
