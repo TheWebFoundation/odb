@@ -272,8 +272,9 @@ $(document).ready(function() {
         url: 'json/countries.json',
         theme: "none",
         //getValue: "character",
-        getValue: function(data) {
-            return data.find;
+        getValue: function(element) {
+            return element.search;
+            //console.log("Element: "+element.search);
         },
         template: {
             type: "custom",
@@ -285,7 +286,7 @@ $(document).ready(function() {
             match: {
                 enabled: true
             },
-            maxNumberOfElements: 15,
+            maxNumberOfElements: 10,
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
