@@ -969,7 +969,7 @@ $(document).ready(function() {
                             x: 20
                         }
                     }
-                },
+                },	            
 
 /*
 				tooltip: {
@@ -1021,7 +1021,23 @@ $(document).ready(function() {
 					type: 'column',
 					backgroundColor: 'transparent',
 					zoomType: 'x',
-					renderTo: 'column-graph'
+					renderTo: 'column-graph',
+					resetZoomButton: {
+		                theme: {
+		                    fill: 'white',
+		                    stroke: 'none',
+		                    r: 0,
+		                    states: {
+		                        hover: {
+		                            fill: '#79B042',
+		                            stroke: 'none',
+		                            style: {
+		                                color: 'white'
+		                            }
+		                        }
+		                    }
+		                }
+		            }
 				},
 				title: {
 					text: selected_indicator_name
@@ -1044,7 +1060,19 @@ $(document).ready(function() {
 					max: filtered_data.length - 1//number_of_countries
 				},
 				scrollbar: {
-					enabled: true
+					enabled: true,
+					barBackgroundColor: '#79B042',
+	                barBorderRadius: 7,
+	                barBorderWidth: 0,
+	                buttonBackgroundColor: '#79B042',
+	                buttonBorderWidth: 0,
+	                buttonBorderRadius: 7,
+	                trackBackgroundColor: '#EAEAEA',
+	                trackBorderWidth: 0,
+	                trackBorderRadius: 8,
+	                trackBorderColor: '#CCC',
+	                buttonArrowColor: 'white',
+	                rifleColor: 'white',
 				},
 				yAxis: {
 					min: selected_indicator_range_min,
