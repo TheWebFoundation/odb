@@ -50,46 +50,57 @@
 		window.location.href = "./"+year+indicator+region+income+hdirate+group;
 	}
 
+	var cont_filters = 0;
+
 	function setYear(syear) {
 		if(syear!="") {
 			$("#syear").val(syear);
+			//$("#syear").parent().addClass("bg-selected");
+		}else{
+			//$("#syear").parent().removeClass("bg-selected");
 		}
 	}
 
 	function setIndicators(sindicator) {
 		var $selIndicator = $("#sindicator");
 		$selIndicator.html('');
-		$selIndicator.append('<option value="0">Select ...</option>');
+		//$selIndicator.append('<option value="0">Select ...</option>');
 		$.each(indicators_select, function( index, value ) {
 			//console.log("indicator: "+value.indicator+" name: "+value.name+" Value: "+value.type);
 			var style = "margin-left:0";
+			var sp = "";
 			switch(value.type) {
 				case "INDEX":
-					style = "margin-left:0;";
+					//style = "margin-left:0;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				case "SUBINDEX":
-					style = "margin-left:10px;font-weight:bold";
+					//style = "margin-left:10px;font-weight:bold";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				case "COMPONENT":
-					style = "margin-left:20px;font-style:italic;";
+					//style = "margin-left:20px;font-style:italic;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				case "INDICATOR":
-					style = "margin-left:30px;";
+					//style = "margin-left:30px;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				default:
-					style = "margin-left:0px;";
+					//style = "margin-left:0px;";
+					sp = "";
 					break;
 			}
 			if(value.indicator == sindicator) { 
-				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+value.name+'</option>');
+				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
 			}else{
-				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'">'+value.name+'</option>');
+				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'">'+sp+value.name+'</option>');
 			}
 
 			if (sindicator !=0) {
-				$("#sindicator").parent().addClass("bg-selected");
+				//$("#sindicator").parent().addClass("bg-selected");
 			}else{
-				$("#sindicator").parent().removeClass("bg-selected");
+				//$("#sindicator").parent().removeClass("bg-selected");
 			}
 
 
@@ -115,6 +126,7 @@
 
 		if(sregion!=0) {
 			$("#sregion").parent().addClass("bg-selected");
+			cont_filters++;
 		}else{
 			$("#sregion").parent().removeClass("bg-selected");
 		}
@@ -124,6 +136,7 @@
 		if(sincome!=0) {
 			$("#sincome").val(sincome);
 			$("#sincome").parent().addClass("bg-selected");
+			cont_filters++;
 		}else{
 			$("#sincome").parent().removeClass("bg-selected");
 		}
@@ -133,6 +146,7 @@
 		if(shdirate!=0) {
 			$("#shdirate").val(shdirate);
 			$("#shdirate").parent().addClass("bg-selected");
+			cont_filters++;
 		}else{
 			$("#shdirate").parent().removeClass("bg-selected");
 		}
@@ -143,6 +157,13 @@
 		if(g7 !=0) $("#sgroup option[value='G7']").attr("selected","selected");
 		if(oecd !=0) $("#sgroup option[value='OECD']").attr("selected","selected");
 		if(iodch !=0) $("#sgroup option[value='IODCH']").attr("selected","selected");
+
+		if(g20 !=0 || g7 !=0 || oecd !=0 || iodch !=0 ) {
+			$("#sgroup").parent().addClass("bg-selected");
+			cont_filters++;
+		}else{
+			$("#sgroup").parent().removeClass("bg-selected");
+		}
 	}
 
 
@@ -220,6 +241,8 @@ $(document).ready(function() {
 	setHdiRate(hdirate);
 	setGroup(G20,G7,OECD,IODCH);
 	
+	//Cargamos el contador de filtros
+	$(".count-filters").text(cont_filters);
 
 	//Buscadores
 	$(".cbtn-search-home-select").on("click", function(){
@@ -430,6 +453,7 @@ $(document).ready(function() {
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
 	   }
+
 	})
 
 	$(".cbtn-expand-table").on("click", function(e){

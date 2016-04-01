@@ -22,6 +22,7 @@
 
 #wrapper-map {
 	height: 250px;
+	padding-bottom: 10px;
 
 	@include modular-mq(xs) {
 		height:400px;

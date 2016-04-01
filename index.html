@@ -69,10 +69,10 @@
                                 </div>
                                 
                                 <div class="displayib">
-                                    <div class="rinput p-left p-right-l">
+                                    <div class="rinput p-left p-right">
                                         <label for="sindicator" class="clbl uppc txt-s c-g40 displayb p-s-top">Indicator</label>
                                         <select name="sindicator" id="sindicator" class="cinput cinput-search cinput-s-arrow ">
-                                            <option>Select...</option>
+                                            <!--option>Select...</option-->
                                         </select>
                                         <span class="rinput-button rinput-button-search">
                                             <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
@@ -99,7 +99,6 @@
 
                         </div>
 
-
                 </div>
 
             </div>
@@ -114,10 +113,15 @@
            
         </section>
 
-        <section class="wrapper-filters">
+        <section class="wrapper-filters p-l-top">
             
             <div class="container">
+                
                 <div class="row">
+                    
+                    <div class="col-xs-12 txt-c">
+                        <h3 class="m-s-bottom no-m-top txt-l r-pos"><span class="fosc displayib">Filters applied</span> <span class="count-filters displayib txt-s">0</span></h3>
+                    </div>
 
                     <div class="col-md-3 col-xs-12">
                         <div class="rinput displayib">
@@ -136,10 +140,10 @@
                             <label for="sincome" class="clbl uppc txt-s c-g40 displayb p-s-top">Income</label>
                             <select name="sincome" id="sincome" class="cinput cinput-search cinput-s-arrow">
                                 <option value="0">All...</option>
-                                <option value="1">Lower middle income</option>
                                 <option value="2">Low income</option>
-                                <option value="3">High income</option>
+                                <option value="1">Lower middle income</option>
                                 <option value="4">Upper middle income</option>
+                                <option value="3">High income</option>
                             </select>
                             <!--span class="rinput-button rinput-button-search">
                                 <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-select">go</button>
@@ -199,7 +203,7 @@
                     </div>
                 </div>
 
-                <div class="row p-l-bottom">
+                <div class="row p-xl-bottom">
                     <div class="col-xs-12 txt-c">
                         <span class="leg-region txt-s c-g40 leg-r-1">North America</span> 
                         <span class="leg-region txt-s c-g40 leg-r-2">Latin American & Caribean</span>

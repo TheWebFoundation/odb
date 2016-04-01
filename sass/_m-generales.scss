@@ -27,6 +27,25 @@
 
 //## CONTENT ##//
 
+.count-filters {
+	border-radius: 50em;
+	width:24px;
+	height: 24px;
+	background-color: $cprimary;
+	line-height: 25px;
+	text-align: center;
+	color: $ccontrast;
+
+	position: relative;
+	top:-10px;
+}
+
+@-moz-document url-prefix() { 
+  .count-filters {
+     line-height: 23px;
+  }
+}
+
 .bg-selected {
 	border-top:4px solid $bg-selected;
 }

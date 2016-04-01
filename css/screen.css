@@ -804,6 +804,7 @@ body {
 /* line 23, ../sass/_layout.scss */
 #wrapper-map {
   height: 250px;
+  padding-bottom: 10px;
 }
 @media (min-width: 480px) {
   /* line 23, ../sass/_layout.scss */
@@ -818,17 +819,17 @@ body {
   }
 }
 
-/* line 35, ../sass/_layout.scss */
+/* line 36, ../sass/_layout.scss */
 .wrapper-table {
   position: relative;
 }
 
-/* line 39, ../sass/_layout.scss */
+/* line 40, ../sass/_layout.scss */
 #column-graph {
   height: 410px;
 }
 
-/* line 43, ../sass/_layout.scss */
+/* line 44, ../sass/_layout.scss */
 .top-header {
   position: absolute;
   top: 0px;
@@ -838,33 +839,33 @@ body {
   padding: 20px;
 }
 
-/* line 53, ../sass/_layout.scss */
+/* line 54, ../sass/_layout.scss */
 .country-area {
   min-height: 470px;
 }
 
-/* line 57, ../sass/_layout.scss */
+/* line 58, ../sass/_layout.scss */
 .country-area-empty {
   min-height: 490px;
   width: 100%;
 }
 
-/* line 2, ../sass/_m-3parties.scss */
+/* line 3, ../sass/_m-3parties.scss */
 .dataTables_filter {
   padding: 17px 20px 10px 0px;
 }
 
-/* line 6, ../sass/_m-3parties.scss */
+/* line 7, ../sass/_m-3parties.scss */
 table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
   padding-right: 5px !important;
 }
 
-/* line 10, ../sass/_m-3parties.scss */
+/* line 11, ../sass/_m-3parties.scss */
 table.dataTable thead .sorting::after, .sorting_asc::after, .sorting_desc::after {
   top: 25px;
 }
 
-/* line 14, ../sass/_m-3parties.scss */
+/* line 15, ../sass/_m-3parties.scss */
 table.dataTable thead .sorting::after {
   content: '';
   background-image: url("../img/ico-order-reset.png");
@@ -874,7 +875,7 @@ table.dataTable thead .sorting::after {
   height: 28px;
 }
 
-/* line 23, ../sass/_m-3parties.scss */
+/* line 24, ../sass/_m-3parties.scss */
 table.dataTable thead .sorting_asc::after {
   content: '';
   background-image: url("../img/ico-order-asc.png");
@@ -884,7 +885,7 @@ table.dataTable thead .sorting_asc::after {
   height: 28px;
 }
 
-/* line 33, ../sass/_m-3parties.scss */
+/* line 34, ../sass/_m-3parties.scss */
 table.dataTable thead .sorting_desc::after {
   content: '';
   background-image: url("../img/ico-order-desc.png");
@@ -894,12 +895,12 @@ table.dataTable thead .sorting_desc::after {
   height: 28px;
 }
 
-/* line 44, ../sass/_m-3parties.scss */
+/* line 45, ../sass/_m-3parties.scss */
 .owl-carousel .owl-item img {
   width: auto !important;
 }
 
-/* line 48, ../sass/_m-3parties.scss */
+/* line 49, ../sass/_m-3parties.scss */
 .owl-dots {
   padding-top: 10px;
   position: absolute;
@@ -911,7 +912,7 @@ table.dataTable thead .sorting_desc::after {
   text-align: center;
 }
 
-/* line 59, ../sass/_m-3parties.scss */
+/* line 60, ../sass/_m-3parties.scss */
 .owl-dots .owl-dot {
   margin: 0px 3px;
   width: 14px;
@@ -921,19 +922,19 @@ table.dataTable thead .sorting_desc::after {
   background-color: #CCC;
 }
 
-/* line 72, ../sass/_m-3parties.scss */
+/* line 73, ../sass/_m-3parties.scss */
 .owl-dots .owl-dot.active {
   background-color: #79B042;
 }
 
-/* line 76, ../sass/_m-3parties.scss */
+/* line 77, ../sass/_m-3parties.scss */
 .owl-nav {
   position: absolute;
   top: 30px;
   width: 100%;
 }
 
-/* line 82, ../sass/_m-3parties.scss */
+/* line 83, ../sass/_m-3parties.scss */
 .owl-nav .owl-prev {
   background-image: url("../img/_svg/aleft.svg");
   background-position: center center;
@@ -945,7 +946,7 @@ table.dataTable thead .sorting_desc::after {
   left: 0px;
 }
 
-/* line 93, ../sass/_m-3parties.scss */
+/* line 94, ../sass/_m-3parties.scss */
 .owl-nav .owl-next {
   background-image: url("../img/_svg/aright.svg");
   background-position: center center;
@@ -957,13 +958,13 @@ table.dataTable thead .sorting_desc::after {
   right: 0px;
 }
 
-/* line 104, ../sass/_m-3parties.scss */
+/* line 105, ../sass/_m-3parties.scss */
 .owl-nav .disabled {
   opacity: .2;
   cursor: disabled;
 }
 
-/* line 110, ../sass/_m-3parties.scss */
+/* line 111, ../sass/_m-3parties.scss */
 .adj-txt-country-autoc {
   position: relative;
   top: -5px;
@@ -971,14 +972,14 @@ table.dataTable thead .sorting_desc::after {
   display: inline-block;
 }
 
-/* line 117, ../sass/_m-3parties.scss */
+/* line 118, ../sass/_m-3parties.scss */
 .adj-img-flag-ac {
   position: relative;
   top: 2px !important;
 }
 
 /*El plugin establece un width dinámico que hay que ajustar a auto para que no de problemas con la parte responsive*/
-/* line 123, ../sass/_m-3parties.scss */
+/* line 124, ../sass/_m-3parties.scss */
 .easy-autocomplete {
   width: auto !important;
 }
@@ -1323,31 +1324,50 @@ table.dataTable thead .sorting_desc::after {
 }
 
 /* line 30, ../sass/_m-generales.scss */
+.count-filters {
+  border-radius: 50em;
+  width: 24px;
+  height: 24px;
+  background-color: #79B042;
+  line-height: 25px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  top: -10px;
+}
+
+@-moz-document url-prefix() {
+  /* line 44, ../sass/_m-generales.scss */
+  .count-filters {
+    line-height: 23px;
+  }
+}
+/* line 49, ../sass/_m-generales.scss */
 .bg-selected {
   border-top: 4px solid #FFEC00;
 }
 
-/* line 34, ../sass/_m-generales.scss */
+/* line 53, ../sass/_m-generales.scss */
 .bg-section {
   background-color: #F3F3F3;
 }
 
-/* line 38, ../sass/_m-generales.scss */
+/* line 57, ../sass/_m-generales.scss */
 .bg-highlights {
   background-color: #FFEC00;
 }
 
-/* line 42, ../sass/_m-generales.scss */
+/* line 61, ../sass/_m-generales.scss */
 .bg-hero-map {
   background-color: rgba(84, 199, 252, 0.2);
 }
 
-/* line 46, ../sass/_m-generales.scss */
+/* line 65, ../sass/_m-generales.scss */
 .top-filters {
   background-color: #fff;
 }
 
-/* line 50, ../sass/_m-generales.scss */
+/* line 69, ../sass/_m-generales.scss */
 .list-inl {
   padding-left: 0px;
   padding-right: 0px;
@@ -1356,18 +1376,18 @@ table.dataTable thead .sorting_desc::after {
   list-style-type: none;
 }
 
-/* line 58, ../sass/_m-generales.scss */
+/* line 77, ../sass/_m-generales.scss */
 .item-lin {
   display: inline-block;
 }
 
-/* line 62, ../sass/_m-generales.scss */
+/* line 81, ../sass/_m-generales.scss */
 .leg-region {
   display: inline-block;
   margin-left: 10px;
 }
 
-/* line 67, ../sass/_m-generales.scss */
+/* line 86, ../sass/_m-generales.scss */
 .leg-region:before {
   content: '';
   width: 11px;
@@ -1380,42 +1400,42 @@ table.dataTable thead .sorting_desc::after {
   top: 3px;
 }
 
-/* line 86, ../sass/_m-generales.scss */
+/* line 105, ../sass/_m-generales.scss */
 .leg-region.leg-r-1:before {
   background-color: #FF3700;
 }
 
-/* line 90, ../sass/_m-generales.scss */
+/* line 109, ../sass/_m-generales.scss */
 .leg-region.leg-r-2:before {
   background-color: #7E85AF;
 }
 
-/* line 94, ../sass/_m-generales.scss */
+/* line 113, ../sass/_m-generales.scss */
 .leg-region.leg-r-3:before {
   background-color: #0C5D8E;
 }
 
-/* line 98, ../sass/_m-generales.scss */
+/* line 117, ../sass/_m-generales.scss */
 .leg-region.leg-r-4:before {
   background-color: #8D9B00;
 }
 
-/* line 102, ../sass/_m-generales.scss */
+/* line 121, ../sass/_m-generales.scss */
 .leg-region.leg-r-5:before {
   background-color: #8B572A;
 }
 
-/* line 106, ../sass/_m-generales.scss */
+/* line 125, ../sass/_m-generales.scss */
 .leg-region.leg-r-6:before {
   background-color: #00B3D7;
 }
 
-/* line 110, ../sass/_m-generales.scss */
+/* line 129, ../sass/_m-generales.scss */
 .leg-region.leg-r-7:before {
   background-color: #BD10E0;
 }
 
-/* line 116, ../sass/_m-generales.scss */
+/* line 135, ../sass/_m-generales.scss */
 .cover-help {
   width: 24px;
   height: 24px;
@@ -1426,7 +1446,7 @@ table.dataTable thead .sorting_desc::after {
   display: inline-block;
 }
 
-/* line 126, ../sass/_m-generales.scss */
+/* line 145, ../sass/_m-generales.scss */
 .th-main {
   background-color: #79B042;
   color: #fff;
@@ -1434,24 +1454,24 @@ table.dataTable thead .sorting_desc::after {
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* line 133, ../sass/_m-generales.scss */
+/* line 152, ../sass/_m-generales.scss */
 .ct-th, .ct-td {
   padding: 1em 0.6em;
   border-bottom: 1px solid #F0F0F0;
 }
 
-/* line 138, ../sass/_m-generales.scss */
+/* line 157, ../sass/_m-generales.scss */
 .ct-th {
   border-right: 1px solid #73E500;
 }
 
-/* line 142, ../sass/_m-generales.scss */
+/* line 161, ../sass/_m-generales.scss */
 .ct-th-st, .ct-td-st {
   display: block;
   font-weight: normal;
 }
 
-/* line 147, ../sass/_m-generales.scss */
+/* line 166, ../sass/_m-generales.scss */
 .flag, .flag-md-header {
   display: inline-block;
   width: 38px;
@@ -1462,18 +1482,18 @@ table.dataTable thead .sorting_desc::after {
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* line 160, ../sass/_m-generales.scss */
+/* line 179, ../sass/_m-generales.scss */
 .flag-md-header {
   width: 32px;
   height: 32px;
 }
 
-/* line 166, ../sass/_m-generales.scss */
+/* line 185, ../sass/_m-generales.scss */
 .ct-country {
   display: inline-block;
 }
 
-/* line 170, ../sass/_m-generales.scss */
+/* line 189, ../sass/_m-generales.scss */
 .arrow-up {
   display: inline-block;
   width: 0;
@@ -1485,7 +1505,7 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 185, ../sass/_m-generales.scss */
+/* line 204, ../sass/_m-generales.scss */
 .arrow-down {
   display: inline-block;
   width: 0;
@@ -1497,23 +1517,23 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 200, ../sass/_m-generales.scss */
+/* line 219, ../sass/_m-generales.scss */
 .data-sp {
   position: relative;
   top: -2px;
 }
 
-/* line 205, ../sass/_m-generales.scss */
+/* line 224, ../sass/_m-generales.scss */
 .data-readiness {
   color: #F1C40F;
 }
 
-/* line 209, ../sass/_m-generales.scss */
+/* line 228, ../sass/_m-generales.scss */
 .data-implementation {
   color: #92EFDA;
 }
 
-/* line 213, ../sass/_m-generales.scss */
+/* line 232, ../sass/_m-generales.scss */
 .data-impact {
   color: #CB97F9;
 }
