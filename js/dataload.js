@@ -63,7 +63,9 @@
 
 	function setIndicators(sindicator) {
 		var $selIndicator = $("#sindicator");
+		var $selIndicatorm = $("#sindicator-modal");
 		$selIndicator.html('');
+		$selIndicatorm.html('');
 		//$selIndicator.append('<option value="0">Select ...</option>');
 		$.each(indicators_select, function( index, value ) {
 			//console.log("indicator: "+value.indicator+" name: "+value.name+" Value: "+value.type);
@@ -72,19 +74,20 @@
 			switch(value.type) {
 				case "INDEX":
 					//style = "margin-left:0;";
-					sp = "&nbsp;&nbsp;&nbsp;&nbsp;";
+					
 					break;
 				case "SUBINDEX":
 					//style = "margin-left:10px;font-weight:bold";
-					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;";
+					
 					break;
 				case "COMPONENT":
 					//style = "margin-left:20px;font-style:italic;";
-					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				case "INDICATOR":
 					//style = "margin-left:30px;";
-					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					sp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					break;
 				default:
 					//style = "margin-left:0px;";
@@ -93,8 +96,10 @@
 			}
 			if(value.indicator == sindicator) { 
 				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
+				$selIndicatorm.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
 			}else{
 				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'">'+sp+value.name+'</option>');
+				$selIndicatorm.append('<option value="'+value.indicator+'" style="'+style+'">'+sp+value.name+'</option>');
 			}
 
 			if (sindicator !=0) {
@@ -164,6 +169,67 @@
 		}else{
 			$("#sgroup").parent().removeClass("bg-selected");
 		}
+	}
+
+
+	function drawHeaderModal(cISO) {
+
+		var headerModal = '<header class="cm-header">' +
+					'<div class="container-fluid">' +
+					'	<div class="row">' +
+					'		<div class="col-md-12 txt-c p-xs-top p-s-bottom">' +
+					'			<div class="cm-h-item cm-h-tit fleft txt-al displayib">' +
+					'				<h4 class="no-m-bottom txt-l">' +
+					'					<span class="flag-md-header"><img src="img/flags/cr.svg" class="img-responsive"></span>' +
+					'					<span class="ct-country"><span class="txt-m">Costa Rica</span> <span class="txt-s c-g40 more-info displayb"> Latin America & Caribean</span></span>' +
+					'				</h4>' +
+					' 			</div>' +
+					'			<div class="cm-h-item cm-h-rdata fleft displayib">' +
+					'				<ul class="ilist overfh displayib txt-al">' +
+					'					<li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">High</span></li>' +
+					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">High</span></li>' +
+					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>' +
+					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>' +
+					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="cicon-check c-check"></span></span></li>' +
+					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="cicon-cross txt-s c-error"></span></span></li>' +
+					'				</ul>' +
+					'			</div>' +
+					'				<div class="cm-h-item cm-h-acc fright txt-ar p-s-top m-xs-top">'+
+					'				<button class="ctn-icon"><span class="cicon-share txt-xl displayb"></span><span class="uppc txt-xs">share</span></button>'+
+					'				<button class="ctn-icon close-cmodal-detail"><span class="cicon-cross txt-xl displayb"></span> <span class="uppc txt-xs">close</span></button>'+
+					'			</div>'+
+					'		</div>'+
+					'	</div>'+
+					'</div>'+
+					'<div class="cm-h-data-resume bg-section p-s-top p-s-bottom">'+
+					'	<div class="container-fluid">'+
+					'		<div class="row">'+
+					'			<div class="col-md-12 txt-c">'+
+					'				<ul class="ilist overfh displayib ">'+
+					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">1</span></li>'+
+					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">97</span></li>'+
+					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readliness</label>'+
+					'						<span class="displayb m-s-top">'+
+					'							<img src="img/readliness.png">'+
+					'						</span>'+
+					'					</li>'+
+					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Implementation</label>'+
+					'						<span class="displayb m-s-top">'+
+					'							<img src="img/implementation.png">'+
+					'						</span>'+
+					'					</li>'+
+					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Impact</label>'+
+					'						<span class="displayb m-s-top">'+
+					'							<img src="img/impact.png">'+
+					'						</span>'+
+					'					</li>'+
+					'					<li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med">16</span></li>'+
+					'				</ul>'+
+					'			</div>'+
+					'		</div>'+
+					'	</div>'+
+					'</div>'+
+					'</header>';
 	}
 
 
@@ -248,6 +314,13 @@ $(document).ready(function() {
 	$(".cbtn-search-home-select").on("click", function(){
 		//var option = $(this).parent().parent().find("option:selected").val();
 		refreshData();
+	});
+
+	$(document).delegate(".more-info","click", function(){
+		//Change indicators!
+		var country = $(this).attr("data-iso");
+		//console.log(country);
+		drawHeaderModal (country);
 	});
 
 
@@ -503,14 +576,15 @@ $(document).ready(function() {
 
 		for(i=0; i<data.length; i++){
 
-			if(data[i].odb_rank_change!=null){rank_change = data[i].odb_rank_change}else{rank_change = 0} //Antes NA
+			//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
+            rank_change = data[i].odb_rank_change;
 
 			if(rank_change<0){
 				var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
 			}else{
 				var rank_print = '<span class="arrow-up"></span> ' + rank_change;
 				if (rank_change == 0) {
-					rank_print = '<span class="txt-xs c-g40">NA</span>';
+					rank_print = rank_change; //'<span class="txt-xs c-g40">NA</span>';
 				}
 			}
 
@@ -625,7 +699,7 @@ $(document).ready(function() {
 			var table = $('#table-data').DataTable({
 				fixedHeader: true,
 				paging: false,
-				order: [[1,"asc"], [2,"asc"]],
+				order: [[1,"asc"], [2,"desc"]],
 				//info: false,
 				sDom: 't' //Que solo renderice la tabla
 				// language: {
