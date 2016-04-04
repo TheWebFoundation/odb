@@ -2,7 +2,9 @@
 	var columns_data;
 	var table_data;
 	var map_data;
-
+	var current_URL = window.location.href;
+	var ctrIsoCompare = [];
+	var ctrIsoCompareRw = [];
 
 	//Cargamos los indicadores
 	indicators_select = _(window.indicators)
@@ -316,11 +318,74 @@ $(document).ready(function() {
 		refreshData();
 	});
 
-	$(document).delegate(".more-info","click", function(){
+	$(document).delegate(".more-info","click", function(e){
+		e.preventDefault();
 		//Change indicators!
-		var country = $(this).attr("data-iso");
+		//var country = $(this).attr("data-iso");
 		//console.log(country);
-		drawHeaderModal (country);
+		//drawHeaderModal (country);
+
+		$(".si-val-current").text(selected_indicator_average);
+		$(".i-p-current").css("width",selected_indicator_average);
+
+		$(".i-init ").text(selected_indicator_range_min);
+		$(".i-end ").text(selected_indicator_range_max);
+
+		$("#grafica-modal").highcharts({
+			chart: {
+				height: 300,
+				backgroundColor: null,
+				borderWidth: 0,
+
+			},
+			title: {
+            	text: '',
+            	//x: -20 //center
+	        },
+	        subtitle: {
+	            text: '',
+	            //x: -20
+	        },
+	        xAxis: {
+	            categories: ['2013', '2014', '2015']
+	        },
+	        yAxis: {
+	            title: {
+	                text: ''
+	            },
+	            min: 0,
+				max: 100
+	        },
+	        tooltip: {
+	            valueSuffix: '°C'
+	        },
+	        legend: {
+	        	width:'100%',
+	            layout: 'horizontal',
+	            align: 'center',
+	            verticalAlign: 'bottom',
+	            borderWidth: 0
+	        },
+	        series: [{
+	            name: 'Readliness',
+	            data: [80,75,60],
+	            color:'#F1C40F'
+	        }, {
+	            name: 'Implementation',
+	            data: [35,40,65],
+	            color:'#92EFDA'
+	        }, {
+	            name: 'Impact',
+	            data: [18,28,55],
+	            color:'#CB97F9'
+	        },{
+	            name: 'ODB',
+	            data: [55,48,54],
+	            color:'#000'
+	        }]
+	    });
+
+
 	});
 
 
@@ -386,6 +451,7 @@ $(document).ready(function() {
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
+                $(".cbtn-md-add-country").attr("data-id",selectedItemId);
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID2: "+selectedItemId);
 
@@ -425,7 +491,29 @@ $(document).ready(function() {
 		//console.log("quedan: "+rmItemCount);
 	}
 
+
+	
 	$(".cbtn-md-add-country").on("click", function(e) {
+		
+		//Comprobamos que se haya seleccionado al menos un pais y que no esté ya en el carousel
+		var cont = 0;
+		var idAddCtr = $(this).attr("data-id");
+
+		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
+			alert("selecciona un pais");
+			cont ++
+		}
+
+		$("div.owl-stage div.country-item").each(function() {
+				if ($(this).attr("data-id")==idAddCtr) {
+					alert("ya esta dentro");
+					cont ++;
+				}
+		})
+
+		if(cont !=0) {
+			return false;
+		}
 
 		e.preventDefault();
 		//console.log("Posicion: "+rmItemCount);
@@ -442,14 +530,93 @@ $(document).ready(function() {
 		var $div = $('div.country-item-cloned');
 		var $cloned =  $div.clone();
 
-		//console.log("clon4: "+$cloned.attr("class"));
-
 		var $end = $cloned.removeClass('country-item-cloned'),
-		$end = $cloned.removeClass('hddn');  
+		$end = $cloned.removeClass('hddn'),
+		$end = $cloned.attr("data-id",$(this).attr("data-id")),
+		$end = $cloned.find("span.md-h-removec").attr("data-id",$(this).attr("data-id"));
+		$graph = $cloned.find("div.grafica-modal-compare");  
+		
 		owl.trigger('add.owl.carousel', $cloned,rmItemCount);
 		owl.trigger('refresh.owl.carousel');
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 
+		//alert ("w: "+$("div.grafica-modal-compare").offsetWidth);
+
+		window.chart = new Highcharts.Chart({
+			chart: {
+				renderTo: $graph[0],
+            	type:'line',
+				height: 300,
+				backgroundColor: null,
+				borderWidth: 0,
+
+			},
+			title: {
+            	text: '',
+            	//x: -20 //center
+	        },
+	        subtitle: {
+	            text: '',
+	            //x: -20
+	        },
+	        xAxis: {
+	            categories: ['2013', '2014', '2015']
+	        },
+	        yAxis: {
+	            title: {
+	                text: ''
+	            },
+	            min: 0,
+				max: 100
+	        },
+	        tooltip: {
+	            valueSuffix: '°C'
+	        },
+	        legend: {
+	        	width:'100%',
+	            layout: 'horizontal',
+	            align: 'center',
+	            verticalAlign: 'bottom',
+	            borderWidth: 0
+	        },
+	        series: [{
+	            name: 'Readliness',
+	            data: [80,75,60],
+	            color:'#F1C40F'
+		        }, {
+		            name: 'Implementation',
+		            data: [35,40,65],
+		            color:'#92EFDA'
+		        }, {
+		            name: 'Impact',
+		            data: [18,28,55],
+		            color:'#CB97F9'
+		        },{
+		            name: 'ODB',
+		            data: [55,48,54],
+		            color:'#000'
+	        }]
+
+	    });
+
+		//Agregamos a la URL los componentes
+		
+		var raw_URL = window.location.href;
+
+		if (raw_URL.indexOf("&comparew=") !== -1) {
+		     ctrIsoCompare[0] = ','+$(this).attr("data-id");
+		     ctrIsoCompareRw[0] = $(this).attr("data-id");
+		} else {
+			window.history.pushState("", "ODB, Open Data Barometer",raw_URL+"&comparew="+$(this).attr("data-id")+"");
+		}
+		
+		raw_URL += ctrIsoCompare;
+
+		if (ctrIsoCompare != "") {
+			//var actual_hash = actual_hash.substring(0, actual_hash.length 1);
+			window.history.pushState("", "ODB, Open Data Barometer",raw_URL);
+		}
+		
 	})
 
 
@@ -496,6 +663,13 @@ $(document).ready(function() {
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
 
+		var removeItem = $(this).attr("data-id");
+		ctrIsoCompareRw = jQuery.grep(ctrIsoCompareRw, function(value) {
+		  return value != removeItem;
+		});
+
+		console.log(ctrIsoCompareRw);
+
 	})
 
 	//Iniciamos los tooltips
@@ -525,6 +699,7 @@ $(document).ready(function() {
 			$(".cmodal-detail").removeClass("cmodal-detail-open");
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
+			window.history.pushState("", "ODB, Open Data Barometer",current_URL);
 	   }
 
 	})
@@ -551,6 +726,7 @@ $(document).ready(function() {
 				$(".cmodal-detail").removeClass("cmodal-detail-open");
 				$(".overlay").removeClass("overlay-open");
 				$("body").removeClass("noscroll");
+				window.history.pushState("", "ODB, Open Data Barometer",current_URL);
 			}
 		}
 	});
@@ -782,7 +958,7 @@ $(document).ready(function() {
                     title: {
                         text: null
                     },
-                    tickPositions: [0]
+                    tickPositions: [0],
                 },
                 legend: {
                     enabled: false
@@ -829,9 +1005,7 @@ $(document).ready(function() {
 
         options = Highcharts.merge(defaultOptions, options);
 
-        return hasRenderToArg ?
-            new Highcharts.Chart(a, options, c) :
-            new Highcharts.Chart(options, b);
+        return hasRenderToArg ? new Highcharts.Chart(a, options, c) : new Highcharts.Chart(options, b);
     };
 
     var start = +new Date(),
@@ -894,7 +1068,8 @@ $(document).ready(function() {
 				xAxis: {
 				   type: 'category',
 				   // minRange: 1,
-					categories: labels//countries,
+					categories: labels,//countries,
+					lineColor:colums_color
 					/*labels: {
 						enabled:false
 					}*/

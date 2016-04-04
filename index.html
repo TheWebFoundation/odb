@@ -90,7 +90,7 @@
                                         <label for="country" class="clbl uppc txt-s c-g40 displayb p-s-top">Country</label>
                                         <input type="text" class="cinput cinput-s-country" name="country" id="cinput-s-country" placeholder="Type a country ...">
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-input">Show</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-search-home-input" data-id="">Show</button>
                                         </span>
                                     </div>
                                 </div>
@@ -515,7 +515,7 @@
                                         <label class="clbl uppc txt-s c-g40 displayb p-s-top">Compare with</label>
                                         <input type="text" class="cinput cinput-s-country" name="country" id="cinput-s-country-modal" placeholder="Type a country ...">
                                         <span class="rinput-button rinput-button-search">
-                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-md-add-country">add</button>
+                                            <button name="go_indicator" class="cbtn cbtn-search cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-md-add-country" data-id="">add</button>
                                         </span>
                                     </div>
                                 </div>
@@ -532,141 +532,34 @@
                                         </header>
                                         
                                         <div class="static-indicator r-pos">
-                                            <h5 class="txt-m displayb">ODB index  <span class="displayib fright txt-xl">85%</span></h5>
+                                            <h5 class="txt-m displayb si-tit-current">ODB index  <span class="displayib fright txt-xl si-val-current">85</span></h5>
                                             <div class="indicator-cover">
-                                                <div class="indicator-progress" style="width:85%"></div>
+                                                <div class="indicator-progress i-p-current" style="width:85%"></div>
                                             </div>   
                                             
                                             <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
                                         </div>
 
                                         <div class="ca-content ca-current m-xl-top txt-c">
-                                            <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                                            <div id ="grafica-modal"></div>
+                                            <!--img src="img/ie-graphic-country.png" class="c-obj p-xxl-top"-->
                                         </div>
 
-                                        <div class="cac-current-actions txt-c p-s-top p-s-bottom">
+                                        <!--div class="cac-current-actions txt-c p-s-top p-s-bottom">
                                             <ul class="list-inl c-obj">
                                                 <li class="item-lin txt-s uppc c-g40"><span class="leg leg-odb"></span> ODB</li>
                                                 <li class="item-lin txt-s uppc c-g40"><span class="leg leg-readliness"></span> Readliness</li>
                                                 <li class="item-lin txt-s uppc c-g40"><span class="leg leg-implementation"></span> Implementation</li>
                                                 <li class="item-lin txt-s uppc c-g40"><span class="leg leg-impact"></span> Impact</li>
                                             </ul>
-                                        </div>
+                                        </div-->
 
 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                   
-                                    <div class="carousel-countries owl-carousel">
-                                        
-                                        <div class="country-item">
-                                            
-                                            <div class="country-area country-compare p-l-top" data-id="1">
-                                                <header class="ca-header txt-c">
-<!--                                                <span class="cicon-aright a-pos md-h-nav md-h-arrow-right"></span>
-                                                    <span class="cicon-aleft a-pos md-h-nav md-h-arrow-left"></span> -->
-                                                    
-                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
-                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
-                                                        <span class="flag-md flag-country"><img src="img/flags/ec.svg" class="adj-img-ca-h img-responsive"></span>
-                                                        <span class="ca-h-tit displayib m-xs-top">Ecuador
-                                                        <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
-                                                        </span>
-                                                    </h5>
-                                                </header>
-
-                                                <div class="static-indicator r-pos">
-                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
-                                                    <div class="indicator-cover">
-                                                        <div class="indicator-progress" style="width:45%"></div>
-                                                    </div>   
-                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
-                                                </div>
-                                                
-                                                <div class="ca-content m-xl-top txt-c">
-                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
-                                                </div> 
-
-                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
-                                                    <!--span class="displayb">Nav</span-->
-                                                </div>
-
-                                            </div>
-
-                                        </div><!--end item-->
-
-
-                                        <div class="country-item">
-                                            
-                                            <div class="country-area country-compare p-l-top" data-id="1">
-                                                <header class="ca-header txt-c">
-                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
-                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
-                                                        <span class="flag-md flag-country"><img src="img/flags/my.svg" class="adj-img-ca-h img-responsive"></span>
-                                                        <span class="ca-h-tit displayib m-xs-top">Malaysia
-                                                         <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
-                                                        </span>
-                                                    </h5>
-                                                </header>
-
-                                                <div class="static-indicator r-pos">
-                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
-                                                    <div class="indicator-cover">
-                                                        <div class="indicator-progress" style="width:45%"></div>
-                                                    </div>   
-                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
-                                                </div>
-                                                
-                                                <div class="ca-content m-xl-top txt-c">
-                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
-                                                </div> 
-
-                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
-                                                   
-                                                </div>
-
-                                            </div>
-
-                                        </div><!--end item-->
-
-
-                                        <div class="country-item">
-                                            
-                                            <div class="country-area country-compare p-l-top" data-id="1">
-                                                <header class="ca-header txt-c">
-                                                    <h5 class="txt-al no-m-top no-m-bottom displayib c-obj r-pos">
-                                                        <span class="a-pos md-h-nav md-h-removec"><span class="cicon-cross txt-xs"></span></span>
-                                                        <span class="flag-md flag-country"><img src="img/flags/tr.svg" class="adj-img-ca-h img-responsive"></span>
-                                                        <span class="ca-h-tit displayib m-xs-top">Turkey
-                                                         <span class="displayb uppc txt-s m-xs-top c-g40">2015</span>
-                                                        </span>
-                                                    </h5>
-                                                </header>
-
-                                                <div class="static-indicator r-pos">
-                                                    <h5 class="txt-m displayb">ODB index <span class="displayib fright txt-xl">45%</span></h5>
-                                                    <div class="indicator-cover">
-                                                        <div class="indicator-progress" style="width:45%"></div>
-                                                    </div>   
-                                                    <span class="indicator-st i-init txt-s c-g40">0</span><span class="indicator-st i-end txt-s c-g40">100</span>
-                                                </div>
-                                                
-                                                <div class="ca-content m-xl-top txt-c">
-                                                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
-                                                </div> 
-
-                                                <div class="cac-current-actions p-s-top p-s-bottom txt-c">
-                                                    
-                                                </div>
-
-                                            </div>
-
-                                        </div><!--end item-->
-
-                                    </div>
-
+                                    <div class="carousel-countries owl-carousel"></div>
                                 </div><!--end col 6-->
 
 
@@ -1221,7 +1114,7 @@
                 </div>
                 
                 <div class="ca-content m-xl-top txt-c">
-                    <img src="img/ie-graphic-country.png" class="c-obj p-xxl-top">
+                    <div class="grafica-modal-compare"></div>
                 </div> 
 
                 <div class="cac-current-actions p-s-top p-s-bottom txt-c">
