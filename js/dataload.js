@@ -30,6 +30,19 @@
 	var country_readiness_series;
 	var country_implementation_series;
 	var country_impact_series;
+	var country_datasets_isOpen;
+	var country_datasets_exist;
+	var country_datasets_available;
+	var country_datasets_machineReadable;
+	var country_datasets_bulk;
+	var country_datasets_free;
+	var country_datasets_license;
+	var country_datasets_updated;
+	var country_datasets_sustainable;
+	var country_datasets_discoverable;
+	var country_datasets_linked;
+
+	
 	var country_years_series;
 	var polarOptions;
 
@@ -324,6 +337,21 @@ function drawModalHeader(cISO) {
 			country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
 			country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
 			country_years_series = _.keys(data.years);
+			
+		
+		
+			country_datasets_isOpen;
+			country_datasets_exist;
+			country_datasets_available;
+			country_datasets_machineReadable;
+			country_datasets_bulk;
+			country_datasets_free;
+			country_datasets_license;
+			country_datasets_updated;
+			country_datasets_sustainable;
+			country_datasets_discoverable;
+			country_datasets_linked;
+		
 //			_.reduce(data.years, function(result, value, key){result[key:]},{});
 	//$("#grafica-modal").highcharts({
 	var $div_linechart = $("#grafica-modal");
@@ -382,6 +410,79 @@ function drawModalHeader(cISO) {
 	        }]
 	    };
 	chart_country = new Highcharts.Chart(country_odb_chart);
+		
+	var $div = $("#wrapper-pspider");
+
+		//Se inicia la polar por primera vez ...
+		//$('#wrapper-pspider').highcharts({
+		polarOptions = {
+
+	        chart: {
+	            polar: true,
+	            type: 'line',
+	            backgroundColor:'transparent',
+	            renderTo: $div[0],
+	        },
+
+	        title: {
+	            text: '',
+	            //x: -80
+	        },
+
+	        pane: {
+	            size: '70%'
+	        },
+
+	        xAxis: {
+	            categories: country_data[0].components_data_labels,
+	            tickmarkPlacement: 'on',
+	            lineWidth: 0
+	        },
+
+	        yAxis: {
+	            gridLineInterpolation: 'polygon',
+	            lineWidth: 0,
+	            min: 0
+	        },
+
+	        tooltip: {
+	            shared: true,
+	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+	        },
+
+	        legend: {
+	            align: 'center',
+	            verticalAlign: 'bottom',
+	            //y: 70,
+	            layout: 'horizontal'
+	        },
+
+	        series: [{
+	            name: country_data[0].name,
+	            data: country_data[0].components_data,//[80, 25, 90, 100, 73, 29, 45, 24, 31, 10],
+	            pointPlacement: 'on'
+	        }/*, {
+	            name: 'France',
+	            data: [10, 35, 90, 80, 53, 18, 10, 0, 25, 82],
+	            pointPlacement: 'on'
+	        }*/]
+
+	    };
+
+	    chart_polar = new Highcharts.Chart(polarOptions);
+
+
+	    //Agregamos nueva serie:
+	    //polarOptions.series[1].name = 'Russia';
+	    //polarOptions.series[1].data = [10, 35, 90, 80, 53, 18, 10, 0, 25, 82];
+	    //chart_polar = new Highcharts.Chart(polarOptions);
+
+		/*$(".si-val-current").text(selected_indicator_average);
+		$(".i-p-current").css("width",selected_indicator_average);
+
+		$(".i-init ").text(selected_indicator_range_min);
+		$(".i-end ").text(selected_indicator_range_max);*/
+
 	});
 	
 	
@@ -603,7 +704,7 @@ function drawModalCountryComp (idISO,intro) {
 	if(polarOptions != undefined) {
 		//Agregamos nueva serie a la polar:
 	    polarOptions.series[1].name = idISO;
-	    polarOptions.series[1].data = [25000, 29000, 43000, 51000, 74000, 16300];
+	    polarOptions.series[1].data = [80, 25, 90, 100, 73, 29, 45, 24, 31, 10];
 	    chart_polar = new Highcharts.Chart(polarOptions);
 	}
 
@@ -752,79 +853,7 @@ $(document).ready(function() {
 
 		drawModalHeader(country);
 
-		var $div = $("#wrapper-pspider");
-
-		//Se inicia la polar por primera vez ...
-		//$('#wrapper-pspider').highcharts({
-		polarOptions = {
-
-	        chart: {
-	            polar: true,
-	            type: 'line',
-	            backgroundColor:'transparent',
-	            renderTo: $div[0],
-	        },
-
-	        title: {
-	            text: '',
-	            //x: -80
-	        },
-
-	        pane: {
-	            size: '70%'
-	        },
-
-	        xAxis: {
-	            categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
-	                    'Information Technology', 'Administration'],
-	            tickmarkPlacement: 'on',
-	            lineWidth: 0
-	        },
-
-	        yAxis: {
-	            gridLineInterpolation: 'polygon',
-	            lineWidth: 0,
-	            min: 0
-	        },
-
-	        tooltip: {
-	            shared: true,
-	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-	        },
-
-	        legend: {
-	            align: 'center',
-	            verticalAlign: 'bottom',
-	            //y: 70,
-	            layout: 'horizontal'
-	        },
-
-	        series: [{
-	            name: 'Spain',
-	            data: [43000, 19000, 60000, 35000, 17000, 10000],
-	            pointPlacement: 'on'
-	        }, {
-	            name: 'France',
-	            data: [50000, 39000, 42000, 31000, 26000, 14000],
-	            pointPlacement: 'on'
-	        }]
-
-	    };
-
-	    chart_polar = new Highcharts.Chart(polarOptions);
-
-
-	    //Agregamos nueva serie:
-	    polarOptions.series[1].name = 'Russia';
-	    polarOptions.series[1].data = [25000, 29000, 43000, 51000, 74000, 16300];
-	    chart_polar = new Highcharts.Chart(polarOptions);
-
-		/*$(".si-val-current").text(selected_indicator_average);
-		$(".i-p-current").css("width",selected_indicator_average);
-
-		$(".i-init ").text(selected_indicator_range_min);
-		$(".i-end ").text(selected_indicator_range_max);*/
-
+		
 	});
 
 
@@ -1199,11 +1228,11 @@ $(document).ready(function() {
 				var current_country = _.find(window.countries, {iso3:iso3});
 				if(area["ODB"] != null){
 					if(selected_year>=2015){
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
+						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
 						/*readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
 					}
 					else{
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; /*readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
+						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; /*readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
 					}
 				}
 			})
