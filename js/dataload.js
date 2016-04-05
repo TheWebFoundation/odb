@@ -181,10 +181,10 @@ function drawModalHeader(cISO) {
 	var iodch_class; 
 	var oecd_class;
 	
-	if(country_data[0].g7) {g7_class = "cicon-check";} else g7_class = "cicon-cross";
-	if(country_data[0].g20) {g20_class = "cicon-check";} else g20_class = "cicon-cross";
-	if(country_data[0].iodch) {iodch_class = "cicon-check";} else iodch_class = "cicon-cross";
-	if(country_data[0].oecd) {oecd_class = "cicon-check";} else oecd_class = "cicon-cross";		
+	if(country_data[0].g7) {g7_class = "cicon-check c-check";} else g7_class = "cicon-cross txt-s c-error";
+	if(country_data[0].g20) {g20_class = "cicon-check c-check";} else g20_class = "cicon-cross txt-s c-error";
+	if(country_data[0].iodch) {iodch_class = "cicon-check c-check";} else iodch_class = "cicon-cross txt-s c-error";
+	if(country_data[0].oecd) {oecd_class = "cicon-check c-check";} else oecd_class = "cicon-cross txt-s c-error";		
 	
 	var headerModal = '<div class="container-fluid">' +
 				'	<div class="row">' +
@@ -199,10 +199,10 @@ function drawModalHeader(cISO) {
 				'				<ul class="ilist overfh displayib txt-al">' +
 				'					<li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">' + country_data[0].income + '</span></li>' +
 				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">' + country_data[0].hdi + '</span></li>' +
-				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="' + g20_class + ' c-check"></span></span></li>' +
-				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="' + g7_class + ' c-check"></span></span></li>' +
-				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="' + oecd_class + ' c-check"></span></span></li>' +
-				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="' + iodch_class + ' txt-s c-error"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="' + g20_class + '"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="' + g7_class + '"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="' + oecd_class + '"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="' + iodch_class + '"></span></span></li>' +
 				'				</ul>' +
 				'			</div>' +
 				'				<div class="cm-h-item cm-h-acc fright txt-ar p-s-top m-xs-top">'+
