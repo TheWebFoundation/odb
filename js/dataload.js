@@ -1,9 +1,16 @@
+	//Funcion para recoger las variables de la URL
+	function getUrlVars() {
+    	var vars = {};
+    	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        	vars[key] = value;
+    	});
+    	return vars;
+	}
+
 	//variables de preproceso para el json de barras y paises
 	var columns_data;
 	var table_data;
 	var map_data;
-	var current_URL = window.location.href;
-	var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
 	var ctrIsoCompare = [];
 	var country_data;
 	var selected_year;
@@ -19,6 +26,31 @@
 	var indicators_select;
 	var filtered_data;
 	var filtered_table_data;
+
+	var current_URL = window.location.href;
+	if (current_URL.indexOf("&open") !== -1) {
+		var current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open")); 
+		//console.log("URL actual: "+current_URL);
+	}
+
+	var countriesURL = getUrlVars()["comparew"];
+	if(countriesURL !== undefined){
+		var ctrIsoCompare = countriesURL.split(",");
+		var fullURL =  window.location.href;
+		var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open='; 
+	}else{
+		var ctrIsoCompare = [];
+		var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
+	}
+
+	//Iniciamos el carousel
+ 	var rmItemCount = 0;
+	function initCont(event) {
+		rmItemCount = event.item.count;
+		//console.log("quedan: "+rmItemCount);
+	}
+
+	var owl =  $('.carousel-countries').owlCarousel({loop:false,margin:10,nav:true,dots:true,onInitialized: initCont,responsive:{0:{items:1}}});
 
 	//Cargamos los indicadores
 	indicators_select = _(window.indicators)
@@ -474,6 +506,86 @@ function drawModalHeader(cISO) {
 }
 
 
+function drawModalCountryComp (idISO,intro) {
+
+	//Clonamos el div inicial y cambiamos los datos
+	var $div = $('div.country-item-cloned');
+	var $cloned =  $div.clone();
+
+	var $end = $cloned.removeClass('country-item-cloned'),
+	$end = $cloned.removeClass('hddn'),
+	$end = $cloned.attr("data-id",idISO),
+	$end = $cloned.find("span.md-h-removec").attr("data-id",idISO),
+	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/es.svg"),
+	$end = $cloned.find("span.ca-h-tit").text(idISO);
+	$graph = $cloned.find("div.grafica-modal-compare");  
+	
+	owl.trigger('add.owl.carousel', $cloned,rmItemCount);
+	owl.trigger('refresh.owl.carousel');
+	if(intro == 1) {
+		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
+	}
+
+	//alert ("w: "+$("div.grafica-modal-compare").offsetWidth);
+
+	window.chart = new Highcharts.Chart({
+		chart: {
+			renderTo: $graph[0],
+        	type:'line',
+			height: 300,
+			backgroundColor: null,
+			borderWidth: 0,
+		},
+		title: {
+        	text: '',
+        	//x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            //x: -20
+        },
+        xAxis: {
+            categories: ['2013', '2014', '2015']
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            min: 0,
+			max: 100
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+        	width:'100%',
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Readliness',
+            data: [80,75,60],
+            color:'#F1C40F'
+	        }, {
+	            name: 'Implementation',
+	            data: [35,40,65],
+	            color:'#92EFDA'
+	        }, {
+	            name: 'Impact',
+	            data: [18,28,55],
+	            color:'#CB97F9'
+	        },{
+	            name: 'ODB',
+	            data: [55,48,54],
+	            color:'#000'
+        }]
+
+    });
+}
+
+
 $(document).ready(function() {
  	
 	// function processAjaxData(response, urlPath){
@@ -482,13 +594,11 @@ $(document).ready(function() {
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
-	//Controlamos lo que nos pasan por variables
-	function getUrlVars() {
-    	var vars = {};
-    	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        	vars[key] = value;
-    	});
-    	return vars;
+	//Si tenemos ya countries las cargamos ya que esto abrira el modal
+	if(ctrIsoCompare.length != 0) {
+		ctrIsoCompare.forEach(function(iso3c) {
+			drawModalCountryComp(iso3c,0);
+		});
 	}
 
 	var year = getUrlVars()["_year"];
@@ -555,7 +665,9 @@ $(document).ready(function() {
 
 		var country = $(this).attr("data-iso");
 		current_URL_OM = current_URL_OM+country;
-		window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+		if(getUrlVars()["open"]==undefined) {
+			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+		}
 
 		drawModalHeader(country);
 
@@ -718,33 +830,11 @@ $(document).ready(function() {
 
 	
     //##OWLCAROUSEL CONFIG
-    //Carousel de comparaciones
- 	var rmItemCount = 0;
-	function dosomething(event) {
-		rmItemCount = event.item.count;
-		//console.log("quedan: "+rmItemCount);
-	}
-
-
-	var owl =  $('.carousel-countries').owlCarousel({
-		loop:false,
-		margin:10,
-		nav:true,
-		dots:true,
-		onInitialized: dosomething,
-		responsive:{
-			0:{
-				items:1
-			}
-		}
-	});
-
 	owl.owlCarousel();
 	var rmItemOwl = 0; //remove item owl carousel
 
 	owl.on('refreshed.owl.carousel', function(event) {
 		rmItemCount = event.item.count;
-
 		if(rmItemCount == 0) {
 			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 			owl.trigger('refresh.owl.carousel');
@@ -756,8 +846,15 @@ $(document).ready(function() {
 	owl.on('changed.owl.carousel', function(event) {
 		rmItemOwl = event.item.index;
 		rmItemCount = event.page.count;
-		//console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
+		console.log("Nos movemos a "+rmItemOwl);
 	});
+
+	owl.on('translated.owl.carousel', function(event) {
+		//rmItemOwl = event.item.index;
+		console.log("trasladado");
+	});
+
+	
 
 
 	
@@ -795,79 +892,8 @@ $(document).ready(function() {
 			owl.trigger('remove.owl.carousel', 0); 
 		}
 
-		//return false;
-
-		//Clonamos el div inicial y cambiamos los datos
-		var $div = $('div.country-item-cloned');
-		var $cloned =  $div.clone();
-
-		var $end = $cloned.removeClass('country-item-cloned'),
-		$end = $cloned.removeClass('hddn'),
-		$end = $cloned.attr("data-id",$(this).attr("data-id")),
-		$end = $cloned.find("span.md-h-removec").attr("data-id",$(this).attr("data-id"));
-		$graph = $cloned.find("div.grafica-modal-compare");  
-		
-		owl.trigger('add.owl.carousel', $cloned,rmItemCount);
-		owl.trigger('refresh.owl.carousel');
-		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
-
-		//alert ("w: "+$("div.grafica-modal-compare").offsetWidth);
-
-		window.chart = new Highcharts.Chart({
-			chart: {
-				renderTo: $graph[0],
-            	type:'line',
-				height: 300,
-				backgroundColor: null,
-				borderWidth: 0,
-			},
-			title: {
-            	text: '',
-            	//x: -20 //center
-	        },
-	        subtitle: {
-	            text: '',
-	            //x: -20
-	        },
-	        xAxis: {
-	            categories: ['2013', '2014', '2015']
-	        },
-	        yAxis: {
-	            title: {
-	                text: ''
-	            },
-	            min: 0,
-				max: 100
-	        },
-	        tooltip: {
-	            valueSuffix: '°C'
-	        },
-	        legend: {
-	        	width:'100%',
-	            layout: 'horizontal',
-	            align: 'center',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0
-	        },
-	        series: [{
-	            name: 'Readliness',
-	            data: [80,75,60],
-	            color:'#F1C40F'
-		        }, {
-		            name: 'Implementation',
-		            data: [35,40,65],
-		            color:'#92EFDA'
-		        }, {
-		            name: 'Impact',
-		            data: [18,28,55],
-		            color:'#CB97F9'
-		        },{
-		            name: 'ODB',
-		            data: [55,48,54],
-		            color:'#000'
-	        }]
-
-	    });
+		//Clonamos los paises
+		drawModalCountryComp ($(this).attr("data-id"),1);
 
 		//Agregamos a la URL los componentes
 		ctrIsoCompare.push($(this).attr("data-id"));
@@ -886,7 +912,7 @@ $(document).ready(function() {
 	//Borrado de countries en el carousel
 	$(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
 		e.preventDefault();
-	   //console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
+	   	console.log("Borramos el item: "+rmItemOwl);
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
 		
@@ -900,7 +926,7 @@ $(document).ready(function() {
 
 		arrToString = stringToArray.join(",");
 
-		console.log("long: "+stringToArray.length);
+		console.log("long array: "+stringToArray.length);
 
 		if(stringToArray.length !== 0) {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
@@ -970,6 +996,10 @@ $(document).ready(function() {
 				//Reiniciamos la variables:
 			    ctrIsoCompare = [];
 			    current_URL_OM = window.location.href+'&open=';
+
+			    //Vaciamos el carousel
+		    	owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+				owl.trigger('refresh.owl.carousel');
 			}
 		}
 	});
@@ -1044,6 +1074,11 @@ $(document).ready(function() {
 		//console.log(current_row);
 		//$("#table-data body").html(current_row);
 		my_table.append(current_row);		
+
+		var openModal = getUrlVars()["open"];
+		if(openModal!=undefined || openModal!="") {
+			$("#table-data tbody a[data-iso='"+openModal+"']").trigger("click");
+		}
 	}
 
 	$(function () {
