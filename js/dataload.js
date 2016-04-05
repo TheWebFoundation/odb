@@ -3,8 +3,8 @@
 	var table_data;
 	var map_data;
 	var current_URL = window.location.href;
+	var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
 	var ctrIsoCompare = [];
-	var ctrIsoCompareRw = [];
 
 	//Cargamos los indicadores
 	indicators_select = _(window.indicators)
@@ -174,66 +174,268 @@
 	}
 
 
-	function drawHeaderModal(cISO) {
+function drawModalHeader(cISO) {
+	var country_data = _.filter(table_data, {iso3:cISO});
+	var g20_class;
+	var g7_class;
+	var iodch_class; 
+	var oecd_class;
+	
+	if(country_data[0].g7) {g7_class = "cicon-check";} else g7_class = "cicon-cross";
+	if(country_data[0].g20) {g20_class = "cicon-check";} else g20_class = "cicon-cross";
+	if(country_data[0].iodch) {iodch_class = "cicon-check";} else iodch_class = "cicon-cross";
+	if(country_data[0].oecd) {oecd_class = "cicon-check";} else oecd_class = "cicon-cross";		
+	
+	var headerModal = '<div class="container-fluid">' +
+				'	<div class="row">' +
+				'		<div class="col-md-12 txt-c p-xs-top p-s-bottom">' +
+				'			<div class="cm-h-item cm-h-tit fleft txt-al displayib">' +
+				'				<h4 class="no-m-bottom txt-l">' +
+				'					<span class="flag-md-header"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="img-responsive"></span>' +
+				'					<span class="ct-country"><span class="txt-m">' + country_data[0].name + '</span> <span class="txt-s c-g40 more-info displayb">' + country_data[0].region + '</span></span>' +
+				'				</h4>' +
+				' 			</div>' +
+				'			<div class="cm-h-item cm-h-rdata fleft displayib">' +
+				'				<ul class="ilist overfh displayib txt-al">' +
+				'					<li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">' + country_data[0].income + '</span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">' + country_data[0].hdi + '</span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="' + g20_class + ' c-check"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="' + g7_class + ' c-check"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="' + oecd_class + ' c-check"></span></span></li>' +
+				'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="' + iodch_class + ' txt-s c-error"></span></span></li>' +
+				'				</ul>' +
+				'			</div>' +
+				'				<div class="cm-h-item cm-h-acc fright txt-ar p-s-top m-xs-top">'+
+				'				<button class="ctn-icon"><span class="cicon-share txt-xl displayb"></span><span class="uppc txt-xs">share</span></button>'+
+				'				<button class="ctn-icon close-cmodal-detail"><span class="cicon-cross txt-xl displayb"></span> <span class="uppc txt-xs">close</span></button>'+
+				'			</div>'+
+				'		</div>'+
+				'	</div>'+
+				'</div>'+
+				'<div class="cm-h-data-resume bg-section p-s-top p-s-bottom">'+
+				'	<div class="container-fluid">'+
+				'		<div class="row">'+
+				'			<div class="col-md-12 txt-c">'+
+				'				<ul class="ilist overfh displayib ">'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb_rank + '</span></li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb + '</span></li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readliness</label>'+
+				'						<span class="displayb m-s-top">'+
+				'							<span class="displayib" data-labels="' + country_data[0].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + country_data[0].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + country_data[0].readiness + '</span>'+
+				'						</span>'+
+				'					</li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Implementation</label>'+
+				'						<span class="displayb m-s-top">'+
+				'							<span class="displayib" data-labels="' + country_data[0].implementation_data_labels + '" data-subindex="implementation" data-sparkline="' + country_data[0].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + country_data[0].implementation + '</span>'+
+				'						</span>'+
+				'					</li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Impact</label>'+
+				'						<span class="displayb m-s-top">'+
+				'							<span class="displayib" data-labels="' + country_data[0].impact_data_labels + '" data-subindex="impact" data-sparkline="' + country_data[0].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + country_data[0].impact + '</span>'+
+				'						</span>'+
+				'					</li>'+
+				'					<li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb_rank_change + '</span></li>'+
+				'				</ul>'+
+				'			</div>'+
+				'		</div>'+
+				'	</div>'+
+				'</div>';
+	
+	$("#cm-header").html(headerModal);
+	
+	$(function () {
+		/**
+		 * Create a constructor for sparklines that takes some sensible defaults and merges in the individual
+		 * chart options. This function is also available from the jQuery plugin as $(element).highcharts('SparkLine').
+		 */
+		Highcharts.SparkLine = function (a, b, c) {
+			var hasRenderToArg = typeof a === 'string' || a.nodeName,
+				options = arguments[hasRenderToArg ? 1 : 0],
+				defaultOptions = {
+					chart: {
+						renderTo: (options.chart && options.chart.renderTo) || this,
+						backgroundColor: null,
+						borderWidth: 0,
+						type: 'column',
+						margin: [2, 0, 2, 0],
+						width: 70,
+						height: 40,
+						style: {
+							overflow: 'visible'
+						},
+						skipClone: true
+					},
+					title: {
+						text: ''
+					},
+					credits: {
+						enabled: false
+					},
+					xAxis: {
+						labels: {
+							enabled: false
+						},
+						title: {
+							text: null
+						},
+						startOnTick: false,
+						endOnTick: false,
+						tickPositions: []
+					},
+					yAxis: {
+						endOnTick: false,
+						startOnTick: false,
+						min: 0,
+						max: 100,
+						labels: {
+							enabled: false
+						},
+						title: {
+							text: null
+						},
+						tickPositions: [0]
+					},
+					legend: {
+						enabled: false
+					},
+					tooltip: {
+						backgroundColor: null,
+						borderWidth: 0,
+						shadow: false,
+						useHTML: true,
+						hideDelay: 0,
+						shared: true,
+						padding: 0,
+						positioner: function (w, h, point) {
+							return { x: point.plotX - w / 2, y: point.plotY - h };
+						}
+					},
+					plotOptions: {
+						series: {
+							animation: false,
+							lineWidth: 1,
+							shadow: false,
+							states: {
+								hover: {
+									lineWidth: 1
+								}
+							},
+							marker: {
+								radius: 1,
+								states: {
+									hover: {
+										radius: 2
+									}
+								}
+							},
+							fillOpacity: 0.25
+						},
+						column: {
+							color: '#FFE064',
+							negativeColor: '#910000',
+							borderColor: 'none'
+						}
+					}
+				};
 
-		var headerModal = '<header class="cm-header">' +
-					'<div class="container-fluid">' +
-					'	<div class="row">' +
-					'		<div class="col-md-12 txt-c p-xs-top p-s-bottom">' +
-					'			<div class="cm-h-item cm-h-tit fleft txt-al displayib">' +
-					'				<h4 class="no-m-bottom txt-l">' +
-					'					<span class="flag-md-header"><img src="img/flags/cr.svg" class="img-responsive"></span>' +
-					'					<span class="ct-country"><span class="txt-m">Costa Rica</span> <span class="txt-s c-g40 more-info displayb"> Latin America & Caribean</span></span>' +
-					'				</h4>' +
-					' 			</div>' +
-					'			<div class="cm-h-item cm-h-rdata fleft displayib">' +
-					'				<ul class="ilist overfh displayib txt-al">' +
-					'					<li class="il-item"><label class="uppc txt-s c-g40 p-s-top">Income</label><span class="displayb cinput-txt">High</span></li>' +
-					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">HDI Rank</label><span class="displayb cinput-txt">High</span></li>' +
-					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G20</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>' +
-					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">G7</label><span class="displayb cinput-txt"><span class="cicon-check c-check"></span></span></li>' +
-					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">OECD</label><span class="displayb cinput-txt txt-c"><span class="cicon-check c-check"></span></span></li>' +
-					'					<li class="il-item p-left-l"><label class="uppc txt-s c-g40 p-s-top">IODCH</label><span class="displayb cinput-txt txt-c"><span class="cicon-cross txt-s c-error"></span></span></li>' +
-					'				</ul>' +
-					'			</div>' +
-					'				<div class="cm-h-item cm-h-acc fright txt-ar p-s-top m-xs-top">'+
-					'				<button class="ctn-icon"><span class="cicon-share txt-xl displayb"></span><span class="uppc txt-xs">share</span></button>'+
-					'				<button class="ctn-icon close-cmodal-detail"><span class="cicon-cross txt-xl displayb"></span> <span class="uppc txt-xs">close</span></button>'+
-					'			</div>'+
-					'		</div>'+
-					'	</div>'+
-					'</div>'+
-					'<div class="cm-h-data-resume bg-section p-s-top p-s-bottom">'+
-					'	<div class="container-fluid">'+
-					'		<div class="row">'+
-					'			<div class="col-md-12 txt-c">'+
-					'				<ul class="ilist overfh displayib ">'+
-					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">1</span></li>'+
-					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">97</span></li>'+
-					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readliness</label>'+
-					'						<span class="displayb m-s-top">'+
-					'							<img src="img/readliness.png">'+
-					'						</span>'+
-					'					</li>'+
-					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Implementation</label>'+
-					'						<span class="displayb m-s-top">'+
-					'							<img src="img/implementation.png">'+
-					'						</span>'+
-					'					</li>'+
-					'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Impact</label>'+
-					'						<span class="displayb m-s-top">'+
-					'							<img src="img/impact.png">'+
-					'						</span>'+
-					'					</li>'+
-					'					<li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med">16</span></li>'+
-					'				</ul>'+
-					'			</div>'+
-					'		</div>'+
-					'	</div>'+
-					'</div>'+
-					'</header>';
-	}
+			options = Highcharts.merge(defaultOptions, options);
 
+			return hasRenderToArg ?
+				new Highcharts.Chart(a, options, c) :
+				new Highcharts.Chart(options, b);
+		};
+
+		var start = +new Date(),
+			$spans = $('.cmodal span[data-sparkline]'),
+			fullLen = $spans.length,
+			n = 0;
+
+		// Creating 153 sparkline charts is quite fast in modern browsers, but IE8 and mobile
+		// can take some seconds, so we split the input into chunks and apply them in timeouts
+		// in order avoid locking up the browser process and allow interaction.
+		function doChunk() {
+			var time = +new Date(),
+				i,
+				len = $spans.length,
+				$span,
+				stringdata,
+				stringlabels,
+				stringsubindex,
+				subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
+				colums_color,
+				labels = new Array(),
+				arr,
+				data,
+				chart;
+
+			for (i=0; i<len; i++) {
+				$span = $($spans[i]);
+				stringlabels = $span.data('labels');
+				stringsubindex = $span.data('subindex');
+				stringdata = $span.data('sparkline');
+				arr = stringdata.split('; ');
+				labels = [" "];
+				labels = labels.concat(stringlabels.split(','));
+				switch(stringsubindex){
+					case "readiness": 	  colums_color = subindex_colors[0];
+										  break; 
+					case "implementation":colums_color = subindex_colors[1];
+										  break; 
+					case "impact":        colums_color = subindex_colors[2];
+										  break; 
+				}
+
+				//var labels = new Function("return [" + stringlabels + "];")();
+				//var labels = (new Function("return [" + stringlabels+ "];")());
+				//console.log(labels);
+				data = $.map(arr[0].split(','), parseFloat);
+				//console.log(data);
+				//labels = $.map(stringlabels.split(','));
+				chart = {};
+
+				if (arr[1]) {
+					chart.type = arr[1];
+				}
+				$span.highcharts('SparkLine', {
+					series: [{
+						data: data,
+						color:colums_color,
+						pointStart: 1
+					}],
+					xAxis: {
+					   type: 'category',
+					   // minRange: 1,
+						categories: labels//countries,
+						/*labels: {
+							enabled:false
+						}*/
+					},
+					tooltip: {
+						headerFormat: '<span style="font-size: 10px">{point.x}:</span>',
+						pointFormat: '<b>{point.y}</b>'
+					},
+					chart: chart
+				});
+
+				n += 1;
+
+				// If the process takes too much time, run a timeout to allow interaction with the browser
+				if (new Date() - time > 500) {
+					$spans.splice(0, i + 1);
+					setTimeout(doChunk, 0);
+					break;
+				}
+
+				// Print a feedback on the performance
+				//if (n === fullLen) {
+				//    $('#result').html('Generated ' + fullLen + ' sparklines in ' + (new Date() - start) + ' ms');
+				//}
+			}
+		}
+		doChunk();
+	});    
+
+}
 
 
 $(document).ready(function() {
@@ -319,11 +521,14 @@ $(document).ready(function() {
 	});
 
 	$(document).delegate(".more-info","click", function(e){
+		
 		e.preventDefault();
-		//Change indicators!
-		//var country = $(this).attr("data-iso");
-		//console.log(country);
-		//drawHeaderModal (country);
+
+		var country = $(this).attr("data-iso");
+		current_URL_OM = current_URL_OM+country;
+		window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+
+		drawModalHeader(country);
 
 		$(".si-val-current").text(selected_indicator_average);
 		$(".i-p-current").css("width",selected_indicator_average);
@@ -483,7 +688,7 @@ $(document).ready(function() {
 	});
 
 	
-
+    //##OWLCAROUSEL CONFIG
     //Carousel de comparaciones
  	var rmItemCount = 0;
 	function dosomething(event) {
@@ -492,26 +697,63 @@ $(document).ready(function() {
 	}
 
 
+	var owl =  $('.carousel-countries').owlCarousel({
+		loop:false,
+		margin:10,
+		nav:true,
+		dots:true,
+		onInitialized: dosomething,
+		responsive:{
+			0:{
+				items:1
+			}
+		}
+	});
+
+	owl.owlCarousel();
+	var rmItemOwl = 0; //remove item owl carousel
+
+	owl.on('refreshed.owl.carousel', function(event) {
+		rmItemCount = event.item.count;
+
+		if(rmItemCount == 0) {
+			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+			owl.trigger('refresh.owl.carousel');
+		}
+
+		//console.log("quedan: "+rmItemCount);
+	});
+
+	owl.on('changed.owl.carousel', function(event) {
+		rmItemOwl = event.item.index;
+		rmItemCount = event.page.count;
+		//console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
+	});
+
+
 	
 	$(".cbtn-md-add-country").on("click", function(e) {
 		
 		//Comprobamos que se haya seleccionado al menos un pais y que no esté ya en el carousel
 		var cont = 0;
+		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
 
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
-			alert("selecciona un pais");
-			cont ++
+			msg = 1;
+			alert("Selecciona pais");
+			return false;
 		}
 
 		$("div.owl-stage div.country-item").each(function() {
-				if ($(this).attr("data-id")==idAddCtr) {
-					alert("ya esta dentro");
-					cont ++;
-				}
+			if ($(this).attr("data-id")==idAddCtr) {
+				msg = 2;
+				cont ++;
+			}
 		})
 
 		if(cont !=0) {
+			alert("Ya está agregado");
 			return false;
 		}
 
@@ -549,7 +791,6 @@ $(document).ready(function() {
 				height: 300,
 				backgroundColor: null,
 				borderWidth: 0,
-
 			},
 			title: {
             	text: '',
@@ -600,77 +841,50 @@ $(document).ready(function() {
 	    });
 
 		//Agregamos a la URL los componentes
-		
-		var raw_URL = window.location.href;
+		ctrIsoCompare.push($(this).attr("data-id"));
+		arrToString = ctrIsoCompare.join(",");
+		window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
 
-		if (raw_URL.indexOf("&comparew=") !== -1) {
-		     ctrIsoCompare[0] = ','+$(this).attr("data-id");
-		     ctrIsoCompareRw[0] = $(this).attr("data-id");
-		} else {
-			window.history.pushState("", "ODB, Open Data Barometer",raw_URL+"&comparew="+$(this).attr("data-id")+"");
-		}
-		
-		raw_URL += ctrIsoCompare;
+		//Limpiamos el formulario
+		$(this).attr("data-id","");
+		$("#cinput-s-country-modal").val("");
 
-		if (ctrIsoCompare != "") {
-			//var actual_hash = actual_hash.substring(0, actual_hash.length 1);
-			window.history.pushState("", "ODB, Open Data Barometer",raw_URL);
-		}
-		
+		// if (raw_URL.indexOf("&comparew=") === -1) {
+		//  
+		// }
 	})
-
-
-	var owl =  $('.carousel-countries').owlCarousel({
-		loop:false,
-		margin:10,
-		nav:true,
-		dots:true,
-		onInitialized: dosomething,
-		responsive:{
-			0:{
-				items:1
-			}
-		}
-	});
-
-	owl.owlCarousel();
-	var rmItemOwl = 0; //remove item owl carousel
-
-	owl.on('refreshed.owl.carousel', function(event) {
-		rmItemCount = event.item.count;
-
-		if(rmItemCount == 0) {
-			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
-			owl.trigger('refresh.owl.carousel');
-		}
-
-		//console.log("quedan: "+rmItemCount);
-	});
-
-	owl.on('changed.owl.carousel', function(event) {
-		rmItemOwl = event.item.index;
-		rmItemCount = event.page.count;
-		//console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
-	});
-
-
 
 	//Borrado de countries en el carousel
 	$(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
-	//$(".md-h-removec").on("click", function(e) {
 		e.preventDefault();
 	   //console.log("Borramos el item: "+rmItemOwl+", ahora quedan: "+rmItemCount);
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
+		
+		var ctrURL = getUrlVars()["comparew"];
+		var stringToArray = ctrURL.split(",");
 
-		var removeItem = $(this).attr("data-id");
-		ctrIsoCompareRw = jQuery.grep(ctrIsoCompareRw, function(value) {
-		  return value != removeItem;
+		removeItem = $(this).attr("data-id");
+		stringToArray = jQuery.grep(stringToArray, function(value) {
+			return value != removeItem;
 		});
 
-		console.log(ctrIsoCompareRw);
+		arrToString = stringToArray.join(",");
 
+		console.log("long: "+stringToArray.length);
+
+		if(stringToArray.length !== 0) {
+			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+		}else{
+			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+			ctrIsoCompare = [];
+		}
+		// ctrIsoCompareRw = jQuery.grep(ctrIsoCompareRw, function(value) {
+		//   return value != removeItem;
+		// });
 	})
+
+
 
 	//Iniciamos los tooltips
 	$(function () {
@@ -687,7 +901,6 @@ $(document).ready(function() {
 
 	//Apertura / cierre del modal detalle de countries
 	$(document).delegate(".more-info, .close-cmodal-detail","click", function(e){
-	//$(".more-info, .close-cmodal-detail").on("click", function(e){
 
 	   e.preventDefault();
 
@@ -700,21 +913,18 @@ $(document).ready(function() {
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL);
+		   
+		    //Reiniciamos la variables:
+		    ctrIsoCompare = [];
+		    current_URL_OM = window.location.href+'&open=';
+
+		    //Vaciamos el carousel
+		    owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+			owl.trigger('refresh.owl.carousel');
+
 	   }
 
 	})
-
-	$(".cbtn-expand-table").on("click", function(e){
-		e.preventDefault();
-		if($(".global-content-indicators").is(".cgi-c-expanded")) {
-			$(".global-content-indicators").removeClass("cgi-c-expanded");
-			$(".cbtn-expand-table").text("Expand");
-		}else{
-			$(".global-content-indicators").addClass("cgi-c-expanded");
-			$(".cbtn-expand-table").text("Collapse");
-		}
-	})
-
 
 	//Cierre presionando esc del modal detalle de countries
 	$(document).keyup(function(e) {
@@ -727,10 +937,26 @@ $(document).ready(function() {
 				$(".overlay").removeClass("overlay-open");
 				$("body").removeClass("noscroll");
 				window.history.pushState("", "ODB, Open Data Barometer",current_URL);
+
+				//Reiniciamos la variables:
+			    ctrIsoCompare = [];
+			    current_URL_OM = window.location.href+'&open=';
 			}
 		}
 	});
 
+
+	//Apertura / cierre del colapsable de implementation
+	$(".cbtn-expand-table").on("click", function(e){
+		e.preventDefault();
+		if($(".global-content-indicators").is(".cgi-c-expanded")) {
+			$(".global-content-indicators").removeClass("cgi-c-expanded");
+			$(".cbtn-expand-table").text("Expand");
+		}else{
+			$(".global-content-indicators").addClass("cgi-c-expanded");
+			$(".cbtn-expand-table").text("Collapse");
+		}
+	})
 
 
 
@@ -829,11 +1055,11 @@ $(document).ready(function() {
 			
 
 
-	//Custom Search
+	//Custom Search para la tabla - ahora está oculta-
 	$('#cinput-table-search').keyup(function(){
-		  //console.log($(this).val());
 		  table.search($(this).val()).draw() ;
 	})
+
 	var filter_applied = new Object;
 	if(region!=0) filter_applied.region_iso3 = region;
 	if(income!=0){ 
@@ -883,6 +1109,7 @@ $(document).ready(function() {
 				//     searchPlaceholder: "Search country ..."
 				// }
 			});
+
 			/*var countries = _.map(data.areas, function(area, iso3){
 				if(area[selected_indicator] != null){
 					return _.find(window.countries, {iso3:iso3}).name;
