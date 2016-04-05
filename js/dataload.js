@@ -31,6 +31,7 @@
 	var country_implementation_series;
 	var country_impact_series;
 	var country_years_series;
+	var polarOptions;
 
 	var current_URL = window.location.href;
 	if (current_URL.indexOf("&open") !== -1) {
@@ -599,6 +600,13 @@ function drawModalCountryComp (idISO,intro) {
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 	}
 
+	if(polarOptions != undefined) {
+		//Agregamos nueva serie a la polar:
+	    polarOptions.series[1].name = idISO;
+	    polarOptions.series[1].data = [25000, 29000, 43000, 51000, 74000, 16300];
+	    chart_polar = new Highcharts.Chart(polarOptions);
+	}
+
 	//alert ("w: "+$("div.grafica-modal-compare").offsetWidth);
 
 	window.chart = new Highcharts.Chart({
@@ -744,6 +752,73 @@ $(document).ready(function() {
 
 		drawModalHeader(country);
 
+		var $div = $("#wrapper-pspider");
+
+		//Se inicia la polar por primera vez ...
+		//$('#wrapper-pspider').highcharts({
+		polarOptions = {
+
+	        chart: {
+	            polar: true,
+	            type: 'line',
+	            backgroundColor:'transparent',
+	            renderTo: $div[0],
+	        },
+
+	        title: {
+	            text: '',
+	            //x: -80
+	        },
+
+	        pane: {
+	            size: '70%'
+	        },
+
+	        xAxis: {
+	            categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
+	                    'Information Technology', 'Administration'],
+	            tickmarkPlacement: 'on',
+	            lineWidth: 0
+	        },
+
+	        yAxis: {
+	            gridLineInterpolation: 'polygon',
+	            lineWidth: 0,
+	            min: 0
+	        },
+
+	        tooltip: {
+	            shared: true,
+	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+	        },
+
+	        legend: {
+	            align: 'center',
+	            verticalAlign: 'bottom',
+	            //y: 70,
+	            layout: 'horizontal'
+	        },
+
+	        series: [{
+	            name: 'Spain',
+	            data: [43000, 19000, 60000, 35000, 17000, 10000],
+	            pointPlacement: 'on'
+	        }, {
+	            name: 'France',
+	            data: [50000, 39000, 42000, 31000, 26000, 14000],
+	            pointPlacement: 'on'
+	        }]
+
+	    };
+
+	    chart_polar = new Highcharts.Chart(polarOptions);
+
+
+	    //Agregamos nueva serie:
+	    polarOptions.series[1].name = 'Russia';
+	    polarOptions.series[1].data = [25000, 29000, 43000, 51000, 74000, 16300];
+	    chart_polar = new Highcharts.Chart(polarOptions);
+
 		/*$(".si-val-current").text(selected_indicator_average);
 		$(".i-p-current").css("width",selected_indicator_average);
 
@@ -862,14 +937,14 @@ $(document).ready(function() {
 	});
 
 	owl.on('changed.owl.carousel', function(event) {
-		rmItemOwl = event.item.index;
+		//rmItemOwl = event.item.index;
 		rmItemCount = event.page.count;
 		console.log("Nos movemos a "+rmItemOwl);
 	});
 
 	owl.on('translated.owl.carousel', function(event) {
 		//rmItemOwl = event.item.index;
-		console.log("trasladado");
+		//console.log("trasladado");
 	});
 
 	
@@ -930,7 +1005,11 @@ $(document).ready(function() {
 	//Borrado de countries en el carousel
 	$(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
 		e.preventDefault();
+	   
+	   	//Borramos el item del carousel, antes averiguamos cual es:
+	   	var rmItemOwl = $(".owl-stage").find("div.country-item[data-id='"+$(this).attr("data-id")+"']").parent().index();
 	   	console.log("Borramos el item: "+rmItemOwl);
+
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
 		

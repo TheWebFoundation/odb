@@ -194,6 +194,7 @@
 	display:table;
 	position: relative;
 	width: 100%;
+	z-index: 10;
 
 	@include modular-mq(xs) {
 		

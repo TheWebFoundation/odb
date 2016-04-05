@@ -107,6 +107,19 @@
 	}
 }
 
+//## POLAR SPIDER
+.wrapper-pspider {
+	min-height: 576px;
+	position:relative;
+}
+
+.bg-pspider {
+	background-color: $bg-20_20;
+}
+
+
+
+//##CLONE COUNTRIES
 .ca-header {
 	display: block;
 	width: 100%;
@@ -292,3 +305,23 @@
 	border-left: 1px solid $c-borde-4;
 }
 
+.data-i {
+	display: inline-block;
+	padding: 2px 4px;
+	border-radius: 3px;
+}
+
+.data-i-round {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border-radius: 50em;
+}
+
+.data-i-comp {
+	background-color: $bg-complete;
+}
+
+.data-i-incomp {
+	background-color: $bg-incomplete;
+}
