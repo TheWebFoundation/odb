@@ -41,10 +41,58 @@
 	var country_datasets_sustainable;
 	var country_datasets_discoverable;
 	var country_datasets_linked;
-
-	
 	var country_years_series;
-	var polarOptions;
+
+	var $div = $("#wrapper-pspider");
+	var polarOptions = {
+	        chart: {
+	            polar: true,
+	            type: 'line',
+	            backgroundColor:'transparent',
+	            renderTo: $div[0],
+	        },
+
+	        title: {
+	            text: '',
+	            //x: -80
+	        },
+
+	        pane: {
+	            size: '70%'
+	        },
+
+	        xAxis: {
+	            //categories: country_data[0].components_data_labels,
+	            tickmarkPlacement: 'on',
+	            lineWidth: 0
+	        },
+
+	        yAxis: {
+	            gridLineInterpolation: 'polygon',
+	            lineWidth: 0,
+	            min: 0
+	        },
+
+	        tooltip: {
+	            shared: true,
+	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+	        },
+
+	        legend: {
+	            align: 'center',
+	            verticalAlign: 'bottom',
+	            //y: 70,
+	            layout: 'horizontal'
+	        },
+
+	        series: [{
+	            //name: country_data[0].name,
+	            //data: country_data[0].components_data,//[80, 25, 90, 100, 73, 29, 45, 24, 31, 10],
+	            pointPlacement: 'on',
+	            color: '#7ED321'
+	        }]
+	    };
+
 
 	var current_URL = window.location.href;
 	if (current_URL.indexOf("&open") !== -1) {
@@ -174,8 +222,6 @@
 			}else{
 				//$("#sindicator").parent().removeClass("bg-selected");
 			}
-
-
 			// if (option !=0) {
 			// 	$(this).parent().parent().addClass("bg-selected");
 			// }else{
@@ -332,156 +378,167 @@ function drawModalHeader(cISO) {
 	$("#country-selected").html(contentModal);
 	//CARGA DE DATOS DEL DETALLE PAÍS
 	$.getJSON('json/odb_' + cISO + '.json', function (data) {
-			country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
-			country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
-			country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
-			country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
-			country_years_series = _.keys(data.years);
 			
+		country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
+		country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
+		country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+		country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
+		country_years_series = _.keys(data.years);
 		
-		
-			country_datasets_isOpen;
-			country_datasets_exist;
-			country_datasets_available;
-			country_datasets_machineReadable;
-			country_datasets_bulk;
-			country_datasets_free;
-			country_datasets_license;
-			country_datasets_updated;
-			country_datasets_sustainable;
-			country_datasets_discoverable;
-			country_datasets_linked;
-		
-//			_.reduce(data.years, function(result, value, key){result[key:]},{});
-	//$("#grafica-modal").highcharts({
-	var $div_linechart = $("#grafica-modal");
-	var country_odb_chart = {
-		chart: {
-				height: 300,
-				backgroundColor: null,
-				borderWidth: 0,
-				type: 'line',
-				renderTo: $div_linechart[0]
-			},
-			title: {
-            	text: '',
-            	//x: -20 //center
-	        },
-	        subtitle: {
-	            text: '',
-	            //x: -20
-	        },
-	        xAxis: {
-	            categories: country_years_series//['2013', '2014', '2015']
-	        },
-	        yAxis: {
-	            title: {
-	                text: ''
-	            },
-	            min: 0,
-				max: 100
-	        },
-	        /*tooltip: {
-	            valueSuffix: ''
-	        },*/
-	        legend: {
-	        	width:'100%',
-	            layout: 'horizontal',
-	            align: 'center',
-	            verticalAlign: 'bottom',
-	            borderWidth: 0
-	        },
-	        series: [{
-	            name: 'Readiness',
-	            data: country_readiness_series,
-	            color:'#F1C40F'
-	        }, {
-	            name: 'Implementation',
-	            data: country_implementation_series,
-	            color:'#92EFDA'
-	        }, {
-	            name: 'Impact',
-	            data: country_impact_series,
-	            color:'#CB97F9'
-	        },{
-	            name: 'ODB',
-	            data: country_odb_series,
-	            color:'#000'
-	        }]
-	    };
-	chart_country = new Highcharts.Chart(country_odb_chart);
-		
-	var $div = $("#wrapper-pspider");
+	
+	
+		country_datasets_isOpen;
+		country_datasets_exist;
+		country_datasets_available;
+		country_datasets_machineReadable;
+		country_datasets_bulk;
+		country_datasets_free;
+		country_datasets_license;
+		country_datasets_updated;
+		country_datasets_sustainable;
+		country_datasets_discoverable;
+		country_datasets_linked;
+	
+		//_.reduce(data.years, function(result, value, key){result[key:]},{});
+		//$("#grafica-modal").highcharts({
+		var $div_linechart = $("#grafica-modal");
+		var country_odb_chart = {
+			chart: {
+					height: 300,
+					backgroundColor: null,
+					borderWidth: 0,
+					type: 'line',
+					renderTo: $div_linechart[0]
+				},
+				title: {
+	            	text: '',
+	            	//x: -20 //center
+		        },
+		        subtitle: {
+		            text: '',
+		            //x: -20
+		        },
+		        xAxis: {
+		            categories: country_years_series//['2013', '2014', '2015']
+		        },
+		        yAxis: {
+		            title: {
+		                text: ''
+		            },
+		            min: 0,
+					max: 100
+		        },
+		        /*tooltip: {
+		            valueSuffix: ''
+		        },*/
+		        legend: {
+		        	width:'100%',
+		            layout: 'horizontal',
+		            align: 'center',
+		            verticalAlign: 'bottom',
+		            borderWidth: 0
+		        },
+		        series: [{
+		            name: 'Readiness',
+		            data: country_readiness_series,
+		            color:'#F1C40F'
+		        }, {
+		            name: 'Implementation',
+		            data: country_implementation_series,
+		            color:'#92EFDA'
+		        }, {
+		            name: 'Impact',
+		            data: country_impact_series,
+		            color:'#CB97F9'
+		        },{
+		            name: 'ODB',
+		            data: country_odb_series,
+		            color:'#000'
+		        }]
+		    };
 
-		//Se inicia la polar por primera vez ...
-		//$('#wrapper-pspider').highcharts({
-		polarOptions = {
+			chart_country = new Highcharts.Chart(country_odb_chart);
+				
 
-	        chart: {
-	            polar: true,
-	            type: 'line',
-	            backgroundColor:'transparent',
-	            renderTo: $div[0],
-	        },
+			//POLAR	
+			//var $div = $("#wrapper-pspider");
+			// polarOptions = {
 
-	        title: {
-	            text: '',
-	            //x: -80
-	        },
+		 //        chart: {
+		 //            polar: true,
+		 //            type: 'line',
+		 //            backgroundColor:'transparent',
+		 //            renderTo: $div[0],
+		 //        },
 
-	        pane: {
-	            size: '70%'
-	        },
+		 //        title: {
+		 //            text: '',
+		 //            //x: -80
+		 //        },
 
-	        xAxis: {
-	            categories: country_data[0].components_data_labels,
-	            tickmarkPlacement: 'on',
-	            lineWidth: 0
-	        },
+		 //        pane: {
+		 //            size: '70%'
+		 //        },
 
-	        yAxis: {
-	            gridLineInterpolation: 'polygon',
-	            lineWidth: 0,
-	            min: 0
-	        },
+		 //        xAxis: {
+		 //            categories: country_data[0].components_data_labels,
+		 //            tickmarkPlacement: 'on',
+		 //            lineWidth: 0
+		 //        },
 
-	        tooltip: {
-	            shared: true,
-	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
-	        },
+		 //        yAxis: {
+		 //            gridLineInterpolation: 'polygon',
+		 //            lineWidth: 0,
+		 //            min: 0
+		 //        },
 
-	        legend: {
-	            align: 'center',
-	            verticalAlign: 'bottom',
-	            //y: 70,
-	            layout: 'horizontal'
-	        },
+		 //        tooltip: {
+		 //            shared: true,
+		 //            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+		 //        },
 
-	        series: [{
-	            name: country_data[0].name,
-	            data: country_data[0].components_data,//[80, 25, 90, 100, 73, 29, 45, 24, 31, 10],
-	            pointPlacement: 'on'
-	        }/*, {
-	            name: 'France',
-	            data: [10, 35, 90, 80, 53, 18, 10, 0, 25, 82],
-	            pointPlacement: 'on'
-	        }*/]
+		 //        legend: {
+		 //            align: 'center',
+		 //            verticalAlign: 'bottom',
+		 //            //y: 70,
+		 //            layout: 'horizontal'
+		 //        },
 
-	    };
+		 //        series: [{
+		 //            name: country_data[0].name,
+		 //            data: country_data[0].components_data,//[80, 25, 90, 100, 73, 29, 45, 24, 31, 10],
+		 //            pointPlacement: 'on'
+		 //        }/*, {
+		 //            name: 'France',
+		 //            data: [10, 35, 90, 80, 53, 18, 10, 0, 25, 82],
+		 //            pointPlacement: 'on'
+		 //        }*/]
 
-	    chart_polar = new Highcharts.Chart(polarOptions);
+		 //    };
 
 
-	    //Agregamos nueva serie:
-	    //polarOptions.series[1].name = 'Russia';
-	    //polarOptions.series[1].data = [10, 35, 90, 80, 53, 18, 10, 0, 25, 82];
-	    //chart_polar = new Highcharts.Chart(polarOptions);
+		 	
 
-		/*$(".si-val-current").text(selected_indicator_average);
-		$(".i-p-current").css("width",selected_indicator_average);
 
-		$(".i-init ").text(selected_indicator_range_min);
-		$(".i-end ").text(selected_indicator_range_max);*/
+		    //Generamos las categorias e iniciamos la grafica polar
+		    polarOptions.xAxis.categories = country_data[0].components_data_labels;
+		    polarOptions.series[0].name = country_data[0].name;
+	    	polarOptions.series[0].data = country_data[0].components_data;
+		    chart_init = new Highcharts.Chart(polarOptions);
+
+		    //Añadimos la serie
+		    // chart_init.addSeries({
+	    	// 	name: country_data[0].name,
+	    	// 	data: country_data[0].components_data
+	    	// });
+
+	    	//polarOptions.xAxis.categories = country_data[0].components_data_labels;
+
+			/*$(".si-val-current").text(selected_indicator_average);
+			$(".i-p-current").css("width",selected_indicator_average);
+
+			$(".i-init ").text(selected_indicator_range_min);
+			$(".i-end ").text(selected_indicator_range_max);*/
 
 	});
 	
@@ -701,15 +758,6 @@ function drawModalCountryComp (idISO,intro) {
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 	}
 
-	if(polarOptions != undefined) {
-		//Agregamos nueva serie a la polar:
-	    polarOptions.series[1].name = idISO;
-	    polarOptions.series[1].data = [80, 25, 90, 100, 73, 29, 45, 24, 31, 10];
-	    chart_polar = new Highcharts.Chart(polarOptions);
-	}
-
-	//alert ("w: "+$("div.grafica-modal-compare").offsetWidth);
-
 	window.chart = new Highcharts.Chart({
 		chart: {
 			renderTo: $graph[0],
@@ -766,6 +814,32 @@ function drawModalCountryComp (idISO,intro) {
 
     });
 }
+
+function addCountrySpider(isoCountry) {
+
+	//alert(isoCountry);
+
+	country_data_add = _.filter(table_data, {iso3:isoCountry});
+
+	$.getJSON('json/odb_' + isoCountry + '.json', function (data) {
+		
+		//Generamos la serie
+		console.log("add polar to "+country_data_add[0].name);
+
+		chart_init = new Highcharts.Chart(polarOptions);
+	    chart_init.addSeries({
+	    	name: country_data_add[0].name,
+	    	data: country_data_add[0].components_data,
+	    	color: '#D0021B'
+	    });
+	    //chart_add.redraw();
+	    //polarOptions.addSeries.data = country_data[0].components_data;
+	    //chart_clone = new Highcharts.Chart(polarOptions);
+	});
+
+}
+
+
 
 
 $(document).ready(function() {
@@ -1014,8 +1088,12 @@ $(document).ready(function() {
 			owl.trigger('remove.owl.carousel', 0); 
 		}
 
-		//Clonamos los paises
+		//Clonamos el pais
 		drawModalCountryComp ($(this).attr("data-id"),1);
+		//Inyectamos los datos en la araña
+		addCountrySpider ($(this).attr("data-id"));
+
+
 
 		//Agregamos a la URL los componentes
 		ctrIsoCompare.push($(this).attr("data-id"));
