@@ -30,6 +30,7 @@
 	var country_readiness_series;
 	var country_implementation_series;
 	var country_impact_series;
+	var country_datasets;
 	var country_datasets_isOpen;
 	var country_datasets_exist;
 	var country_datasets_available;
@@ -387,7 +388,7 @@ function drawModalHeader(cISO) {
 		
 	
 	
-		country_datasets_isOpen;
+		/*country_datasets_isOpen;
 		country_datasets_exist;
 		country_datasets_available;
 		country_datasets_machineReadable;
@@ -397,8 +398,25 @@ function drawModalHeader(cISO) {
 		country_datasets_updated;
 		country_datasets_sustainable;
 		country_datasets_discoverable;
-		country_datasets_linked;
+		country_datasets_linked;*/
 	
+		// Datos seleccionados
+		//var selected_year = 2013,
+		var	selected_year_datasets = data.years[selected_year].datasets;
+
+		// Obtener de la forma menos 'hardcodeada' posible los nombres de meta indicadores que tienen que ver con dataset
+		var dataset_indicators_meta = _(indicators_meta).filter({component: 'DATASET_ASSESSMENT'}).map('indicator').value();
+		
+		dataset_indicators_meta.push("VALUE");
+
+		// DOS POSIBLES FORMAS DE OBTENER LOS DATOS
+
+		// Forma más 'funcional'
+		country_datasets = _.zipObject(dataset_indicators_meta, _.map(dataset_indicators_meta, function(meta_indicator) {
+			return _.zipObject(_.keys(selected_year_datasets), _.map(selected_year_datasets, _.property(meta_indicator)));
+		}));
+		
+		
 		//_.reduce(data.years, function(result, value, key){result[key:]},{});
 		//$("#grafica-modal").highcharts({
 		var $div_linechart = $("#grafica-modal");
@@ -743,14 +761,25 @@ function drawModalCountryComp (idISO,intro) {
 	//Clonamos el div inicial y cambiamos los datos
 	var $div = $('div.country-item-cloned');
 	var $cloned =  $div.clone();
-
+	var new_country_data = _.filter(table_data, {iso3:idISO});
+	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
+	
 	var $end = $cloned.removeClass('country-item-cloned'),
 	$end = $cloned.removeClass('hddn'),
 	$end = $cloned.attr("data-id",idISO),
 	$end = $cloned.find("span.md-h-removec").attr("data-id",idISO),
-	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/es.svg"),
-	$end = $cloned.find("span.ca-h-tit").text(idISO);
+	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/" + new_country_data[0].iso2 + ".svg"),
+	$end = $cloned.find("span.ca-h-tit").text(new_country_data[0].name),
+	$end = $cloned.find("span.ca-h-indicator-name").text(selected_indicator_name),
+	$end = $cloned.find("span.ca-h-indicator-value").text(new_country_data[0].selected_indicator_value),
+		$end = $cloned.find("span.ca-h-indicator-init").text(selected_indicator_range_min),
+		$end = $cloned.find("span.ca-h-indicator-end").text(selected_indicator_range_max),
+	$end = $cloned.find("div.ca-h-indicator-progress").css("width",indicator_percentage+"%");
 	$graph = $cloned.find("div.grafica-modal-compare");  
+	
+	
+	
+	
 	
 	owl.trigger('add.owl.carousel', $cloned,rmItemCount);
 	owl.trigger('refresh.owl.carousel');
@@ -758,6 +787,14 @@ function drawModalCountryComp (idISO,intro) {
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 	}
 
+	$.getJSON('json/odb_' + idISO + '.json', function (data) {
+			
+		var new_country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
+		var new_country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
+		var new_country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+		var new_country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
+		var new_country_years_series = _.keys(data.years);
+		
 	window.chart = new Highcharts.Chart({
 		chart: {
 			renderTo: $graph[0],
@@ -775,7 +812,7 @@ function drawModalCountryComp (idISO,intro) {
             //x: -20
         },
         xAxis: {
-            categories: ['2013', '2014', '2015']
+            categories: new_country_years_series
         },
         yAxis: {
             title: {
@@ -796,24 +833,26 @@ function drawModalCountryComp (idISO,intro) {
         },
         series: [{
             name: 'Readliness',
-            data: [80,75,60],
+            data: new_country_readiness_series,
             color:'#F1C40F'
 	        }, {
 	            name: 'Implementation',
-	            data: [35,40,65],
+	            data: new_country_implementation_series,
 	            color:'#92EFDA'
 	        }, {
 	            name: 'Impact',
-	            data: [18,28,55],
+	            data: new_country_impact_series,
 	            color:'#CB97F9'
 	        },{
 	            name: 'ODB',
-	            data: [55,48,54],
+	            data: new_country_odb_series,
 	            color:'#000'
         }]
 
     });
+});
 }
+
 
 function addCountrySpider(isoCountry) {
 
