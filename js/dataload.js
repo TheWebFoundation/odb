@@ -31,17 +31,6 @@
 	var country_implementation_series;
 	var country_impact_series;
 	var country_datasets;
-	var country_datasets_isOpen;
-	var country_datasets_exist;
-	var country_datasets_available;
-	var country_datasets_machineReadable;
-	var country_datasets_bulk;
-	var country_datasets_free;
-	var country_datasets_license;
-	var country_datasets_updated;
-	var country_datasets_sustainable;
-	var country_datasets_discoverable;
-	var country_datasets_linked;
 	var country_years_series;
 
 	var $div = $("#wrapper-pspider");
@@ -390,19 +379,6 @@ function drawModalHeader(cISO) {
 		country_years_series = _.keys(data.years);
 		
 	
-	
-		/*country_datasets_isOpen;
-		country_datasets_exist;
-		country_datasets_available;
-		country_datasets_machineReadable;
-		country_datasets_bulk;
-		country_datasets_free;
-		country_datasets_license;
-		country_datasets_updated;
-		country_datasets_sustainable;
-		country_datasets_discoverable;
-		country_datasets_linked;*/
-	
 		// Datos seleccionados
 		//var selected_year = 2013,
 		var	selected_year_datasets = data.years[selected_year].datasets;
@@ -412,12 +388,149 @@ function drawModalHeader(cISO) {
 		
 		dataset_indicators_meta.push("VALUE");
 
-		// DOS POSIBLES FORMAS DE OBTENER LOS DATOS
-
 		// Forma más 'funcional'
 		country_datasets = _.zipObject(dataset_indicators_meta, _.map(dataset_indicators_meta, function(meta_indicator) {
 			return _.zipObject(_.keys(selected_year_datasets), _.map(selected_year_datasets, _.property(meta_indicator)));
 		}));
+	//pintamos tablas de valores Readiness, Implementation e Impact.
+	//Readiness
+	//Fin Readiness
+	//Implementation (datasets)
+		
+	// SI NO COMPARAMOS CON NINGÚN PAÍS...
+	var tableImplementation = '<thead>' +
+	'	<tr class="cb-bottom-lh">' + //cb-bottom-2">' +
+	'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';// +
+	//'		<th class="cth-md txt-c uppc txt-xs">Acron.</th>'; 
+	_.each(country_datasets.VALUE, function(value, key){
+	tableImplementation = tableImplementation + '		<th class="cth-md txt-c"><img src="img/clusters/' + key + '.png" width="16" height="16" alt="' + _.find(window.indicators, {indicator:key}).name + '" title="' + _.find(window.indicators, {indicator:key}).name + '" data-toggle="tooltip" data-placement="top"></th>'
+	});
+		
+	tableImplementation = tableImplementation + '	</tr>' +
+	'</thead>' +
+	'<tbody>' +           	
+	'<tr class="cb-bottom-lh">' + 
+	'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + country_data[0].name + '</span></td>';// +
+	//'	<td class="ctd-md txt-c uppc txt-s">c1</td>';
+	_.each(country_datasets.VALUE, function(value, key){
+		if (country_datasets.ISOPEN[key] == 0){
+			tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">' + value + '</span></td>';
+		}
+		else{
+			tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">' + value + '</span></td>';
+		}
+	});
+	_.each(country_datasets, function(value, key){
+		if((key!="ISOPEN") && (key!="VALUE")){
+			tableImplementation = tableImplementation + '<tr class="cb-bottom-lh">' +
+			'	<td class = "ctd-md uppc txt-s">' + _.find(window.indicators_meta, {indicator:key}).name + '  </td>';// +
+			//'	<td class="ctd-md txt-c uppc txt-s">c1</td>'; //añadir  rowspan="2" al TD según convenga
+				_.each(value, function(v, k){
+					//DEPENDIENDO DEL VALOR DE key
+					var clase_celda;
+					if(key != "GUPDATED"){
+						if(v<=0){ 
+							clase_celda = "data-i-incomp"; 
+						} 
+						else {
+							clase_celda = "data-i-comp";
+						}
+					}
+					else{
+						if(v==-5){ 
+							clase_celda = "data-i-incomp"; 
+						} 
+						else if(v==0){ 
+							clase_celda = "data-i-updated"; 
+						} 
+						else{
+							clase_celda = "data-i-comp";
+						}
+					}
+					/*switch(key){
+						case("AEXISTS"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
+						case("BAVAILABLE"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
+						case("CMACHINEREADABLE"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
+						case("DBULK"):break;
+						case("EFREE"):break;
+						case("FLICENSE"):break;
+						case("GUPDATED"):break;
+						case("HSUSTAINABLE"):break;
+						case("IDISCOVERABLE"):break;
+						case("JLINKED"):break;
+					}*/
+	
+					tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i-round ' + clase_celda + '"></span></td>';
+				});
+				tableImplementation = tableImplementation + '</tr>';	
+		}
+	});
+	tableImplementation = tableImplementation + '</tr>';
+	tableImplementation = tableImplementation + '</tbody>';
+	$("#cm-table-implementation").html(tableImplementation);
+	//Iniciamos los tooltips
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	})	
+	
+	/*'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">78</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">43</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">52</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">35</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">100</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">68</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">62</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">63</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">86</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">54</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">76</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">78</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">75</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">85</span></td>' +*/
+	
+	/*'<tr class="cb-bottom-lh">' +
+	'	<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/ec.jpg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">Ecuador</span></td>' +
+	'	<td class="ctd-md txt-c uppc txt-s">c2</td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">34</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">55</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">66</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">35</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">76</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">35</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">86</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">95</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">63</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">24</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">65</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">32</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">32</span></td>' +
+	'</tr>' +
+	'<tr class="cb-bottom-lh">' +
+	'	<td class = "ctd-md uppc txt-s" rowspan="2">Exist</td>' +
+	'	<td class="ctd-md txt-c uppc txt-s">c1</td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-incomp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
+	'</tr>' +*/
+
+	//Fin Implementation
+	//Impact
+	//Fin Impact
 		
 		
 		//_.reduce(data.years, function(result, value, key){result[key:]},{});
@@ -758,7 +871,6 @@ function drawModalHeader(cISO) {
 		}
 		doChunk();
 	});    
-	
 }
 
 
@@ -1193,10 +1305,7 @@ $(document).ready(function() {
 
 
 
-	//Iniciamos los tooltips
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	})
+	
 
 
 	//Prueba de iconos de ayuda en cabecera de tabla
@@ -1733,7 +1842,11 @@ $(document).ready(function() {
 			}
 
 			// Propiedades gráfico del mapa
+			
 			$('#wrapper-map').highcharts('Map', {
+				//series: [{
+				//	mapData: window.worldMap
+				//}],
 				credits: {
 					enabled:false
 				},

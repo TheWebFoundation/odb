@@ -1331,6 +1331,10 @@ table.dataTable thead .sorting_desc::after {
   background-color: #FF8787;
 }
 
+.data-i-updated {
+  background-color: #F8E71C;
+}
+
 /* line 2, ../sass/_m-generales.scss */
 .fmerriw {
   font-family: 'Merriweather', serif;
