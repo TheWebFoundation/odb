@@ -46,6 +46,9 @@
 
 	var $div = $("#wrapper-pspider");
 	var polarOptions = {
+			credits: {
+					enabled:false
+				},
 	        chart: {
 	            polar: true,
 	            type: 'line',
@@ -421,6 +424,9 @@ function drawModalHeader(cISO) {
 		//$("#grafica-modal").highcharts({
 		var $div_linechart = $("#grafica-modal");
 		var country_odb_chart = {
+			credits: {
+					enabled:false
+				},
 			chart: {
 					height: 300,
 					backgroundColor: null,
@@ -796,6 +802,9 @@ function drawModalCountryComp (idISO,intro) {
 		var new_country_years_series = _.keys(data.years);
 		
 	window.chart = new Highcharts.Chart({
+		credits: {
+					enabled:false
+				},
 		chart: {
 			renderTo: $graph[0],
         	type:'line',
@@ -1725,7 +1734,9 @@ $(document).ready(function() {
 
 			// Propiedades gráfico del mapa
 			$('#wrapper-map').highcharts('Map', {
-
+				credits: {
+					enabled:false
+				},
 				chart: {
 					backgroundColor: 'transparent',
 					margin: 0
@@ -1824,6 +1835,9 @@ $(document).ready(function() {
 			// Propiedades gráfico de barras
 
 			 $('#column-graph').highcharts({
+				credits: {
+					enabled:false
+				},
 				chart: {
 					type: 'column',
 					backgroundColor: 'transparent',
