@@ -307,10 +307,10 @@ function datasetCountryRow(iso3, num_country, compare){
 		}
 		_.each(country_datasets[iso3].VALUE, function(value, key){
 			if (country_datasets[iso3].ISOPEN[key] == 0){
-				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">' + value + '</span></td>';
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
 			}
 			else{
-				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">' + value + '</span></td>';
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
 			}
 	});
 	rowstring = rowstring + '</tr>';
@@ -353,7 +353,7 @@ function datasetValuesRow(iso3, indicator, value, num_country, compare){
 							}
 						}
 						//Si quisiéramos un tooltip  title=" Country1: ' + _.find(window.indicators_meta, {indicator:key}).name + '" data-toggle="tooltip"
-						rowstring =  rowstring + '	<td class="ctd-md txt-c" ><span class="data-i-round ' + clase_celda + '" title="' + _.find(window.countries, {iso3:iso3}).name + ' (' + _.find(window.indicators, {indicator:k}).name + '): ' + _.find(window.indicators_meta, {indicator:indicator}).name + '" data-toggle="tooltip"></span></td>';
+						rowstring =  rowstring + '	<td class="ctd-md txt-c" ><span class="data-i-round ' + clase_celda + '" title="' + _.find(window.countries, {iso3:iso3}).name + ' - ' + _.find(window.indicators, {indicator:k}).name + ': ' + _.find(window.indicators_meta, {indicator:indicator}).name + '" data-toggle="tooltip"></span></td>';
 					});
 					rowstring =  rowstring + '</tr>';
 	return rowstring;
