@@ -30,8 +30,9 @@
 	var country_readiness_series;
 	var country_implementation_series;
 	var country_impact_series;
-	var country_datasets;
+	var country_datasets = {};
 	var country_years_series;
+	var loaded_countries = [];
 
 	var $div = $("#wrapper-pspider");
 	var polarOptions = {
@@ -278,8 +279,135 @@
 	}
 
 
-function drawModalHeader(cISO) {
-	country_data = _.filter(table_data, {iso3:cISO});
+function setCountryDataset(iso3){
+	//Recibe un código iso3 de un país
+	//carga en la posición "iso3" de country_datasets los datos para el dataset del país dado.
+	$.getJSON('json/odb_' + iso3 + '.json', function (data) {
+		// Datos seleccionados
+		var	selected_year_datasets = data.years[selected_year].datasets;
+		// Obtener los nombres de meta indicadores que tienen que ver con dataset
+		var dataset_indicators_meta = _(indicators_meta).filter({component: 'DATASET_ASSESSMENT'}).map('indicator').value();
+		dataset_indicators_meta.push("VALUE");
+		country_datasets[iso3] = _.zipObject(dataset_indicators_meta, _.map(dataset_indicators_meta, function(meta_indicator) {
+			return _.zipObject(_.keys(selected_year_datasets), _.map(selected_year_datasets, _.property(meta_indicator)));
+		}));
+	});
+}
+
+function datasetCountryRow(iso3, num_country, compare){
+	//Recibe el código de país (iso3), la posición del país en la tabla del dataset (1 ó 2), y si estamos comparando con otro país (0 ó 1).
+	//Devuelve el html de la fila con la info principal del país.
+	var rowstring;
+	var cdata = _.filter(table_data, {iso3:iso3});
+	
+	rowstring = '<tr class="cb-bottom-lh">' + 
+		'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		if(compare){
+		rowstring = rowstring + '	<td class="ctd-md txt-c uppc txt-s">c' + num_country + '</td>';
+		}
+		_.each(country_datasets[iso3].VALUE, function(value, key){
+			if (country_datasets[iso3].ISOPEN[key] == 0){
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">' + value + '</span></td>';
+			}
+			else{
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">' + value + '</span></td>';
+			}
+	});
+	rowstring = rowstring + '</tr>';
+	return rowstring;
+}
+
+function datasetValuesRow(iso3, indicator, value, num_country, compare){
+	var rowstring = '<tr class="cb-bottom-lh">';
+				if(num_country==1){
+					if(compare){
+						rowstring =  rowstring + '	<td rowspan="2" class = "ctd-md uppc txt-s">' + _.find(window.indicators_meta, {indicator:indicator}).name + '  </td>';
+					}
+					else{
+						rowstring =  rowstring + '	<td class = "ctd-md uppc txt-s">' + _.find(window.indicators_meta, {indicator:indicator}).name + '  </td>';
+					}
+				}
+				if(compare){
+					rowstring =  rowstring + '	<td class="ctd-md txt-c uppc txt-s">c' + num_country + '</td>';
+				}
+					_.each(value, function(v, k){
+						//DEPENDIENDO DEL VALOR DE key
+						var clase_celda;
+						if(indicator != "GUPDATED"){
+							if(v<=0){ 
+								clase_celda = "data-i-incomp"; 
+							} 
+							else {
+								clase_celda = "data-i-comp";
+							}
+						}
+						else{
+							if(v==-5){ 
+								clase_celda = "data-i-incomp"; 
+							} 
+							else if(v==0){ 
+								clase_celda = "data-i-updated"; 
+							} 
+							else{
+								clase_celda = "data-i-comp";
+							}
+						}
+						//Si quisiéramos un tooltip  title=" Country1: ' + _.find(window.indicators_meta, {indicator:key}).name + '" data-toggle="tooltip"
+						rowstring =  rowstring + '	<td class="ctd-md txt-c" ><span class="data-i-round ' + clase_celda + '" title="' + _.find(window.countries, {iso3:iso3}).name + ' (' + _.find(window.indicators, {indicator:k}).name + '): ' + _.find(window.indicators_meta, {indicator:indicator}).name + '" data-toggle="tooltip"></span></td>';
+					});
+					rowstring =  rowstring + '</tr>';
+	return rowstring;
+}
+
+function drawDatasetTable(){
+	//Recibe dos códigos iso3 países
+		var countryHeader1 = "";
+		var countryHeader2 = "";
+		var datasetRow1 = "";
+		var datasetRow2 = "";
+		
+		var tableImplementation = '<thead>' +
+		'	<tr class="cb-bottom-2">' +
+		'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';
+		if(loaded_countries.length>1){
+			tableImplementation = tableImplementation + '		<th class="cth-md txt-c uppc txt-xs">Acron.</th>'; 
+		}
+		_.each(country_datasets[loaded_countries[0]].VALUE, function(value, key){
+		tableImplementation = tableImplementation + '		<th class="cth-md txt-c"><img src="img/clusters/' + key + '.png" width="16" height="16" alt="' + _.find(window.indicators, {indicator:key}).name + '" title="' + _.find(window.indicators, {indicator:key}).name + '" data-toggle="tooltip" data-placement="top"></th>'
+		});
+
+		tableImplementation = tableImplementation + '</tr>' + '</thead>' + '<tbody>';
+		if(loaded_countries.length>1){
+			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 1);
+			countryHeader2 = datasetCountryRow(loaded_countries[1], 2, 1);
+		}
+		else{
+			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 0);
+		}
+		tableImplementation = tableImplementation + countryHeader1 + countryHeader2;
+		_.each(country_datasets[loaded_countries[0]], function(value, key){
+			if((key!="ISOPEN") && (key!="VALUE")){
+				if(loaded_countries.length>1){
+					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 1);
+					datasetRow2 = datasetValuesRow(loaded_countries[1], key, country_datasets[loaded_countries[1]][key], 2, 1);
+				}
+				else{
+					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 0);
+				}
+				tableImplementation = tableImplementation + datasetRow1 + datasetRow2;
+			}
+		});
+		tableImplementation = tableImplementation + '</tbody>';
+
+		$("#cm-table-implementation").html(tableImplementation);
+		//Iniciamos los tooltips
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		})
+}
+
+function drawModal() {
+	country_data = _.filter(table_data, {iso3:loaded_countries[0]});
 	var g20_class;
 	var g7_class;
 	var iodch_class; 
@@ -370,164 +498,19 @@ function drawModalHeader(cISO) {
 						'</div>';
 	$("#country-selected").html(contentModal);
 	//CARGA DE DATOS DEL DETALLE PAÍS
-	$.getJSON('json/odb_' + cISO + '.json', function (data) {
-			
+	$.getJSON('json/odb_' + loaded_countries[0] + '.json', function (data) {	
 		country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
 		country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
 		country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
 		country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
 		country_years_series = _.keys(data.years);
-		
-	
-		// Datos seleccionados
-		//var selected_year = 2013,
-		var	selected_year_datasets = data.years[selected_year].datasets;
 
-		// Obtener de la forma menos 'hardcodeada' posible los nombres de meta indicadores que tienen que ver con dataset
-		var dataset_indicators_meta = _(indicators_meta).filter({component: 'DATASET_ASSESSMENT'}).map('indicator').value();
+		//setCountryDataset(loaded_countries[0]);
 		
-		dataset_indicators_meta.push("VALUE");
-
-		// Forma más 'funcional'
-		country_datasets = _.zipObject(dataset_indicators_meta, _.map(dataset_indicators_meta, function(meta_indicator) {
-			return _.zipObject(_.keys(selected_year_datasets), _.map(selected_year_datasets, _.property(meta_indicator)));
-		}));
-	//pintamos tablas de valores Readiness, Implementation e Impact.
-	//Readiness
-	//Fin Readiness
-	//Implementation (datasets)
+	
+	drawDatasetTable();
+	
 		
-	// SI NO COMPARAMOS CON NINGÚN PAÍS...
-	var tableImplementation = '<thead>' +
-	'	<tr class="cb-bottom-lh">' + //cb-bottom-2">' +
-	'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';// +
-	//'		<th class="cth-md txt-c uppc txt-xs">Acron.</th>'; 
-	_.each(country_datasets.VALUE, function(value, key){
-	tableImplementation = tableImplementation + '		<th class="cth-md txt-c"><img src="img/clusters/' + key + '.png" width="16" height="16" alt="' + _.find(window.indicators, {indicator:key}).name + '" title="' + _.find(window.indicators, {indicator:key}).name + '" data-toggle="tooltip" data-placement="top"></th>'
-	});
-		
-	tableImplementation = tableImplementation + '	</tr>' +
-	'</thead>' +
-	'<tbody>' +           	
-	'<tr class="cb-bottom-lh">' + 
-	'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + country_data[0].name + '</span></td>';// +
-	//'	<td class="ctd-md txt-c uppc txt-s">c1</td>';
-	_.each(country_datasets.VALUE, function(value, key){
-		if (country_datasets.ISOPEN[key] == 0){
-			tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">' + value + '</span></td>';
-		}
-		else{
-			tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">' + value + '</span></td>';
-		}
-	});
-	_.each(country_datasets, function(value, key){
-		if((key!="ISOPEN") && (key!="VALUE")){
-			tableImplementation = tableImplementation + '<tr class="cb-bottom-lh">' +
-			'	<td class = "ctd-md uppc txt-s">' + _.find(window.indicators_meta, {indicator:key}).name + '  </td>';// +
-			//'	<td class="ctd-md txt-c uppc txt-s">c1</td>'; //añadir  rowspan="2" al TD según convenga
-				_.each(value, function(v, k){
-					//DEPENDIENDO DEL VALOR DE key
-					var clase_celda;
-					if(key != "GUPDATED"){
-						if(v<=0){ 
-							clase_celda = "data-i-incomp"; 
-						} 
-						else {
-							clase_celda = "data-i-comp";
-						}
-					}
-					else{
-						if(v==-5){ 
-							clase_celda = "data-i-incomp"; 
-						} 
-						else if(v==0){ 
-							clase_celda = "data-i-updated"; 
-						} 
-						else{
-							clase_celda = "data-i-comp";
-						}
-					}
-					/*switch(key){
-						case("AEXISTS"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
-						case("BAVAILABLE"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
-						case("CMACHINEREADABLE"):if(v==0){ clase_celda = "data-i-incomp"; } else {clase_celda = "data-i-comp";} break;
-						case("DBULK"):break;
-						case("EFREE"):break;
-						case("FLICENSE"):break;
-						case("GUPDATED"):break;
-						case("HSUSTAINABLE"):break;
-						case("IDISCOVERABLE"):break;
-						case("JLINKED"):break;
-					}*/
-	
-					tableImplementation = tableImplementation + '	<td class="ctd-md txt-c"><span class="data-i-round ' + clase_celda + '"></span></td>';
-				});
-				tableImplementation = tableImplementation + '</tr>';	
-		}
-	});
-	tableImplementation = tableImplementation + '</tr>';
-	tableImplementation = tableImplementation + '</tbody>';
-	$("#cm-table-implementation").html(tableImplementation);
-	//Iniciamos los tooltips
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	})	
-	
-	/*'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">78</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">43</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">52</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">35</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">100</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">68</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">62</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">63</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">86</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">54</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">76</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">78</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">75</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">85</span></td>' +*/
-	
-	/*'<tr class="cb-bottom-lh">' +
-	'	<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/ec.jpg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">Ecuador</span></td>' +
-	'	<td class="ctd-md txt-c uppc txt-s">c2</td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">34</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">55</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">66</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">35</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">76</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">35</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">86</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">95</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">63</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">24</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s">65</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">32</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">12</span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s">32</span></td>' +
-	'</tr>' +
-	'<tr class="cb-bottom-lh">' +
-	'	<td class = "ctd-md uppc txt-s" rowspan="2">Exist</td>' +
-	'	<td class="ctd-md txt-c uppc txt-s">c1</td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-incomp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'	<td class="ctd-md txt-c"><span class="data-i-round data-i-comp"></span></td>' +
-	'</tr>' +*/
-
 	//Fin Implementation
 	//Impact
 	//Fin Impact
@@ -595,67 +578,6 @@ function drawModalHeader(cISO) {
 		    };
 
 			chart_country = new Highcharts.Chart(country_odb_chart);
-				
-
-			//POLAR	
-			//var $div = $("#wrapper-pspider");
-			// polarOptions = {
-
-		 //        chart: {
-		 //            polar: true,
-		 //            type: 'line',
-		 //            backgroundColor:'transparent',
-		 //            renderTo: $div[0],
-		 //        },
-
-		 //        title: {
-		 //            text: '',
-		 //            //x: -80
-		 //        },
-
-		 //        pane: {
-		 //            size: '70%'
-		 //        },
-
-		 //        xAxis: {
-		 //            categories: country_data[0].components_data_labels,
-		 //            tickmarkPlacement: 'on',
-		 //            lineWidth: 0
-		 //        },
-
-		 //        yAxis: {
-		 //            gridLineInterpolation: 'polygon',
-		 //            lineWidth: 0,
-		 //            min: 0
-		 //        },
-
-		 //        tooltip: {
-		 //            shared: true,
-		 //            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
-		 //        },
-
-		 //        legend: {
-		 //            align: 'center',
-		 //            verticalAlign: 'bottom',
-		 //            //y: 70,
-		 //            layout: 'horizontal'
-		 //        },
-
-		 //        series: [{
-		 //            name: country_data[0].name,
-		 //            data: country_data[0].components_data,//[80, 25, 90, 100, 73, 29, 45, 24, 31, 10],
-		 //            pointPlacement: 'on'
-		 //        }/*, {
-		 //            name: 'France',
-		 //            data: [10, 35, 90, 80, 53, 18, 10, 0, 25, 82],
-		 //            pointPlacement: 'on'
-		 //        }*/]
-
-		 //    };
-
-
-		 	
-
 
 		    //Generamos las categorias e iniciamos la grafica polar
 		    polarOptions.xAxis.categories = country_data[0].components_data_labels;
@@ -943,7 +865,7 @@ function drawModalCountryComp (idISO,intro) {
 			max: 100
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: ''
         },
         legend: {
         	width:'100%',
@@ -1080,12 +1002,13 @@ $(document).ready(function() {
 		e.preventDefault();
 
 		var country = $(this).attr("data-iso");
+		loaded_countries.push(country);
 		current_URL_OM = current_URL_OM+country;
 		if(getUrlVars()["open"]==undefined) {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
 		}
-
-		drawModalHeader(country);
+		setCountryDataset(country);
+		drawModal();
 
 		
 	});
@@ -1220,6 +1143,9 @@ $(document).ready(function() {
 		var cont = 0;
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
+		setCountryDataset(idAddCtr);
+		loaded_countries.push(idAddCtr);
+		drawDatasetTable();
 
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
@@ -1272,10 +1198,10 @@ $(document).ready(function() {
 	//Borrado de countries en el carousel
 	$(".cmodal-d-global").delegate(".md-h-removec","click", function(e){
 		e.preventDefault();
-	   
+	   	//HAY QUE BORRAR EL CÓDIGO iso3 de loaded_countries----------------
 	   	//Borramos el item del carousel, antes averiguamos cual es:
 	   	var rmItemOwl = $(".owl-stage").find("div.country-item[data-id='"+$(this).attr("data-id")+"']").parent().index();
-	   	console.log("Borramos el item: "+rmItemOwl);
+	   	//console.log("Borramos el item: "+rmItemOwl);
 
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
@@ -1333,6 +1259,7 @@ $(document).ready(function() {
 		    //Reiniciamos la variables:
 		    ctrIsoCompare = [];
 		    current_URL_OM = window.location.href+'&open=';
+		   	loaded_countries = [];
 
 		    //Vaciamos el carousel
 		    owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
