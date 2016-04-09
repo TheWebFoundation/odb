@@ -365,7 +365,6 @@ function drawNewCountryChart(idISO){
 function setCountryDataset(iso3){
 	//Recibe un código iso3 de un país
 	//carga en la posición "iso3" de country_datasets los datos para el dataset del país dado.
-     console.log("estoy por aquí 1");
 		// Datos seleccionados
 		var	selected_year_datasets = loaded_countries_data[iso3].years[selected_year].datasets;
 		// Obtener los nombres de meta indicadores que tienen que ver con dataset
@@ -448,9 +447,6 @@ function drawDatasetTable(){
 		var countryHeader2 = "";
 		var datasetRow1 = "";
 		var datasetRow2 = "";
-		if(loaded_countries.length>1){
-           addCountrySpider(loaded_countries[carousel_current_country+1]); 
-        }
 		var tableImplementation = '<thead>' +
 		'	<tr class="cb-bottom-2">' +
 		'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';
@@ -464,7 +460,7 @@ function drawDatasetTable(){
 		tableImplementation = tableImplementation + '</tr>' + '</thead>' + '<tbody>';
 		if(loaded_countries.length>1){
 			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 1);
-			countryHeader2 = datasetCountryRow(loaded_countries[carousel_current_country + 1], 2, 1);
+			countryHeader2 = datasetCountryRow(loaded_countries[carousel_current_country], 2, 1);
 		}
 		else{
 			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 0);
@@ -474,7 +470,7 @@ function drawDatasetTable(){
 			if((key!="ISOPEN") && (key!="VALUE")){
 				if(loaded_countries.length>1){
 					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 1);
-					datasetRow2 = datasetValuesRow(loaded_countries[carousel_current_country + 1], key, country_datasets[loaded_countries[1]][key], 2, 1);
+					datasetRow2 = datasetValuesRow(loaded_countries[carousel_current_country], key, country_datasets[loaded_countries[1]][key], 2, 1);
 				}
 				else{
 					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 0);
@@ -888,9 +884,9 @@ function drawModalCountryComp (idISO,intro) {
 	var $div = $('div.country-item-cloned');
 	var $cloned =  $div.clone();
 	var new_country_data = _.filter(table_data, {iso3:idISO});
-    console.log(table_data);
-    console.log(idISO);
-   // console.log(_.filter(table_data, {iso3:idISO}));
+    // console.log(table_data);
+    //console.log(idISO);
+    // console.log(_.filter(table_data, {iso3:idISO}));
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
 	
 	var $end = $cloned.removeClass('country-item-cloned'),
@@ -918,14 +914,14 @@ function drawModalCountryComp (idISO,intro) {
 }
 
 
-function addCountrySpider(isoCountry) {
+function addCountrySpider() {
 
 	//alert(isoCountry);
 
-	country_data_add = _.filter(table_data, {iso3:isoCountry});
+	country_data_add = _.filter(table_data, {iso3:loaded_countries[carousel_current_country]});
 		
 		//Generamos la serie
-		console.log("add polar to "+country_data_add[0].name);
+		//console.log("add polar to "+country_data_add[0].name);
 
 		chart_init = new Highcharts.Chart(polarOptions);
 	    chart_init.addSeries({
@@ -1143,19 +1139,29 @@ $(document).ready(function() {
 			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 			owl.trigger('refresh.owl.carousel');
 		}
-        drawDatasetTable();
+        /*if(loaded_countries.length=2){
+            addCountrySpider(); 
+            console.log("llamo al spider desde el refreshed.owlcarousel");
+        }*/
+        if(loaded_countries.legth!=0){drawDatasetTable();}
 		//console.log("quedan: "+rmItemCount + " actual=" + carousel_current_country);
 	});
 
 	owl.on('changed.owl.carousel', function(event) {
 		//rmItemOwl = event.item.index;
 		rmItemCount = event.page.count;
+        /*if(loaded_countries.length>1){
+            addCountrySpider(loaded_countries[carousel_current_country+1]); 
+            console.log("llamo al spider desde el changed.owlcarousel");
+        }*/
         drawDatasetTable();
 		//console.log("Nos movemos a "+rmItemOwl);
 	});
 
 	owl.on('translated.owl.carousel', function(event) {
-		carousel_current_country = event.item.index;
+		carousel_current_country = event.item.index + 1; 
+        console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
+        addCountrySpider();
         drawDatasetTable();
 		//console.log("Estamos en:" + carousel_current_country);
 	});
@@ -1163,7 +1169,7 @@ $(document).ready(function() {
 	
 
 
-	
+	//añadir un país al carousel
 	$(".cbtn-md-add-country").on("click", function(e) {
 		
 		//Comprobamos que se haya seleccionado al menos un pais y que no esté ya en el carousel
@@ -1171,7 +1177,26 @@ $(document).ready(function() {
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
 
+        $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
+            loaded_countries.push(idAddCtr);
+            loaded_countries_data[idAddCtr] = data;
+            carousel_current_country = loaded_countries.length-1;
+            console.log(carousel_current_country);
+            console.log(loaded_countries_data);
+            setCountryDataset(idAddCtr);
+            //Clonamos el pais
+            addCountrySpider();
+            drawDatasetTable();
+            drawModalCountryComp(idAddCtr,1);
+            //Inyectamos los datos en la araña
+            //addCountrySpider (idAddCtr);
 
+            //Agregamos a la URL los componentes
+            ctrIsoCompare.push(idAddCtr);
+            arrToString = ctrIsoCompare.join(",");
+            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+        });
+        
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
 			alert("Selecciona pais");
@@ -1199,21 +1224,7 @@ $(document).ready(function() {
 			owl.trigger('remove.owl.carousel', 0); 
 		}
 
-		 $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
-            loaded_countries.push(idAddCtr);
-            loaded_countries_data[idAddCtr] = data;
-            setCountryDataset(idAddCtr);
-            drawDatasetTable();
-            //Clonamos el pais
-            drawModalCountryComp (idAddCtr,1);
-            //Inyectamos los datos en la araña
-            //addCountrySpider (idAddCtr);
-
-            //Agregamos a la URL los componentes
-            ctrIsoCompare.push(idAddCtr);
-            arrToString = ctrIsoCompare.join(",");
-            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
-        });
+		 
         
         //Limpiamos el formulario
             $(this).attr("data-id","");
@@ -1232,7 +1243,24 @@ $(document).ready(function() {
 	   	//Borramos el item del carousel, antes averiguamos cual es:
 	   	var rmItemOwl = $(".owl-stage").find("div.country-item[data-id='"+$(this).attr("data-id")+"']").parent().index();
 	   	//console.log("Borramos el item: "+rmItemOwl);
-
+        
+        var currentCountryIso3 = loaded_countries[carousel_current_country];
+        console.log("borrando " + currentCountryIso3)
+        console.log("carousel_current_country: " + carousel_current_country);
+        console.log("loaded_countries_length: " + loaded_countries.length);
+        console.log(loaded_countries);
+        if((carousel_current_country + 1) == loaded_countries.length){
+            console.log(carousel_current_country + "=length");
+            loaded_countries.remove(currentCountryIso3);
+            carousel_current_country--;//$(".owl-stage").find("div.owl-item.active").index();
+        }
+        else{
+            loaded_countries.remove(currentCountryIso3);
+        }
+        currentCountryIso3 = loaded_countries[carousel_current_country];
+        console.log("cargando " + currentCountryIso3)
+        addCountrySpider();
+        drawDatasetTable();
 		owl.trigger('remove.owl.carousel', rmItemOwl);
 		owl.trigger('refresh.owl.carousel');
 		
@@ -1245,8 +1273,7 @@ $(document).ready(function() {
 		});
         //Refrescamos el array existente donde se añaden
         ctrIsoCompare = stringToArray;
-		loaded_countries.remove(removeItem);
-        carousel_current_country = $(".owl-stage").find("div.owl-item.active").index();
+		
         
 
 		arrToString = stringToArray.join(",");
@@ -1259,6 +1286,7 @@ $(document).ready(function() {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
 			ctrIsoCompare = [];
 		}
+        
 		// ctrIsoCompareRw = jQuery.grep(ctrIsoCompareRw, function(value) {
 		//   return value != removeItem;
 		// });
@@ -1319,6 +1347,7 @@ $(document).ready(function() {
 				//Reiniciamos la variables:
 			    ctrIsoCompare = [];
 			    current_URL_OM = window.location.href+'&open=';
+                loaded_countries = [];
 
 			    //Vaciamos el carousel
 		    	owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
