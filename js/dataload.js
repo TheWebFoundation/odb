@@ -33,6 +33,21 @@
 	var country_datasets = {};
 	var country_years_series;
 	var loaded_countries = [];
+    var loaded_countries_data = {}; //Objeto que contiene los datos de los países por iso3, cargado de json/odb_ISO3.json para cada país.
+    var carousel_current_country = 0;
+
+Array.prototype.remove = function() {
+    //Añado el método remove a la clase Array para borrar posiciones de un array por su valor.
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
 
 	var $div = $("#wrapper-pspider");
 	var polarOptions = {
@@ -278,20 +293,88 @@
 		}
 	}
 
+function drawNewCountryChart(idISO){
+    //Metemos la gráfica del nuevo país
+	//$.getJSON('json/odb_' + idISO + '.json', function (data) {
+		var added_country = loaded_countries_data[idISO];	
+		var new_country_odb_series = _.map(added_country.years, function(year){ return year.observations.ODB.value;});
+		var new_country_readiness_series = _.map(added_country.years, function(year){ return year.observations.READINESS.value;});
+		var new_country_implementation_series = _.map(added_country.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+		var new_country_impact_series = _.map(added_country.years, function(year){ return year.observations.IMPACT.value;});
+		var new_country_years_series = _.keys(added_country.years);
+		
+	window.chart = new Highcharts.Chart({
+		credits: {
+					enabled:false
+				},
+		chart: {
+			renderTo: $graph[0],
+        	type:'line',
+			height: 300,
+			backgroundColor: null,
+			borderWidth: 0,
+		},
+		title: {
+        	text: '',
+        	//x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            //x: -20
+        },
+        xAxis: {
+            categories: new_country_years_series
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            min: 0,
+			max: 100
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        legend: {
+        	width:'100%',
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Readliness',
+            data: new_country_readiness_series,
+            color:'#F1C40F'
+	        }, {
+	            name: 'Implementation',
+	            data: new_country_implementation_series,
+	            color:'#92EFDA'
+	        }, {
+	            name: 'Impact',
+	            data: new_country_impact_series,
+	            color:'#CB97F9'
+	        },{
+	            name: 'ODB',
+	            data: new_country_odb_series,
+	            color:'#000'
+        }]
 
+    });
+}
 function setCountryDataset(iso3){
 	//Recibe un código iso3 de un país
 	//carga en la posición "iso3" de country_datasets los datos para el dataset del país dado.
-	$.getJSON('json/odb_' + iso3 + '.json', function (data) {
+     console.log("estoy por aquí 1");
 		// Datos seleccionados
-		var	selected_year_datasets = data.years[selected_year].datasets;
+		var	selected_year_datasets = loaded_countries_data[iso3].years[selected_year].datasets;
 		// Obtener los nombres de meta indicadores que tienen que ver con dataset
 		var dataset_indicators_meta = _(indicators_meta).filter({component: 'DATASET_ASSESSMENT'}).map('indicator').value();
 		dataset_indicators_meta.push("VALUE");
 		country_datasets[iso3] = _.zipObject(dataset_indicators_meta, _.map(dataset_indicators_meta, function(meta_indicator) {
 			return _.zipObject(_.keys(selected_year_datasets), _.map(selected_year_datasets, _.property(meta_indicator)));
 		}));
-	});
+	//});
 }
 
 function datasetCountryRow(iso3, num_country, compare){
@@ -365,7 +448,9 @@ function drawDatasetTable(){
 		var countryHeader2 = "";
 		var datasetRow1 = "";
 		var datasetRow2 = "";
-		
+		if(loaded_countries.length>1){
+           addCountrySpider(loaded_countries[carousel_current_country+1]); 
+        }
 		var tableImplementation = '<thead>' +
 		'	<tr class="cb-bottom-2">' +
 		'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';
@@ -379,7 +464,7 @@ function drawDatasetTable(){
 		tableImplementation = tableImplementation + '</tr>' + '</thead>' + '<tbody>';
 		if(loaded_countries.length>1){
 			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 1);
-			countryHeader2 = datasetCountryRow(loaded_countries[1], 2, 1);
+			countryHeader2 = datasetCountryRow(loaded_countries[carousel_current_country + 1], 2, 1);
 		}
 		else{
 			countryHeader1 = datasetCountryRow(loaded_countries[0], 1, 0);
@@ -389,7 +474,7 @@ function drawDatasetTable(){
 			if((key!="ISOPEN") && (key!="VALUE")){
 				if(loaded_countries.length>1){
 					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 1);
-					datasetRow2 = datasetValuesRow(loaded_countries[1], key, country_datasets[loaded_countries[1]][key], 2, 1);
+					datasetRow2 = datasetValuesRow(loaded_countries[carousel_current_country + 1], key, country_datasets[loaded_countries[1]][key], 2, 1);
 				}
 				else{
 					datasetRow1 = datasetValuesRow(loaded_countries[0], key, value, 1, 0);
@@ -498,17 +583,18 @@ function drawModal() {
 						'</div>';
 	$("#country-selected").html(contentModal);
 	//CARGA DE DATOS DEL DETALLE PAÍS
-	$.getJSON('json/odb_' + loaded_countries[0] + '.json', function (data) {	
-		country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
-		country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
-		country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
-		country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
-		country_years_series = _.keys(data.years);
+	//$.getJSON('json/odb_' + loaded_countries[0] + '.json', function (data) {
+        
+        var firstCountryData = loaded_countries_data[loaded_countries[0]];
+		country_odb_series = _.map(firstCountryData.years, function(year){ return year.observations.ODB.value;});
+		country_readiness_series = _.map(firstCountryData.years, function(year){ return year.observations.READINESS.value;});
+		country_implementation_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+		country_impact_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPACT.value;});
+		country_years_series = _.keys(firstCountryData.years);
 
 		//setCountryDataset(loaded_countries[0]);
 		
-	
-	drawDatasetTable();
+	    drawDatasetTable();
 	
 		
 	//Fin Implementation
@@ -599,7 +685,7 @@ function drawModal() {
 			$(".i-init ").text(selected_indicator_range_min);
 			$(".i-end ").text(selected_indicator_range_max);*/
 
-	});
+	//});
 	
 	
 	$(function () {
@@ -802,6 +888,9 @@ function drawModalCountryComp (idISO,intro) {
 	var $div = $('div.country-item-cloned');
 	var $cloned =  $div.clone();
 	var new_country_data = _.filter(table_data, {iso3:idISO});
+    console.log(table_data);
+    console.log(idISO);
+   // console.log(_.filter(table_data, {iso3:idISO}));
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
 	
 	var $end = $cloned.removeClass('country-item-cloned'),
@@ -818,82 +907,14 @@ function drawModalCountryComp (idISO,intro) {
 	$graph = $cloned.find("div.grafica-modal-compare");  
 	
 	
-	
-	
-	
 	owl.trigger('add.owl.carousel', $cloned,rmItemCount);
 	owl.trigger('refresh.owl.carousel');
 	if(intro == 1) {
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 	}
-
-	$.getJSON('json/odb_' + idISO + '.json', function (data) {
-			
-		var new_country_odb_series = _.map(data.years, function(year){ return year.observations.ODB.value;});
-		var new_country_readiness_series = _.map(data.years, function(year){ return year.observations.READINESS.value;});
-		var new_country_implementation_series = _.map(data.years, function(year){ return year.observations.IMPLEMENTATION.value;});
-		var new_country_impact_series = _.map(data.years, function(year){ return year.observations.IMPACT.value;});
-		var new_country_years_series = _.keys(data.years);
-		
-	window.chart = new Highcharts.Chart({
-		credits: {
-					enabled:false
-				},
-		chart: {
-			renderTo: $graph[0],
-        	type:'line',
-			height: 300,
-			backgroundColor: null,
-			borderWidth: 0,
-		},
-		title: {
-        	text: '',
-        	//x: -20 //center
-        },
-        subtitle: {
-            text: '',
-            //x: -20
-        },
-        xAxis: {
-            categories: new_country_years_series
-        },
-        yAxis: {
-            title: {
-                text: ''
-            },
-            min: 0,
-			max: 100
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        legend: {
-        	width:'100%',
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Readliness',
-            data: new_country_readiness_series,
-            color:'#F1C40F'
-	        }, {
-	            name: 'Implementation',
-	            data: new_country_implementation_series,
-	            color:'#92EFDA'
-	        }, {
-	            name: 'Impact',
-	            data: new_country_impact_series,
-	            color:'#CB97F9'
-	        },{
-	            name: 'ODB',
-	            data: new_country_odb_series,
-	            color:'#000'
-        }]
-
-    });
-});
+    
+    drawNewCountryChart(idISO);
+//});
 }
 
 
@@ -902,8 +923,6 @@ function addCountrySpider(isoCountry) {
 	//alert(isoCountry);
 
 	country_data_add = _.filter(table_data, {iso3:isoCountry});
-
-	$.getJSON('json/odb_' + isoCountry + '.json', function (data) {
 		
 		//Generamos la serie
 		console.log("add polar to "+country_data_add[0].name);
@@ -917,8 +936,6 @@ function addCountrySpider(isoCountry) {
 	    //chart_add.redraw();
 	    //polarOptions.addSeries.data = country_data[0].components_data;
 	    //chart_clone = new Highcharts.Chart(polarOptions);
-	});
-
 }
 
 
@@ -935,7 +952,12 @@ $(document).ready(function() {
 	//Si tenemos ya countries las cargamos ya que esto abrira el modal
 	if(ctrIsoCompare.length != 0) {
 		ctrIsoCompare.forEach(function(iso3c) {
-			drawModalCountryComp(iso3c,0);
+            $.getJSON('json/odb_' + iso3c + '.json', function(data){
+                loaded_countries_data[iso3c] = data;
+                setCountryDataset(iso3c);
+                drawModal();
+                drawModalCountryComp(iso3c,0);
+            });
 		});
 	}
 
@@ -1007,10 +1029,13 @@ $(document).ready(function() {
 		if(getUrlVars()["open"]==undefined) {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
 		}
-		setCountryDataset(country);
-		drawModal();
-
-		
+        console.log(country);
+        //cargo el json del primer país
+        $.getJSON('json/odb_' + country + '.json', function(data){
+            loaded_countries_data[country] = data;
+            setCountryDataset(country);
+            drawModal();
+        });
 	});
 
 
@@ -1118,19 +1143,21 @@ $(document).ready(function() {
 			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 			owl.trigger('refresh.owl.carousel');
 		}
-
-		//console.log("quedan: "+rmItemCount);
+        drawDatasetTable();
+		//console.log("quedan: "+rmItemCount + " actual=" + carousel_current_country);
 	});
 
 	owl.on('changed.owl.carousel', function(event) {
 		//rmItemOwl = event.item.index;
 		rmItemCount = event.page.count;
-		console.log("Nos movemos a "+rmItemOwl);
+        drawDatasetTable();
+		//console.log("Nos movemos a "+rmItemOwl);
 	});
 
 	owl.on('translated.owl.carousel', function(event) {
-		//rmItemOwl = event.item.index;
-		//console.log("trasladado");
+		carousel_current_country = event.item.index;
+        drawDatasetTable();
+		//console.log("Estamos en:" + carousel_current_country);
 	});
 
 	
@@ -1143,9 +1170,7 @@ $(document).ready(function() {
 		var cont = 0;
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
-		setCountryDataset(idAddCtr);
-		loaded_countries.push(idAddCtr);
-		drawDatasetTable();
+
 
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
@@ -1174,25 +1199,30 @@ $(document).ready(function() {
 			owl.trigger('remove.owl.carousel', 0); 
 		}
 
-		//Clonamos el pais
-		drawModalCountryComp ($(this).attr("data-id"),1);
-		//Inyectamos los datos en la araña
-		addCountrySpider ($(this).attr("data-id"));
+		 $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
+            loaded_countries.push(idAddCtr);
+            loaded_countries_data[idAddCtr] = data;
+            setCountryDataset(idAddCtr);
+            drawDatasetTable();
+            //Clonamos el pais
+            drawModalCountryComp (idAddCtr,1);
+            //Inyectamos los datos en la araña
+            //addCountrySpider (idAddCtr);
 
-
-
-		//Agregamos a la URL los componentes
-		ctrIsoCompare.push($(this).attr("data-id"));
-		arrToString = ctrIsoCompare.join(",");
-		window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
-
-		//Limpiamos el formulario
-		$(this).attr("data-id","");
-		$("#cinput-s-country-modal").val("");
-
+            //Agregamos a la URL los componentes
+            ctrIsoCompare.push(idAddCtr);
+            arrToString = ctrIsoCompare.join(",");
+            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+        });
+        
+        //Limpiamos el formulario
+            $(this).attr("data-id","");
+            $("#cinput-s-country-modal").val("");
 		// if (raw_URL.indexOf("&comparew=") === -1) {
 		//  
 		// }
+            
+           // drawDatasetTable();
 	})
 
 	//Borrado de countries en el carousel
@@ -1213,6 +1243,11 @@ $(document).ready(function() {
 		stringToArray = jQuery.grep(stringToArray, function(value) {
 			return value != removeItem;
 		});
+        //Refrescamos el array existente donde se añaden
+        ctrIsoCompare = stringToArray;
+		loaded_countries.remove(removeItem);
+        carousel_current_country = $(".owl-stage").find("div.owl-item.active").index();
+        
 
 		arrToString = stringToArray.join(",");
 
@@ -1404,8 +1439,6 @@ $(document).ready(function() {
 			.value();
 			//drawTable(table_data);
 			
-			
-
 
 	//Custom Search para la tabla - ahora está oculta-
 	$('#cinput-table-search').keyup(function(){
@@ -1694,77 +1727,6 @@ $(document).ready(function() {
 					$(".data-ciudad").html(this.name+" ("+this.code+")");
 					$(".data-poblacion").html(this.value);
 				}
-
-			// 	$div = $(".grafica");
-
-			// 	window.chart = new Highcharts.Chart({
-
-			// 		chart: {
-			// 			renderTo: $div[0],
-			// 			type: 'column',
-			// 			width: 280,
-			// 			height: 240,
-			// 			backgroundColor: null,
-			// 			borderWidth: 0,
-			// 			type: 'column',
-			// 			//margin: [2, 0, 2, 0],
-			// 			width: 290,
-			// 			height: 120,
-			// 			style: {
-			// 				overflow: 'visible'
-			// 			}
-			// 		},
-			// 		title: {
-			// 			text: null
-			// 		},
-			// 		credits: {
-			// 			enabled: false
-			// 		},
-			// 		xAxis: {
-			// 			labels: {
-			// 				enabled: false
-			// 			},
-			// 			title: {
-			// 				text: null
-			// 			},
-			// 			startOnTick: false,
-			// 			endOnTick: false,
-			// 			tickPositions: []
-			// 		},
-			// 		yAxis: {
-			// 			endOnTick: false,
-			// 			startOnTick: false,
-			// 			labels: {
-			// 				enabled: false
-			// 			},
-			// 			title: {
-			// 				text: null
-			// 			},
-			// 			tickPositions: [0]
-			// 		},
-			// 		legend: {
-			// 			enabled: false
-			// 		},
-			// 		series: [{
-			// 			name: 'Population',
-			// 			data: [{
-			// 				name: 'Min population knowing',
-			// 				color: '#79B042',
-			// 				y: 3
-			// 			}, {
-			// 				name: 'Population of '+this.name,
-			// 				color: '#FFE064',
-			// 				y: this.value
-			// 			}],
-			// 			dataLabels: {
-			// 				format: '<b>{point.name}</b> {point.percentage:.1f}% out of 100%'
-			// 			},
-			// 			column: {
-			// 				borderColor: 'silver'
-			// 			}
-			// 		}]
-
-			// 	});
 
 			}
 
