@@ -498,6 +498,7 @@ function drawDatasetTable(){
 
 function drawModal() {
 	country_data = _.filter(table_data, {iso3:loaded_countries[0]});
+    //console.log(loaded_countries[0]);
 	var g20_class;
 	var g7_class;
 	var iodch_class; 
@@ -591,6 +592,9 @@ function drawModal() {
 	//$.getJSON('json/odb_' + loaded_countries[0] + '.json', function (data) {
         
         var firstCountryData = loaded_countries_data[loaded_countries[0]];
+        //console.log(loaded_countries[0]);
+        //console.log(firstCountryData);
+        
 		country_odb_series = _.map(firstCountryData.years, function(year){ return year.observations.ODB.value;});
 		country_readiness_series = _.map(firstCountryData.years, function(year){ return year.observations.READINESS.value;});
 		country_implementation_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPLEMENTATION.value;});
@@ -894,7 +898,7 @@ function drawModalCountryComp (idISO,intro) {
 	var $cloned =  $div.clone();
 	var new_country_data = _.filter(table_data, {iso3:idISO});
     // console.log(table_data);
-    //console.log(idISO);
+    // console.log(idISO);
     // console.log(_.filter(table_data, {iso3:idISO}));
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
 	
@@ -948,71 +952,634 @@ function addCountrySpider() {
 
 $(document).ready(function() {
  	
+var year = getUrlVars()["_year"];
+var indicator = getUrlVars()["indicator"];
+var region = getUrlVars()["region"];
+var income = getUrlVars()["income"];
+var hdirate = getUrlVars()["hdirate"];
+var G20 = getUrlVars()["G20"];
+var G7 = getUrlVars()["G7"];
+var OECD = getUrlVars()["OECD"];
+var IODCH = getUrlVars()["IODCH"];
+//var text = getUrlVars()["text"];
+
+if(region == undefined || region == "") region = 0;
+if(income == undefined || income == "") income = 0;
+if(G20 == undefined || G20 == "") G20 = 0;
+if(G7 == undefined || G7 == "") G7 = 0;
+if(OECD == undefined || OECD == "") OECD = 0;
+if(IODCH == undefined || IODCH == "") IODCH = 0;
+
+if(hdirate == undefined || hdirate == "") hdirate = 0;
+
+if(!$.isNumeric(year)) year = 2015;
+
+if(year == undefined || indicator == undefined || year == "" || indicator == "") {
+    //Aplicar esto sino se pasan parametros..
+    if(year == undefined || year == "") year = 2015;
+    if(indicator == undefined || indicator == "") indicator = "ODB";
+    //Manipulamos el estado con el indicador :-m
+    window.history.pushState("", "ODB, Open Data Barometer", "?_year="+year+"&indicator="+indicator+"");
+
+}
+//console.log("Año :"+year+" Indicator: "+indicator);
+
+selected_year = year;
+selected_indicator = indicator;
+selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
+selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
+selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
+selected_indicator_range = _.find(window.indicators, {indicator:selected_indicator}).range;
+selected_indicator_range_min = selected_indicator_range.substr(0, selected_indicator_range.indexOf("-"));
+selected_indicator_range_max = selected_indicator_range.substr(selected_indicator_range.indexOf("-")+1, selected_indicator_range.length);
+
+//Cargamos los selects
+setYear(year);
+setIndicators(indicator);
+setRegion(region);
+setIncome(income);
+setHdiRate(hdirate);
+setGroup(G20,G7,OECD,IODCH);
+
+
+//Cargamos el contador de filtros
+$(".count-filters").text(cont_filters);
+
+//Buscadores
+$(".cbtn-search-home-select").on("click", function(){
+    //var option = $(this).parent().parent().find("option:selected").val();
+    refreshData();
+});
+    
+$(function () {
+//INICIO CARGA DE DATOS
+
+$.getJSON('json/odb_' + selected_year + '.json', function (data) {
+    columns_data = _(data.areas)
+    .map(function(area, iso3){
+        var current_country = _.find(window.countries, {iso3:iso3});
+        if(area[selected_indicator] != null){
+            return {name:current_country.name, y:area[selected_indicator].value, color:window.regions_colors[_.find(window.regions, {iso3:current_country.area}).name], region:_.find(window.regions, {iso3:current_country.area}).name, region_iso3:_.find(window.regions, {iso3:current_country.area}).iso3, income:current_country.income, hdi:current_country.hdi_rank, iodch:current_country.iodch, oecd:current_country.oecd, g20:current_country.g20, g7:current_country.g7, iso3:current_country.iso3};
+        }
+    })
+    .compact()
+    .sortBy("y")
+    .reverse()
+    .value();
+
+    table_data = _(data.areas)
+    .map(function(area, iso3){
+        var current_country = _.find(window.countries, {iso3:iso3});
+        if(area["ODB"] != null){
+            if(selected_year>=2015){
+                return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
+                /*readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
+            }
+            else{
+                return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; /*readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
+            }
+        }
+    })
+    .compact()
+    .sortBy("odb")
+    .reverse()
+    .value();
+
+
+
+//Custom Search para la tabla - ahora está oculta-
+$('#cinput-table-search').keyup(function(){
+  table.search($(this).val()).draw() ;
+})
+
+var filter_applied = new Object;
+if(region!=0) filter_applied.region_iso3 = region;
+if(income!=0){ 
+    switch(income){
+        case "1":filter_applied.income = "Lower middle income";
+               break;
+        case "2":filter_applied.income = "Low income";
+               break;
+        case "3":filter_applied.income = "High income";
+               break;
+        case "4":filter_applied.income = "Upper middle income";
+               break;
+    }
+}		
+if(hdirate!=0){
+    switch(hdirate){
+        case "1":filter_applied.hdi = "Low";
+               break;
+        case "2":filter_applied.hdi = "Medium";
+               break;
+        case "3":filter_applied.hdi = "High";
+               break;
+        case "4":filter_applied.hdi = "Very High";
+               break;
+}
+}	
+if(G20 == 1){filter_applied.g20 = 1};
+if(G7 == 1){filter_applied.g7 = 1};
+if(OECD == 1){filter_applied.oecd = 1};
+if(IODCH == 1){filter_applied.iodch = 1};
+
+
+//APLICAR EL FILTRO DE DATOS
+filtered_data = _.filter(columns_data, filter_applied);
+filtered_table_data = _.filter(table_data, filter_applied);
+drawTable(filtered_table_data);
+
+
+//Iniciamos la tabla ordenada por ODB Rank y ODB asc
+var table = $('#table-data').DataTable({
+    fixedHeader: true,
+    paging: false,
+    order: [[1,"asc"], [2,"desc"]],
+    //info: false,
+    sDom: 't' //Que solo renderice la tabla
+    // language: {
+    //     search: "_INPUT_",
+    //     searchPlaceholder: "Search country ..."
+    // }
+});
+    
+    
+map_data = _(data.areas)
+.map(function(area, iso3){
+    if(area[selected_indicator] != null){
+        return {code:iso3, value:area[selected_indicator].value};
+    }
+})
+.compact()
+.value();
+
+number_of_countries = map_data.length - 1; //(-1 por las estadísticas)
+selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)/100;
+    
+    
+    
+//SI RECIBIMOS PARÁMETROS DE PAÍSES CARGADOS EN LA URL ABRIMOS LA MODAL
+    if(ctrIsoCompare.length != 0) {
+        ctrIsoCompare.forEach(function(iso3c) {
+            $.getJSON('json/odb_' + iso3c + '.json', function(data){
+                loaded_countries_data[iso3c] = data;
+                loaded_countries.push(iso3c);         
+                //Este igual se puede quitar ya
+                //ctrIsoCompare.push(iso3c);
+                //-----
+                carousel_current_country = 1;//loaded_countries.length-1;
+                setCountryDataset(iso3c);
+                //console.log(iso3c);
+                //drawModal();
+                drawModalCountryComp(iso3c,0);
+                //Clonamos el pais
+                addCountrySpider();
+                drawDatasetTable();
+                //arrToString = ctrIsoCompare.join(",");
+                //window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+            });
+        });
+    }        
+    
+//$("#ranking-indicator-title").text(selected_indicator_name);
+
+//FIN CARGA DE DATOS
+
+//GENERACIÓN DE SPARKLINES
+
+$(function () {
+/**
+* Create a constructor for sparklines that takes some sensible defaults and merges in the individual
+* chart options. This function is also available from the jQuery plugin as $(element).highcharts('SparkLine').
+*/
+Highcharts.SparkLine = function (a, b, c) {
+var hasRenderToArg = typeof a === 'string' || a.nodeName,
+    options = arguments[hasRenderToArg ? 1 : 0],
+    defaultOptions = {
+        chart: {
+            renderTo: (options.chart && options.chart.renderTo) || this,
+            backgroundColor: null,
+            borderWidth: 0,
+            type: 'column',
+            margin: [2, 0, 2, 0],
+            width: 70,
+            height: 40,
+            style: {
+                overflow: 'visible'
+            },
+            skipClone: true
+        },
+        title: {
+            text: ''
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            labels: {
+                enabled: false
+            },
+            title: {
+                text: null
+            },
+            startOnTick: false,
+            endOnTick: false,
+            tickPositions: []
+        },
+        yAxis: {
+            endOnTick: false,
+            startOnTick: false,
+            min: 0,
+            max: 100,
+            labels: {
+                enabled: false
+            },
+            title: {
+                text: null
+            },
+            tickPositions: [0],
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            backgroundColor: null,
+            borderWidth: 0,
+            shadow: false,
+            useHTML: true,
+            hideDelay: 0,
+            shared: true,
+            padding: 0,
+            positioner: function (w, h, point) {
+                return { x: point.plotX - w / 2, y: point.plotY - h };
+            }
+        },
+        plotOptions: {
+            series: {
+                animation: false,
+                lineWidth: 1,
+                shadow: false,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                marker: {
+                    radius: 1,
+                    states: {
+                        hover: {
+                            radius: 2
+                        }
+                    }
+                },
+                fillOpacity: 0.25
+            },
+            column: {
+                color: '#FFE064',
+                negativeColor: '#910000',
+                borderColor: 'none'
+            }
+        }
+    };
+
+options = Highcharts.merge(defaultOptions, options);
+
+return hasRenderToArg ? new Highcharts.Chart(a, options, c) : new Highcharts.Chart(options, b);
+};
+
+var start = +new Date(),
+$spans = $('span[data-sparkline]'),
+fullLen = $spans.length,
+n = 0;
+
+// Creating 153 sparkline charts is quite fast in modern browsers, but IE8 and mobile
+// can take some seconds, so we split the input into chunks and apply them in timeouts
+// in order avoid locking up the browser process and allow interaction.
+function doChunk() {
+var time = +new Date(),
+    i,
+    len = $spans.length,
+    $span,
+    stringdata,
+    stringlabels,
+    stringsubindex,
+    subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
+    colums_color,
+    labels = new Array(),
+    arr,
+    data,
+    chart;
+
+    for (i=0; i<len; i++) {
+        $span = $($spans[i]);
+        stringlabels = $span.data('labels');
+        stringsubindex = $span.data('subindex');
+        stringdata = $span.data('sparkline');
+        arr = stringdata.split('; ');
+        labels = [" "];
+        labels = labels.concat(stringlabels.split(','));
+        switch(stringsubindex){
+            case "readiness": 	  colums_color = subindex_colors[0];
+                                  break; 
+            case "implementation":colums_color = subindex_colors[1];
+                                  break; 
+            case "impact":        colums_color = subindex_colors[2];
+                                  break; 
+        }
+
+        //var labels = new Function("return [" + stringlabels + "];")();
+        //var labels = (new Function("return [" + stringlabels+ "];")());
+        //console.log(labels);
+        data = $.map(arr[0].split(','), parseFloat);
+        //console.log(data);
+        //labels = $.map(stringlabels.split(','));
+        chart = {};
+
+        if (arr[1]) {
+            chart.type = arr[1];
+        }
+        $span.highcharts('SparkLine', {
+            series: [{
+                data: data,
+                color:colums_color,
+                pointStart: 1
+            }],
+            xAxis: {
+               type: 'category',
+               // minRange: 1,
+                categories: labels,//countries,
+                lineColor:colums_color
+                /*labels: {
+                    enabled:false
+                }*/
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size: 10px">{point.x}:</span>',
+                pointFormat: '<b>{point.y}</b>'
+            },
+            chart: chart
+        });
+
+        n += 1;
+
+        // If the process takes too much time, run a timeout to allow interaction with the browser
+        if (new Date() - time > 500) {
+            $spans.splice(0, i + 1);
+            setTimeout(doChunk, 0);
+            break;
+        }
+
+        // Print a feedback on the performance
+        //if (n === fullLen) {
+        //    $('#result').html('Generated ' + fullLen + ' sparklines in ' + (new Date() - start) + ' ms');
+        //}
+    }
+}
+doChunk();
+
+});
+//FIN GENERACIÓN DE SPARKLINES
+
+function pointClick() {
+//alert("Pais: "+this.name+ " | D.Población: "+this.value); 
+
+if(!$(".modal-data").is(".modal-data-visible")) {
+    $(".modal-data").addClass("modal-data-visible");
+    $(".data-ciudad").html(this.name+" ("+this.code+")");
+    $(".data-poblacion").html(this.value);
+}else{
+    $(".data-ciudad").html(this.name+" ("+this.code+")");
+    $(".data-poblacion").html(this.value);
+}
+
+}
+
+// GENERACIÓN DEL MAPA
+
+$('#wrapper-map').highcharts('Map', {
+//series: [{
+//	mapData: window.worldMap
+//}],
+credits: {
+    enabled:false
+},
+chart: {
+    backgroundColor: 'transparent',
+    margin: 0
+},
+title: {
+    text: ''
+},
+tooltip: {
+      //enabled:false,
+      //name: 'Densidad de población',
+},  
+legend: {
+    title: {
+        text: selected_indicator_name,
+        style: {
+            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+        }
+    }
+},
+mapNavigation: {
+    enabled: true,
+    buttonOptions: {
+        theme: {
+            fill: 'white',
+            'stroke-width': 0,
+            stroke: 'silver',
+            r: 0,
+            states: {
+                hover: {
+                    fill: '#79B042'
+                },
+                select: {
+                    stroke: '#039',
+                    fill: '#bada55'
+                }
+            }
+        },
+        verticalAlign: 'bottom'
+    },
+    enableMouseWheelZoom: false,
+    buttons: {
+        zoomIn: {
+            y:-25,
+            x: 20
+        },
+        zoomOut: {
+            y: 5,
+            x: 20
+        }
+    }
+},	            
+/*
+    tooltip: {
+        backgroundColor: 'none',
+        borderWidth: 0,
+        shadow: false,
+        useHTML: true,
+        padding: 0,
+        pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
+            ' {point.name}: <b>{point.value}</b>/km²',
+        positioner: function () {
+            return { x: 0, y: 250 };
+        }
+    }
+,*/
+    colorAxis: {
+        min: selected_indicator_range_min,
+        max: selected_indicator_range_max,
+        //type: 'logarithmic',
+        maxColor: "#495E32",
+        minColor: "#A8CF7C"
+    },
+    series : [{
+        data : map_data,
+        mapData: Highcharts.maps['custom/world'],
+        joinBy: ['iso-a3', 'code'], //cambiar a iso-a3 con los datos del ODB
+        name: selected_indicator_name,
+        borderColor :"rgba(84, 199, 252, 0.2)",
+        states: {
+            hover: {
+                color: '#F8E71C'
+            }
+        },
+        point: {
+            events: {
+                //click: pointClick
+            }
+        }
+    }]
+});
+
+// FIN GENERACIÓN MAPA
+
+// GENERACIÓN GRÁFICO DE BARRAS
+
+ $('#column-graph').highcharts({
+    credits: {
+        enabled:false
+    },
+    chart: {
+        type: 'column',
+        backgroundColor: 'transparent',
+        zoomType: 'x',
+        renderTo: 'column-graph',
+        resetZoomButton: {
+            theme: {
+                fill: 'white',
+                stroke: 'none',
+                r: 0,
+                states: {
+                    hover: {
+                        fill: '#79B042',
+                        stroke: 'none',
+                        style: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        }
+    },
+    title: {
+        text: selected_indicator_name
+    },
+    subtitle: {
+        text: 'Source: <a href="' + selected_indicator_source_url + '">' + selected_indicator_source + '</a>'
+    },
+    xAxis: {
+       type: 'category',
+       // minRange: 1,
+        categories: data.name,//countries,
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '9px',
+                fontFamily: 'Arial, sans-serif'
+            }
+        },
+        //min:0,
+        max: filtered_data.length - 1//number_of_countries
+    },
+    scrollbar: {
+        enabled: true,
+        barBackgroundColor: '#79B042',
+        barBorderRadius: 7,
+        barBorderWidth: 0,
+        buttonBackgroundColor: '#79B042',
+        buttonBorderWidth: 0,
+        buttonBorderRadius: 7,
+        trackBackgroundColor: '#EAEAEA',
+        trackBorderWidth: 0,
+        trackBorderRadius: 8,
+        trackBorderColor: '#CCC',
+        buttonArrowColor: 'white',
+        rifleColor: 'white',
+    },
+    yAxis: {
+        min: selected_indicator_range_min,
+        max: selected_indicator_range_max,
+        //categories: ['data.value'],
+        title: {
+            text: null
+        },
+        plotLines: [{
+            color: '#000000',//'#79b042',
+            //dashStyle: 'shortdash',
+            width: 1,
+            value: selected_indicator_average, // average here
+            zIndex: 4, // To not get stuck below the regular plot lines
+            label: {
+                text: 'Average (' + selected_indicator_average + ')',
+                align: 'right'
+            }
+        }]
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: selected_indicator_name + ': <b>{point.y:.1f}</b>'
+    },
+    series: [{
+        name: selected_indicator_name,
+        data: filtered_data, //columns_data,
+        dataLabels: {
+            enabled: true,
+            rotation: -75,
+            color: '#333333',
+            align: 'left',
+            format: '{point.y:.1f}', // one decimal
+            y: -1, // 10 pixels down from the top
+            style: {
+                fontSize: '8px',
+                fontFamily: 'Arial, sans-serif'
+            }
+        }
+    }]/*,
+    plotOptions: {
+        column: {
+            grouping: false,
+            shadow: false
+        }
+    }*/
+});
+
+});
+});//FIN CARGA DE DATOS
+    
+    
+    
 	// function processAjaxData(response, urlPath){
 	//      document.getElementById("content").innerHTML = response.html;
 	//      document.title = response.pageTitle;
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
-	
-
-	var year = getUrlVars()["_year"];
-	var indicator = getUrlVars()["indicator"];
-	var region = getUrlVars()["region"];
-	var income = getUrlVars()["income"];
-	var hdirate = getUrlVars()["hdirate"];
-	var G20 = getUrlVars()["G20"];
-	var G7 = getUrlVars()["G7"];
-	var OECD = getUrlVars()["OECD"];
-	var IODCH = getUrlVars()["IODCH"];
-	//var text = getUrlVars()["text"];
-
-	if(region == undefined || region == "") region = 0;
-	if(income == undefined || income == "") income = 0;
-	if(G20 == undefined || G20 == "") G20 = 0;
-	if(G7 == undefined || G7 == "") G7 = 0;
-	if(OECD == undefined || OECD == "") OECD = 0;
-	if(IODCH == undefined || IODCH == "") IODCH = 0;
-
-	if(hdirate == undefined || hdirate == "") hdirate = 0;
-
-	if(!$.isNumeric(year)) year = 2015;
-
-	if(year == undefined || indicator == undefined || year == "" || indicator == "") {
-		//Aplicar esto sino se pasan parametros..
-		if(year == undefined || year == "") year = 2015;
-		if(indicator == undefined || indicator == "") indicator = "ODB";
-		//Manipulamos el estado con el indicador :-m
-		window.history.pushState("", "ODB, Open Data Barometer", "?_year="+year+"&indicator="+indicator+"");
-		
-	}
-	//console.log("Año :"+year+" Indicator: "+indicator);
-	
-	selected_year = year;
-	selected_indicator =indicator;
-	selected_indicator_name = _.find(window.indicators, {indicator:selected_indicator}).name;
-	selected_indicator_source = _.find(window.indicators, {indicator:selected_indicator}).source_name;
-	selected_indicator_source_url = _.find(window.indicators, {indicator:selected_indicator}).source_url;
-	selected_indicator_range = _.find(window.indicators, {indicator:selected_indicator}).range;
-	selected_indicator_range_min = selected_indicator_range.substr(0, selected_indicator_range.indexOf("-"));
-	selected_indicator_range_max = selected_indicator_range.substr(selected_indicator_range.indexOf("-")+1, selected_indicator_range.length);
-
-	//Cargamos los selects
-	setYear(year);
-	setIndicators(indicator);
-	setRegion(region);
-	setIncome(income);
-	setHdiRate(hdirate);
-	setGroup(G20,G7,OECD,IODCH);
-	
-	//Cargamos el contador de filtros
-	$(".count-filters").text(cont_filters);
-
-	//Buscadores
-	$(".cbtn-search-home-select").on("click", function(){
-		//var option = $(this).parent().parent().find("option:selected").val();
-		refreshData();
-	});
+    
 
 	$(document).delegate(".more-info","click", function(e){
 		
@@ -1439,577 +2006,4 @@ $(document).ready(function() {
 			$("#table-data tbody a[data-iso='"+openModal+"']").trigger("click");
 		}
 	}
-
-	$(function () {
-		//INICIO CARGA DE DATOS
-		//[{y:107, color:'#FF00FF'}, {y:80, color:'#FF0000'}, {y:20, color:'#00FFFF'}]
-		$.getJSON('json/odb_' + selected_year + '.json', function (data) {
-			columns_data = _(data.areas)
-			.map(function(area, iso3){
-				var current_country = _.find(window.countries, {iso3:iso3});
-				if(area[selected_indicator] != null){
-					return {name:current_country.name, y:area[selected_indicator].value, color:window.regions_colors[_.find(window.regions, {iso3:current_country.area}).name], region:_.find(window.regions, {iso3:current_country.area}).name, region_iso3:_.find(window.regions, {iso3:current_country.area}).iso3, income:current_country.income, hdi:current_country.hdi_rank, iodch:current_country.iodch, oecd:current_country.oecd, g20:current_country.g20, g7:current_country.g7, iso3:current_country.iso3};
-				}
-			})
-			.compact()
-			.sortBy("y")
-			.reverse()
-			.value();
-			
-			table_data = _(data.areas)
-			.map(function(area, iso3){
-				var current_country = _.find(window.countries, {iso3:iso3});
-				if(area["ODB"] != null){
-					if(selected_year>=2015){
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
-						/*readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
-					}
-					else{
-						return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; /*readiness_data:{action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
-					}
-				}
-			})
-			.compact()
-			.sortBy("odb")
-			.reverse()
-			.value();
-			//drawTable(table_data);
-			
-        
-    
-
-	//Custom Search para la tabla - ahora está oculta-
-	$('#cinput-table-search').keyup(function(){
-		  table.search($(this).val()).draw() ;
-	})
-
-	var filter_applied = new Object;
-	if(region!=0) filter_applied.region_iso3 = region;
-	if(income!=0){ 
-		switch(income){
-			case "1":filter_applied.income = "Lower middle income";
-				   break;
-			case "2":filter_applied.income = "Low income";
-				   break;
-			case "3":filter_applied.income = "High income";
-				   break;
-			case "4":filter_applied.income = "Upper middle income";
-				   break;
-		}
-	}		
-	if(hdirate!=0){
-		switch(hdirate){
-			case "1":filter_applied.hdi = "Low";
-				   break;
-			case "2":filter_applied.hdi = "Medium";
-				   break;
-			case "3":filter_applied.hdi = "High";
-				   break;
-			case "4":filter_applied.hdi = "Very High";
-				   break;
-		}
-	}	
-	if(G20 == 1){filter_applied.g20 = 1};
-	if(G7 == 1){filter_applied.g7 = 1};
-	if(OECD == 1){filter_applied.oecd = 1};
-	if(IODCH == 1){filter_applied.iodch = 1};
-			
-	
-			//console.log(filter_applied);
-			filtered_data = _.filter(columns_data, filter_applied);
-			filtered_table_data = _.filter(table_data, filter_applied);
-			drawTable(filtered_table_data);
-            
-            //Si tenemos ya countries las cargamos ya que esto abrira el modal
-            if(ctrIsoCompare.length != 0) {
-                ctrIsoCompare.forEach(function(iso3c) {
-                    $.getJSON('json/odb_' + iso3c + '.json', function(data){
-                        loaded_countries.push(iso3c);         
-                        //Este igual se puede quitar ya
-                        ctrIsoCompare.push(iso3c);
-                        //-----
-                        loaded_countries_data[iso3c] = data;
-                        carousel_current_country = 1;//loaded_countries.length-1;
-                        setCountryDataset(iso3c);
-                        console.log(iso3c);
-                        drawModal();
-                        drawModalCountryComp(iso3c,0);
-                        //Clonamos el pais
-                        addCountrySpider();
-                        drawDatasetTable();
-                        arrToString = ctrIsoCompare.join(",");
-                        window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
-                    });
-                });
-            }    
-            
-			
-			//Iniciamos la tabla ordenada por ODB Rank y ODB asc
-			var table = $('#table-data').DataTable({
-				fixedHeader: true,
-				paging: false,
-				order: [[1,"asc"], [2,"desc"]],
-				//info: false,
-				sDom: 't' //Que solo renderice la tabla
-				// language: {
-				//     search: "_INPUT_",
-				//     searchPlaceholder: "Search country ..."
-				// }
-			});
-
-			/*var countries = _.map(data.areas, function(area, iso3){
-				if(area[selected_indicator] != null){
-					return _.find(window.countries, {iso3:iso3}).name;
-				}
-			})*/
-			
-			map_data = _(data.areas)
-			.map(function(area, iso3){
-				if(area[selected_indicator] != null){
-					return {code:iso3, value:area[selected_indicator].value};
-				}
-			})
-			.compact()
-			.value();
-
-			number_of_countries = map_data.length - 1; //(-1 por las estadísticas)
-			selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)/100;
-
-			//$("#ranking-indicator-title").text(selected_indicator_name);
-
-
-		//FIN CARGA DE DATOS
-
-			//PRUEBA SPARKLINES
-			
-    $(function () {
-    /**
-     * Create a constructor for sparklines that takes some sensible defaults and merges in the individual
-     * chart options. This function is also available from the jQuery plugin as $(element).highcharts('SparkLine').
-     */
-    Highcharts.SparkLine = function (a, b, c) {
-        var hasRenderToArg = typeof a === 'string' || a.nodeName,
-            options = arguments[hasRenderToArg ? 1 : 0],
-            defaultOptions = {
-                chart: {
-                    renderTo: (options.chart && options.chart.renderTo) || this,
-                    backgroundColor: null,
-                    borderWidth: 0,
-                    type: 'column',
-                    margin: [2, 0, 2, 0],
-                    width: 70,
-                    height: 40,
-                    style: {
-                        overflow: 'visible'
-                    },
-                    skipClone: true
-                },
-                title: {
-                    text: ''
-                },
-                credits: {
-                    enabled: false
-                },
-                xAxis: {
-                    labels: {
-                        enabled: false
-                    },
-                    title: {
-                        text: null
-                    },
-                    startOnTick: false,
-                    endOnTick: false,
-                    tickPositions: []
-                },
-                yAxis: {
-                    endOnTick: false,
-                    startOnTick: false,
-                    min: 0,
-					max: 100,
-                    labels: {
-                        enabled: false
-                    },
-                    title: {
-                        text: null
-                    },
-                    tickPositions: [0],
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    backgroundColor: null,
-                    borderWidth: 0,
-                    shadow: false,
-                    useHTML: true,
-                    hideDelay: 0,
-                    shared: true,
-                    padding: 0,
-                    positioner: function (w, h, point) {
-                        return { x: point.plotX - w / 2, y: point.plotY - h };
-                    }
-                },
-                plotOptions: {
-                    series: {
-                        animation: false,
-                        lineWidth: 1,
-                        shadow: false,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        marker: {
-                            radius: 1,
-                            states: {
-                                hover: {
-                                    radius: 2
-                                }
-                            }
-                        },
-                        fillOpacity: 0.25
-                    },
-                    column: {
-                    	color: '#FFE064',
-                        negativeColor: '#910000',
-                        borderColor: 'none'
-                    }
-                }
-            };
-
-        options = Highcharts.merge(defaultOptions, options);
-
-        return hasRenderToArg ? new Highcharts.Chart(a, options, c) : new Highcharts.Chart(options, b);
-    };
-
-    var start = +new Date(),
-        $spans = $('span[data-sparkline]'),
-        fullLen = $spans.length,
-        n = 0;
-
-    // Creating 153 sparkline charts is quite fast in modern browsers, but IE8 and mobile
-    // can take some seconds, so we split the input into chunks and apply them in timeouts
-    // in order avoid locking up the browser process and allow interaction.
-    function doChunk() {
-        var time = +new Date(),
-            i,
-            len = $spans.length,
-            $span,
-            stringdata,
-			stringlabels,
-			stringsubindex,
-			subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
-			colums_color,
-			labels = new Array(),
-            arr,
-            data,
-            chart;
-
-        for (i=0; i<len; i++) {
-            $span = $($spans[i]);
-            stringlabels = $span.data('labels');
-            stringsubindex = $span.data('subindex');
-			stringdata = $span.data('sparkline');
-			arr = stringdata.split('; ');
-			labels = [" "];
-			labels = labels.concat(stringlabels.split(','));
-			switch(stringsubindex){
-				case "readiness": 	  colums_color = subindex_colors[0];
-									  break; 
-				case "implementation":colums_color = subindex_colors[1];
-									  break; 
-				case "impact":        colums_color = subindex_colors[2];
-									  break; 
-			}
-		
-			//var labels = new Function("return [" + stringlabels + "];")();
-			//var labels = (new Function("return [" + stringlabels+ "];")());
-			//console.log(labels);
-            data = $.map(arr[0].split(','), parseFloat);
-			//console.log(data);
-			//labels = $.map(stringlabels.split(','));
-            chart = {};
-
-            if (arr[1]) {
-                chart.type = arr[1];
-            }
-            $span.highcharts('SparkLine', {
-                series: [{
-                    data: data,
-                    color:colums_color,
-                    pointStart: 1
-                }],
-				xAxis: {
-				   type: 'category',
-				   // minRange: 1,
-					categories: labels,//countries,
-					lineColor:colums_color
-					/*labels: {
-						enabled:false
-					}*/
-				},
-                tooltip: {
-                    headerFormat: '<span style="font-size: 10px">{point.x}:</span>',
-                    pointFormat: '<b>{point.y}</b>'
-                },
-                chart: chart
-            });
-
-            n += 1;
-
-            // If the process takes too much time, run a timeout to allow interaction with the browser
-            if (new Date() - time > 500) {
-                $spans.splice(0, i + 1);
-                setTimeout(doChunk, 0);
-                break;
-            }
-
-            // Print a feedback on the performance
-            //if (n === fullLen) {
-            //    $('#result').html('Generated ' + fullLen + ' sparklines in ' + (new Date() - start) + ' ms');
-            //}
-        }
-    }
-    doChunk();
-
-});
-			//FIN PRUEBA SPARKLINES
-			
-			
-			
-			
-			function pointClick() {
-				//alert("Pais: "+this.name+ " | D.Población: "+this.value); 
-
-				if(!$(".modal-data").is(".modal-data-visible")) {
-					$(".modal-data").addClass("modal-data-visible");
-					$(".data-ciudad").html(this.name+" ("+this.code+")");
-					$(".data-poblacion").html(this.value);
-				}else{
-					$(".data-ciudad").html(this.name+" ("+this.code+")");
-					$(".data-poblacion").html(this.value);
-				}
-
-			}
-
-			// Propiedades gráfico del mapa
-			
-			$('#wrapper-map').highcharts('Map', {
-				//series: [{
-				//	mapData: window.worldMap
-				//}],
-				credits: {
-					enabled:false
-				},
-				chart: {
-					backgroundColor: 'transparent',
-					margin: 0
-				},
-				title: {
-					text: ''
-				},
-				tooltip: {
-					  //enabled:false,
-					  //name: 'Densidad de población',
-				},  
-				legend: {
-					title: {
-						text: selected_indicator_name,
-						style: {
-							color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-						}
-					}
-				},
-				mapNavigation: {
-                    enabled: true,
-                    buttonOptions: {
-                        theme: {
-                            fill: 'white',
-                            'stroke-width': 0,
-                            stroke: 'silver',
-                            r: 0,
-                            states: {
-                                hover: {
-                                    fill: '#79B042'
-                                },
-                                select: {
-                                    stroke: '#039',
-                                    fill: '#bada55'
-                                }
-                            }
-                        },
-                        verticalAlign: 'bottom'
-                    },
-                    enableMouseWheelZoom: false,
-                    buttons: {
-                        zoomIn: {
-                            y:-25,
-                            x: 20
-                        },
-                        zoomOut: {
-                            y: 5,
-                            x: 20
-                        }
-                    }
-                },	            
-
-/*
-				tooltip: {
-					backgroundColor: 'none',
-					borderWidth: 0,
-					shadow: false,
-					useHTML: true,
-					padding: 0,
-					pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
-						' {point.name}: <b>{point.value}</b>/km²',
-					positioner: function () {
-						return { x: 0, y: 250 };
-					}
-				}
-,*/
-
-				colorAxis: {
-					min: selected_indicator_range_min,
-					max: selected_indicator_range_max,
-					//type: 'logarithmic',
-					maxColor: "#495E32",
-					minColor: "#A8CF7C"
-				},
-				series : [{
-					data : map_data,
-					mapData: Highcharts.maps['custom/world'],
-					joinBy: ['iso-a3', 'code'], //cambiar a iso-a3 con los datos del ODB
-					name: selected_indicator_name,
-					borderColor :"rgba(84, 199, 252, 0.2)",
-					states: {
-						hover: {
-							color: '#F8E71C'
-						}
-					},
-					point: {
-						events: {
-							//click: pointClick
-						}
-					}
-				}]
-			});
-			
-			// Fin propiedades Mapa
-			
-			// Propiedades gráfico de barras
-
-			 $('#column-graph').highcharts({
-				credits: {
-					enabled:false
-				},
-				chart: {
-					type: 'column',
-					backgroundColor: 'transparent',
-					zoomType: 'x',
-					renderTo: 'column-graph',
-					resetZoomButton: {
-		                theme: {
-		                    fill: 'white',
-		                    stroke: 'none',
-		                    r: 0,
-		                    states: {
-		                        hover: {
-		                            fill: '#79B042',
-		                            stroke: 'none',
-		                            style: {
-		                                color: 'white'
-		                            }
-		                        }
-		                    }
-		                }
-		            }
-				},
-				title: {
-					text: selected_indicator_name
-				},
-				subtitle: {
-					text: 'Source: <a href="' + selected_indicator_source_url + '">' + selected_indicator_source + '</a>'
-				},
-				xAxis: {
-				   type: 'category',
-				   // minRange: 1,
-					categories: data.name,//countries,
-					labels: {
-						rotation: -45,
-						style: {
-							fontSize: '9px',
-							fontFamily: 'Arial, sans-serif'
-						}
-					},
-					//min:0,
-					max: filtered_data.length - 1//number_of_countries
-				},
-				scrollbar: {
-					enabled: true,
-					barBackgroundColor: '#79B042',
-	                barBorderRadius: 7,
-	                barBorderWidth: 0,
-	                buttonBackgroundColor: '#79B042',
-	                buttonBorderWidth: 0,
-	                buttonBorderRadius: 7,
-	                trackBackgroundColor: '#EAEAEA',
-	                trackBorderWidth: 0,
-	                trackBorderRadius: 8,
-	                trackBorderColor: '#CCC',
-	                buttonArrowColor: 'white',
-	                rifleColor: 'white',
-				},
-				yAxis: {
-					min: selected_indicator_range_min,
-					max: selected_indicator_range_max,
-					//categories: ['data.value'],
-					title: {
-						text: null
-					},
-					plotLines: [{
-						color: '#000000',//'#79b042',
-						//dashStyle: 'shortdash',
-						width: 1,
-						value: selected_indicator_average, // average here
-						zIndex: 4, // To not get stuck below the regular plot lines
-						label: {
-							text: 'Average (' + selected_indicator_average + ')',
-							align: 'right'
-						}
-					}]
-				},
-				legend: {
-					enabled: false
-				},
-				tooltip: {
-					pointFormat: selected_indicator_name + ': <b>{point.y:.1f}</b>'
-				},
-				series: [{
-					name: selected_indicator_name,
-					data: filtered_data, //columns_data,
-					dataLabels: {
-						enabled: true,
-						rotation: -75,
-						color: '#333333',
-						align: 'left',
-						format: '{point.y:.1f}', // one decimal
-						y: -1, // 10 pixels down from the top
-						style: {
-							fontSize: '8px',
-							fontFamily: 'Arial, sans-serif'
-						}
-					}
-				}]/*,
-				plotOptions: {
-					column: {
-						grouping: false,
-						shadow: false
-					}
-				}*/
-			});
-
-		});
-
-	});
-
 });
