@@ -954,17 +954,7 @@ $(document).ready(function() {
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
-	//Si tenemos ya countries las cargamos ya que esto abrira el modal
-	if(ctrIsoCompare.length != 0) {
-		ctrIsoCompare.forEach(function(iso3c) {
-            $.getJSON('json/odb_' + iso3c + '.json', function(data){
-                loaded_countries_data[iso3c] = data;
-                setCountryDataset(iso3c);
-                drawModal();
-                drawModalCountryComp(iso3c,0);
-            });
-		});
-	}
+	
 
 	var year = getUrlVars()["_year"];
 	var indicator = getUrlVars()["indicator"];
@@ -1485,6 +1475,8 @@ $(document).ready(function() {
 			.value();
 			//drawTable(table_data);
 			
+        
+    
 
 	//Custom Search para la tabla - ahora está oculta-
 	$('#cinput-table-search').keyup(function(){
@@ -1527,6 +1519,30 @@ $(document).ready(function() {
 			filtered_data = _.filter(columns_data, filter_applied);
 			filtered_table_data = _.filter(table_data, filter_applied);
 			drawTable(filtered_table_data);
+            
+            //Si tenemos ya countries las cargamos ya que esto abrira el modal
+            if(ctrIsoCompare.length != 0) {
+                ctrIsoCompare.forEach(function(iso3c) {
+                    $.getJSON('json/odb_' + iso3c + '.json', function(data){
+                        loaded_countries.push(iso3c);         
+                        //Este igual se puede quitar ya
+                        ctrIsoCompare.push(iso3c);
+                        //-----
+                        loaded_countries_data[iso3c] = data;
+                        carousel_current_country = 1;//loaded_countries.length-1;
+                        setCountryDataset(iso3c);
+                        console.log(iso3c);
+                        drawModal();
+                        drawModalCountryComp(iso3c,0);
+                        //Clonamos el pais
+                        addCountrySpider();
+                        drawDatasetTable();
+                        arrToString = ctrIsoCompare.join(",");
+                        window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+                    });
+                });
+            }    
+            
 			
 			//Iniciamos la tabla ordenada por ODB Rank y ODB asc
 			var table = $('#table-data').DataTable({
