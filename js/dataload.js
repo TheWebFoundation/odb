@@ -47,6 +47,15 @@ Array.prototype.remove = function() {
     }
     return this;
 };
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] == obj) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 	var $div = $("#wrapper-pspider");
@@ -1025,7 +1034,7 @@ $(document).ready(function() {
 		if(getUrlVars()["open"]==undefined) {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
 		}
-        console.log(country);
+        //console.log(country);
         //cargo el json del primer país
         $.getJSON('json/odb_' + country + '.json', function(data){
             loaded_countries_data[country] = data;
@@ -1143,7 +1152,7 @@ $(document).ready(function() {
             addCountrySpider(); 
             console.log("llamo al spider desde el refreshed.owlcarousel");
         }*/
-        if(loaded_countries.legth!=0){drawDatasetTable();}
+        if(loaded_countries.length!=0){drawDatasetTable();}
 		//console.log("quedan: "+rmItemCount + " actual=" + carousel_current_country);
 	});
 
@@ -1160,7 +1169,7 @@ $(document).ready(function() {
 
 	owl.on('translated.owl.carousel', function(event) {
 		carousel_current_country = event.item.index + 1; 
-        console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
+        //console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
         addCountrySpider();
         drawDatasetTable();
 		//console.log("Estamos en:" + carousel_current_country);
@@ -1176,11 +1185,15 @@ $(document).ready(function() {
 		var cont = 0;
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
-
+        
+        if(loaded_countries.contains(idAddCtr)) {
+			alert("This country has already been selected");
+			return false;
+		}
         
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
-			alert("Selecciona pais");
+			alert("Please select a country");
 			return false;
 		}
 
@@ -1192,7 +1205,7 @@ $(document).ready(function() {
 		})
 
 		if(cont !=0) {
-			alert("Ya está agregado");
+			alert("This country has already been selected");
 			return false;
 		}
 
@@ -1203,8 +1216,8 @@ $(document).ready(function() {
             loaded_countries.push(idAddCtr);
             loaded_countries_data[idAddCtr] = data;
             carousel_current_country = loaded_countries.length-1;
-            console.log(carousel_current_country);
-            console.log(loaded_countries_data);
+            //console.log(carousel_current_country);
+            //console.log(loaded_countries_data);
             setCountryDataset(idAddCtr);
             //Clonamos el pais
             addCountrySpider();
@@ -1245,25 +1258,28 @@ $(document).ready(function() {
 	   	//console.log("Borramos el item: "+rmItemOwl);
         
         var currentCountryIso3 = loaded_countries[carousel_current_country];
-        console.log("borrando " + currentCountryIso3)
-        console.log("carousel_current_country: " + carousel_current_country);
-        console.log("loaded_countries_length: " + loaded_countries.length);
-        console.log(loaded_countries);
+        //console.log("borrando " + currentCountryIso3)
+        //console.log("carousel_current_country: " + carousel_current_country);
+        //console.log("loaded_countries_length: " + loaded_countries.length);
+        //console.log(loaded_countries);
         if((carousel_current_country + 1) == loaded_countries.length){
-            console.log(carousel_current_country + "=length");
             loaded_countries.remove(currentCountryIso3);
             carousel_current_country--;//$(".owl-stage").find("div.owl-item.active").index();
-            owl.trigger('to.owl.carousel',carousel_current_country,[300]);
+            // console.log("ME QUIERO MOVER A LA POSICIÓN: " + (carousel_current_country));
+            owl.trigger('remove.owl.carousel', rmItemOwl);
+            owl.trigger('to.owl.carousel', carousel_current_country, 100);
+            owl.trigger('refresh.owl.carousel');
         }
         else{
             loaded_countries.remove(currentCountryIso3);
+            owl.trigger('remove.owl.carousel', rmItemOwl);
+            owl.trigger('refresh.owl.carousel');
         }
         currentCountryIso3 = loaded_countries[carousel_current_country];
-        console.log("cargando " + currentCountryIso3)
+        //console.log("cargando " + currentCountryIso3)
         addCountrySpider();
         drawDatasetTable();
-		owl.trigger('remove.owl.carousel', rmItemOwl);
-		owl.trigger('refresh.owl.carousel');
+		
 		
 		var ctrURL = getUrlVars()["comparew"];
 		var stringToArray = ctrURL.split(",");
@@ -1279,7 +1295,7 @@ $(document).ready(function() {
 
 		arrToString = stringToArray.join(",");
 
-		console.log("long array: "+stringToArray.length);
+		//console.log("long array: "+stringToArray.length);
 
 		if(stringToArray.length !== 0) {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
@@ -1424,7 +1440,7 @@ $(document).ready(function() {
 			   '<td class="ct-td txt-c txt-med displayib">' + rank_print + '</td>' +
 			'</tr>';
 		}
-		//console.log(current_row);
+		//(current_row);
 		//$("#table-data body").html(current_row);
 		my_table.append(current_row);		
 
