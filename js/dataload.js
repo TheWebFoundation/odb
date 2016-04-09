@@ -1177,25 +1177,6 @@ $(document).ready(function() {
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
 
-        $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
-            loaded_countries.push(idAddCtr);
-            loaded_countries_data[idAddCtr] = data;
-            carousel_current_country = loaded_countries.length-1;
-            console.log(carousel_current_country);
-            console.log(loaded_countries_data);
-            setCountryDataset(idAddCtr);
-            //Clonamos el pais
-            addCountrySpider();
-            drawDatasetTable();
-            drawModalCountryComp(idAddCtr,1);
-            //Inyectamos los datos en la araña
-            //addCountrySpider (idAddCtr);
-
-            //Agregamos a la URL los componentes
-            ctrIsoCompare.push(idAddCtr);
-            arrToString = ctrIsoCompare.join(",");
-            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
-        });
         
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
@@ -1218,6 +1199,25 @@ $(document).ready(function() {
 		e.preventDefault();
 		//console.log("Posicion: "+rmItemCount);
 
+        $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
+            loaded_countries.push(idAddCtr);
+            loaded_countries_data[idAddCtr] = data;
+            carousel_current_country = loaded_countries.length-1;
+            console.log(carousel_current_country);
+            console.log(loaded_countries_data);
+            setCountryDataset(idAddCtr);
+            //Clonamos el pais
+            addCountrySpider();
+            drawDatasetTable();
+            drawModalCountryComp(idAddCtr,1);
+            //Inyectamos los datos en la araña
+            //addCountrySpider (idAddCtr);
+
+            //Agregamos a la URL los componentes
+            ctrIsoCompare.push(idAddCtr);
+            arrToString = ctrIsoCompare.join(",");
+            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+        });
 		var ncountry = $(".owl-stage").find(".country-area-empty").length;
 
 		if(ncountry == 1) {
@@ -1253,6 +1253,7 @@ $(document).ready(function() {
             console.log(carousel_current_country + "=length");
             loaded_countries.remove(currentCountryIso3);
             carousel_current_country--;//$(".owl-stage").find("div.owl-item.active").index();
+            owl.trigger('to.owl.carousel',carousel_current_country,[300]);
         }
         else{
             loaded_countries.remove(currentCountryIso3);
