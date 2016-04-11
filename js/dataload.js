@@ -113,19 +113,30 @@ Array.prototype.contains = function(obj) {
 
 
 	var current_URL = window.location.href;
+
 	if (current_URL.indexOf("&open") !== -1) {
-		var current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open")); 
+		current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open")); 
 		//console.log("URL actual: "+current_URL);
 	}
+
+	if (current_URL.indexOf("?_year") === -1) {
+		current_URL = current_URL+'?_year=2015&indicator=ODB';
+		//console.log("URL actual: "+current_URL);
+	}
+
+
+
 
 	var countriesURL = getUrlVars()["comparew"];
 	if(countriesURL !== undefined){
 		var ctrIsoCompare = countriesURL.split(",");
-		var fullURL =  window.location.href;
-		var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open='; 
+		//var fullURL =  window.location.href;
+		//var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open='; 
+		var current_URL_OM = current_URL.substring(0, current_URL.lastIndexOf("&open"))+'&open='; 
 	}else{
 		var ctrIsoCompare = [];
-		var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
+		//var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
+		var current_URL_OM = current_URL+'&open='; //current url con la modal abierta
 	}
 
 	//Iniciamos el carousel
@@ -188,6 +199,7 @@ Array.prototype.contains = function(obj) {
 	function setYear(syear) {
 		if(syear!="") {
 			$("#syear").val(syear);
+			$("#syear-modal").val(syear);
 			//$("#syear").parent().addClass("bg-selected");
 		}else{
 			//$("#syear").parent().removeClass("bg-selected");
@@ -888,6 +900,70 @@ function drawModal() {
 		}
 		doChunk();
 	});    
+
+	//Agregamos los paises a comparar si tenemos paises
+	if(ctrIsoCompare.length != 0) {
+        ctrIsoCompare.forEach(function(iso3c) {
+            $.getJSON('json/odb_' + iso3c + '.json', function(data){
+                loaded_countries_data[iso3c] = data;
+                loaded_countries.push(iso3c);         
+                //Este igual se puede quitar ya
+                //ctrIsoCompare.push(iso3c);
+                //-----
+                carousel_current_country = 1;//loaded_countries.length-1;
+                setCountryDataset(iso3c);
+                drawModalCountryComp(iso3c,0);
+                //Clonamos el pais
+                addCountrySpider();
+                drawDatasetTable();
+                owl.trigger('refresh.owl.carousel');
+            });
+        });
+    }
+
+    var a = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
+   //var b = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
+    var b = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map(function(value, key){ return{id:value.indicator,name:value.name}; }).value()
+
+    
+    // var test = _(loaded_countries_data['ESP'].years['2015'].observations)
+    // 	.filter(function(value,key){
+    // 		return a.contains(key);
+    // 	})
+    // 	//.map('value').sort().reverse().value();
+    // 	.map(function(value, key){ 
+    // 		//console.log(a[key]);
+    // 		var label = a[key] + value.value;
+    // 		return { label:value.value }; 
+    // 	}).value()
+
+ 
+    	var orderNames = []
+		var valuesNames = _(loaded_countries_data['ESP'].years['2015'].observations)
+    	.filter(function(value,key){
+    		//console.log(b[0]["id"]);
+    		//console.log(key);
+	        if(a.contains(key)){
+	           //console.log(key)
+	           orderNames.push(key);
+
+	        }
+	        i++
+        	return a.contains(key);
+    	})
+    	//.map('value').sort().reverse().value();
+    	.map('value').value();
+
+    	//console.log(b);
+
+    	orderNames.forEach(function(item,index) {
+		    console.log(item + " : " + valuesNames[index]);
+		});
+
+		b.forEach(function(value,index) {
+		    console.log(value.id+" : "+value.name);
+		});
+
 }
 
 
@@ -1119,27 +1195,27 @@ selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)
     
     
 //SI RECIBIMOS PARÁMETROS DE PAÍSES CARGADOS EN LA URL ABRIMOS LA MODAL
-    if(ctrIsoCompare.length != 0) {
-        ctrIsoCompare.forEach(function(iso3c) {
-            $.getJSON('json/odb_' + iso3c + '.json', function(data){
-                loaded_countries_data[iso3c] = data;
-                loaded_countries.push(iso3c);         
-                //Este igual se puede quitar ya
-                //ctrIsoCompare.push(iso3c);
-                //-----
-                carousel_current_country = 1;//loaded_countries.length-1;
-                setCountryDataset(iso3c);
-                //console.log(iso3c);
-                //drawModal();
-                drawModalCountryComp(iso3c,0);
-                //Clonamos el pais
-                addCountrySpider();
-                drawDatasetTable();
-                //arrToString = ctrIsoCompare.join(",");
-                //window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
-            });
-        });
-    }        
+    // if(ctrIsoCompare.length != 0) {
+    //     ctrIsoCompare.forEach(function(iso3c) {
+    //         $.getJSON('json/odb_' + iso3c + '.json', function(data){
+    //             loaded_countries_data[iso3c] = data;
+    //             loaded_countries.push(iso3c);         
+    //             //Este igual se puede quitar ya
+    //             //ctrIsoCompare.push(iso3c);
+    //             //-----
+    //             carousel_current_country = 1;//loaded_countries.length-1;
+    //             setCountryDataset(iso3c);
+    //             //console.log(iso3c);
+    //             drawModal();
+    //             drawModalCountryComp(iso3c,0);
+    //             //Clonamos el pais
+    //             addCountrySpider();
+    //             drawDatasetTable();
+    //             //arrToString = ctrIsoCompare.join(",");
+    //             //window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+    //         });
+    //     });
+    // }        
     
 //$("#ranking-indicator-title").text(selected_indicator_name);
 
@@ -1596,7 +1672,9 @@ mapNavigation: {
         $.getJSON('json/odb_' + country + '.json', function(data){
             loaded_countries_data[country] = data;
             setCountryDataset(country);
-            drawModal();
+            //Solo necesitamos unos milisegundos
+           	drawModal();
+            
         });
 	});
 
@@ -1623,6 +1701,7 @@ mapNavigation: {
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
+                $(".cbtn-search-home-input").attr("data-id",selectedItemId);
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID1: "+selectedItemId);
 
