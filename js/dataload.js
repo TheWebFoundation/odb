@@ -115,7 +115,7 @@ Array.prototype.contains = function(obj) {
 	var current_URL = window.location.href;
 
 	if (current_URL.indexOf("&open") !== -1) {
-		current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open")); 
+		current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open"));
 		//console.log("URL actual: "+current_URL);
 	}
 
@@ -131,8 +131,8 @@ Array.prototype.contains = function(obj) {
 	if(countriesURL !== undefined){
 		var ctrIsoCompare = countriesURL.split(",");
 		//var fullURL =  window.location.href;
-		//var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open='; 
-		var current_URL_OM = current_URL.substring(0, current_URL.lastIndexOf("&open"))+'&open='; 
+		//var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open=';
+		var current_URL_OM = current_URL.substring(0, current_URL.lastIndexOf("&open"))+'&open=';
 	}else{
 		var ctrIsoCompare = [];
 		//var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
@@ -178,7 +178,7 @@ Array.prototype.contains = function(obj) {
 		if($("#sregion").val()!=0) var region = '&region='+$("#sregion").val();
 		if($("#sincome").val()!=0) var income = '&income='+$("#sincome").val();
 		if($("#shdirate").val()!=0) var hdirate = '&hdirate='+$("#shdirate").val();
-		
+
 		var group="";
 		var ngroup = $("div.ms-options ul li.selected").length;
 		if(ngroup > 0) {
@@ -219,12 +219,12 @@ Array.prototype.contains = function(obj) {
 			switch(value.type) {
 				case "INDEX":
 					//style = "margin-left:0;";
-					
+
 					break;
 				case "SUBINDEX":
 					//style = "margin-left:10px;font-weight:bold";
 					sp = "&nbsp;&nbsp;&nbsp;&nbsp;";
-					
+
 					break;
 				case "COMPONENT":
 					//style = "margin-left:20px;font-style:italic;";
@@ -239,7 +239,7 @@ Array.prototype.contains = function(obj) {
 					sp = "";
 					break;
 			}
-			if(value.indicator == sindicator) { 
+			if(value.indicator == sindicator) {
 				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
 				$selIndicatorm.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
 			}else{
@@ -265,7 +265,7 @@ Array.prototype.contains = function(obj) {
 		$selRegion.html('');
 		$selRegion.append('<option value="0">All ...</option>');
 		$.each(window.regions, function( index, value ) {
-			if(value.iso3 == sregion) { 
+			if(value.iso3 == sregion) {
 				$selRegion.append('<option value="'+value.iso3+'" selected="selected">'+value.name+'</option>');
 			}else{
 				$selRegion.append('<option value="'+value.iso3+'">'+value.name+'</option>');
@@ -317,13 +317,13 @@ Array.prototype.contains = function(obj) {
 function drawNewCountryChart(idISO){
     //Metemos la gráfica del nuevo país
 	//$.getJSON('json/odb_' + idISO + '.json', function (data) {
-		var added_country = loaded_countries_data[idISO];	
+		var added_country = loaded_countries_data[idISO];
 		var new_country_odb_series = _.map(added_country.years, function(year){ return year.observations.ODB.value;});
 		var new_country_readiness_series = _.map(added_country.years, function(year){ return year.observations.READINESS.value;});
 		var new_country_implementation_series = _.map(added_country.years, function(year){ return year.observations.IMPLEMENTATION.value;});
 		var new_country_impact_series = _.map(added_country.years, function(year){ return year.observations.IMPACT.value;});
 		var new_country_years_series = _.keys(added_country.years);
-		
+
 	window.chart = new Highcharts.Chart({
 		credits: {
 					enabled:false
@@ -402,8 +402,8 @@ function datasetCountryRow(iso3, num_country, compare){
 	//Devuelve el html de la fila con la info principal del país.
 	var rowstring;
 	var cdata = _.filter(table_data, {iso3:iso3});
-	
-	rowstring = '<tr class="cb-bottom-lh">' + 
+
+	rowstring = '<tr class="cb-bottom-lh">' +
 		'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		if(compare){
 		rowstring = rowstring + '	<td class="ctd-md txt-c uppc txt-s">c' + num_country + '</td>';
@@ -437,20 +437,20 @@ function datasetValuesRow(iso3, indicator, value, num_country, compare){
 						//DEPENDIENDO DEL VALOR DE key
 						var clase_celda;
 						if(indicator != "GUPDATED"){
-							if(v<=0){ 
-								clase_celda = "data-i-incomp"; 
-							} 
+							if(v<=0){
+								clase_celda = "data-i-incomp";
+							}
 							else {
 								clase_celda = "data-i-comp";
 							}
 						}
 						else{
-							if(v==-5){ 
-								clase_celda = "data-i-incomp"; 
-							} 
-							else if(v==0){ 
-								clase_celda = "data-i-updated"; 
-							} 
+							if(v==-5){
+								clase_celda = "data-i-incomp";
+							}
+							else if(v==0){
+								clase_celda = "data-i-updated";
+							}
 							else{
 								clase_celda = "data-i-comp";
 							}
@@ -472,7 +472,7 @@ function drawDatasetTable(){
 		'	<tr class="cb-bottom-2">' +
 		'		<th class="cth-md uppc txt-s c-g40 fwlight">Dataset scored</th>';
 		if(loaded_countries.length>1){
-			tableImplementation = tableImplementation + '		<th class="cth-md txt-c uppc txt-xs">Acron.</th>'; 
+			tableImplementation = tableImplementation + '		<th class="cth-md txt-c uppc txt-xs">Acron.</th>';
 		}
 		_.each(country_datasets[loaded_countries[0]].VALUE, function(value, key){
 		tableImplementation = tableImplementation + '		<th class="cth-md txt-c"><img src="img/clusters/' + key + '.png" width="16" height="16" alt="' + _.find(window.indicators, {indicator:key}).name + '" title="' + _.find(window.indicators, {indicator:key}).name + '" data-toggle="tooltip" data-placement="top"></th>'
@@ -513,14 +513,14 @@ function drawModal() {
     //console.log(loaded_countries[0]);
 	var g20_class;
 	var g7_class;
-	var iodch_class; 
+	var iodch_class;
 	var oecd_class;
-	
+
 	if(country_data[0].g7) {g7_class = "cicon-check c-check";} else g7_class = "cicon-cross txt-s c-error";
 	if(country_data[0].g20) {g20_class = "cicon-check c-check";} else g20_class = "cicon-cross txt-s c-error";
 	if(country_data[0].iodch) {iodch_class = "cicon-check c-check";} else iodch_class = "cicon-cross txt-s c-error";
-	if(country_data[0].oecd) {oecd_class = "cicon-check c-check";} else oecd_class = "cicon-cross txt-s c-error";		
-	
+	if(country_data[0].oecd) {oecd_class = "cicon-check c-check";} else oecd_class = "cicon-cross txt-s c-error";
+
 	var headerModal = '<div class="container-fluid">' +
 				'	<div class="row">' +
 				'		<div class="col-md-12 txt-c p-xs-top p-s-bottom">' +
@@ -575,15 +575,15 @@ function drawModal() {
 				'		</div>'+
 				'	</div>'+
 				'</div>';
-	
+
 	$("#cm-header").html(headerModal);
-	
+
 	var indicator_percentage = (parseInt(country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
-	
+
 	var contentModal = '<header class="ca-header txt-c">' +
 						'		<h5 class="txt-al no-m-top no-m-bottom displayib c-obj">' +
 						'			<span class="flag-md flag-country"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span>' +
-						'			<span class="ca-h-tit displayib m-xs-top">' + country_data[0].name + 
+						'			<span class="ca-h-tit displayib m-xs-top">' + country_data[0].name +
 						'			 <span class="displayb uppc txt-s m-xs-top c-g40">' + selected_year + '</span>' +
 						'			</span>' +
 						'		</h5>' +
@@ -592,7 +592,7 @@ function drawModal() {
 						'	<h5 class="txt-m displayb si-tit-current">' + selected_indicator_name + '<span class="displayib fright txt-xl si-val-current">' + country_data[0].selected_indicator_value + '</span></h5>' +
 						'	<div class="indicator-cover">' +
 						'		<div class="indicator-progress i-p-current" style="width:' + indicator_percentage + '%"></div>' +
-						'	</div>' +   
+						'	</div>' +
 						'	<span class="indicator-st i-init txt-s c-g40">' + selected_indicator_range_min + '</span><span class="indicator-st i-end txt-s c-g40">' + selected_indicator_range_max + '</span>' +
 						'</div>' +
 						'<div class="ca-content ca-current m-xl-top txt-c">' +
@@ -602,11 +602,11 @@ function drawModal() {
 	$("#country-selected").html(contentModal);
 	//CARGA DE DATOS DEL DETALLE PAÍS
 	//$.getJSON('json/odb_' + loaded_countries[0] + '.json', function (data) {
-        
+
         var firstCountryData = loaded_countries_data[loaded_countries[0]];
         //console.log(loaded_countries[0]);
         //console.log(firstCountryData);
-        
+
 		country_odb_series = _.map(firstCountryData.years, function(year){ return year.observations.ODB.value;});
 		country_readiness_series = _.map(firstCountryData.years, function(year){ return year.observations.READINESS.value;});
 		country_implementation_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPLEMENTATION.value;});
@@ -614,15 +614,15 @@ function drawModal() {
 		country_years_series = _.keys(firstCountryData.years);
 
 		//setCountryDataset(loaded_countries[0]);
-		
+
 	    drawDatasetTable();
-	
-		
+
+
 	//Fin Implementation
 	//Impact
 	//Fin Impact
-		
-		
+
+
 		//_.reduce(data.years, function(result, value, key){result[key:]},{});
 		//$("#grafica-modal").highcharts({
 		var $div_linechart = $("#grafica-modal");
@@ -707,8 +707,8 @@ function drawModal() {
 			$(".i-end ").text(selected_indicator_range_max);*/
 
 	//});
-	
-	
+
+
 	$(function () {
 		/**
 		 * Create a constructor for sparklines that takes some sensible defaults and merges in the individual
@@ -844,11 +844,11 @@ function drawModal() {
 				labels = labels.concat(stringlabels.split(','));
 				switch(stringsubindex){
 					case "readiness": 	  colums_color = subindex_colors[0];
-										  break; 
+										  break;
 					case "implementation":colums_color = subindex_colors[1];
-										  break; 
+										  break;
 					case "impact":        colums_color = subindex_colors[2];
-										  break; 
+										  break;
 				}
 
 				//var labels = new Function("return [" + stringlabels + "];")();
@@ -899,14 +899,14 @@ function drawModal() {
 			}
 		}
 		doChunk();
-	});    
+	});
 
 	//Agregamos los paises a comparar si tenemos paises
 	if(ctrIsoCompare.length != 0) {
         ctrIsoCompare.forEach(function(iso3c) {
             $.getJSON('json/odb_' + iso3c + '.json', function(data){
                 loaded_countries_data[iso3c] = data;
-                loaded_countries.push(iso3c);         
+                loaded_countries.push(iso3c);
                 //Este igual se puede quitar ya
                 //ctrIsoCompare.push(iso3c);
                 //-----
@@ -921,47 +921,30 @@ function drawModal() {
         });
     }
 
-    var a = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
-   //var b = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
-    var b = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map(function(value, key){ return{id:value.indicator,name:value.name}; }).value()
+    var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
+		var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
 
-    
-    // var test = _(loaded_countries_data['ESP'].years['2015'].observations)
-    // 	.filter(function(value,key){
-    // 		return a.contains(key);
-    // 	})
-    // 	//.map('value').sort().reverse().value();
-    // 	.map(function(value, key){ 
-    // 		//console.log(a[key]);
-    // 		var label = a[key] + value.value;
-    // 		return { label:value.value }; 
-    // 	}).value()
+		var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value()
+		var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value()
 
- 
-    	var orderNames = []
-		var valuesNames = _(loaded_countries_data['ESP'].years['2015'].observations)
-    	.filter(function(value,key){
-    		//console.log(b[0]["id"]);
-    		//console.log(key);
-	        if(a.contains(key)){
-	           //console.log(key)
-	           orderNames.push(key);
+		var selected_country = 'ESP';
+		var selected_year = '2015';
 
-	        }
-	        i++
-        	return a.contains(key);
-    	})
-    	//.map('value').sort().reverse().value();
-    	.map('value').value();
+		//IMPACT,
+		console.log ("---------IMPACT-------------");
+		$.each(impact_indicators, function (index,indicator) {
+			  console.log("INDICATOR: "+indicator);
+				console.log("NAME: "+impact_name[index]);
+				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
 
-    	//console.log(b);
-
-    	orderNames.forEach(function(item,index) {
-		    console.log(item + " : " + valuesNames[index]);
 		});
+		//READLINESS
+    console.log ("---------READINESS-----------");
+		$.each(readiness_indicators, function (index,indicator) {
+				console.log("INDICATOR: "+indicator);
+				console.log("NAME: "+readiness_name[index]);
+				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
 
-		b.forEach(function(value,index) {
-		    console.log(value.id+" : "+value.name);
 		});
 
 }
@@ -977,7 +960,7 @@ function drawModalCountryComp (idISO,intro) {
     // console.log(idISO);
     // console.log(_.filter(table_data, {iso3:idISO}));
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
-	
+
 	var $end = $cloned.removeClass('country-item-cloned'),
 	$end = $cloned.removeClass('hddn'),
 	$end = $cloned.attr("data-id",idISO),
@@ -989,15 +972,15 @@ function drawModalCountryComp (idISO,intro) {
 		$end = $cloned.find("span.ca-h-indicator-init").text(selected_indicator_range_min),
 		$end = $cloned.find("span.ca-h-indicator-end").text(selected_indicator_range_max),
 	$end = $cloned.find("div.ca-h-indicator-progress").css("width",indicator_percentage+"%");
-	$graph = $cloned.find("div.grafica-modal-compare");  
-	
-	
+	$graph = $cloned.find("div.grafica-modal-compare");
+
+
 	owl.trigger('add.owl.carousel', $cloned,rmItemCount);
 	owl.trigger('refresh.owl.carousel');
 	if(intro == 1) {
 		owl.trigger('to.owl.carousel',(rmItemCount-1),[300]);
 	}
-    
+
     drawNewCountryChart(idISO);
 //});
 }
@@ -1008,7 +991,7 @@ function addCountrySpider() {
 	//alert(isoCountry);
 
 	country_data_add = _.filter(table_data, {iso3:loaded_countries[carousel_current_country]});
-		
+
 		//Generamos la serie
 		//console.log("add polar to "+country_data_add[0].name);
 
@@ -1027,7 +1010,7 @@ function addCountrySpider() {
 
 
 $(document).ready(function() {
- 	
+
 var year = getUrlVars()["_year"];
 var indicator = getUrlVars()["indicator"];
 var region = getUrlVars()["region"];
@@ -1086,7 +1069,7 @@ $(".cbtn-search-home-select").on("click", function(){
     //var option = $(this).parent().parent().find("option:selected").val();
     refreshData();
 });
-    
+
 $(function () {
 //INICIO CARGA DE DATOS
 
@@ -1108,7 +1091,7 @@ $.getJSON('json/odb_' + selected_year + '.json', function (data) {
         var current_country = _.find(window.countries, {iso3:iso3});
         if(area["ODB"] != null){
             if(selected_year>=2015){
-                return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]}; 
+                return {name:current_country.name, selected_indicator_value:area[selected_indicator].value, selected_indicator_rank:area[selected_indicator].rank, selected_indicator_range_max:selected_indicator_range_max, selected_indicator_range_min:selected_indicator_range_min, odb:area["ODB"].value, odb_rank:area["ODB"].rank, odb_rank_change:area["ODB"].rank_change, readiness:area["READINESS"].value, implementation:area["IMPLEMENTATION"].value, impact:area["IMPACT"].value, iso2:current_country.iso2, iso3:current_country.iso3, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name, readiness_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value], implementation_data:[area["INNOVATION"].value, area["SOCIAL_POLICY"].value, area["ACCOUNTABILITY"].value], impact_data:[area["POLITICAL"].value, area["SOCIAL"].value, area["ECONOMIC"].value], readiness_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name], implementation_data_labels:[_.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name], impact_data_labels:[_.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name], components_data:[area["GOVERNMENT_POLICIES"].value, area["GOVERNMENT_ACTION"].value, area["REGULATORY_AND_CIVIL"].value, area["BUSINESS_AND_ENTREPRENEURSHIP"].value,area["INNOVATION"].value,area["SOCIAL_POLICY"].value,area["ACCOUNTABILITY"].value,area["POLITICAL"].value,area["SOCIAL"].value, area["ECONOMIC"].value], components_data_labels:[_.find(window.indicators, {indicator:"GOVERNMENT_POLICIES"}).name, _.find(window.indicators, {indicator:"GOVERNMENT_ACTION"}).name, _.find(window.indicators, {indicator:"REGULATORY_AND_CIVIL"}).name, _.find(window.indicators, {indicator:"BUSINESS_AND_ENTREPRENEURSHIP"}).name, _.find(window.indicators, {indicator:"INNOVATION"}).name, _.find(window.indicators, {indicator:"SOCIAL_POLICY"}).name, _.find(window.indicators, {indicator:"ACCOUNTABILITY"}).name, _.find(window.indicators, {indicator:"POLITICAL"}).name, _.find(window.indicators, {indicator:"SOCIAL"}).name, _.find(window.indicators, {indicator:"ECONOMIC"}).name]};
                 /*readiness_data:{policies:area["GOVERNMENT_POLICIES"].value, action:area["GOVERNMENT_ACTION"].value, civil:area["REGULATORY_AND_CIVIL"].value, business:area["BUSINESS_AND_ENTREPRENEURSHIP"].value}, implementation_data:{innovation:area["INNOVATION"].value, social:area["SOCIAL_POLICY"].value, accountability:area["ACCOUNTABILITY"].value}, impact_data:{political:area["POLITICAL"].value, social:area["SOCIAL"].value, economic:area["ECONOMIC"].value}};*/
             }
             else{
@@ -1130,7 +1113,7 @@ $('#cinput-table-search').keyup(function(){
 
 var filter_applied = new Object;
 if(region!=0) filter_applied.region_iso3 = region;
-if(income!=0){ 
+if(income!=0){
     switch(income){
         case "1":filter_applied.income = "Lower middle income";
                break;
@@ -1141,7 +1124,7 @@ if(income!=0){
         case "4":filter_applied.income = "Upper middle income";
                break;
     }
-}		
+}
 if(hdirate!=0){
     switch(hdirate){
         case "1":filter_applied.hdi = "Low";
@@ -1153,7 +1136,7 @@ if(hdirate!=0){
         case "4":filter_applied.hdi = "Very High";
                break;
 }
-}	
+}
 if(G20 == 1){filter_applied.g20 = 1};
 if(G7 == 1){filter_applied.g7 = 1};
 if(OECD == 1){filter_applied.oecd = 1};
@@ -1178,8 +1161,8 @@ var table = $('#table-data').DataTable({
     //     searchPlaceholder: "Search country ..."
     // }
 });
-    
-    
+
+
 map_data = _(data.areas)
 .map(function(area, iso3){
     if(area[selected_indicator] != null){
@@ -1191,15 +1174,15 @@ map_data = _(data.areas)
 
 number_of_countries = map_data.length - 1; //(-1 por las estadísticas)
 selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)/100;
-    
-    
-    
+
+
+
 //SI RECIBIMOS PARÁMETROS DE PAÍSES CARGADOS EN LA URL ABRIMOS LA MODAL
     // if(ctrIsoCompare.length != 0) {
     //     ctrIsoCompare.forEach(function(iso3c) {
     //         $.getJSON('json/odb_' + iso3c + '.json', function(data){
     //             loaded_countries_data[iso3c] = data;
-    //             loaded_countries.push(iso3c);         
+    //             loaded_countries.push(iso3c);
     //             //Este igual se puede quitar ya
     //             //ctrIsoCompare.push(iso3c);
     //             //-----
@@ -1215,8 +1198,8 @@ selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)
     //             //window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
     //         });
     //     });
-    // }        
-    
+    // }
+
 //$("#ranking-indicator-title").text(selected_indicator_name);
 
 //FIN CARGA DE DATOS
@@ -1356,11 +1339,11 @@ var time = +new Date(),
         labels = labels.concat(stringlabels.split(','));
         switch(stringsubindex){
             case "readiness": 	  colums_color = subindex_colors[0];
-                                  break; 
+                                  break;
             case "implementation":colums_color = subindex_colors[1];
-                                  break; 
+                                  break;
             case "impact":        colums_color = subindex_colors[2];
-                                  break; 
+                                  break;
         }
 
         //var labels = new Function("return [" + stringlabels + "];")();
@@ -1417,7 +1400,7 @@ doChunk();
 //FIN GENERACIÓN DE SPARKLINES
 
 function pointClick() {
-//alert("Pais: "+this.name+ " | D.Población: "+this.value); 
+//alert("Pais: "+this.name+ " | D.Población: "+this.value);
 
 if(!$(".modal-data").is(".modal-data-visible")) {
     $(".modal-data").addClass("modal-data-visible");
@@ -1449,7 +1432,7 @@ title: {
 tooltip: {
       //enabled:false,
       //name: 'Densidad de población',
-},  
+},
 legend: {
     title: {
         text: selected_indicator_name,
@@ -1489,7 +1472,7 @@ mapNavigation: {
             x: 20
         }
     }
-},	            
+},
 /*
     tooltip: {
         backgroundColor: 'none',
@@ -1646,19 +1629,19 @@ mapNavigation: {
 
 });
 });//FIN CARGA DE DATOS
-    
-    
-    
+
+
+
 	// function processAjaxData(response, urlPath){
 	//      document.getElementById("content").innerHTML = response.html;
 	//      document.title = response.pageTitle;
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
-    
+
 
 	$(document).delegate(".more-info","click", function(e){
-		
+
 		e.preventDefault();
 
 		var country = $(this).attr("data-iso");
@@ -1674,7 +1657,7 @@ mapNavigation: {
             setCountryDataset(country);
             //Solo necesitamos unos milisegundos
            	drawModal();
-            
+
         });
 	});
 
@@ -1717,7 +1700,7 @@ mapNavigation: {
 
             }
         }
-       
+
     };
 
     var options_modal = {
@@ -1758,7 +1741,7 @@ mapNavigation: {
 
             }
         }
-       
+
     };
 
     //Búsqueda general
@@ -1773,7 +1756,7 @@ mapNavigation: {
 	    placeholder: 'Choose...'
 	});
 
-	
+
     //##OWLCAROUSEL CONFIG
 	owl.owlCarousel();
 	var rmItemOwl = 0; //remove item owl carousel
@@ -1785,7 +1768,7 @@ mapNavigation: {
 			owl.trigger('refresh.owl.carousel');
 		}
         /*if(loaded_countries.length=2){
-            addCountrySpider(); 
+            addCountrySpider();
             console.log("llamo al spider desde el refreshed.owlcarousel");
         }*/
         if(loaded_countries.length!=0){drawDatasetTable();}
@@ -1796,7 +1779,7 @@ mapNavigation: {
 		//rmItemOwl = event.item.index;
 		rmItemCount = event.page.count;
         /*if(loaded_countries.length>1){
-            addCountrySpider(loaded_countries[carousel_current_country+1]); 
+            addCountrySpider(loaded_countries[carousel_current_country+1]);
             console.log("llamo al spider desde el changed.owlcarousel");
         }*/
         drawDatasetTable();
@@ -1804,29 +1787,29 @@ mapNavigation: {
 	});
 
 	owl.on('translated.owl.carousel', function(event) {
-		carousel_current_country = event.item.index + 1; 
+		carousel_current_country = event.item.index + 1;
         //console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
         addCountrySpider();
         drawDatasetTable();
 		//console.log("Estamos en:" + carousel_current_country);
 	});
 
-	
+
 
 
 	//añadir un país al carousel
 	$(".cbtn-md-add-country").on("click", function(e) {
-		
+
 		//Comprobamos que se haya seleccionado al menos un pais y que no esté ya en el carousel
 		var cont = 0;
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
-        
+
         if(loaded_countries.contains(idAddCtr)) {
 			alert("This country has already been selected");
 			return false;
 		}
-        
+
 		if($("#cinput-s-country-modal").val() =="" || $(this).attr("data-id")=="") {
 			msg = 1;
 			alert("Please select a country");
@@ -1870,18 +1853,18 @@ mapNavigation: {
 		var ncountry = $(".owl-stage").find(".country-area-empty").length;
 
 		if(ncountry == 1) {
-			owl.trigger('remove.owl.carousel', 0); 
+			owl.trigger('remove.owl.carousel', 0);
 		}
 
-		 
-        
+
+
         //Limpiamos el formulario
             $(this).attr("data-id","");
             $("#cinput-s-country-modal").val("");
 		// if (raw_URL.indexOf("&comparew=") === -1) {
-		//  
+		//
 		// }
-            
+
            // drawDatasetTable();
 	})
 
@@ -1892,7 +1875,7 @@ mapNavigation: {
 	   	//Borramos el item del carousel, antes averiguamos cual es:
 	   	var rmItemOwl = $(".owl-stage").find("div.country-item[data-id='"+$(this).attr("data-id")+"']").parent().index();
 	   	//console.log("Borramos el item: "+rmItemOwl);
-        
+
         var currentCountryIso3 = loaded_countries[carousel_current_country];
         //console.log("borrando " + currentCountryIso3)
         //console.log("carousel_current_country: " + carousel_current_country);
@@ -1915,8 +1898,8 @@ mapNavigation: {
         //console.log("cargando " + currentCountryIso3)
         addCountrySpider();
         drawDatasetTable();
-		
-		
+
+
 		var ctrURL = getUrlVars()["comparew"];
 		var stringToArray = ctrURL.split(",");
 
@@ -1926,8 +1909,8 @@ mapNavigation: {
 		});
         //Refrescamos el array existente donde se añaden
         ctrIsoCompare = stringToArray;
-		
-        
+
+
 
 		arrToString = stringToArray.join(",");
 
@@ -1939,7 +1922,7 @@ mapNavigation: {
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
 			ctrIsoCompare = [];
 		}
-        
+
 		// ctrIsoCompareRw = jQuery.grep(ctrIsoCompareRw, function(value) {
 		//   return value != removeItem;
 		// });
@@ -1947,7 +1930,7 @@ mapNavigation: {
 
 
 
-	
+
 
 
 	//Prueba de iconos de ayuda en cabecera de tabla
@@ -1971,7 +1954,7 @@ mapNavigation: {
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
 			window.history.pushState("", "ODB, Open Data Barometer",current_URL);
-		   
+
 		    //Reiniciamos la variables:
 		    ctrIsoCompare = [];
 		    current_URL_OM = window.location.href+'&open=';
@@ -2025,18 +2008,18 @@ mapNavigation: {
 
 
 	//Preproceso para el json de barras y paises
-	var processed_json = new Array(); 
+	var processed_json = new Array();
 
 	$(".modal-data").on("click", function(){
 		$(this).removeClass("modal-data-visible");
 	});
-	
+
 	function drawTable(data){
 		//seleccionar #table-data -> tbody
 		//For each object in data
 		var current_row = "";
 		var my_table = $("#table-data tbody");
-		
+
 		var rank_change;
 
 
@@ -2063,7 +2046,7 @@ mapNavigation: {
 				var odbPrint = data[i].odb;
 			}
 
-			current_row = current_row + '<tr>' +	
+			current_row = current_row + '<tr>' +
 			'<td class="ct-td txt-al p-left-l">' +
 					'<span class="flag"><img src="img/flags/' + data[i].iso2 + '.svg" class="img-responsive"></span>' +
 					'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
@@ -2078,7 +2061,7 @@ mapNavigation: {
 		}
 		//(current_row);
 		//$("#table-data body").html(current_row);
-		my_table.append(current_row);		
+		my_table.append(current_row);
 
 		var openModal = getUrlVars()["open"];
 		if(openModal!=undefined || openModal!="") {
