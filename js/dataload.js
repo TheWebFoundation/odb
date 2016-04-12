@@ -35,6 +35,7 @@
 	var loaded_countries = [];
     var loaded_countries_data = {}; //Objeto que contiene los datos de los países por iso3, cargado de json/odb_ISO3.json para cada país.
     var carousel_current_country = 0;
+    var year;
 
 Array.prototype.remove = function() {
     //Añado el método remove a la clase Array para borrar posiciones de un array por su valor.
@@ -172,8 +173,9 @@ Array.prototype.contains = function(obj) {
 
 
 	function refreshData() {
-		var year=2015,indicator="",region="",income="",hdirate="";
-		if($("#syear").val()!=0) var year = '?_year='+$("#syear").val();
+		year=2015;
+		var indicator="",region="",income="",hdirate="";
+		if($("#syear").val()!=0)year = '?_year='+$("#syear").val();
 		if($("#sindicator").val()!=0) var indicator = '&indicator='+$("#sindicator").val();
 		if($("#sregion").val()!=0) var region = '&region='+$("#sregion").val();
 		if($("#sincome").val()!=0) var income = '&income='+$("#sincome").val();
@@ -506,6 +508,58 @@ function drawDatasetTable(){
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		})
+}
+
+
+function drawIndicatorsTableModal(Sindicator,op){
+	
+	console.log("year: "+year+" country base: "+loaded_countries[0]);
+
+	
+
+   	var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
+	var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
+
+	var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value()
+	var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value()
+
+	var selected_year = year;
+	if(op==0) {
+		var selected_country = loaded_countries[0] //'ESP';
+	}else{
+		var selected_country = loaded_countries[carousel_current_country]
+	}
+	
+	var cdata = _.filter(table_data, {iso3:selected_country});
+	
+	switch(Sindicator) {
+	
+		case "impact":
+			var header = '<span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span>';
+			$("#cm-tb-read-country").html(header);
+			//IMPACT,
+			console.log ("---------IMPACT-------------");
+			$.each(impact_indicators, function (index,indicator) {
+				console.log("INDICATOR: "+indicator);
+				console.log("NAME: "+impact_name[index]);
+				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
+			});
+			break;
+		case "readliness":
+			//READLINESS
+			console.log ("---------READINESS-----------");
+			$.each(readiness_indicators, function (index,indicator) {
+				console.log("INDICATOR: "+indicator);
+				console.log("NAME: "+readiness_name[index]);
+				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
+			});
+			break;
+	}	
+	
+
+
+
+
 }
 
 function drawModal() {
@@ -921,32 +975,6 @@ function drawModal() {
         });
     }
 
-    var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
-		var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
-
-		var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value()
-		var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value()
-
-		var selected_country = 'ESP';
-		var selected_year = '2015';
-
-		//IMPACT,
-		console.log ("---------IMPACT-------------");
-		$.each(impact_indicators, function (index,indicator) {
-			  console.log("INDICATOR: "+indicator);
-				console.log("NAME: "+impact_name[index]);
-				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
-
-		});
-		//READLINESS
-    console.log ("---------READINESS-----------");
-		$.each(readiness_indicators, function (index,indicator) {
-				console.log("INDICATOR: "+indicator);
-				console.log("NAME: "+readiness_name[index]);
-				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
-
-		});
-
 }
 
 
@@ -1011,7 +1039,7 @@ function addCountrySpider() {
 
 $(document).ready(function() {
 
-var year = getUrlVars()["_year"];
+year = getUrlVars()["_year"];
 var indicator = getUrlVars()["indicator"];
 var region = getUrlVars()["region"];
 var income = getUrlVars()["income"];
@@ -1399,80 +1427,76 @@ doChunk();
 });
 //FIN GENERACIÓN DE SPARKLINES
 
-function pointClick() {
-//alert("Pais: "+this.name+ " | D.Población: "+this.value);
-
-if(!$(".modal-data").is(".modal-data-visible")) {
-    $(".modal-data").addClass("modal-data-visible");
-    $(".data-ciudad").html(this.name+" ("+this.code+")");
-    $(".data-poblacion").html(this.value);
-}else{
-    $(".data-ciudad").html(this.name+" ("+this.code+")");
-    $(".data-poblacion").html(this.value);
+function openModalMap() {
+	//alert(this.code);
+	$("#table-data tbody a[data-iso='"+this.code+"']").trigger("click");
 }
 
+function openModalBars() {
+	//alert("click: "+this.iso3);
+	$("#table-data tbody a[data-iso='"+this.iso3+"']").trigger("click");
 }
 
 // GENERACIÓN DEL MAPA
 
 $('#wrapper-map').highcharts('Map', {
-//series: [{
-//	mapData: window.worldMap
-//}],
-credits: {
-    enabled:false
-},
-chart: {
-    backgroundColor: 'transparent',
-    margin: 0
-},
-title: {
-    text: ''
-},
-tooltip: {
-      //enabled:false,
-      //name: 'Densidad de población',
-},
-legend: {
-    title: {
-        text: selected_indicator_name,
-        style: {
-            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-        }
-    }
-},
-mapNavigation: {
-    enabled: true,
-    buttonOptions: {
-        theme: {
-            fill: 'white',
-            'stroke-width': 0,
-            stroke: 'silver',
-            r: 0,
-            states: {
-                hover: {
-                    fill: '#79B042'
-                },
-                select: {
-                    stroke: '#039',
-                    fill: '#bada55'
-                }
-            }
-        },
-        verticalAlign: 'bottom'
-    },
-    enableMouseWheelZoom: false,
-    buttons: {
-        zoomIn: {
-            y:-25,
-            x: 20
-        },
-        zoomOut: {
-            y: 5,
-            x: 20
-        }
-    }
-},
+	//series: [{
+	//	mapData: window.worldMap
+	//}],
+	credits: {
+	    enabled:false
+	},
+	chart: {
+	    backgroundColor: 'transparent',
+	    margin: 0
+	},
+	title: {
+	    text: ''
+	},
+	tooltip: {
+	      //enabled:false,
+	      //name: 'Densidad de población',
+	},
+	legend: {
+	    title: {
+	        text: selected_indicator_name,
+	        style: {
+	            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+	        }
+	    }
+	},
+	mapNavigation: {
+	    enabled: true,
+	    buttonOptions: {
+	        theme: {
+	            fill: 'white',
+	            'stroke-width': 0,
+	            stroke: 'silver',
+	            r: 0,
+	            states: {
+	                hover: {
+	                    fill: '#79B042'
+	                },
+	                select: {
+	                    stroke: '#039',
+	                    fill: '#bada55'
+	                }
+	            }
+	        },
+	        verticalAlign: 'bottom'
+	    },
+	    enableMouseWheelZoom: false,
+	    buttons: {
+	        zoomIn: {
+	            y:-25,
+	            x: 20
+	        },
+	        zoomOut: {
+	            y: 5,
+	            x: 20
+	        }
+	    }
+	},
 /*
     tooltip: {
         backgroundColor: 'none',
@@ -1507,7 +1531,7 @@ mapNavigation: {
         },
         point: {
             events: {
-                //click: pointClick
+                click: openModalMap
             }
         }
     }]
@@ -1617,6 +1641,11 @@ mapNavigation: {
                 fontSize: '8px',
                 fontFamily: 'Arial, sans-serif'
             }
+        },
+        point: {
+            events: {
+                click: openModalBars
+            }
         }
     }]/*,
     plotOptions: {
@@ -1684,7 +1713,8 @@ mapNavigation: {
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
-                $(".cbtn-search-home-input").attr("data-id",selectedItemId);
+                $("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
+                //$(".cbtn-search-home-input").attr("data-id",selectedItemId);
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID1: "+selectedItemId);
 
@@ -1724,8 +1754,9 @@ mapNavigation: {
             maxNumberOfElements: 10,
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
-                var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
-                $(".cbtn-md-add-country").attr("data-id",selectedItemId);
+                var selectedItemModalId = $(".cmodal .easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
+                $(".cbtn-md-add-country").attr("data-id",selectedItemModalId);
+                $(".cbtn-md-add-country").click();
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID2: "+selectedItemId);
 
@@ -1749,6 +1780,18 @@ mapNavigation: {
     //Búsqueda en modal
     $("#cinput-s-country-modal").easyAutocomplete(options_modal);
 
+
+    //Aperturas y cierres de los tabs de los indicadores en los modales
+    $(".gci-mnu-item").on("click", function(){
+    	var idAcc = $(this).attr("data-id");
+    	$("ul.gci-mnu").find("li.gci-mnu-item-ac").removeClass("gci-mnu-item-ac");
+    	$(this).addClass("gci-mnu-item-ac");
+    	$("div.gci-content").removeClass("cgi-c-open");
+    	$("div[data-mdin='"+idAcc+"']").addClass("cgi-c-open");
+    	if(idAcc != "implementation"){
+    		drawIndicatorsTableModal(idAcc,0);
+    	}
+    })
 
 
     //Iniciamos el dropdown con checbox...
@@ -1805,8 +1848,10 @@ mapNavigation: {
 		var msg = 0;
 		var idAddCtr = $(this).attr("data-id");
 
+		console.log("test: "+idAddCtr);
+
         if(loaded_countries.contains(idAddCtr)) {
-			alert("This country has already been selected");
+			alert("This country has already been selected here");
 			return false;
 		}
 
@@ -2027,13 +2072,15 @@ mapNavigation: {
 
 			//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
             rank_change = data[i].odb_rank_change;
-
+            //console.log("Rank change: "+data[i].odb_rank_change);
 			if(rank_change<0){
 				var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
 			}else{
 				var rank_print = '<span class="arrow-up"></span> ' + rank_change;
 				if (rank_change == 0) {
 					rank_print = rank_change; //'<span class="txt-xs c-g40">NA</span>';
+				}else{
+					rank_print = '<span class="txt-xs c-g40">NA</span>';
 				}
 			}
 

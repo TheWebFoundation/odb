@@ -1280,13 +1280,22 @@ table.dataTable thead .sorting_desc::after {
   color: #000;
 }
 
-/*.gci-content {
-	max-height: 120px;
-	overflow-y:scroll;
-	transition: max-height 1s ease-in;
-	background-color: $ccontrast;
-}*/
-/* line 289, ../sass/_m-modal-detail.scss */
+/* line 282, ../sass/_m-modal-detail.scss */
+.gci-content {
+  /*	max-height: 120px;
+  	overflow-y:scroll;
+  	transition: max-height 1s ease-in;
+  	background-color: $ccontrast;*/
+  min-height: 120px;
+  display: none;
+}
+
+/* line 291, ../sass/_m-modal-detail.scss */
+.gci-content.cgi-c-open {
+  display: block;
+}
+
+/* line 295, ../sass/_m-modal-detail.scss */
 .cgi-c-expanded {
   max-height: 100%;
   position: absolute;
@@ -1296,24 +1305,24 @@ table.dataTable thead .sorting_desc::after {
   z-index: 100;
 }
 
-/* line 300, ../sass/_m-modal-detail.scss */
+/* line 306, ../sass/_m-modal-detail.scss */
 .cth-md, .ctd-md {
   padding: 0.5em 0.5em;
 }
 
-/* line 304, ../sass/_m-modal-detail.scss */
+/* line 310, ../sass/_m-modal-detail.scss */
 .ctd-md {
   border-left: 1px solid #f0f0f0;
 }
 
-/* line 308, ../sass/_m-modal-detail.scss */
+/* line 314, ../sass/_m-modal-detail.scss */
 .data-i {
   display: inline-block;
   padding: 2px 4px;
   border-radius: 3px;
 }
 
-/* line 314, ../sass/_m-modal-detail.scss */
+/* line 320, ../sass/_m-modal-detail.scss */
 .data-i-round {
   display: inline-block;
   width: 14px;
@@ -1321,16 +1330,17 @@ table.dataTable thead .sorting_desc::after {
   border-radius: 50em;
 }
 
-/* line 321, ../sass/_m-modal-detail.scss */
+/* line 327, ../sass/_m-modal-detail.scss */
 .data-i-comp {
   background-color: #B8E986;
 }
 
-/* line 325, ../sass/_m-modal-detail.scss */
+/* line 331, ../sass/_m-modal-detail.scss */
 .data-i-incomp {
   background-color: #FF8787;
 }
 
+/* line 335, ../sass/_m-modal-detail.scss */
 .data-i-updated {
   background-color: #F8E71C;
 }

@@ -461,47 +461,96 @@
                         
                     <div class="mnu-c-ind">
                         <ul class="gci-mnu list-inl no-m-bottom">
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-readliness uppc txt-s">Readliness</li>
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-implementation uppc txt-s gci-mnu-item-ac">Implementation <a href="#" class="cbtn-expand-table">Expand</a></li>
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-impact txt-s uppc">Impact</li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-readliness uppc txt-s gci-mnu-item-ac" data-id="readliness">Readliness</li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-implementation uppc txt-s" data-id="implementation">Implementation <a href="#" class="cbtn-expand-table">Expand</a></li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-impact txt-s uppc" data-id="impact">Impact</li>
                         </ul>
                     </div>
 
-                    <div class="gci-content gci-c-readliness">
-                        
+                    <div class="gci-content gci-c-readliness cgi-c-open" data-mdin="readliness">
                         <div class="table-responsive">
-
-                            <table id="cm-table-implementation" class="w100">
+                            <table id="cm-table-readliness" class="w100"> 
+                                <thead>
+                                    <tr class="cb-bottom-2">
+                                        <th class="cth-md uppc txt-s c-g40 fwlight" ></th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit1</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit2</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit3</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit4</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit5</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit6</th>
+                                    </tr>
+                                </thead>
                                 
-              
-
-                            </table>
-
-
-                            <table class="w100">
                                 <tbody>
-                                    <tr>
-                                        
-                                        
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md" id="cm-tb-read-country">Country1</td>
+                                        <td class="ctd-md txt-c">val1</td>
+                                        <td class="ctd-md txt-c">val2</td>
+                                        <td class="ctd-md txt-c">val3</td>
+                                        <td class="ctd-md txt-c">val4</td>
+                                        <td class="ctd-md txt-c">val5</td>
+                                        <td class="ctd-md txt-c">val6</td>
                                     </tr>
 
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md">Country2</td>
+                                        <td class="ctd-md txt-c">val1</td>
+                                        <td class="ctd-md txt-c">val2</td>
+                                        <td class="ctd-md txt-c">val3</td>
+                                        <td class="ctd-md txt-c">val4</td>
+                                        <td class="ctd-md txt-c">val5</td>
+                                        <td class="ctd-md txt-c">val6</td>
+                                    </tr>
                                 </tbody>
-
                             </table>
-
                         </div> <!-- end table resonsive -->
-
-
                     </div>
 
-                    <div class="gci-content gci-c-implementation">
-
-
+                    <div class="gci-content gci-c-implementation" data-mdin="implementation">
+                        <div class="table-responsive">
+                            <table id="cm-table-implementation" class="w100"> </table>
+                        </div> <!-- end table resonsive -->
                     </div>
 
-                    <div class="gci-content gci-c-impact">
+                    <div class="gci-content gci-c-impact" data-mdin="impact">
+                        <div class="table-responsive">
+                            <table id="cm-table-impact" class="w100"> 
+                                <thead>
+                                    <tr class="cb-bottom-2">
+                                        <th class="cth-md uppc txt-s c-g40 fwlight">Country</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit1</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit2</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit3</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit4</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit5</th>
+                                        <th class="cth-md txt-c uppc txt-s">Tit6</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md">Country1</td>
+                                        <td class="ctd-md txt-c">val1</td>
+                                        <td class="ctd-md txt-c">val2</td>
+                                        <td class="ctd-md txt-c">val3</td>
+                                        <td class="ctd-md txt-c">val4</td>
+                                        <td class="ctd-md txt-c">val5</td>
+                                        <td class="ctd-md txt-c">val6</td>
+                                    </tr>
 
-
+                                    <tr class="cb-bottom-lh">
+                                        <td class="ctd-md">Country2</td>
+                                        <td class="ctd-md txt-c">val1</td>
+                                        <td class="ctd-md txt-c">val2</td>
+                                        <td class="ctd-md txt-c">val3</td>
+                                        <td class="ctd-md txt-c">val4</td>
+                                        <td class="ctd-md txt-c">val5</td>
+                                        <td class="ctd-md txt-c">val6</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- end table resonsive -->
                     </div>
             
                 </div>

@@ -279,12 +279,18 @@
 	color:$c-g100;
 }
 
-/*.gci-content {
-	max-height: 120px;
+.gci-content {
+/*	max-height: 120px;
 	overflow-y:scroll;
 	transition: max-height 1s ease-in;
-	background-color: $ccontrast;
-}*/
+	background-color: $ccontrast;*/
+	min-height: 120px;
+	display: none;
+}
+
+.gci-content.cgi-c-open {
+	display: block;;
+}
 
 .cgi-c-expanded {
 	max-height: 100%;
