@@ -1622,6 +1622,70 @@ table.dataTable thead .sorting_desc::after {
   color: #CB97F9;
 }
 
+/* ## MODAL COMPARTIR ## */
+/* line 239, ../sass/_m-generales.scss */
+.cmodal-addons {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .6s ease-out;
+}
+@media (min-width: 768px) {
+  /* line 239, ../sass/_m-generales.scss */
+  .cmodal-addons {
+    /* width: 90%; */
+  }
+}
+
+/* line 265, ../sass/_m-generales.scss */
+.cmodal-a-share-open {
+  background-color: rgba(255, 255, 255, 0.8);
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 271, ../sass/_m-generales.scss */
+.cmodal-addns-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -42px;
+  margin-left: -160px;
+  padding: 10px 0px;
+}
+
+/* line 280, ../sass/_m-generales.scss */
+.share-item {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  transition: all .3s ease-out;
+}
+
+/* line 288, ../sass/_m-generales.scss */
+.share-item:hover {
+  transform: scale(1.2, 1.2);
+}
+
+/* line 292, ../sass/_m-generales.scss */
+.close-cmodal-share {
+  display: block;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
 /* line 3, ../sass/_m-formularios.scss */
 .cbtn, .ctn-icon {
   display: inline-block;

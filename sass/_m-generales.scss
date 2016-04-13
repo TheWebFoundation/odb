@@ -234,3 +234,71 @@
 }
 
 
+/* ## MODAL COMPARTIR ## */
+
+.cmodal-addons {
+	position:fixed;
+	top:50%;
+	left:50%;
+
+	width: 100%;
+	height: 100%;
+	
+	z-index: 50;
+
+	transform:translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	
+	
+	background-color: rgba(255,255,255,1);
+	opacity: 0;
+	visibility: hidden;
+	
+	transition: all .6s ease-out;
+
+	@include modular-mq(sm) {
+		/* width: 90%; */
+	}
+
+}
+
+.cmodal-a-share-open {
+	background-color: rgba(255,255,255,0.8);
+	visibility: visible;
+	opacity: 1;
+}
+
+.cmodal-addns-content {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	margin-top: -42px;
+	margin-left: -160px;
+	padding: 10px 0px;
+}
+
+.share-item {
+	display: inline-block;
+	width: 64px;
+	height:64px;
+	overflow: hidden;
+	transition: all .3s ease-out;
+}
+
+.share-item:hover {
+	transform:scale(1.2,1.2);
+}
+
+.close-cmodal-share {
+	display: block;
+	width: 64px;
+	height: 64px;
+	
+	position: absolute;
+	top:40px;
+	right: 40px;
+	
+}
+
+
+
