@@ -113,16 +113,16 @@ Array.prototype.contains = function(obj) {
 	    };
 
 
-	var current_URL = window.location.href;
+	var base_URL = window.location.href;
 
-	if (current_URL.indexOf("&open") !== -1) {
-		current_URL = current_URL.substring(0, current_URL.lastIndexOf("&open"));
-		//console.log("URL actual: "+current_URL);
+	if (base_URL.indexOf("&open") !== -1) {
+		base_URL = base_URL.substring(0, base_URL.lastIndexOf("&open"));
+		//console.log("URL actual: "+base_URL);
 	}
 
-	if (current_URL.indexOf("?_year") === -1) {
-		current_URL = current_URL+'?_year=2015&indicator=ODB';
-		//console.log("URL actual: "+current_URL);
+	if (base_URL.indexOf("?_year") === -1) {
+		base_URL = base_URL+'?_year=2015&indicator=ODB';
+		//console.log("URL actual: "+base_URL);
 	}
 
 
@@ -131,13 +131,14 @@ Array.prototype.contains = function(obj) {
 	var countriesURL = getUrlVars()["comparew"];
 	if(countriesURL !== undefined){
 		var ctrIsoCompare = countriesURL.split(",");
+		//var base_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open=';
 		//var fullURL =  window.location.href;
-		//var current_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open=';
-		var current_URL_OM = current_URL.substring(0, current_URL.lastIndexOf("&open"))+'&open=';
+		//var base_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open=';
+		//var base_URL_OM = base_URL.substring(0, base_URL.lastIndexOf("&open"))+'&open=';
 	}else{
 		var ctrIsoCompare = [];
-		//var current_URL_OM = window.location.href+'&open='; //current url con la modal abierta
-		var current_URL_OM = current_URL+'&open='; //current url con la modal abierta
+		//var base_URL_OM = window.location.href+'&open='; //current url con la modal abierta
+		//var base_URL_OM = base_URL+'&open='; //current url con la modal abierta
 	}
 
 	//Iniciamos el carousel
@@ -366,7 +367,7 @@ function drawNewCountryChart(idISO){
             borderWidth: 0
         },
         series: [{
-            name: 'Readliness',
+            name: 'Readiness',
             data: new_country_readiness_series,
             color:'#F1C40F'
 	        }, {
@@ -511,57 +512,6 @@ function drawDatasetTable(){
 }
 
 
-function drawIndicatorsTableModal(Sindicator,op){
-	
-	console.log("year: "+year+" country base: "+loaded_countries[0]);
-
-	
-
-   	var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value()
-	var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value()
-
-	var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value()
-	var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value()
-
-	var selected_year = year;
-	if(op==0) {
-		var selected_country = loaded_countries[0] //'ESP';
-	}else{
-		var selected_country = loaded_countries[carousel_current_country]
-	}
-	
-	var cdata = _.filter(table_data, {iso3:selected_country});
-	
-	switch(Sindicator) {
-	
-		case "impact":
-			var header = '<span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span>';
-			$("#cm-tb-read-country").html(header);
-			//IMPACT,
-			console.log ("---------IMPACT-------------");
-			$.each(impact_indicators, function (index,indicator) {
-				console.log("INDICATOR: "+indicator);
-				console.log("NAME: "+impact_name[index]);
-				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
-			});
-			break;
-		case "readliness":
-			//READLINESS
-			console.log ("---------READINESS-----------");
-			$.each(readiness_indicators, function (index,indicator) {
-				console.log("INDICATOR: "+indicator);
-				console.log("NAME: "+readiness_name[index]);
-				console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
-			});
-			break;
-	}	
-	
-
-
-
-
-}
-
 function drawModal() {
 	country_data = _.filter(table_data, {iso3:loaded_countries[0]});
     //console.log(loaded_countries[0]);
@@ -608,7 +558,7 @@ function drawModal() {
 				'				<ul class="ilist overfh displayib ">'+
 				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb_rank + '</span></li>'+
 				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb + '</span></li>'+
-				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readliness</label>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readiness</label>'+
 				'						<span class="displayb m-s-top">'+
 				'							<span class="displayib" data-labels="' + country_data[0].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + country_data[0].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + country_data[0].readiness + '</span>'+
 				'						</span>'+
@@ -925,7 +875,8 @@ function drawModal() {
 					xAxis: {
 					   type: 'category',
 					   // minRange: 1,
-						categories: labels//countries,
+						categories: labels,//countries,
+						lineColor:colums_color
 						/*labels: {
 							enabled:false
 						}*/
@@ -973,8 +924,22 @@ function drawModal() {
                 owl.trigger('refresh.owl.carousel');
             });
         });
+
+
+    }else{
+    	var OwlIsEmpty = $("div.owl-item div.country-area-empty").length;
+    	if(OwlIsEmpty == 0) {
+    		owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+			owl.trigger('refresh.owl.carousel');
+		}
     }
 
+     
+     setTimeout(function(){
+     	 console.log(loaded_countries);
+     	 drawIndicatorsTableModal();
+     },750)
+    
 }
 
 
@@ -1034,6 +999,116 @@ function addCountrySpider() {
 	    //chart_clone = new Highcharts.Chart(polarOptions);
 }
 
+
+function drawIndicatorsTableModal(){
+	
+	//console.log("year: "+year+" country base: "+loaded_countries[0]);
+
+	var selected_year = year;
+
+	//Readiness
+	var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value();
+	var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value();
+	//Impact
+	var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value();
+	var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value();
+	
+	//Cargamos el country 0 - modal
+	var selected_country = loaded_countries[0];
+	var cdata = _.filter(table_data, {iso3:selected_country});
+	//Readiness
+	var thead_readiness = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	$.each(readiness_indicators, function (index,indicator) {
+		thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
+		tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+	});
+	$("table#cm-table-readliness thead tr").html(thead_readiness);
+	$("table#cm-table-readliness tbody tr:first").html(tbody_readiness);
+
+	//Impact
+	var thead_impact = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	$.each(impact_indicators, function (index,indicator) {
+		thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
+		tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+	});
+	$("table#cm-table-impact thead tr").html(thead_impact);
+	$("table#cm-table-impact tbody tr:first").html(tbody_impact);
+
+	//console.log("Countries: "+selected_country);
+
+	if(loaded_countries.length > 1) {
+		//Cargamos los datos del item actual del carousel
+		//console.log("aqui");
+		var selected_country = loaded_countries[carousel_current_country];
+		var cdata = _.filter(table_data, {iso3:selected_country});
+		console.log("Countries: "+selected_country);
+		//Readiness
+		var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		$.each(readiness_indicators, function (index,indicator) {
+			tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+		});
+		$("table#cm-table-readliness tbody tr:last").html(tbody_readiness_add);
+
+		//Impact
+		var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		$.each(impact_indicators, function (index,indicator) {
+			tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+		});
+		$("table#cm-table-impact tbody tr:last").html(tbody_impact_add);
+	}
+
+	//Reiniciamos tooltips
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+
+	// switch(Sindicator) {
+	// 	case "readiness":
+	// 		//READINESS
+	// 		console.log ("---------READINESS-----------");
+	// 		var thead = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	// 		var tbody = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	// 		$.each(readiness_indicators, function (index,indicator) {
+	// 			thead += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
+	// 			tbody += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+	// 			console.log("INDICATOR: "+indicator);
+	// 			console.log("NAME: "+readiness_name[index]);
+	// 			console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2));
+	// 		});
+	// 		$("table#cm-table-readliness thead tr").html(thead);
+	// 		if(op==0) {
+	// 			$("table#cm-table-readliness tbody tr:first").html(tbody);
+	// 			//$("table#cm-table-readliness tbody tr:last").html(tbody);
+	// 		}else{
+	// 			$("table#cm-table-readliness tbody tr:last").html(tbody);
+	// 		}
+	// 		break;
+	// 	case "impact":
+	// 		//IMPACT,
+	// 		console.log ("---------IMPACT-------------");
+	// 		var thead = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	// 		var tbody = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	// 		$.each(impact_indicators, function (index,indicator) {
+	// 			thead += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
+	// 			tbody += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+	// 			console.log("INDICATOR: "+indicator);
+	// 			console.log("NAME: "+impact_name[index]);
+	// 			console.log("VALUE: "+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value);
+	// 		});
+	// 		$("table#cm-table-impact thead tr").html(thead);
+	// 		if(op==0) {
+	// 			$("table#cm-table-impact tbody tr:first").html(tbody);
+	// 			//$("table#cm-table-readliness tbody tr:last").html(tbody);
+	// 		}else{
+	// 			$("table#cm-table-impact tbody tr:last").html(tbody);
+	// 		}
+	// 		break;
+		
+	//}
+
+}
 
 
 
@@ -1223,7 +1298,7 @@ selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)
     //             addCountrySpider();
     //             drawDatasetTable();
     //             //arrToString = ctrIsoCompare.join(",");
-    //             //window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+    //             //window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM+"&comparew="+arrToString);
     //         });
     //     });
     // }
@@ -1667,6 +1742,11 @@ $('#wrapper-map').highcharts('Map', {
 	//      window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
 	//  }
 
+	// No hace falta ya que al seleccionarlo se abre el pais
+	// $(".cbtn-search-home-input").on("click", function(){
+	// 	var isoCountry = $(this).attr("data-id");
+	// 	$("#table-data tbody a[data-iso='"+isoCountry+"']").trigger("click");
+	// });
 
 
 	$(document).delegate(".more-info","click", function(e){
@@ -1675,10 +1755,18 @@ $('#wrapper-map').highcharts('Map', {
 
 		var country = $(this).attr("data-iso");
 		loaded_countries.push(country);
-		current_URL_OM = current_URL_OM+country;
-		if(getUrlVars()["open"]==undefined) {
-			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+
+		if(getUrlVars()["open"]===undefined) {
+			base_URL_OM = base_URL+"&open="+country;
+			window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM);
+		}else{
+			base_URL_OM = base_URL+"&open="+country;
 		}
+
+		// base_URL_OM = base_URL_OM+country;
+		// if(getUrlVars()["open"]==undefined) {
+		// 	window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM);
+		// }
         //console.log(country);
         //cargo el json del primer país
         $.getJSON('json/odb_' + country + '.json', function(data){
@@ -1686,8 +1774,8 @@ $('#wrapper-map').highcharts('Map', {
             setCountryDataset(country);
             //Solo necesitamos unos milisegundos
            	drawModal();
-
         });
+
 	});
 
 
@@ -1788,9 +1876,6 @@ $('#wrapper-map').highcharts('Map', {
     	$(this).addClass("gci-mnu-item-ac");
     	$("div.gci-content").removeClass("cgi-c-open");
     	$("div[data-mdin='"+idAcc+"']").addClass("cgi-c-open");
-    	if(idAcc != "implementation"){
-    		drawIndicatorsTableModal(idAcc,0);
-    	}
     })
 
 
@@ -1809,6 +1894,8 @@ $('#wrapper-map').highcharts('Map', {
 		if(rmItemCount == 0) {
 			owl.trigger('add.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 			owl.trigger('refresh.owl.carousel');
+			$("table#cm-table-readliness tbody tr:last").html("");
+			$("table#cm-table-impact tbody tr:last").html("");
 		}
         /*if(loaded_countries.length=2){
             addCountrySpider();
@@ -1834,6 +1921,7 @@ $('#wrapper-map').highcharts('Map', {
         //console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
         addCountrySpider();
         drawDatasetTable();
+        drawIndicatorsTableModal();
 		//console.log("Estamos en:" + carousel_current_country);
 	});
 
@@ -1874,7 +1962,9 @@ $('#wrapper-map').highcharts('Map', {
 		}
 
 		e.preventDefault();
-		//console.log("Posicion: "+rmItemCount);
+		//console.log("URL current: "+base_URL);
+		//console.log("URL OM: "+base_URL_OM);
+		
 
         $.getJSON('json/odb_' + idAddCtr + '.json', function(data){
             loaded_countries.push(idAddCtr);
@@ -1887,21 +1977,20 @@ $('#wrapper-map').highcharts('Map', {
             addCountrySpider();
             drawDatasetTable();
             drawModalCountryComp(idAddCtr,1);
+            drawIndicatorsTableModal();	
             //Inyectamos los datos en la araña
             //addCountrySpider (idAddCtr);
 
             //Agregamos a la URL los componentes
             ctrIsoCompare.push(idAddCtr);
             arrToString = ctrIsoCompare.join(",");
-            window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+            window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM+"&comparew="+arrToString);
         });
 		var ncountry = $(".owl-stage").find(".country-area-empty").length;
 
 		if(ncountry == 1) {
 			owl.trigger('remove.owl.carousel', 0);
 		}
-
-
 
         //Limpiamos el formulario
             $(this).attr("data-id","");
@@ -1943,7 +2032,7 @@ $('#wrapper-map').highcharts('Map', {
         //console.log("cargando " + currentCountryIso3)
         addCountrySpider();
         drawDatasetTable();
-
+        drawIndicatorsTableModal();	
 
 		var ctrURL = getUrlVars()["comparew"];
 		var stringToArray = ctrURL.split(",");
@@ -1955,16 +2044,14 @@ $('#wrapper-map').highcharts('Map', {
         //Refrescamos el array existente donde se añaden
         ctrIsoCompare = stringToArray;
 
-
-
 		arrToString = stringToArray.join(",");
 
 		//console.log("long array: "+stringToArray.length);
 
 		if(stringToArray.length !== 0) {
-			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM+"&comparew="+arrToString);
+			window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM+"&comparew="+arrToString);
 		}else{
-			window.history.pushState("", "ODB, Open Data Barometer",current_URL_OM);
+			window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM);
 			ctrIsoCompare = [];
 		}
 
@@ -1998,16 +2085,18 @@ $('#wrapper-map').highcharts('Map', {
 			$(".cmodal-detail").removeClass("cmodal-detail-open");
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
-			window.history.pushState("", "ODB, Open Data Barometer",current_URL);
+			window.history.pushState("", "ODB, Open Data Barometer",base_URL);
 
 		    //Reiniciamos la variables:
 		    ctrIsoCompare = [];
-		    current_URL_OM = window.location.href+'&open=';
+		    base_URL_OM = window.location.href+'&open=';
 		   	loaded_countries = [];
 
 		    //Vaciamos el carousel
 		    owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 			owl.trigger('refresh.owl.carousel');
+			$("table#cm-table-readliness tbody tr:last").html("");
+			$("table#cm-table-impact tbody tr:last").html("");
 
 	   }
 
@@ -2023,16 +2112,18 @@ $('#wrapper-map').highcharts('Map', {
 				$(".cmodal-detail").removeClass("cmodal-detail-open");
 				$(".overlay").removeClass("overlay-open");
 				$("body").removeClass("noscroll");
-				window.history.pushState("", "ODB, Open Data Barometer",current_URL);
+				window.history.pushState("", "ODB, Open Data Barometer",base_URL);
 
 				//Reiniciamos la variables:
 			    ctrIsoCompare = [];
-			    current_URL_OM = window.location.href+'&open=';
+			    base_URL_OM = window.location.href+'&open=';
                 loaded_countries = [];
 
 			    //Vaciamos el carousel
 		    	owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
 				owl.trigger('refresh.owl.carousel');
+				$("table#cm-table-impact tbody tr:last").html("");
+				$("table#cm-table-readliness tbody tr:last").html("");
 			}
 		}
 	});
@@ -2093,9 +2184,10 @@ $('#wrapper-map').highcharts('Map', {
 				var odbPrint = data[i].odb;
 			}
 
+			var flagtlwc = data[i].iso2;
 			current_row = current_row + '<tr>' +
 			'<td class="ct-td txt-al p-left-l">' +
-					'<span class="flag"><img src="img/flags/' + data[i].iso2 + '.svg" class="img-responsive"></span>' +
+					'<span class="flag"><img src="img/flags/' + flagtlwc.toLowerCase() + '.svg" class="img-responsive"></span>' +
 					'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 			   '</td>' +
 			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
