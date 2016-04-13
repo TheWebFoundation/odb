@@ -12,6 +12,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
 
+        <meta property="og:url"         content="http://localhost:8888/odb/?_year=2014&indicator=ODB" />
+        <meta property="og:type"        content="article" />
+        <meta property="og:title"       content="Open Data Barometer 2016" />
+        <meta property="og:description" content="Open Data Barometer 2016" />
+        <meta property="og:image"       content="" />
+
         <!--Fonts-->
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Merriweather:400,300,700,900|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/svg-fonts.css">
@@ -30,13 +36,14 @@
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/easy-autocomplete.css">
         
-
+        
         <!--Main styles-->
         <link rel="stylesheet" href="css/screen.css">
         
         <!--[if lt IE 9]>
             <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
         <![endif]-->
+
     </head>
     <body class="body-default">
         
@@ -106,7 +113,7 @@
            <div class="header-acc-buttons txt-c">
                 <a href="#" class="cbtn-acc-h cbtn-download p-xs-top"><img src="img/_svg/download.svg" class="c-obj"><span class="displayb txt-xs uppc c-g40">Download</span></a>
                 <a href="#" class="cbtn-acc-h cbtn-info p-xs-top"><img src="img/_svg/info.svg" class="c-obj"><span class="displayb txt-xs uppc c-g40">Info</span></a>
-                <a href="#" class="cbtn-acc-h cbtn-share p-xs-top"><img src="img/_svg/share.svg" class="c-obj"><span class="displayb txt-xs uppc c-g40">Share</span></a>
+                <a href="#" class="cbtn-acc-h cbtn-share p-xs-top cbtn-share-index"><img src="img/_svg/share.svg" class="c-obj"><span class="displayb txt-xs uppc c-g40">Share</span></a>
             </div>
 
             <div id="wrapper-map"></div>
@@ -242,12 +249,12 @@
                                 <thead class="th-main">
                                     <tr>
                                        <th class="ct-th txt-al p-left-l">Country <span class="ct-th-st"></span></th>
-                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span> <span class="ct-th-st txt-xs uppc">Rank</span> </th>
-                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>
-                                       <th class="ct-th txt-al">Readiness <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
-                                       <th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
-                                       <th class="ct-th txt-al">Emerging Impact <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
-                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l"></span></span><span class="ct-th-st uppc txt-xs">change</span></th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help click txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="--"></span></span> <span class="ct-th-st txt-xs uppc">Rank</span> </th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="An assessment of the true prevalence of open data initiatives around the world."></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Readiness <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The readiness of states, citizens and entrepreneurs to secure the benefits of open data."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extent to which accessible, timely, and open data is published by each country government on a selection of 15 key fields."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">Emerging Impact <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extend to which there is any evidence that open data release by the country government has had positive impacts in a variety of different domains in the country."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>
+                                       <th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="--"></span></span><span class="ct-th-st uppc txt-xs">change</span></th>
                                     </tr>
                                    
                                 </thead>
@@ -467,7 +474,8 @@
                         </ul>
                     </div>
 
-                    <div class="gci-content gci-c-readliness cgi-c-open" data-mdin="readiness">
+                    <div class="gci-content gci-c-readliness cgi-c-open r-pos" data-mdin="readiness">
+                        <div class="cgi-c-nodata-info"><h4 class="c-g40 cgi-c-nodata-pos-msg">No data available</h4></div>
                         <div class="table-responsive">
                             <table id="cm-table-readliness" class="w100"> 
                                 <thead>
@@ -513,7 +521,8 @@
                         </div> <!-- end table resonsive -->
                     </div>
 
-                    <div class="gci-content gci-c-impact" data-mdin="impact">
+                    <div class="gci-content gci-c-impact r-pos" data-mdin="impact">
+                        <div class="cgi-c-nodata-info"><h4 class="c-g40 cgi-c-nodata-pos-msg">No data available</h4></div>
                         <div class="table-responsive">
                             <table id="cm-table-impact" class="w100"> 
                                 <thead>
@@ -561,7 +570,16 @@
 
 
        </div>
+        
+        <div class="cmodal-addons cmodal-a-share">
+            <span class='sh_facebook'></span>
+<!--             <span class='sh_twitter' displayText='Tweet'><a target="_blank" title="Share on Twitter" class="social-link" data-href="http://twitter.com/share?url={0}&amp;hashtags=opendatabarometer" data-url="http://twitter.com/share?url=http://localhost:8888/odb/?_year=2014&indicator=POLITICAL" href="http://twitter.com/share?url=http://localhost:8888/odb/?_year=2014&indicator=POLITICAL">share on twitter!</a></span> -->
+            <span class='sh_googleplus' displayText='Google +'></span>
+            <span class='sh_linkedin' displayText='LinkedIn'></span>
 
+            <a target="_blank" class="share-twitter-button" href="">Tweet this</a>
+            <a target="_blank" class="share-facebook-button" href="">Facebook this</a>
+        </div>
 
 
         <!-- CLONED COUNTRY COMPARATOR -->
