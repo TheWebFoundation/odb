@@ -78,6 +78,8 @@
 	margin:0;
 	padding:0;
 	list-style-type: none;
+	width: 100%;
+	display: table;
 }
 
 .cm-h-rdata {
@@ -92,16 +94,19 @@
 
 .il-item {
 	display: inline-block;
-	float: left;
+	//float: left;
 }
+
 
 .il-item-resp {
 	display:block;
 	padding-left:0px;
 	text-align:center;
-	padding: 10px 0px;;
+	padding: 10px 0px;
+	width: 100%;
 	@include modular-mq(sm) {
-		display: inline-block;
+		display: table-cell;
+		width:16%;
 		float: left;
 		padding: 10px 20px 10px 20px;
 	}

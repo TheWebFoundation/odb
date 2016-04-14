@@ -114,6 +114,7 @@ Array.prototype.contains = function(obj) {
 
 
 	var base_URL = window.location.href;
+	$("meta[property='og:url']").attr("content", base_URL);
 
 	if (base_URL.indexOf("&open") !== -1) {
 		base_URL = base_URL.substring(0, base_URL.lastIndexOf("&open"));
@@ -126,18 +127,6 @@ Array.prototype.contains = function(obj) {
 	}
 
 
-	//twitter test
-	urlTest = window.location.href;
-	urlCod = encodeURIComponent(urlTest);
-	urlEnd = 'https://twitter.com/share?url='+urlCod+'&hashtags=ODB';
-
-	urlCodF = encodeURIComponent("http://www.lugaresdeasturias.com/odb2/?_year=2015&indicator=ODB")
-	urlEndF = 'http://www.facebook.com/sharer.php?u='+urlCodF
-
-
-	$(".share-twitter-button").attr("href",urlEnd);
-	$(".share-facebook-button").attr("href",urlEndF);
-	$(".share-facebook-button").attr("data-href",urlEndF);
 
 
 	var countriesURL = getUrlVars()["comparew"];
@@ -417,9 +406,9 @@ function datasetCountryRow(iso3, num_country, compare){
 	//Devuelve el html de la fila con la info principal del país.
 	var rowstring;
 	var cdata = _.filter(table_data, {iso3:iso3});
-
+	var svgFlag = cdata[0].iso2;
 	rowstring = '<tr class="cb-bottom-lh">' +
-		'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		'<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + svgFlag.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		if(compare){
 		rowstring = rowstring + '	<td class="ctd-md txt-c uppc txt-s">c' + num_country + '</td>';
 		}
@@ -537,12 +526,36 @@ function drawModal() {
 	if(country_data[0].iodch) {iodch_class = "cicon-check c-check";} else iodch_class = "cicon-cross txt-s c-error";
 	if(country_data[0].oecd) {oecd_class = "cicon-check c-check";} else oecd_class = "cicon-cross txt-s c-error";
 
+	rank_change = country_data[0].odb_rank_change;
+
+	if (rank_change == null) {
+		rank_print = '<span class="txt-xs c-g40">NA</span>';
+	}else{
+		if(rank_change<0){
+			var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+		} else {
+			var rank_print = '<span class="arrow-up"></span> ' + rank_change;
+			if(rank_change == 0) {
+				rank_print = '<span class="txt-xs c-g40">0</span>';
+			}
+		}
+	}
+
+	//Manipulamos la cifra para estilarla un poco
+	if(country_data[0].odb % 1 != 0){
+		var odbRaw = country_data[0].odb;
+		var odbDec = odbRaw.toString().split('.');
+		var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+	}else{
+		var odbPrint = country_data[0].odb;
+	}
+
 	var headerModal = '<div class="container-fluid">' +
 				'	<div class="row">' +
 				'		<div class="col-md-12 txt-c p-xs-top p-s-bottom">' +
 				'			<div class="cm-h-item cm-h-tit fleft txt-al displayib">' +
 				'				<h4 class="no-m-bottom txt-l">' +
-				'					<span class="flag-md-header"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="img-responsive"></span>' +
+				'					<span class="flag-md-header"><img src="img/flags/' + country_data[0].iso2.toLowerCase() + '.svg" class="img-responsive"></span>' +
 				'					<span class="ct-country"><span class="txt-m">' + country_data[0].name + '</span> <span class="txt-s c-g40 more-info displayb">' + country_data[0].region + '</span></span>' +
 				'				</h4>' +
 				' 			</div>' +
@@ -568,8 +581,8 @@ function drawModal() {
 				'		<div class="row">'+
 				'			<div class="col-md-12 txt-c">'+
 				'				<ul class="ilist overfh displayib ">'+
-				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb_rank + '</span></li>'+
-				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb + '</span></li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med m-xs-top">' + country_data[0].odb_rank + '</span></li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med m-xs-top">' + odbPrint + '</span></li>'+
 				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readiness</label>'+
 				'						<span class="displayb m-s-top">'+
 				'							<span class="displayib" data-labels="' + country_data[0].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + country_data[0].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + country_data[0].readiness + '</span>'+
@@ -585,7 +598,7 @@ function drawModal() {
 				'							<span class="displayib" data-labels="' + country_data[0].impact_data_labels + '" data-subindex="impact" data-sparkline="' + country_data[0].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + country_data[0].impact + '</span>'+
 				'						</span>'+
 				'					</li>'+
-				'					<li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med">' + country_data[0].odb_rank_change + '</span></li>'+
+				'					<li class="il-item-resp" class="displayb"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank change</label><span class="displayb cinput-txt txt-med m-xs-top">' + rank_print + '</span></li>'+
 				'				</ul>'+
 				'			</div>'+
 				'		</div>'+
@@ -595,10 +608,10 @@ function drawModal() {
 	$("#cm-header").html(headerModal);
 
 	var indicator_percentage = (parseInt(country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
-
+	var svgFlag = country_data[0].iso2;
 	var contentModal = '<header class="ca-header txt-c">' +
 						'		<h5 class="txt-al no-m-top no-m-bottom displayib c-obj">' +
-						'			<span class="flag-md flag-country"><img src="img/flags/' + country_data[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span>' +
+						'			<span class="flag-md flag-country"><img src="img/flags/' + svgFlag.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span>' +
 						'			<span class="ca-h-tit displayib m-xs-top">' + country_data[0].name +
 						'			 <span class="displayb uppc txt-s m-xs-top c-g40">' + selected_year + '</span>' +
 						'			</span>' +
@@ -946,11 +959,13 @@ function drawModal() {
 		}
     }
 
-     
-     setTimeout(function(){
-     	 //console.log(loaded_countries);
-     	 drawIndicatorsTableModal();
-     },750)
+    $(".cm-source-data").text(selected_indicator_source);
+    $(".cm-source-data").attr("href",selected_indicator_source_url);
+
+	setTimeout(function(){
+	 	//console.log(loaded_countries);
+	 	drawIndicatorsTableModal();
+	},750)
     
 }
 
@@ -965,12 +980,13 @@ function drawModalCountryComp (idISO,intro) {
     // console.log(idISO);
     // console.log(_.filter(table_data, {iso3:idISO}));
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
+	var svgFlag = new_country_data[0].iso2;
 
 	var $end = $cloned.removeClass('country-item-cloned'),
 	$end = $cloned.removeClass('hddn'),
 	$end = $cloned.attr("data-id",idISO),
 	$end = $cloned.find("span.md-h-removec").attr("data-id",idISO),
-	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/" + new_country_data[0].iso2 + ".svg"),
+	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/" + svgFlag.toLowerCase() + ".svg"),
 	$end = $cloned.find("span.ca-h-tit").text(new_country_data[0].name),
 	$end = $cloned.find("span.ca-h-indicator-name").text(selected_indicator_name),
 	$end = $cloned.find("span.ca-h-indicator-value").text(new_country_data[0].selected_indicator_value),
@@ -1018,7 +1034,9 @@ function drawIndicatorsTableModal(){
 
 	var selected_year = year;
 
-	if (parseInt(selected_year) === 2015) {
+
+
+	//if (parseInt(selected_year) === 2015) {
 
 		$(".gci-c-readliness").removeClass("cgi-c-nodata");
 		$(".gci-c-impact").removeClass("cgi-c-nodata");
@@ -1035,20 +1053,25 @@ function drawIndicatorsTableModal(){
 		var cdata = _.filter(table_data, {iso3:selected_country});
 		//Readiness
 		var thead_readiness = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
-		var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		$.each(readiness_indicators, function (index,indicator) {
-			thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
-			tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			//console.log("year: "+indicator);
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+				thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
+				tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			}
 		});
 		$("table#cm-table-readliness thead tr").html(thead_readiness);
 		$("table#cm-table-readliness tbody tr:first").html(tbody_readiness);
 
 		//Impact
 		var thead_impact = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
-		var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		$.each(impact_indicators, function (index,indicator) {
-			thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
-			tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+				thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
+				tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			}
 		});
 		$("table#cm-table-impact thead tr").html(thead_impact);
 		$("table#cm-table-impact tbody tr:first").html(tbody_impact);
@@ -1062,16 +1085,20 @@ function drawIndicatorsTableModal(){
 			var cdata = _.filter(table_data, {iso3:selected_country});
 
 			//Readiness
-			var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+			var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 			$.each(readiness_indicators, function (index,indicator) {
-				tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+					tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				}
 			});
 			$("table#cm-table-readliness tbody tr:last").html(tbody_readiness_add);
 
 			//Impact
-			var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2 + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+			var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 			$.each(impact_indicators, function (index,indicator) {
-				tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+					tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				}
 			});
 			$("table#cm-table-impact tbody tr:last").html(tbody_impact_add);
 		}
@@ -1081,10 +1108,10 @@ function drawIndicatorsTableModal(){
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 
-	}else{
-		$(".gci-c-readliness").addClass("cgi-c-nodata");
-		$(".gci-c-impact").addClass("cgi-c-nodata");
-	}
+	// }else{
+	// 	$(".gci-c-readliness").addClass("cgi-c-nodata");
+	// 	$(".gci-c-impact").addClass("cgi-c-nodata");
+	// }
 
 }
 
@@ -1145,6 +1172,13 @@ setGroup(G20,G7,OECD,IODCH);
 //Cargamos el contador de filtros
 $(".count-filters").text(cont_filters);
 
+//Hacemos scroll hacia la tabla tras aplicar filtros
+if(cont_filters > 0 && getUrlVars()["open"]==undefined) {
+	$('html, body').animate({
+        scrollTop: $("#wrapper-filters").offset().top
+    }, 2000);
+}
+
 //Buscadores
 $(".cbtn-search-home-select").on("click", function(){
     //var option = $(this).parent().parent().find("option:selected").val();
@@ -1154,6 +1188,8 @@ $(".cbtn-search-home-select").on("click", function(){
 
 $(document).delegate(".cbtn-search-modal-go","click", function(){
 	
+
+
 	var typeValue = $(this).attr("data-type");
 	var valueRefresh = $(this).parent().parent().find("select").val();
 
@@ -1178,13 +1214,11 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 	if(getUrlVars()["OECD"] != undefined) nOECD = '&OECD='+getUrlVars()["OECD"];
 	if(getUrlVars()["IODCH"] != undefined) nIODCH = '&IODCH='+getUrlVars()["IODCH"];
 
-
 	if(getUrlVars()["comparew"] != undefined) ncomparew = '&comparew='+getUrlVars()["comparew"];
 
-	var newURLModal = 'http://localhost:8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	//var newURLModal = 'http://'+location.hostname+'/open-data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
 	window.location.href = newURLModal;
-
-	//alert("go to "+newURLModal);
 });
 
 
@@ -1812,7 +1846,7 @@ $('#wrapper-map').highcharts('Map', {
         template: {
             type: "custom",
             method: function(value,item) {
-                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
+                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2.toLowerCase()+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
             }
         },
         list: {
@@ -1854,7 +1888,7 @@ $('#wrapper-map').highcharts('Map', {
         template: {
             type: "custom",
             method: function(value,item) {
-                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
+                return "<div class='country-select-autoc' data-item-id='"+item.iso3+"'><span class='adj-img-flag-ac flag-md flag-country'><img class='adj-img-ca-h img-responsive' src='img/flags/"+item.iso2.toLowerCase()+".svg'></span> <span class='hddn'>"+value+"</span> <span class='adj-txt-country-autoc'>" + item.name + "</span></div>";
             }
         },
         list: {
@@ -2126,11 +2160,11 @@ $('#wrapper-map').highcharts('Map', {
 	//Apertura / cierre del modal de sharing is caring
 	$(document).delegate(".cbtn-share, .close-cmodal-share","click", function(e){
 
-		url_fake_facebook = encodeURIComponent("http://www.lugaresdeasturias.com/odb2/?_year=2015&indicator=ODB")
+		//url_fake_facebook = encodeURIComponent("http://www.lugaresdeasturias.com/odb2/?_year=2015&indicator=ODB")
 		url_share = window.location.href;
 		url_share_coded = encodeURIComponent(url_share);
-		urlfacebook = 'http://www.facebook.com/sharer.php?u='+url_fake_facebook
-		urltwitter = 'https://twitter.com/share?url='+url_share_coded+'&hashtags=OpenDataBarometer2016';
+		urlfacebook = 'http://www.facebook.com/sharer.php?u='+url_share_coded
+		urltwitter = 'https://twitter.com/share?url='+url_share_coded+'&hashtags=OpenDataBarometer2015';
 		urlgoogleplus = 'https://plus.google.com/share?url='+url_share_coded;
 		urlLinkedin = 'http://www.linkedin.com/cws/share?url='+url_share_coded;;
 
@@ -2138,6 +2172,8 @@ $('#wrapper-map').highcharts('Map', {
 		$(".sh-a-twitter").attr("href",urltwitter);
 		$(".sh-a-googleplus").attr("href",urlgoogleplus);
 		$(".sh-a-linkedin").attr("href",urlLinkedin);	
+
+		$("meta[property='og\\:url']").attr("content", url_share_coded);
 
 	   	e.preventDefault();
 
@@ -2246,14 +2282,17 @@ $('#wrapper-map').highcharts('Map', {
 			//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
             rank_change = data[i].odb_rank_change;
             //console.log("Rank change: "+data[i].odb_rank_change);
-			if(rank_change<0){
-				var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+			
+			if (rank_change == null) {
+				rank_print = '<span class="txt-xs c-g40">NA</span>';
 			}else{
-				var rank_print = '<span class="arrow-up"></span> ' + rank_change;
-				if (rank_change == 0) {
-					rank_print = rank_change; //'<span class="txt-xs c-g40">NA</span>';
-				}else{
-					rank_print = '<span class="txt-xs c-g40">NA</span>';
+				if(rank_change<0){
+					var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+				} else {
+					var rank_print = '<span class="arrow-up"></span> ' + rank_change;
+					if(rank_change == 0) {
+						rank_print = '<span class="txt-xs c-g40">0</span>';
+					}
 				}
 			}
 
