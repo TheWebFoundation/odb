@@ -11,6 +11,7 @@
 	var columns_data;
 	var table_data;
 	var map_data;
+	var filtered_data_map;
 	var ctrIsoCompare = [];
 	var country_data;
 	var selected_year;
@@ -131,6 +132,11 @@ Array.prototype.contains = function(obj) {
 
 	var countriesURL = getUrlVars()["comparew"];
 	if(countriesURL !== undefined){
+
+		if(countriesURL.lastIndexOf("%2C")) {
+			countriesURL = decodeURIComponent(countriesURL);
+		}
+
 		var ctrIsoCompare = countriesURL.split(",");
 		//var base_URL_OM = fullURL.substring(0, fullURL.lastIndexOf("&open"))+'&open=';
 		//var fullURL =  window.location.href;
@@ -950,7 +956,6 @@ function drawModal() {
             });
         });
 
-
     }else{
     	var OwlIsEmpty = $("div.owl-item div.country-area-empty").length;
     	if(OwlIsEmpty == 0) {
@@ -1113,6 +1118,51 @@ function drawIndicatorsTableModal(){
 	// 	$(".gci-c-impact").addClass("cgi-c-nodata");
 	// }
 
+}
+
+//Funcion generica para abrir el modal de country recibiendo como parámetro la iso3 del pais
+function OpenCountryData (isoData) {
+	var country = isoData;
+	loaded_countries.push(country);
+	if(getUrlVars()["open"]===undefined) {
+		base_URL_OM = base_URL+"&open="+country;
+		window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM);
+	}else{
+		base_URL_OM = base_URL+"&open="+country;
+	}
+    //cargo el json del primer país
+    $.getJSON('json/odb_' + country + '.json', function(data){
+        loaded_countries_data[country] = data;
+        setCountryDataset(country);
+        //Solo necesitamos unos milisegundos
+       	drawModal();
+       	showModal();
+    });
+}
+
+function showModal() {
+	
+	if(!$(".cmodal-detail").is(".cmodal-detail-open")) {
+		$(".cmodal-detail").addClass("cmodal-detail-open");
+		$(".overlay").addClass("overlay-open");
+		$("body").addClass("noscroll");
+	}else{
+		$(".cmodal-detail").removeClass("cmodal-detail-open");
+		$(".overlay").removeClass("overlay-open");
+		$("body").removeClass("noscroll");
+		window.history.pushState("", "ODB, Open Data Barometer",base_URL);
+
+	    //Reiniciamos la variables:
+	    ctrIsoCompare = [];
+	    base_URL_OM = window.location.href+'&open=';
+	   	loaded_countries = [];
+
+	    //Vaciamos el carousel
+	    owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+		owl.trigger('refresh.owl.carousel');
+		$("table#cm-table-readliness tbody tr:last").html("");
+		$("table#cm-table-impact tbody tr:last").html("");
+	}
 }
 
 
@@ -1333,7 +1383,6 @@ map_data = _(data.areas)
 
 number_of_countries = map_data.length - 1; //(-1 por las estadísticas)
 selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)/100;
-
 
 
 //SI RECIBIMOS PARÁMETROS DE PAÍSES CARGADOS EN LA URL ABRIMOS LA MODAL
@@ -1558,9 +1607,30 @@ doChunk();
 });
 //FIN GENERACIÓN DE SPARKLINES
 
+//CASO 0: Aquí solo abrian las countries filtradas
 function openModalMap() {
 	//alert(this.code);
 	$("#table-data tbody a[data-iso='"+this.code+"']").trigger("click");
+}
+
+//CASO 1: Función para mostrar el modal de countries con independencia de la información filtrada
+function showCountryData (data) {
+	var country = this.code;
+	loaded_countries.push(country);
+	if(getUrlVars()["open"]===undefined) {
+		base_URL_OM = base_URL+"&open="+country;
+		window.history.pushState("", "ODB, Open Data Barometer",base_URL_OM);
+	}else{
+		base_URL_OM = base_URL+"&open="+country;
+	}
+    //cargo el json del primer país
+    $.getJSON('json/odb_' + country + '.json', function(data){
+        loaded_countries_data[country] = data;
+        setCountryDataset(country);
+        //Solo necesitamos unos milisegundos
+       	drawModal();
+       	showModal();
+    });
 }
 
 function openModalBars() {
@@ -1662,7 +1732,7 @@ $('#wrapper-map').highcharts('Map', {
         },
         point: {
             events: {
-                click: openModalMap
+                click: showCountryData
             }
         }
     }]
@@ -1857,7 +1927,8 @@ $('#wrapper-map').highcharts('Map', {
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
-                $("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
+                OpenCountryData(selectedItemId);
+                //$("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
                 //$(".cbtn-search-home-input").attr("data-id",selectedItemId);
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID1: "+selectedItemId);
@@ -2163,6 +2234,17 @@ $('#wrapper-map').highcharts('Map', {
 		//url_fake_facebook = encodeURIComponent("http://www.lugaresdeasturias.com/odb2/?_year=2015&indicator=ODB")
 		url_share = window.location.href;
 		url_share_coded = encodeURIComponent(url_share);
+
+		// url_share = window.location.href;	
+		// if(getUrlVars()["comparew"]!=undefined){
+		// 	var url_codify = url_share.substring(0, url_share.lastIndexOf("&comparew="));
+		// 	var compare = getUrlVars()["comparew"];
+		// 	//var compare_end = compare.replace(/,/g,"%252C"); 
+		// 	url_share_coded = encodeURIComponent(url_codify+'&comparew=');
+		// }else{
+		// 	url_share_coded = encodeURIComponent(url_share)
+		// }
+
 		urlfacebook = 'http://www.facebook.com/sharer.php?u='+url_share_coded
 		urltwitter = 'https://twitter.com/share?url='+url_share_coded+'&hashtags=OpenDataBarometer2015';
 		urlgoogleplus = 'https://plus.google.com/share?url='+url_share_coded;
@@ -2324,9 +2406,11 @@ $('#wrapper-map').highcharts('Map', {
 		my_table.append(current_row);
 
 		var openModal = getUrlVars()["open"];
-		if(openModal!=undefined || openModal!="") {
-			$("#table-data tbody a[data-iso='"+openModal+"']").trigger("click");
+		if(openModal!=undefined) {
+			//$("#table-data tbody a[data-iso='"+openModal+"']").trigger("click");
+			OpenCountryData (openModal);
 		}
+
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
