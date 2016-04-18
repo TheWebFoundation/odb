@@ -1054,6 +1054,8 @@ function drawIndicatorsTableModal(){
 		var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value();
 		var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value();
 		
+
+
 		//Cargamos el country 0 - modal
 		var selected_country = loaded_countries[0];
 		var cdata = _.filter(table_data, {iso3:selected_country});
@@ -1062,9 +1064,13 @@ function drawIndicatorsTableModal(){
 		var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		$.each(readiness_indicators, function (index,indicator) {
 			//console.log("year: "+indicator);
-			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null && loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
 				thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
-				tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+					tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				}else{
+					tbody_readiness += '<td class="ctd-md txt-c"> -- </td>';
+				}
 			}
 		});
 		$("table#cm-table-readliness thead tr").html(thead_readiness);
@@ -1076,7 +1082,11 @@ function drawIndicatorsTableModal(){
 		$.each(impact_indicators, function (index,indicator) {
 			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
 				thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
-				tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+					tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				}else{
+					tbody_impact += '<td class="ctd-md txt-c"> -- </td>';
+				}
 			}
 		});
 		$("table#cm-table-impact thead tr").html(thead_impact);
@@ -1094,7 +1104,11 @@ function drawIndicatorsTableModal(){
 			var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 			$.each(readiness_indicators, function (index,indicator) {
 				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-					tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+					if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value !=null) {
+						tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+					}else {
+						tbody_readiness_add += '<td class="ctd-md txt-c"> -- </td>';
+					}
 				}
 			});
 			$("table#cm-table-readliness tbody tr:last").html(tbody_readiness_add);
@@ -1103,7 +1117,11 @@ function drawIndicatorsTableModal(){
 			var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 			$.each(impact_indicators, function (index,indicator) {
 				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-					tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+					if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+						tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+					}else{
+						tbody_impact_add += '<td class="ctd-md txt-c"> -- </td>';
+					}
 				}
 			});
 			$("table#cm-table-impact tbody tr:last").html(tbody_impact_add);
@@ -1247,6 +1265,9 @@ $(document).on("change","#sindicator",function(){
 	var current_indicator_select = $(this).val();
 	var current_year_select = $("#syear").val();
 	var find = 0;
+
+	alert(current_indicator_select)
+
 	
 	$.getJSON('json/years_with_data.json', function(data) {
 		$.each(data, function(key) {
@@ -1258,6 +1279,9 @@ $(document).on("change","#sindicator",function(){
 				}
 			}
 		});
+
+		alert (find);
+
 		if(find == 0) {
 			alert("This indicator does not exist on "+current_year_select);
 			return false;
