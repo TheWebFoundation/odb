@@ -1625,8 +1625,15 @@ table.dataTable thead .sorting_desc::after {
   color: #CB97F9;
 }
 
+/* line 236, ../sass/_m-generales.scss */
+.dataTables_empty {
+  padding: 40px 10px;
+  color: #999;
+  font-size: 1.4em;
+}
+
 /* ## MODAL COMPARTIR ## */
-/* line 239, ../sass/_m-generales.scss */
+/* line 245, ../sass/_m-generales.scss */
 .cmodal-addons {
   position: fixed;
   top: 50%;
@@ -1642,20 +1649,20 @@ table.dataTable thead .sorting_desc::after {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 239, ../sass/_m-generales.scss */
+  /* line 245, ../sass/_m-generales.scss */
   .cmodal-addons {
     /* width: 90%; */
   }
 }
 
-/* line 265, ../sass/_m-generales.scss */
+/* line 271, ../sass/_m-generales.scss */
 .cmodal-a-share-open {
   background-color: rgba(255, 255, 255, 0.8);
   visibility: visible;
   opacity: 1;
 }
 
-/* line 271, ../sass/_m-generales.scss */
+/* line 277, ../sass/_m-generales.scss */
 .cmodal-addns-content {
   position: absolute;
   top: 50%;
@@ -1665,7 +1672,7 @@ table.dataTable thead .sorting_desc::after {
   padding: 10px 0px;
 }
 
-/* line 280, ../sass/_m-generales.scss */
+/* line 286, ../sass/_m-generales.scss */
 .share-item {
   display: inline-block;
   width: 64px;
@@ -1674,12 +1681,12 @@ table.dataTable thead .sorting_desc::after {
   transition: all .3s ease-out;
 }
 
-/* line 288, ../sass/_m-generales.scss */
+/* line 294, ../sass/_m-generales.scss */
 .share-item:hover {
   transform: scale(1.2, 1.2);
 }
 
-/* line 292, ../sass/_m-generales.scss */
+/* line 298, ../sass/_m-generales.scss */
 .close-cmodal-share {
   display: block;
   width: 64px;

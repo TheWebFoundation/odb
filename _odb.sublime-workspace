@@ -1,0 +1,709 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"selected_",
+				"selected_indicator_name"
+			],
+			[
+				"selected",
+				"selected_year"
+			],
+			[
+				"iso",
+				"isoCountry"
+			],
+			[
+				"trans",
+				"transparent"
+			],
+			[
+				"bg-",
+				"bg-in-comp"
+			],
+			[
+				"countries",
+				"countriesURL"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"ctr",
+				"ctrIsoCompareRw"
+			],
+			[
+				"cont",
+				"cont_filters"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"list-sty",
+				"list-style-type"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"cinput",
+				"cinput-table-search"
+			],
+			[
+				"lin",
+				"line-height"
+			],
+			[
+				"cp",
+				"cprimbr"
+			],
+			[
+				"isi",
+				"isiPad"
+			],
+			[
+				"is",
+				"isiPhone"
+			],
+			[
+				"format",
+				"formatSub"
+			],
+			[
+				"owl",
+				"owl-dot"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 41076,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/dataload.js",
+			"settings":
+			{
+				"buffer_size": 90526,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 356.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"isntal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"cls",
+			"clear",
+			"git status",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Applications/MAMP/htdocs/odb"
+	],
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/mylibreto/_mylibreto-sessions.sublime-project",
+		"/Applications/MAMP/htdocs/mylibreto/ajax/ajax_control_acceso.php",
+		"/Applications/MAMP/htdocs/mylibreto/_mylibreto-sessions.sublime-workspace",
+		"/Users/simbiosys/Desktop/_mylibreto-sessions.sublime-workspace",
+		"/Applications/MAMP/htdocs/mylibreto/como-funciona.php",
+		"/Applications/MAMP/htdocs/mylibreto/taller-de-libros/modulo_mylibreto/class.libro.php",
+		"/Applications/MAMP/htdocs/mylibreto/taller-de-libros/modulo_datos/class.DataManagerUsuarios.php",
+		"/Applications/MAMP/htdocs/mylibreto/js/login-taller.js",
+		"/Applications/MAMP/htdocs/mylibreto/taller-de-libros/gglobal.php",
+		"/Volumes/proyectos/libreto2/web-original/www/_old/index.php",
+		"/Volumes/proyectos/libreto2/web-original/www/_old/index.html",
+		"/Applications/MAMP/htdocs/mylibreto/js/login.js",
+		"/Applications/MAMP/htdocs/mylibreto/acceso.php",
+		"/Applications/MAMP/htdocs/odb/sass/_m-formularios.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_m-generales.scss",
+		"/Applications/MAMP/htdocs/odb/index.html",
+		"/Applications/MAMP/htdocs/odb/js/dataload.js",
+		"/Users/simbiosys/Desktop/dataload.js",
+		"/Users/simbiosys/Desktop/index.html",
+		"/Applications/MAMP/htdocs/odb/json/countries.json",
+		"/Applications/MAMP/htdocs/odb/js/countries.js",
+		"/Applications/MAMP/htdocs/odb/json/odb_2013.json",
+		"/Users/simbiosys/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/simbiosys/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Applications/MAMP/htdocs/odb/css/jquery.multiselect.css",
+		"/Applications/MAMP/htdocs/odb/css/ui.dropdownchecklist.css",
+		"/Applications/MAMP/htdocs/odb/css/easy-autocomplete.css",
+		"/Users/simbiosys/Downloads/EasyAutocomplete-1.3.3/jquery.easy-autocomplete.js",
+		"/Volumes/proyectos/pruebas/odb/_v0/index.html",
+		"/Volumes/proyectos/pruebas/odb/index copia.html",
+		"/Volumes/proyectos/pruebas/odb/index.html",
+		"/Applications/MAMP/htdocs/odb/sass/_modulos.scss",
+		"/Applications/MAMP/htdocs/odb/css/svg-fonts.css",
+		"/Volumes/proyectos/pruebas/odb/json/countries-population.json",
+		"/Applications/MAMP/htdocs/odb/sass/_variables.scss",
+		"/Applications/MAMP/htdocs/odb/json/countries-population.json",
+		"/Applications/MAMP/htdocs/odb/index copia.html",
+		"/Volumes/proyectos/sone/sass/_base.scss",
+		"/Volumes/proyectos/sone/sass/_variables.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_config.scss",
+		"/Applications/MAMP/htdocs/odb/_recursos/bootstrap/17-03-2016/17-03-2016.rtf",
+		"/Applications/MAMP/htdocs/odb/sass/screen.scss",
+		"/Applications/MAMP/htdocs/odb/_recursos/bootstrap/17-03-2016.rtf",
+		"/Applications/MAMP/htdocs/mylibreto/ajax/ajax-asocia-usuario-club.php",
+		"/Volumes/proyectos/pruebas/odb/sass/_variables.scss",
+		"/Volumes/proyectos/pruebas/odb/sass/_m-formularios.scss",
+		"/Volumes/proyectos/sone/js/config.js",
+		"/Volumes/proyectos/sone/sass/_m-formularios.scss",
+		"/Volumes/proyectos/pruebas/odb/sass/_modulos.scss",
+		"/Volumes/proyectos/pruebas/odb/sass/_m-generales.scss",
+		"/Volumes/proyectos/sone/sass/_m-generales.scss",
+		"/Volumes/proyectos/sone/sass/_modules.scss",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_layout.scss",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_m_registro.scss",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_m_colabora.scss",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_m_cfunciona.scss",
+		"/Applications/MAMP/htdocs/mylibreto/.htaccess",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_m_comunes.scss",
+		"/Applications/MAMP/htdocs/mylibreto/sass/_m_sobrenosotros.scss",
+		"/Applications/MAMP/htdocs/appHelki/includes/header.html",
+		"/Applications/MAMP/htdocs/appHelki/dispositivos-electricidad.html",
+		"/Applications/MAMP/htdocs/appHelki/instalacion-emisor.html",
+		"/Applications/MAMP/htdocs/appHelki/instalacion-medidor.html",
+		"/Applications/MAMP/htdocs/appHelki/instalacion-termostato.html",
+		"/Applications/MAMP/htdocs/appHelki/m_consumo-instantaneo.html",
+		"/Applications/MAMP/htdocs/appHelki/m_estadisticas.html",
+		"/Applications/MAMP/htdocs/appHelki/m_segmentado.html",
+		"/Applications/MAMP/htdocs/appHelki/ml_editarvivienda.html",
+		"/Applications/MAMP/htdocs/appHelki/ml_micuenta.html",
+		"/Applications/MAMP/htdocs/appHelki/ml_misviviendas.html",
+		"/Applications/MAMP/htdocs/appHelki/radiador.html",
+		"/Applications/MAMP/htdocs/appHelki/radiador_estadisticas.html",
+		"/Applications/MAMP/htdocs/appHelki/tconfiguracion.html",
+		"/Applications/MAMP/htdocs/appHelki/tdia-radiador.html",
+		"/Applications/MAMP/htdocs/appHelki/tdia.html",
+		"/Applications/MAMP/htdocs/appHelki/termostato.html",
+		"/Applications/MAMP/htdocs/appHelki/termostato_estadisticas.html",
+		"/Applications/MAMP/htdocs/appHelki/tsemana.html",
+		"/Applications/MAMP/htdocs/appHelki/tsemana-radiador.html",
+		"/Applications/MAMP/htdocs/appHelki/login.html",
+		"/Applications/MAMP/htdocs/appHelki/dispositivos.html",
+		"/Applications/MAMP/htdocs/appHelki/sass/_m-listado-dispositivos.scss",
+		"/Applications/MAMP/htdocs/appHelki/.htaccess",
+		"/Applications/MAMP/htdocs/mylibreto/pcmylibreto/includes/constructor_libreto.php",
+		"/Users/simbiosys/Documents/proyectos/rtpa-app/www/alacarta-radio.html",
+		"/Users/simbiosys/Documents/proyectos/rtpa-app/www/programa-alacarta-television.html",
+		"/Users/simbiosys/Documents/proyectos/rtpa-app/www/alacarta.html",
+		"/Users/simbiosys/Documents/proyectos/rtpa-app/config.xml",
+		"/Users/simbiosys/Documents/proyectos/rtpa-app/www/index.html",
+		"/Volumes/backup/_temporal-imac21-oscar/htdocs/apprtpa/www/index.html",
+		"/Volumes/proyectos/vdi/app/sass/_base.scss",
+		"/Volumes/proyectos/vdi/app/sass/_variables.scss",
+		"/Volumes/proyectos/vdi/app/css/main.css",
+		"/Users/simbiosys/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/simbiosys/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Volumes/proyectos/vdi/app/ml_micuenta.html",
+		"/Volumes/proyectos/vdi/app/index.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 156.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"control_acceso_taller",
+			"ctrIsoCompare",
+			"openCountryData",
+			"showContry",
+			"OpenCountryData",
+			"options_mod",
+			"showMOdal",
+			"OpenCountryData",
+			"showCountry",
+			"showCountryData",
+			"showModal",
+			"CountryData",
+			"filtered_data_map",
+			"filtered_data",
+			"map_data",
+			"_filter(",
+			"more-info",
+			"_filter",
+			"drawtable",
+			"drawModal",
+			"drawtable",
+			"wrapper-filters",
+			"count-filters",
+			"filters appli",
+			"filters applied",
+			"drawmodal",
+			"drawMOdal",
+			"income",
+			"il-item-resp",
+			"2016",
+			"sharing",
+			"hostname",
+			"drawModal",
+			"source:",
+			"hostname",
+			"localhost",
+			"hostname",
+			"drawIndi",
+			"implementation",
+			"localhost",
+			"flags/",
+			"toLowerCase",
+			"flag",
+			"sharing",
+			"key",
+			"push",
+			"foreach",
+			"each",
+			"foreach",
+			"contains",
+			"loaded_countries_data",
+			"_(",
+			"drawModal",
+			"drawtable",
+			"drawModal",
+			"drawmoda",
+			"drawModalCountryComp",
+			"if(ctrIsoCompare.length != 0) {",
+			"drawModal",
+			"table",
+			"tooltip",
+			"modal",
+			"country_data",
+			"compo",
+			"addCountrySpider",
+			"drawModalCountryComp",
+			"BTN-md-add-coun",
+			"DRAWMODALCOUNTRY",
+			"drawModalHeader",
+			"more-info",
+			"country",
+			"countri",
+			"drawModalHeader",
+			"more-info",
+			"modal",
+			"costa rica",
+			"btn-md-ad",
+			"polar",
+			"md-h-removec",
+			"owl",
+			"polarOptions",
+			"drawModalCountr",
+			"btn-md-add",
+			"polar",
+			"div[",
+			" align: '",
+			"more-info",
+			"rmItemOwl",
+			"owl",
+			"rmItemOwl",
+			"md-h-removec",
+			"rmItemOwl",
+			".md-h-removec",
+			"\"iso2\": \"\"",
+			"\"iso2\": \"NA\"",
+			"\"iso2\": \"\"",
+			"a-h-tit",
+			"ca-h-tit",
+			"drawModalCountryComp",
+			"document",
+			"drawCountryComp",
+			"draw",
+			"getUrlVars",
+			"drawCountryComp",
+			"cloneCountryCompare",
+			"dosomething",
+			"owl",
+			"cloneCountryCompare",
+			"add-country",
+			"current_URL_OM",
+			"add-countr",
+			"more-info",
+			"drawtable",
+			"more-info",
+			"current_URL_OM",
+			"add-country",
+			"current_URL_OM",
+			"getUrlVars",
+			"add-",
+			"more-info",
+			"drawTable",
+			"cm-header",
+			"drawModalHeader",
+			"drawHeaderModal",
+			"more-info",
+			"close-cmodal",
+			"more-info",
+			"raw_url"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"nbsp",
+			"",
+			"cinput-search ",
+			"configuración"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 41076,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/dataload.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 90526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "_odb.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ajax_co",
+				"ajax/ajax_control_acceso.php"
+			],
+			[
+				"ajax_control",
+				"ajax/ajax_control_acceso.php"
+			],
+			[
+				"ajax_un",
+				"taller-de-libros/ajax/ajax_unset_session.php"
+			],
+			[
+				"comm",
+				"js/common.js"
+			],
+			[
+				"old_se",
+				"includes/hold_session_data.php"
+			],
+			[
+				"nav",
+				"includes/nav-standar.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"nav-sta",
+				"includes/nav-standar.php"
+			],
+			[
+				"login",
+				"js/login-taller.js"
+			],
+			[
+				"acceso",
+				"acceso.php"
+			],
+			[
+				"gglo",
+				"taller-de-libros/gglobal.php"
+			],
+			[
+				"ajax_",
+				"ajax/ajax_control_acceso.php"
+			],
+			[
+				"como",
+				"como-funciona.php"
+			],
+			[
+				"inde",
+				"index.php"
+			],
+			[
+				"form",
+				"sass/_m-formularios.scss"
+			],
+			[
+				"modal",
+				"sass/_m-modal-detail.scss"
+			],
+			[
+				"layou",
+				"sass/_layout.scss"
+			],
+			[
+				"modulos",
+				"sass/_modulos.scss"
+			],
+			[
+				"vari",
+				"sass/_variables.scss"
+			],
+			[
+				"_m_com",
+				"sass/_m_comunes.scss"
+			],
+			[
+				"disposi",
+				"dispositivos.html"
+			],
+			[
+				"electrici",
+				"dispositivos-electricidad.html"
+			],
+			[
+				"radia",
+				"radiador.html"
+			],
+			[
+				"dispo",
+				"dispositivos.html"
+			],
+			[
+				"reset",
+				"pcmylibreto/ajax/ajax_reset_libretos.php"
+			],
+			[
+				"construc",
+				"pcmylibreto/includes/constructor_libreto.php"
+			],
+			[
+				"main",
+				"css/main.css"
+			],
+			[
+				"keymap",
+				"~/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap"
+			],
+			[
+				"_base",
+				"sass/_base.scss"
+			],
+			[
+				"_vari",
+				"sass/_variables.scss"
+			],
+			[
+				"_",
+				"sass/_layout.scss"
+			],
+			[
+				"_lay",
+				"sass/_layout.scss"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/mylibreto-sessions.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

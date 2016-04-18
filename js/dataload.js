@@ -37,6 +37,7 @@
     var loaded_countries_data = {}; //Objeto que contiene los datos de los países por iso3, cargado de json/odb_ISO3.json para cada país.
     var carousel_current_country = 0;
     var year;
+    var noDataYear = 0;
 
 Array.prototype.remove = function() {
     //Añado el método remove a la clase Array para borrar posiciones de un array por su valor.
@@ -200,8 +201,8 @@ Array.prototype.contains = function(obj) {
 			var group = "";
 		}
 
-
 		window.location.href = "./"+year+indicator+region+income+hdirate+group;
+
 	}
 
 	var cont_filters = 0;
@@ -229,7 +230,6 @@ Array.prototype.contains = function(obj) {
 			switch(value.type) {
 				case "INDEX":
 					//style = "margin-left:0;";
-
 					break;
 				case "SUBINDEX":
 					//style = "margin-left:10px;font-weight:bold";
@@ -249,6 +249,7 @@ Array.prototype.contains = function(obj) {
 					sp = "";
 					break;
 			}
+
 			if(value.indicator == sindicator) {
 				$selIndicator.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
 				$selIndicatorm.append('<option value="'+value.indicator+'" style="'+style+'" selected="selected">'+sp+value.name+'</option>');
@@ -535,7 +536,7 @@ function drawModal() {
 	rank_change = country_data[0].odb_rank_change;
 
 	if (rank_change == null) {
-		rank_print = '<span class="txt-xs c-g40">NA</span>';
+		rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
 	}else{
 		if(rank_change<0){
 			var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
@@ -862,7 +863,7 @@ function drawModal() {
 				stringdata,
 				stringlabels,
 				stringsubindex,
-				subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
+				subindex_colors = ["#FFCD00", "#6DF5D7", "#BE8FE7"],
 				colums_color,
 				labels = new Array(),
 				arr,
@@ -1236,9 +1237,50 @@ $(".cbtn-search-home-select").on("click", function(){
 });
 
 
-$(document).delegate(".cbtn-search-modal-go","click", function(){
+$(document).on("change","#sindicator",function(){
+	// alert("change indicator");
+	// var data = $.getJSON('json/years_with_data.json');
+	// $.each(data, function(i, item) {
+	//     console.log(data[i]);
+	// });
 	
+	var current_indicator_select = $(this).val();
+	var current_year_select = $("#syear").val();
+	var find = 0;
+	
+	$.getJSON('json/years_with_data.json', function(data) {
+		$.each(data, function(key) {
+			//console.log(data[key]);
+			if(key == current_year_select){
+				if(data[key] = current_indicator_select) {
+					find ++;
+					console.log(data[key]+" : "+current_indicator_select);
+				}
+			}
+		});
+		if(find == 0) {
+			alert("This indicator does not exist on "+current_year_select);
+			return false;
+		}else{
+			alert("exist");
+		}
+	});
+})
 
+$(".leg-region").on("click", function(e){
+	e.preventDefault();
+	var regionFilterMap = $(this).attr("data-value"); 
+	$("#sregion").val(regionFilterMap);
+	$(".cbtn-search-home-select").trigger("click");
+});
+
+$(".cbtn-clear-filters").on("click", function(){
+	window.location.href = 'http://'+location.hostname+':8888/odb/';
+	//window.location.href = 'http://'+location.hostname+'/open-data-explorer/'
+})
+
+
+$(document).delegate(".cbtn-search-modal-go","click", function(){
 
 	var typeValue = $(this).attr("data-type");
 	var valueRefresh = $(this).parent().parent().find("select").val();
@@ -1364,11 +1406,12 @@ var table = $('#table-data').DataTable({
     paging: false,
     order: [[1,"asc"], [2,"desc"]],
     //info: false,
-    sDom: 't' //Que solo renderice la tabla
-    // language: {
-    //     search: "_INPUT_",
-    //     searchPlaceholder: "Search country ..."
-    // }
+    sDom: 't', //Que solo renderice la tabla
+    language: {
+    	"sEmptyTable": "No countries meet the criteria"
+        //search: "_INPUT_",
+        //searchPlaceholder: "Search country ..."
+    }
 });
 
 
@@ -1530,7 +1573,7 @@ var time = +new Date(),
     stringdata,
     stringlabels,
     stringsubindex,
-    subindex_colors = ["#FFCD00", "#C0F8EC", "#E3C2FF"],
+    subindex_colors = ["#FFCD00", "#6DF5D7", "#BE8FE7"],
     colums_color,
     labels = new Array(),
     arr,
@@ -1649,7 +1692,31 @@ $('#wrapper-map').highcharts('Map', {
 	},
 	chart: {
 	    backgroundColor: 'transparent',
-	    margin: 0
+	    margin: 0,
+	    resetZoomButton: {
+	    	//No esta funcionando...
+	    	position: {
+                // align: 'right', // by default
+                // verticalAlign: 'top', // by default
+                x: -50,
+                y: -50
+            },
+            relativeTo: "chart",
+            theme: {
+                fill: 'black',
+                stroke: 'none',
+                r: 0,
+                states: {
+                    hover: {
+                        fill: '#79B042',
+                        stroke: 'none',
+                        style: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        }
 	},
 	title: {
 	    text: ''
@@ -1660,7 +1727,7 @@ $('#wrapper-map').highcharts('Map', {
 	},
 	legend: {
 	    title: {
-	        text: selected_indicator_name,
+	        text: selected_indicator_name+" ("+year+")",
 	        style: {
 	            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
 	        }
@@ -1687,6 +1754,7 @@ $('#wrapper-map').highcharts('Map', {
 	        verticalAlign: 'bottom'
 	    },
 	    enableMouseWheelZoom: false,
+	    enableDoubleClickZoom: false,
 	    buttons: {
 	        zoomIn: {
 	            y:-25,
@@ -1769,7 +1837,7 @@ $('#wrapper-map').highcharts('Map', {
         }
     },
     title: {
-        text: selected_indicator_name
+        text: selected_indicator_name+" ("+year+")"
     },
     subtitle: {
         text: 'Source: <a href="' + selected_indicator_source_url + '">' + selected_indicator_source + '</a>'
@@ -1826,7 +1894,7 @@ $('#wrapper-map').highcharts('Map', {
         enabled: false
     },
     tooltip: {
-        pointFormat: selected_indicator_name + ': <b>{point.y:.1f}</b>'
+        pointFormat: selected_indicator_name + ': <b>{point.y:.2f}</b>'
     },
     series: [{
         name: selected_indicator_name,
@@ -1836,7 +1904,7 @@ $('#wrapper-map').highcharts('Map', {
             rotation: -75,
             color: '#333333',
             align: 'left',
-            format: '{point.y:.1f}', // one decimal
+            format: '{point.y:.2f}', // one decimal
             y: -1, // 10 pixels down from the top
             style: {
                 fontSize: '8px',
@@ -2246,7 +2314,7 @@ $('#wrapper-map').highcharts('Map', {
 		// }
 
 		urlfacebook = 'http://www.facebook.com/sharer.php?u='+url_share_coded
-		urltwitter = 'https://twitter.com/share?url='+url_share_coded+'&hashtags=OpenDataBarometer2015';
+		urltwitter = 'https://twitter.com/share?url='+url_share_coded+'&hashtags=ODBarometer';
 		urlgoogleplus = 'https://plus.google.com/share?url='+url_share_coded;
 		urlLinkedin = 'http://www.linkedin.com/cws/share?url='+url_share_coded;;
 
@@ -2366,7 +2434,7 @@ $('#wrapper-map').highcharts('Map', {
             //console.log("Rank change: "+data[i].odb_rank_change);
 			
 			if (rank_change == null) {
-				rank_print = '<span class="txt-xs c-g40">NA</span>';
+				rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
 			}else{
 				if(rank_change<0){
 					var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
