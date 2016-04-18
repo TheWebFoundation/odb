@@ -1,0 +1,474 @@
+<html>
+	<head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+
+<!--Gráfica 1-->
+	</head>
+	<body>
+		<div id="container1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container3" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container4" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container5" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container6" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container7" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container8" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container9" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container10" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container11" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="container12" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Data availability'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            categories: ['Open data', 'Data available online'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Percentage of data',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF')
+            //shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: '3rd edition',
+            data: [10.14, 76.30]
+        }, {
+            name: '2nd edition',
+            data: [10.08, 78.84]
+        }, {
+            name: '1st edition',
+            data: [6.58, 76.19]
+        }]
+    });
+	
+	 $('#container2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        legend:{
+        	enabled: false
+        },
+        credits: {
+        		enabled: false
+        },
+        title: {
+            text: 'Strength of opendata policies'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            categories: [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10'
+            ],
+            title: {
+                text: 'Score (0-10)'
+            },
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number of countries'
+            }
+        },
+        tooltip: {
+            headerFormat: '<div><span style="font-size:12px;color:{series.color};padding:0">Score: </span><span style="font-size:12px;padding:0"><b>{point.key}</b> out of 10</span>',
+            pointFormat: '<br/><span style="font-size:12px;color:{series.color};padding:0">{series.name}: </span>' +
+                '<span style="font-size:12px;padding:0"><b>{point.y}</b></span>',
+            footerFormat: '</div>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Number of countries',
+            data: [24, 16, 8, 5, 6, 11, 9, 7, 4, 2, 0]
+        }]
+    });
+	$('#container3').highcharts({
+        chart: {
+            type: 'column'
+        },
+        legend:{
+        	enabled: false
+        },
+        credits: {
+        		enabled: false
+        },
+        title: {
+            text: 'Strength of data management'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            categories: [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10'
+            ],
+            title: {
+                text: 'Score (0-10)'
+            },
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number of countries'
+            }
+        },
+        tooltip: {
+            headerFormat: '<div><span style="font-size:12px;color:{series.color};padding:0">Score: </span><span style="font-size:12px;padding:0"><b>{point.key}</b> out of 10</span>',
+            pointFormat: '<br/><span style="font-size:12px;color:{series.color};padding:0">{series.name}: </span>' +
+                '<span style="font-size:12px;padding:0"><b>{point.y}</b></span>',
+            footerFormat: '</div>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Number of countries',
+            data: [30, 15, 7, 12, 4, 6, 6, 10, 2, 0, 0]
+        }]
+    });
+	$('#container4').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Countries with OGD initiative'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            categories: ['3rd edition', '2nd edition', '1st edition'],
+            title: {
+                text: 'ODB edition'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number of countries',
+                align: 'middle'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: null
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+			align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'horizontal',
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF')
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Countries with OGD initiative',
+            data: [51,	43,	37]
+        }, {
+            name: 'Countries with strong OGD initiative',
+            data: [34,	30,	29]
+        }, {
+            name: 'Countries with strong subnations initiatives',
+            data: [17,	16,	11]
+        }]
+    });
+	$('#container5').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Goverment Action'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            categories: ['3rd edition', '2nd edition', '1st edition'],
+            title: {
+                text: 'ODB edition'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Scores (0-10)',
+                align: 'middle'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' out of 10'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+			align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'horizontal',
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF')
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'OGD initiatives',
+            data: [4.37, 4.09, 4.47]
+        }, {
+            name: 'Subnational OD',
+            data: [2.65, 2.49, 2.31]
+        }, {
+            name: 'Online services',
+            data: [5.50, 5.40, 5.80]
+        }]
+    });
+	$('#container6').highcharts({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        credits: {
+        		enabled:false
+        },
+        title: {
+            text: 'Correlation between civil society and impact'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://opendatabarometer.org">ODB Expert Survey 2015</a>'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: 'Engagement with civil society (0-10)'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Impact (scaled 0-100)'
+            }
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: 'Impact: {point.x} out of 100, Engagement with civil society: {point.y} out of 10'
+                }
+            }
+        },
+        legend: {
+        	enabled:false
+        },
+        series: [{name: 'UAE', color: 'rgba(223, 83, 83, .5)', data: [[	7	,	1	]]},
+{name: 'Argentina', color: 'rgba(223, 83, 83, .5)', data: [[	11	,	4	]]},
+{name: 'Australia', color: 'rgba(223, 83, 83, .5)', data: [[	39	,	7	]]},
+{name: 'Austria', color: 'rgba(223, 83, 83, .5)', data: [[	70	,	8	]]},
+{name: 'Belgium', color: 'rgba(223, 83, 83, .5)', data: [[	33	,	8	]]},
+{name: 'Benin', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'Burkina Faso', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Bangladesh', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	2	]]},
+{name: 'Bahrain', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'Brazil', color: 'rgba(223, 83, 83, .5)', data: [[	36	,	6	]]},
+{name: 'Botswana', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'Canada', color: 'rgba(223, 83, 83, .5)', data: [[	67	,	8	]]},
+{name: 'Switzerland', color: 'rgba(223, 83, 83, .5)', data: [[	31	,	7	]]},
+{name: 'Chile', color: 'rgba(223, 83, 83, .5)', data: [[	12	,	5	]]},
+{name: 'China', color: 'rgba(223, 83, 83, .5)', data: [[	8	,	8	]]},
+{name: 'Cameroon', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	2	]]},
+{name: 'Colombia', color: 'rgba(223, 83, 83, .5)', data: [[	26	,	3	]]},
+{name: 'Costa Rica', color: 'rgba(223, 83, 83, .5)', data: [[	2	,	5	]]},
+{name: 'Czech Republic', color: 'rgba(223, 83, 83, .5)', data: [[	50	,	7	]]},
+{name: 'Germany', color: 'rgba(223, 83, 83, .5)', data: [[	45	,	8	]]},
+{name: 'Denmark', color: 'rgba(223, 83, 83, .5)', data: [[	78	,	6	]]},
+{name: 'Ecuador', color: 'rgba(223, 83, 83, .5)', data: [[	7	,	2	]]},
+{name: 'Egypt', color: 'rgba(223, 83, 83, .5)', data: [[	2	,	4	]]},
+{name: 'Spain', color: 'rgba(223, 83, 83, .5)', data: [[	63	,	6	]]},
+{name: 'Estonia', color: 'rgba(223, 83, 83, .5)', data: [[	24	,	7	]]},
+{name: 'Ethiopia', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Finland', color: 'rgba(223, 83, 83, .5)', data: [[	42	,	7	]]},
+{name: 'France', color: 'rgba(223, 83, 83, .5)', data: [[	74	,	9	]]},
+{name: 'United Kingdom', color: 'rgba(223, 83, 83, .5)', data: [[	100	,	9	]]},
+{name: 'Georgia', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	6	]]},
+{name: 'Ghana', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	5	]]},
+{name: 'Greece', color: 'rgba(223, 83, 83, .5)', data: [[	18	,	6	]]},
+{name: 'Haiti', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]},
+{name: 'Hungary', color: 'rgba(223, 83, 83, .5)', data: [[	6	,	2	]]},
+{name: 'Indonesia', color: 'rgba(223, 83, 83, .5)', data: [[	14	,	6	]]},
+{name: 'India', color: 'rgba(223, 83, 83, .5)', data: [[	14	,	6	]]},
+{name: 'Ireland', color: 'rgba(223, 83, 83, .5)', data: [[	5	,	8	]]},
+{name: 'Iceland', color: 'rgba(223, 83, 83, .5)', data: [[	29	,	4	]]},
+{name: 'Israel', color: 'rgba(223, 83, 83, .5)', data: [[	39	,	4	]]},
+{name: 'Italy', color: 'rgba(223, 83, 83, .5)', data: [[	45	,	6	]]},
+{name: 'Jamaica', color: 'rgba(223, 83, 83, .5)', data: [[	20	,	6	]]},
+{name: 'Jordan', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'Japan', color: 'rgba(223, 83, 83, .5)', data: [[	65	,	8	]]},
+{name: 'Kazakhstan', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	2	]]},
+{name: 'Kenya', color: 'rgba(223, 83, 83, .5)', data: [[	21	,	6	]]},
+{name: 'Korea (Republic of)', color: 'rgba(223, 83, 83, .5)', data: [[	58	,	8	]]},
+{name: 'Saint Lucia', color: 'rgba(223, 83, 83, .5)', data: [[	6	,	1	]]},
+{name: 'Morocco', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	4	]]},
+{name: 'Moldova (Republic of)', color: 'rgba(223, 83, 83, .5)', data: [[	18	,	6	]]},
+{name: 'Mexico', color: 'rgba(223, 83, 83, .5)', data: [[	63	,	7	]]},
+{name: 'Macedonia', color: 'rgba(223, 83, 83, .5)', data: [[	20	,	5	]]},
+{name: 'Mali', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	2	]]},
+{name: 'Myanmar', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Mozambique', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]},
+{name: 'Mauritius', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]},
+{name: 'Malawi', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	1	]]},
+{name: 'Malaysia', color: 'rgba(223, 83, 83, .5)', data: [[	16	,	2	]]},
+{name: 'Namibia', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Nigeria', color: 'rgba(223, 83, 83, .5)', data: [[	3	,	3	]]},
+{name: 'Netherlands', color: 'rgba(223, 83, 83, .5)', data: [[	70	,	9	]]},
+{name: 'Norway', color: 'rgba(223, 83, 83, .5)', data: [[	46	,	5	]]},
+{name: 'Nepal', color: 'rgba(223, 83, 83, .5)', data: [[	8	,	5	]]},
+{name: 'New Zealand', color: 'rgba(223, 83, 83, .5)', data: [[	87	,	8	]]},
+{name: 'Pakistan', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Peru', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	5	]]},
+{name: 'Philippines', color: 'rgba(223, 83, 83, .5)', data: [[	28	,	6	]]},
+{name: 'Poland', color: 'rgba(223, 83, 83, .5)', data: [[	21	,	5	]]},
+{name: 'Portugal', color: 'rgba(223, 83, 83, .5)', data: [[	20	,	5	]]},
+{name: 'Paraguay', color: 'rgba(223, 83, 83, .5)', data: [[	5	,	5	]]},
+{name: 'Qatar', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	2	]]},
+{name: 'Russian Federation', color: 'rgba(223, 83, 83, .5)', data: [[	13	,	4	]]},
+{name: 'Rwanda', color: 'rgba(223, 83, 83, .5)', data: [[	11	,	2	]]},
+{name: 'Saudi Arabia', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]},
+{name: 'Senegal', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	2	]]},
+{name: 'Singapore', color: 'rgba(223, 83, 83, .5)', data: [[	32	,	6	]]},
+{name: 'Sierra Leone', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Slovak Republic', color: 'rgba(223, 83, 83, .5)', data: [[	28	,	7	]]},
+{name: 'Sweden', color: 'rgba(223, 83, 83, .5)', data: [[	64	,	8	]]},
+{name: 'Thailand', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	3	]]},
+{name: 'Tunisia', color: 'rgba(223, 83, 83, .5)', data: [[	21	,	6	]]},
+{name: 'Turkey', color: 'rgba(223, 83, 83, .5)', data: [[	6	,	4	]]},
+{name: 'Tanzania', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'Uganda', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	6	]]},
+{name: 'Ukraine', color: 'rgba(223, 83, 83, .5)', data: [[	5	,	5	]]},
+{name: 'Uruguay', color: 'rgba(223, 83, 83, .5)', data: [[	39	,	6	]]},
+{name: 'United States of America', color: 'rgba(223, 83, 83, .5)', data: [[	76	,	9	]]},
+{name: 'Venezuela', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	2	]]},
+{name: 'Vietnam', color: 'rgba(223, 83, 83, .5)', data: [[	12	,	3	]]},
+{name: 'Yemen', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	1	]]},
+{name: 'South Africa', color: 'rgba(223, 83, 83, .5)', data: [[	24	,	3	]]},
+{name: 'Zambia', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]},
+{name: 'Zimbabwe', color: 'rgba(223, 83, 83, .5)', data: [[	0	,	0	]]}]
+    });
+	
+});
+</script>
+	</body>
+</html>
