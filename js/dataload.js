@@ -421,10 +421,10 @@ function datasetCountryRow(iso3, num_country, compare){
 		}
 		_.each(country_datasets[iso3].VALUE, function(value, key){
 			if (country_datasets[iso3].ISOPEN[key] == 0){
-				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-incomp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' NO - Dataset Quality: ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
 			}
 			else{
-				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
+				rowstring = rowstring + '	<td class="ctd-md txt-c"><span class="data-i data-i-comp txt-s" title="' + _.find(window.countries, {iso3:iso3}).name + " - " + _.find(window.indicators, {indicator:key}).name + ': ' + _.find(window.indicators_meta, {indicator:"ISOPEN"}).name + ' YES - Dataset Quality: ' + value + ' (out of 100)" data-toggle="tooltip">' + value + '</span></td>';
 			}
 	});
 	rowstring = rowstring + '</tr>';

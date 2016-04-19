@@ -284,6 +284,21 @@
 	color:$c-g100;
 }
 
+.gci-mnu-item-ac.gci-mnu-i-ac-readiness {
+	background-color: $readliness;
+	color: $ccontrast;
+}
+
+.gci-mnu-item-ac.gci-mnu-i-ac-implementation {
+	background-color: $implementation;
+	color: #000;
+}
+
+.gci-mnu-item-ac.gci-mnu-i-ac-impact {
+	background-color: $impact;
+	color: $ccontrast;
+}
+
 .gci-content {
 /*	max-height: 120px;
 	overflow-y:scroll;

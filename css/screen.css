@@ -1284,6 +1284,24 @@ table.dataTable thead .sorting_desc::after {
 }
 
 /* line 287, ../sass/_m-modal-detail.scss */
+.gci-mnu-item-ac.gci-mnu-i-ac-readiness {
+  background-color: #F1C40F;
+  color: #fff;
+}
+
+/* line 292, ../sass/_m-modal-detail.scss */
+.gci-mnu-item-ac.gci-mnu-i-ac-implementation {
+  background-color: #92EFDA;
+  color: #000;
+}
+
+/* line 297, ../sass/_m-modal-detail.scss */
+.gci-mnu-item-ac.gci-mnu-i-ac-impact {
+  background-color: #CB97F9;
+  color: #fff;
+}
+
+/* line 302, ../sass/_m-modal-detail.scss */
 .gci-content {
   /*	max-height: 120px;
   	overflow-y:scroll;
@@ -1293,17 +1311,17 @@ table.dataTable thead .sorting_desc::after {
   display: none;
 }
 
-/* line 296, ../sass/_m-modal-detail.scss */
+/* line 311, ../sass/_m-modal-detail.scss */
 .cgi-content-compare {
   min-height: 120px;
 }
 
-/* line 300, ../sass/_m-modal-detail.scss */
+/* line 315, ../sass/_m-modal-detail.scss */
 .gci-content.cgi-c-open {
   display: block;
 }
 
-/* line 304, ../sass/_m-modal-detail.scss */
+/* line 319, ../sass/_m-modal-detail.scss */
 .cgi-c-expanded {
   max-height: 100%;
   position: absolute;
@@ -1313,7 +1331,7 @@ table.dataTable thead .sorting_desc::after {
   z-index: 100;
 }
 
-/* line 314, ../sass/_m-modal-detail.scss */
+/* line 329, ../sass/_m-modal-detail.scss */
 .cgi-c-nodata-info {
   position: absolute;
   width: 100%;
@@ -1323,17 +1341,17 @@ table.dataTable thead .sorting_desc::after {
   display: none;
 }
 
-/* line 325, ../sass/_m-modal-detail.scss */
+/* line 340, ../sass/_m-modal-detail.scss */
 .gci-c-readliness.cgi-c-nodata .cgi-c-nodata-info {
   display: block;
 }
 
-/* line 329, ../sass/_m-modal-detail.scss */
+/* line 344, ../sass/_m-modal-detail.scss */
 .gci-c-impact.cgi-c-nodata .cgi-c-nodata-info {
   display: block;
 }
 
-/* line 333, ../sass/_m-modal-detail.scss */
+/* line 348, ../sass/_m-modal-detail.scss */
 .cgi-c-nodata-pos-msg {
   display: block;
   position: absolute;
@@ -1342,24 +1360,24 @@ table.dataTable thead .sorting_desc::after {
   transform: translate(-50%, -50%);
 }
 
-/* line 343, ../sass/_m-modal-detail.scss */
+/* line 358, ../sass/_m-modal-detail.scss */
 .cth-md, .ctd-md {
   padding: 0.5em 0.5em;
 }
 
-/* line 347, ../sass/_m-modal-detail.scss */
+/* line 362, ../sass/_m-modal-detail.scss */
 .ctd-md {
   border-left: 1px solid #f0f0f0;
 }
 
-/* line 351, ../sass/_m-modal-detail.scss */
+/* line 366, ../sass/_m-modal-detail.scss */
 .data-i {
   display: inline-block;
   padding: 2px 4px;
   border-radius: 3px;
 }
 
-/* line 357, ../sass/_m-modal-detail.scss */
+/* line 372, ../sass/_m-modal-detail.scss */
 .data-i-round {
   display: inline-block;
   width: 14px;
@@ -1367,17 +1385,17 @@ table.dataTable thead .sorting_desc::after {
   border-radius: 50em;
 }
 
-/* line 364, ../sass/_m-modal-detail.scss */
+/* line 379, ../sass/_m-modal-detail.scss */
 .data-i-comp {
   background-color: #B8E986;
 }
 
-/* line 368, ../sass/_m-modal-detail.scss */
+/* line 383, ../sass/_m-modal-detail.scss */
 .data-i-incomp {
   background-color: #FF8787;
 }
 
-/* line 372, ../sass/_m-modal-detail.scss */
+/* line 387, ../sass/_m-modal-detail.scss */
 .data-i-updated {
   background-color: #F8E71C;
 }
