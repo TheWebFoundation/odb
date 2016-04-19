@@ -6,6 +6,37 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
+
+//## NAV TOP ##//
+.nav-top {
+	//height: 80px;
+}
+
+.nv-top {
+	display: inline-block;
+	margin: 0px;
+	margin-top: 5px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.nv-top-item {
+	display: block;
+	float: left;
+}
+
+.nv-top-a{
+	display: block;
+	padding: 12px 10px 10px 10px;
+}
+
+.nv-top-a-acc {
+	color:#000;
+	&:hover{
+		color:#000;
+	}
+}
+
 //## HEADER ##//
 
 .header-acc-buttons {

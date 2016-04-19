@@ -2118,7 +2118,7 @@ $('#wrapper-map').highcharts('Map', {
                		$(".cbtn-md-add-country").click();
                		$("#cinput-s-country-modal").val("");
                	}else{
-               		openModalAdv("No data country available");
+               		openModalAdv("No data country available on "+selected_year);
                	}
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID2: "+selectedItemId);
@@ -2681,6 +2681,9 @@ $('#wrapper-map').highcharts('Map', {
 			});
 		}
 		
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
 
 		var openModal = getUrlVars()["open"];
 		if(openModal!=undefined) {
