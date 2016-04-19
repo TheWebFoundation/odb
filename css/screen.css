@@ -1670,9 +1670,10 @@ table.dataTable thead .sorting_desc::after {
   margin-top: -42px;
   margin-left: -160px;
   padding: 10px 0px;
+  width: 300px;
 }
 
-/* line 286, ../sass/_m-generales.scss */
+/* line 287, ../sass/_m-generales.scss */
 .share-item {
   display: inline-block;
   width: 64px;
@@ -1681,12 +1682,12 @@ table.dataTable thead .sorting_desc::after {
   transition: all .3s ease-out;
 }
 
-/* line 294, ../sass/_m-generales.scss */
+/* line 295, ../sass/_m-generales.scss */
 .share-item:hover {
   transform: scale(1.2, 1.2);
 }
 
-/* line 298, ../sass/_m-generales.scss */
+/* line 299, ../sass/_m-generales.scss */
 .close-cmodal-share {
   display: block;
   width: 64px;
@@ -1694,6 +1695,39 @@ table.dataTable thead .sorting_desc::after {
   position: absolute;
   top: 40px;
   right: 40px;
+}
+
+/* line 312, ../sass/_m-generales.scss */
+.cmodal-handsup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .6s ease-out;
+}
+@media (min-width: 768px) {
+  /* line 312, ../sass/_m-generales.scss */
+  .cmodal-handsup {
+    /* width: 90%; */
+  }
+}
+
+/* line 338, ../sass/_m-generales.scss */
+.cmodal-handsup-open {
+  background-color: white;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 344, ../sass/_m-generales.scss */
+.cm-hu-content {
+  padding: 10px 20px 0px 10px;
 }
 
 /* line 3, ../sass/_m-formularios.scss */

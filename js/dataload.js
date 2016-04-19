@@ -1018,7 +1018,6 @@ function addCountrySpider() {
 	//alert(isoCountry);
 
 	country_data_add = _.filter(table_data, {iso3:loaded_countries[carousel_current_country]});
-
 		//Generamos la serie
 		//console.log("add polar to "+country_data_add[0].name);
 
@@ -1037,105 +1036,95 @@ function addCountrySpider() {
 function drawIndicatorsTableModal(){
 	
 	//console.log("year: "+year+" country base: "+loaded_countries[0]);
-
 	var selected_year = year;
 
+	$(".gci-c-readliness").removeClass("cgi-c-nodata");
+	$(".gci-c-impact").removeClass("cgi-c-nodata");
+
+	//Readiness
+	var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').reverse().value();
+	var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').reverse().value();
+	//Impact
+	var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').reverse().value();
+	var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').reverse().value();
+	
 
 
-	//if (parseInt(selected_year) === 2015) {
+	//Cargamos el country 0 - modal
+	var selected_country = loaded_countries[0];
+	var cdata = _.filter(table_data, {iso3:selected_country});
+	//Readiness
+	var thead_readiness = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	$.each(readiness_indicators, function (index,indicator) {
+		//console.log("year: "+indicator);
+		if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null && loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+			thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+				tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			}else{
+				tbody_readiness += '<td class="ctd-md txt-c"> -- </td>';
+			}
+		}
+	});
+	$("table#cm-table-readliness thead tr").html(thead_readiness);
+	$("table#cm-table-readliness tbody tr:first").html(tbody_readiness);
 
-		$(".gci-c-readliness").removeClass("cgi-c-nodata");
-		$(".gci-c-impact").removeClass("cgi-c-nodata");
+	//Impact
+	var thead_impact = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
+	var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+	$.each(impact_indicators, function (index,indicator) {
+		if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+			thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
+				tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+			}else{
+				tbody_impact += '<td class="ctd-md txt-c"> -- </td>';
+			}
+		}
+	});
+	$("table#cm-table-impact thead tr").html(thead_impact);
+	$("table#cm-table-impact tbody tr:first").html(tbody_impact);
 
-		//Readiness
-		var readiness_indicators = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('indicator').value();
-		var readiness_name = _(indicators).filter(function(value, key){ return value.subindex==='READINESS' && value.component!==null;}).map('name').value();
-		//Impact
-		var impact_indicators = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('indicator').value();
-		var impact_name = _(indicators).filter(function(value, key){ return value.subindex==='IMPACT' && value.component!==null;}).map('name').value();
-		
+	//console.log("Countries: "+selected_country);
 
-
-		//Cargamos el country 0 - modal
-		var selected_country = loaded_countries[0];
+	if(loaded_countries.length > 1) {
+		//Cargamos los datos del item actual del carousel
+		//console.log("aqui");
+		var selected_country = loaded_countries[carousel_current_country];
 		var cdata = _.filter(table_data, {iso3:selected_country});
+
 		//Readiness
-		var thead_readiness = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
-		var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		$.each(readiness_indicators, function (index,indicator) {
-			//console.log("year: "+indicator);
-			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null && loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
-				thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
-				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
-					tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
-				}else{
-					tbody_readiness += '<td class="ctd-md txt-c"> -- </td>';
+			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
+				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value !=null) {
+					tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+				}else {
+					tbody_readiness_add += '<td class="ctd-md txt-c"> -- </td>';
 				}
 			}
 		});
-		$("table#cm-table-readliness thead tr").html(thead_readiness);
-		$("table#cm-table-readliness tbody tr:first").html(tbody_readiness);
+		$("table#cm-table-readliness tbody tr:last").html(tbody_readiness_add);
 
 		//Impact
-		var thead_impact = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
-		var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
+		var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 		$.each(impact_indicators, function (index,indicator) {
 			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-				thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
 				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
-					tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
+					tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
 				}else{
-					tbody_impact += '<td class="ctd-md txt-c"> -- </td>';
+					tbody_impact_add += '<td class="ctd-md txt-c"> -- </td>';
 				}
 			}
 		});
-		$("table#cm-table-impact thead tr").html(thead_impact);
-		$("table#cm-table-impact tbody tr:first").html(tbody_impact);
+		$("table#cm-table-impact tbody tr:last").html(tbody_impact_add);
+	}
 
-		//console.log("Countries: "+selected_country);
-
-		if(loaded_countries.length > 1) {
-			//Cargamos los datos del item actual del carousel
-			//console.log("aqui");
-			var selected_country = loaded_countries[carousel_current_country];
-			var cdata = _.filter(table_data, {iso3:selected_country});
-
-			//Readiness
-			var tbody_readiness_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
-			$.each(readiness_indicators, function (index,indicator) {
-				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-					if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value !=null) {
-						tbody_readiness_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
-					}else {
-						tbody_readiness_add += '<td class="ctd-md txt-c"> -- </td>';
-					}
-				}
-			});
-			$("table#cm-table-readliness tbody tr:last").html(tbody_readiness_add);
-
-			//Impact
-			var tbody_impact_add = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
-			$.each(impact_indicators, function (index,indicator) {
-				if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-					if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
-						tbody_impact_add += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
-					}else{
-						tbody_impact_add += '<td class="ctd-md txt-c"> -- </td>';
-					}
-				}
-			});
-			$("table#cm-table-impact tbody tr:last").html(tbody_impact_add);
-		}
-
-		//Reiniciamos tooltips
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip();
-		});
-
-	// }else{
-	// 	$(".gci-c-readliness").addClass("cgi-c-nodata");
-	// 	$(".gci-c-impact").addClass("cgi-c-nodata");
-	// }
+	//Reiniciamos tooltips
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
 
 }
 
@@ -1181,6 +1170,26 @@ function showModal() {
 		owl.trigger('refresh.owl.carousel');
 		$("table#cm-table-readliness tbody tr:last").html("");
 		$("table#cm-table-impact tbody tr:last").html("");
+	}
+}
+
+
+function openModalAdv (msg) {
+
+	if($(".cmodal-detail").is(".cmodal-detail-open")) {
+		$(".cmodal-detail").css("opacity",0.2);
+	}
+
+	if(!$(".cmodal-handsup").is(".cmodal-handsup-open")) {
+		$(".msg-cm-hu").text(msg);
+		$(".cmodal-handsup").addClass("cmodal-handsup-open");
+		$(".overlay").addClass("overlay-open");
+		$("body").addClass("noscroll");
+	}else{
+		$(".msg-cm-hu").text("...");
+		$(".cmodal-handsup").removeClass("cmodal-handsup-open");
+		$(".overlay").removeClass("overlay-open");
+		$("body").removeClass("noscroll");
 	}
 }
 
@@ -1250,11 +1259,35 @@ if(cont_filters > 0 && getUrlVars()["open"]==undefined) {
 
 //Buscadores
 $(".cbtn-search-home-select").on("click", function(){
+    
     //var option = $(this).parent().parent().find("option:selected").val();
-    refreshData();
+    var current_indicator_select = $("#sindicator").val();
+	var current_year_select = $("#syear").val();
+
+	noDataYear = 0;
+	
+	$.getJSON('json/years_with_data.json', function(data) {
+		var yearIndicators = []
+		$.each(data, function(key,value) {
+			if(key === current_year_select ) {
+				var yearIndicators = data[current_year_select]
+				if(jQuery.inArray(current_indicator_select, yearIndicators) !== -1)noDataYear++;
+			}
+		});
+
+		if(noDataYear == 0) {
+			openModalAdv("The selected indicator has no data on "+current_year_select);
+			//console.log("This indicator does not exist on "+current_year_select);
+			return false;
+		}else{
+			refreshData();
+			//console.log("exist");
+		}
+	});
+    
 });
 
-
+//Comprobamos si el indicador existe antes de cargar el año
 $(document).on("change","#sindicator",function(){
 	// alert("change indicator");
 	// var data = $.getJSON('json/years_with_data.json');
@@ -1262,34 +1295,29 @@ $(document).on("change","#sindicator",function(){
 	//     console.log(data[i]);
 	// });
 	
-	var current_indicator_select = $(this).val();
-	var current_year_select = $("#syear").val();
-	var find = 0;
+	// var current_indicator_select = $(this).val();
+	// var current_year_select = $("#syear").val();
 
-	alert(current_indicator_select)
-
+	// noDataYear = 0;
 	
-	$.getJSON('json/years_with_data.json', function(data) {
-		$.each(data, function(key) {
-			//console.log(data[key]);
-			if(key == current_year_select){
-				if(data[key] = current_indicator_select) {
-					find ++;
-					console.log(data[key]+" : "+current_indicator_select);
-				}
-			}
-		});
+	// $.getJSON('json/years_with_data.json', function(data) {
+	// 	var yearIndicators = []
+	// 	$.each(data, function(key,value) {
+	// 		if(key === current_year_select ) {
+	// 			var yearIndicators = data[current_year_select]
+	// 			if(jQuery.inArray(current_indicator_select, yearIndicators) !== -1)noDataYear++;
+	// 		}
+	// 	});
 
-		alert (find);
-
-		if(find == 0) {
-			alert("This indicator does not exist on "+current_year_select);
-			return false;
-		}else{
-			alert("exist");
-		}
-	});
+	// 	if(noDataYear == 0) {
+	// 		console.log("This indicator does not exist on "+current_year_select);
+	// 		return false;
+	// 	}else{
+	// 		console.log("exist");
+	// 	}
+	// });
 })
+
 
 $(".leg-region").on("click", function(e){
 	e.preventDefault();
@@ -1298,9 +1326,10 @@ $(".leg-region").on("click", function(e){
 	$(".cbtn-search-home-select").trigger("click");
 });
 
-$(".cbtn-clear-filters").on("click", function(){
-	window.location.href = 'http://'+location.hostname+':8888/odb/';
-	//window.location.href = 'http://'+location.hostname+'/open-data-explorer/'
+$(".cbtn-clear-filters").on("click", function(e){
+	e.preventDefault();
+	window.location.href = 'http://'+location.hostname+':8888/odb/?_year=2015&indicator=ODB';
+	//window.location.href = 'http://'+location.hostname+'/open-data-explorer/?_year=2015&indicator=ODB'
 })
 
 
@@ -1311,8 +1340,8 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 
 	var nyear = $("#syear-modal").val();
 	var nindicator = $("#sindicator-modal").val();
-	var nopen = getUrlVars()["open"];
 	
+	var nopen = getUrlVars()["open"];
 	var ncomparew = "";
 	var nregion = "";
 	var nincome = "";
@@ -1329,12 +1358,31 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 	if(getUrlVars()["G7"] != undefined) nG7 = '&G7='+getUrlVars()["G7"];
 	if(getUrlVars()["OECD"] != undefined) nOECD = '&OECD='+getUrlVars()["OECD"];
 	if(getUrlVars()["IODCH"] != undefined) nIODCH = '&IODCH='+getUrlVars()["IODCH"];
-
 	if(getUrlVars()["comparew"] != undefined) ncomparew = '&comparew='+getUrlVars()["comparew"];
-
-	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	
 	//var newURLModal = 'http://'+location.hostname+'/open-data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
-	window.location.href = newURLModal;
+	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	noDataYear = 0;
+
+	$.getJSON('json/years_with_data.json', function(data) {
+		var yearIndicators = []
+		$.each(data, function(key,value) {
+			if(key === nyear ) {
+				var yearIndicators = data[nyear]
+				if(jQuery.inArray(nindicator, yearIndicators) !== -1)noDataYear++;
+			}
+		});
+
+		if(noDataYear == 0) {
+			openModalAdv("The selected indicator has no data on "+nyear);
+			//console.log("This indicator does not exist on "+current_year_select);
+			return false;
+		}else{
+			window.location.href = newURLModal;
+			//console.log("exist");
+		}
+	});
+
 });
 
 
@@ -2000,7 +2048,7 @@ $('#wrapper-map').highcharts('Map', {
 	var options = {
         url: 'json/countries.json',
         theme: "none",
-        //getValue: "character",
+        //getValue: "search",
         getValue: function(element) {
             return element.search;
             //console.log("Element: "+element.search);
@@ -2019,12 +2067,18 @@ $('#wrapper-map').highcharts('Map', {
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemId = $(".easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
-                OpenCountryData(selectedItemId);
+                var yearNow = $("#syear").val();
+                var dataExist = _.includes(_.find(countries,{iso3:selectedItemId}).years_with_data,parseInt(selected_year));
+               	if(dataExist){
+               		$("#cinput-s-country").val("");
+               		OpenCountryData(selectedItemId);
+               	}else{
+               		openModalAdv("No data country available");
+               	}
                 //$("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
                 //$(".cbtn-search-home-input").attr("data-id",selectedItemId);
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID1: "+selectedItemId);
-
             },
             onSelectItemEvent: function() {
                 var value = $("#cinput-s-country").getSelectedItemData().name;
@@ -2045,7 +2099,11 @@ $('#wrapper-map').highcharts('Map', {
         theme: "none",
         //getValue: "character",
         getValue: function(element) {
-            return element.search;
+        	if(element.search == null) {
+        		return false;
+        	}else{
+            	return element.search;
+            }
             //console.log("Element: "+element.search);
         },
         template: {
@@ -2058,12 +2116,18 @@ $('#wrapper-map').highcharts('Map', {
             match: {
                 enabled: true
             },
-            maxNumberOfElements: 10,
+            maxNumberOfElements: 15,
             onChooseEvent: function() {
                 //var value = $("#cinput-s-country").getSelectedItemData().country;
                 var selectedItemModalId = $(".cmodal .easy-autocomplete").find("ul li.selected div.country-select-autoc").attr("data-item-id");
                 $(".cbtn-md-add-country").attr("data-id",selectedItemModalId);
-                $(".cbtn-md-add-country").click();
+                var dataExist = _.includes(_.find(countries,{iso3:selectedItemModalId}).years_with_data,parseInt(selected_year));
+               	if(dataExist){
+               		$(".cbtn-md-add-country").click();
+               		$("#cinput-s-country-modal").val("");
+               	}else{
+               		openModalAdv("No data country available");
+               	}
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID2: "+selectedItemId);
 
@@ -2138,9 +2202,11 @@ $('#wrapper-map').highcharts('Map', {
 	owl.on('translated.owl.carousel', function(event) {
 		carousel_current_country = event.item.index + 1;
         //console.log("Desde el translated.owlcarousel. Carouselcurrentcountry = " + carousel_current_country);
-        addCountrySpider();
-        drawDatasetTable();
-        drawIndicatorsTableModal();
+		if(loaded_countries.length>1){      
+	        addCountrySpider();
+	        drawDatasetTable();
+	        drawIndicatorsTableModal();
+        }
 		//console.log("Estamos en:" + carousel_current_country);
 	});
 
@@ -2156,7 +2222,8 @@ $('#wrapper-map').highcharts('Map', {
 		var idAddCtr = $(this).attr("data-id");
 
         if(loaded_countries.contains(idAddCtr)) {
-			alert("This country has already been selected here");
+        	openModalAdv("This country has already been selected here");
+			//alert("This country has already been selected here");
 			return false;
 		}
 
@@ -2174,7 +2241,8 @@ $('#wrapper-map').highcharts('Map', {
 		})
 
 		if(cont !=0) {
-			alert("This country has already been selected");
+			//alert("This country has already been selected");
+			openModalAdv("This country has already been selected");
 			return false;
 		}
 
@@ -2288,7 +2356,6 @@ $('#wrapper-map').highcharts('Map', {
 	// 	alert("help!");
 	// })
 
-
 	//Apertura / cierre del modal detalle de countries
 	$(document).delegate(".more-info, .close-cmodal-detail","click", function(e){
 
@@ -2302,6 +2369,9 @@ $('#wrapper-map').highcharts('Map', {
 			$(".cmodal-detail").removeClass("cmodal-detail-open");
 			$(".overlay").removeClass("overlay-open");
 			$("body").removeClass("noscroll");
+			
+			$("#cinput-s-country-modal").val("");
+			$("#cinput-s-country").val("");
 			window.history.pushState("", "ODB, Open Data Barometer",base_URL);
 
 		    //Reiniciamos la variables:
@@ -2377,6 +2447,16 @@ $('#wrapper-map').highcharts('Map', {
 
 	})
 
+	$(document).delegate(".cbtn-close-adv","click", function(e){
+		$(".cmodal-handsup").removeClass("cmodal-handsup-open");
+		$(".cmodal-detail").css("opacity",1);
+		if(!$(".cmodal-detail").is(".cmodal-detail-open")) {
+			$("body").removeClass("noscroll");
+			$(".overlay").removeClass("overlay-open");
+		}
+	});
+
+
 	//Cierre presionando esc del modal detalle de countries
 	$(document).keyup(function(e) {
 
@@ -2391,30 +2471,38 @@ $('#wrapper-map').highcharts('Map', {
 
 			//Escape solo para cerrar la ventana de detalle de usuario
 			if($(".cmodal-detail").is(".cmodal-detail-open")) {
-				
+
 				$(".cmodal-detail").css({"opacity":1});
+
+				if($(".cmodal-handsup").is(".cmodal-handsup-open")){
+					$(".cmodal-handsup").removeClass("cmodal-handsup-open");
+					return false;
+				}
 
 				if($(".cmodal-a-share").is(".cmodal-a-share-open")) {
 					$(".cmodal-a-share").removeClass("cmodal-a-share-open");
-				}else{
-
-					window.history.pushState("", "ODB, Open Data Barometer",base_URL);
-
-					//Reiniciamos la variables:
-				    ctrIsoCompare = [];
-				    base_URL_OM = window.location.href+'&open=';
-	                loaded_countries = [];
-
-				    //Vaciamos el carousel
-			    	owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
-					owl.trigger('refresh.owl.carousel');
-					$("table#cm-table-impact tbody tr:last").html("");
-					$("table#cm-table-readliness tbody tr:last").html("");
-
-					$(".cmodal-detail").removeClass("cmodal-detail-open");
-					$(".overlay").removeClass("overlay-open");
-					$("body").removeClass("noscroll");
+					return false;
 				}
+
+				$("#cinput-s-country-modal").val("");
+				$("#cinput-s-country").val("");
+
+				window.history.pushState("", "ODB, Open Data Barometer",base_URL);
+				//Reiniciamos la variables:
+			    ctrIsoCompare = [];
+			    base_URL_OM = window.location.href+'&open=';
+                loaded_countries = [];
+
+			    //Vaciamos el carousel
+		    	owl.trigger('replace.owl.carousel', '<div class="country-area-empty r-pos"><div class="no-country-select txt-c"><img src="img/img-world-compare-with.png" class="c-obj"><p class="c-g40 p-s-top txt-l">Select a country ...</p></div></div>',0);
+				owl.trigger('refresh.owl.carousel');
+				$("table#cm-table-impact tbody tr:last").html("");
+				$("table#cm-table-readliness tbody tr:last").html("");
+
+				$(".cmodal-detail").removeClass("cmodal-detail-open");
+				$(".overlay").removeClass("overlay-open");
+				$("body").removeClass("noscroll");
+				
 			}
 
 		}
