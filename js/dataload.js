@@ -1328,7 +1328,11 @@ $(".leg-region").on("click", function(e){
 
 $(".cbtn-clear-filters").on("click", function(e){
 	e.preventDefault();
-	window.location.href = 'http://'+location.hostname+':8888/odb/?_year=2015&indicator=ODB';
+	var cyear = getUrlVars()["_year"];
+	var cindicator = getUrlVars()["indicator"];
+	if(cyear==null)year=2015;
+	if(cindicator == null)indicator="ODB";
+	window.location.href = 'http://'+location.hostname+':8888/odb/?_year='+cyear+'&indicator='+cindicator;
 	//window.location.href = 'http://'+location.hostname+'/open-data-explorer/?_year=2015&indicator=ODB'
 })
 
@@ -2073,7 +2077,7 @@ $('#wrapper-map').highcharts('Map', {
                		$("#cinput-s-country").val("");
                		OpenCountryData(selectedItemId);
                	}else{
-               		openModalAdv("No data country available");
+               		openModalAdv("No data country available on "+yearNow);
                	}
                 //$("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
                 //$(".cbtn-search-home-input").attr("data-id",selectedItemId);
