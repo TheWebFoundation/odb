@@ -1333,7 +1333,7 @@ $(".cbtn-clear-filters").on("click", function(e){
 	if(cyear==null)year=2015;
 	if(cindicator == null)indicator="ODB";
 	window.location.href = 'http://'+location.hostname+':8888/odb/?_year='+cyear+'&indicator='+cindicator;
-	//window.location.href = 'http://'+location.hostname+'/open-data-explorer/?_year=2015&indicator=ODB'
+	//window.location.href = 'http://'+location.hostname+'/data-explorer/?_year=2015&indicator=ODB'
 })
 
 
@@ -1364,7 +1364,7 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 	if(getUrlVars()["IODCH"] != undefined) nIODCH = '&IODCH='+getUrlVars()["IODCH"];
 	if(getUrlVars()["comparew"] != undefined) ncomparew = '&comparew='+getUrlVars()["comparew"];
 	
-	//var newURLModal = 'http://'+location.hostname+'/open-data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	//var newURLModal = 'http://'+location.hostname+'/data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
 	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
 	noDataYear = 0;
 
@@ -1476,29 +1476,17 @@ filtered_table_data = _.filter(table_data, filter_applied);
 drawTable(filtered_table_data);
 
 
-//Iniciamos la tabla ordenada por ODB Rank y ODB asc
-var table = $('#table-data').DataTable({
-    fixedHeader: true,
-    paging: false,
-    order: [[1,"asc"], [2,"desc"]],
-    //info: false,
-    sDom: 't', //Que solo renderice la tabla
-    language: {
-    	"sEmptyTable": "No countries meet the criteria"
-        //search: "_INPUT_",
-        //searchPlaceholder: "Search country ..."
-    }
-});
-
-
 map_data = _(data.areas)
 .map(function(area, iso3){
+	var current_country = _.find(window.countries, {iso3:iso3});
     if(area[selected_indicator] != null){
-        return {code:iso3, value:area[selected_indicator].value};
+        return {code:iso3, value:area[selected_indicator].value, hdi:current_country.hdi_rank, income:current_country.income, g20:current_country.g20, g7:current_country.g7, iodch:current_country.iodch, oecd:current_country.oecd, region_iso3:current_country.area, region:_.find(window.regions, {iso3:current_country.area}).name};
     }
 })
 .compact()
 .value();
+
+map_data = _.filter(map_data, filter_applied);
 
 number_of_countries = map_data.length - 1; //(-1 por las estadísticas)
 selected_indicator_average = Math.round(data.stats[selected_indicator].mean*100)/100;
@@ -2538,56 +2526,161 @@ $('#wrapper-map').highcharts('Map', {
 		//seleccionar #table-data -> tbody
 		//For each object in data
 		var current_row = "";
-		var my_table = $("#table-data tbody");
+		var my_table = $("#table-data");
 
 		var rank_change;
+		if(selected_indicator == "ODB"){
+			current_row = '<table class="ctable ctable-light w100">' +
+							'<thead class="th-main">' +
+							'<tr>' +
+							'<th class="ct-th txt-al p-left-l">Country <span class="ct-th-st"></span></th>' +
+							'<th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help click txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="--"></span></span> <span class="ct-th-st txt-xs uppc">Rank</span> </th>' +
+							'<th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="An assessment of the true prevalence of open data initiatives around the world."></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Readiness <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The readiness of states, citizens and entrepreneurs to secure the benefits of open data."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extent to which accessible, timely, and open data is published by each country government on a selection of 15 key fields."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Emerging Impact <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extend to which there is any evidence that open data release by the country government has had positive impacts in a variety of different domains in the country."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="--"></span></span><span class="ct-th-st uppc txt-xs">change</span></th>' +
+							'</tr>' +
+							'</thead>' +
+							'<tbody>';
 
+			for(i=0; i<data.length; i++){
 
-		for(i=0; i<data.length; i++){
+				//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
+				rank_change = data[i].odb_rank_change;
+				//console.log("Rank change: "+data[i].odb_rank_change);
 
-			//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
-            rank_change = data[i].odb_rank_change;
-            //console.log("Rank change: "+data[i].odb_rank_change);
-			
-			if (rank_change == null) {
-				rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
-			}else{
-				if(rank_change<0){
-					var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
-				} else {
-					var rank_print = '<span class="arrow-up"></span> ' + rank_change;
-					if(rank_change == 0) {
-						rank_print = '<span class="txt-xs c-g40">0</span>';
+				if (rank_change == null) {
+					rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
+				}else{
+					if(rank_change<0){
+						var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+					} else {
+						var rank_print = '<span class="arrow-up"></span> ' + rank_change;
+						if(rank_change == 0) {
+							rank_print = '<span class="txt-xs c-g40">0</span>';
+						}
 					}
 				}
-			}
 
-			//Manipulamos la cifra para estilarla un poco
-			if(data[i].odb % 1 != 0){
-				var odbRaw = data[i].odb;
-				var odbDec = odbRaw.toString().split('.');
-				var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
-			}else{
-				var odbPrint = data[i].odb;
-			}
+				//Manipulamos la cifra para estilarla un poco
+				if(data[i].odb % 1 != 0){
+					var odbRaw = data[i].odb;
+					var odbDec = odbRaw.toString().split('.');
+					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+				}else{
+					var odbPrint = data[i].odb;
+				}
 
-			var flagtlwc = data[i].iso2;
-			current_row = current_row + '<tr>' +
-			'<td class="ct-td txt-al p-left-l">' +
-					'<span class="flag"><img src="img/flags/' + flagtlwc.toLowerCase() + '.svg" class="img-responsive"></span>' +
-					'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
-			   '</td>' +
-			   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
-			   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
-			   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
-			   '<td class="ct-td txt-c txt-med displayib">' + rank_print + '</td>' +
-			'</tr>';
+				var flagtlwc = data[i].iso2;
+				current_row = current_row + '<tr>' +
+				'<td class="ct-td txt-al p-left-l">' +
+						'<span class="flag"><img src="img/flags/' + flagtlwc.toLowerCase() + '.svg" class="img-responsive"></span>' +
+						'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
+				   '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
+				   '<td class="ct-td txt-c txt-med displayib">' + rank_print + '</td>' +
+				'</tr>';
+			}
+			current_row = current_row + '</tbody></table>';
+
+			//(current_row);
+			//$("#table-data body").html(current_row);
+			my_table.append(current_row);
+			//Iniciamos la tabla ordenada por ODB Rank y ODB asc
+			var table = $('#table-data table').DataTable({
+				fixedHeader: true,
+				paging: false,
+				order: [[1,"asc"], [2,"desc"]],
+				//info: false,
+				sDom: 't', //Que solo renderice la tabla
+				language: {
+					"sEmptyTable": "No countries meet the criteria"
+					//search: "_INPUT_",
+					//searchPlaceholder: "Search country ..."
+				}
+			});
 		}
-		//(current_row);
-		//$("#table-data body").html(current_row);
-		my_table.append(current_row);
+		else{
+			current_row = '<table class="ctable ctable-light w100">' +
+							'<thead class="th-main">' +
+							'<tr>' +
+							'<th class="ct-th txt-al p-left-l">Country <span class="ct-th-st"></span></th>' +
+							'<th class="ct-th txt-al">Indicator <span class="cover-help"><span class="cicon-help click txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="' + selected_indicator_name + '"></span></span> <span class="ct-th-st txt-xs uppc">' + 'out of ' + selected_indicator_range_max + '</span> </th>' +
+							'<th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help click txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="--"></span></span> <span class="ct-th-st txt-xs uppc">Rank</span> </th>' +
+							'<th class="ct-th txt-al">ODB <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="An assessment of the true prevalence of open data initiatives around the world."></span></span> <span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Readiness <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The readiness of states, citizens and entrepreneurs to secure the benefits of open data."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Implementation <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extent to which accessible, timely, and open data is published by each country government on a selection of 15 key fields."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'<th class="ct-th txt-al">Emerging Impact <span class="cover-help"><span class="cicon-help txt-l" data-placement="bottom" data-toggle="tooltip" data-original-title="The extend to which there is any evidence that open data release by the country government has had positive impacts in a variety of different domains in the country."></span></span><span class="ct-th-st txt-xs uppc">Out of 100</span></th>' +
+							'</tr>' +
+							'</thead>' +
+							'<tbody>';
+
+			for(i=0; i<data.length; i++){
+
+				//if(data[i].odb_rank_change!=null){}else{rank_change = 0}
+				rank_change = data[i].odb_rank_change;
+				//console.log("Rank change: "+data[i].odb_rank_change);
+
+				if (rank_change == null) {
+					rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
+				}else{
+					if(rank_change<0){
+						var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
+					} else {
+						var rank_print = '<span class="arrow-up"></span> ' + rank_change;
+						if(rank_change == 0) {
+							rank_print = '<span class="txt-xs c-g40">0</span>';
+						}
+					}
+				}
+
+				//Manipulamos la cifra para estilarla un poco
+				if(data[i].odb % 1 != 0){
+					var odbRaw = data[i].odb;
+					var odbDec = odbRaw.toString().split('.');
+					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+				}else{
+					var odbPrint = data[i].odb;
+				}
+
+				var flagtlwc = data[i].iso2;
+				current_row = current_row + '<tr>' +
+				'<td class="ct-td txt-al p-left-l">' +
+						'<span class="flag"><img src="img/flags/' + flagtlwc.toLowerCase() + '.svg" class="img-responsive"></span>' +
+						'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
+				   '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + data[i].selected_indicator_value + '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
+				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
+				'</tr>';
+			}
+			current_row = current_row + '</tbody></table>';
+			//(current_row);
+			//$("#table-data body").html(current_row);
+			my_table.append(current_row);
+			//Iniciamos la tabla ordenada por ODB Rank y ODB asc
+			var table = $('#table-data table').DataTable({
+				fixedHeader: true,
+				paging: false,
+				order: [[1,"desc"], [2,"asc"]],
+				//info: false,
+				sDom: 't', //Que solo renderice la tabla
+				language: {
+					"sEmptyTable": "No countries meet the criteria"
+					//search: "_INPUT_",
+					//searchPlaceholder: "Search country ..."
+				}
+			});
+		}
+		
 
 		var openModal = getUrlVars()["open"];
 		if(openModal!=undefined) {
