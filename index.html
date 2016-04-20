@@ -11,7 +11,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-
         <meta property="og:url"         content="http://www.opendatabarometer.org/data-explorer/?_year=2015&indicator=ODB" />
         <meta property="og:type"        content="article" />
         <meta property="og:title"       content="Open Data Barometer 2015" />
@@ -29,11 +28,13 @@
         <link href="js/vendor/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
        
         <!--3 parties/vendor styles-->
+        
         <link rel="stylesheet" href="css/jquery.multiselect.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/easy-autocomplete.css">
+        <link rel="stylesheet" href="css/jquery.dropdown.css">
         
         
         <!--Main styles-->
@@ -56,12 +57,12 @@
             <div class="nav-top-mnu displayib">
                 <ul class="nv-top">
                     <li class="nv-top-item"><a href="/" class="nv-top-a txt-m">Home</a></li>
-                    <li class="nv-top-item"><a href="/3rdEdition-report" class="nv-top-a txt-m">Report</a></li>
+                    <li class="nv-top-item"><a href="/3rdEdition-report" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-report">Report</a></li>
                     <li class="nv-top-item"><a class="nv-top-a nv-top-a-acc txt-m">Rankings & Data</a></li>
                     <li class="nv-top-item"><a href="/3rdEdition-methodology/" class="nv-top-a txt-m">Methodology</a></li>
-                    <li class="nv-top-item"><a href="/2ndEdition" class="nv-top-a txt-m">Previous Edition</a></li>
+                    <li class="nv-top-item"><a href="/2ndEdition" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-predition">Previous Edition</a></li>
                     <li class="nv-top-item"><a href="/contact/" class="nv-top-a txt-m">Contact</a></li>
-                    <li class="nv-top-item"><a href="/open-data/" class="nv-top-a txt-m">About</a></li>
+                    <li class="nv-top-item"><a href="/open-data/" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-about">About</a></li>
                 </ul>
             </div>
 
@@ -481,10 +482,10 @@
                 <div class="global-content-indicators cb-top-2 overfh">
                         
                     <div class="mnu-c-ind">
-                        <ul class="gci-mnu list-inl no-m-bottom">
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-readliness uppc txt-s gci-mnu-item-ac gci-mnu-i-ac-readiness"  data-id="readiness">Readiness</li>
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-implementation uppc txt-s gci-mnu-i-ac-implementation" data-id="implementation">Implementation <a href="#" class="cbtn-expand-table">Expand</a></li>
-                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click br-left-impact txt-s uppc gci-mnu-i-ac-impact" data-id="impact">Impact</li>
+                        <ul class="gci-mnu list-inl no-m-bottom gci-mnu-bb-readiness">
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click uppc txt-s gci-mnu-item-ac gci-mnu-i-ac-readiness"  data-id="readiness">Readiness</li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click uppc txt-s gci-mnu-i-ac-implementation" data-id="implementation">Implementation <a href="#" class="cbtn-expand-table">Expand</a></li>
+                            <li class="gci-mnu-item displayib w33f txt-c p-s-top p-s-bottom click txt-s uppc gci-mnu-i-ac-impact" data-id="impact">Impact</li>
                         </ul>
                     </div>
 
@@ -649,14 +650,17 @@
         
         <!--3 Parties vendor-->
        <!--script src="https://code.highcharts.com/highcharts.js"></script-->
+
 		<script src="http://code.highcharts.com/stock/highstock.js"></script>
-         <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <!--script src="https://code.highcharts.com/maps/highmaps.js"></script-->
         <script src="https://code.highcharts.com/maps/modules/map.js"></script>
         <script src="https://code.highcharts.com/maps/modules/data.js"></script>
         <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
         <!--script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script-->
         <script src="js/vendor/DataTables/datatables.min.js" type="text/javascript"></script>
+        <script src="js/vendor/jquery.dropdown.js" type="text/javascript"></script>
+       
         <!-- owl carousel -->   
         <script src="js/vendor/owl.carousel.min.js" type="text/javascript"></script>
 		<!--scripts para la carga y manipulación de datos-->
@@ -692,4 +696,48 @@
         </script>
         -->
     </body>
+
+    <div id="smnu-report" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/3rdEdition/report">Table of contets</a></li>
+            <li><a href="/3rdEdition/report#executive_summary">Executive summary and key findings</a></li>
+            <li><a href="/3rdEdition/report#readiness">Readiness</a></li>
+            <li><a href="/3rdEdition/report/#implementation">Implementation</a></li>
+            <li><a href="/3rdEdition/report#impact">Impact</a></li>
+            <li><a href="/3rdEdition/report#rankings">Rankings</a></li>
+            <li><a href="/3rdEdition/report#conclusion_recommendations">Conclusion and recommendations</a></li>
+        </ul>
+    </div>
+
+    <div id="smnu-predition" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/2ndEdition">Open Data Barometer 2nd edition</a></li>
+            <li><a href="/1stEdition">Open Data Barometer 1st edition</a></li>
+   
+        </ul>
+    </div>
+
+    <div id="smnu-about" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/open-data/">Open Data</a></li>
+            <li><a href="/barometer/">The Open Data Barometer</a></li>
+            <li><a href="/web-foundation/">The Web Foundation</a></li>
+            <li><a href="/od4d-network/">The OD4D network</a></li>
+            <li><a href="/3rdEdition/acknowledgements">Acknowledgements</a></li>
+            <li><a href="/3rdEdition/data/">Get the data</a></li>
+        </ul>
+    </div>
+
+    <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="#1">Item 1</a></li>
+            <li><a href="#2">Item 2</a></li>
+            <li><a href="#3">Item 3</a></li>
+            <li class="jq-dropdown-divider"></li>
+            <li><a href="#4">Item 4</a></li>
+            <li><a href="#5">Item 5</a></li>
+            <li><a href="#5">Item 6</a></li>
+        </ul>
+    </div>
+
 </html>

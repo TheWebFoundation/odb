@@ -275,12 +275,12 @@
 .gci-mnu-item {
 	padding-right:0px!important;
 	padding-left:0px!important;
-	border-bottom: 1px solid $c-borde-2;
+	//border-bottom: 1px solid $c-borde-2;
 	color:$c-g40;
 }
 
 .gci-mnu-item-ac {
-	border-bottom: 1px solid $ccontrast;
+	//border-bottom: 1px solid $ccontrast;
 	color:$c-g100;
 }
 
@@ -289,14 +289,26 @@
 	color: $ccontrast;
 }
 
+.gci-mnu-bb-readiness {
+	border-bottom:2px solid $readliness;
+}
+
 .gci-mnu-item-ac.gci-mnu-i-ac-implementation {
 	background-color: $implementation;
 	color: #000;
 }
 
+.gci-mnu-bb-implementation {
+	border-bottom:2px solid $implementation;
+}
+
 .gci-mnu-item-ac.gci-mnu-i-ac-impact {
 	background-color: $impact;
 	color: $ccontrast;
+}
+
+.gci-mnu-bb-impact {
+	border-bottom:2px solid $impact;
 }
 
 .gci-content {
@@ -353,6 +365,8 @@
 
 	transform:translate(-50%,-50%);
 }
+
+
 
 //## dataset scored table
 .cth-md, .ctd-md {

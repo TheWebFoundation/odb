@@ -126,4 +126,17 @@ table.dataTable thead .sorting_desc::after {
 }
 
 
+//#Ajustes en el dropdown del menu superior ##//
+.jq-dropdown .jq-dropdown-menu li > a,
+.jq-dropdown .jq-dropdown-menu label {
+  padding: 8px 15px;
+  border-bottom: 1px solid $c-bg-10;
+}
+
+.jq-dropdown .jq-dropdown-menu li:last-child > a,
+.jq-dropdown .jq-dropdown-menu label{
+  border-bottom: 0 none;
+}
+
+
 

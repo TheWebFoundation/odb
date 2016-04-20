@@ -1279,6 +1279,10 @@ setGroup(G20,G7,OECD,IODCH);
 //Cargamos el contador de filtros
 $(".count-filters").text(cont_filters);
 
+//Iniciamos los dropdwon del menu superior
+$('.jq-dropdown').jqDropdown();
+
+
 //Hacemos scroll hacia la tabla tras aplicar filtros
 if(cont_filters > 0 && getUrlVars()["open"]==undefined) {
 	$('html, body').animate({
@@ -2197,6 +2201,10 @@ $('#wrapper-map').highcharts('Map', {
     //Aperturas y cierres de los tabs de los indicadores en los modales
     $(".gci-mnu-item").on("click", function(){
     	var idAcc = $(this).attr("data-id");
+    	$("ul.gci-mnu").removeClass("gci-mnu-bb-readiness");
+    	$("ul.gci-mnu").removeClass("gci-mnu-bb-implementation");
+    	$("ul.gci-mnu").removeClass("gci-mnu-bb-impact");
+    	$("ul.gci-mnu").addClass("gci-mnu-bb-"+idAcc);
     	$("ul.gci-mnu").find("li.gci-mnu-item-ac").removeClass("gci-mnu-item-ac");
     	$(this).addClass("gci-mnu-item-ac");
     	$("div.gci-content").removeClass("cgi-c-open");

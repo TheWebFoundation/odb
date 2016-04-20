@@ -984,6 +984,19 @@ table.dataTable thead .sorting_desc::after {
   width: auto !important;
 }
 
+/* line 130, ../sass/_m-3parties.scss */
+.jq-dropdown .jq-dropdown-menu li > a,
+.jq-dropdown .jq-dropdown-menu label {
+  padding: 8px 15px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+/* line 136, ../sass/_m-3parties.scss */
+.jq-dropdown .jq-dropdown-menu li:last-child > a,
+.jq-dropdown .jq-dropdown-menu label {
+  border-bottom: 0 none;
+}
+
 /* line 1, ../sass/_m-modal-detail.scss */
 .overlay {
   position: fixed;
@@ -1273,13 +1286,11 @@ table.dataTable thead .sorting_desc::after {
 .gci-mnu-item {
   padding-right: 0px !important;
   padding-left: 0px !important;
-  border-bottom: 1px solid #D6DBDC;
   color: #999;
 }
 
 /* line 282, ../sass/_m-modal-detail.scss */
 .gci-mnu-item-ac {
-  border-bottom: 1px solid #fff;
   color: #000;
 }
 
@@ -1290,18 +1301,33 @@ table.dataTable thead .sorting_desc::after {
 }
 
 /* line 292, ../sass/_m-modal-detail.scss */
+.gci-mnu-bb-readiness {
+  border-bottom: 2px solid #F1C40F;
+}
+
+/* line 296, ../sass/_m-modal-detail.scss */
 .gci-mnu-item-ac.gci-mnu-i-ac-implementation {
   background-color: #92EFDA;
   color: #000;
 }
 
-/* line 297, ../sass/_m-modal-detail.scss */
+/* line 301, ../sass/_m-modal-detail.scss */
+.gci-mnu-bb-implementation {
+  border-bottom: 2px solid #92EFDA;
+}
+
+/* line 305, ../sass/_m-modal-detail.scss */
 .gci-mnu-item-ac.gci-mnu-i-ac-impact {
   background-color: #CB97F9;
   color: #fff;
 }
 
-/* line 302, ../sass/_m-modal-detail.scss */
+/* line 310, ../sass/_m-modal-detail.scss */
+.gci-mnu-bb-impact {
+  border-bottom: 2px solid #CB97F9;
+}
+
+/* line 314, ../sass/_m-modal-detail.scss */
 .gci-content {
   /*	max-height: 120px;
   	overflow-y:scroll;
@@ -1311,17 +1337,17 @@ table.dataTable thead .sorting_desc::after {
   display: none;
 }
 
-/* line 311, ../sass/_m-modal-detail.scss */
+/* line 323, ../sass/_m-modal-detail.scss */
 .cgi-content-compare {
   min-height: 120px;
 }
 
-/* line 315, ../sass/_m-modal-detail.scss */
+/* line 327, ../sass/_m-modal-detail.scss */
 .gci-content.cgi-c-open {
   display: block;
 }
 
-/* line 319, ../sass/_m-modal-detail.scss */
+/* line 331, ../sass/_m-modal-detail.scss */
 .cgi-c-expanded {
   max-height: 100%;
   position: absolute;
@@ -1331,7 +1357,7 @@ table.dataTable thead .sorting_desc::after {
   z-index: 100;
 }
 
-/* line 329, ../sass/_m-modal-detail.scss */
+/* line 341, ../sass/_m-modal-detail.scss */
 .cgi-c-nodata-info {
   position: absolute;
   width: 100%;
@@ -1341,17 +1367,17 @@ table.dataTable thead .sorting_desc::after {
   display: none;
 }
 
-/* line 340, ../sass/_m-modal-detail.scss */
+/* line 352, ../sass/_m-modal-detail.scss */
 .gci-c-readliness.cgi-c-nodata .cgi-c-nodata-info {
   display: block;
 }
 
-/* line 344, ../sass/_m-modal-detail.scss */
+/* line 356, ../sass/_m-modal-detail.scss */
 .gci-c-impact.cgi-c-nodata .cgi-c-nodata-info {
   display: block;
 }
 
-/* line 348, ../sass/_m-modal-detail.scss */
+/* line 360, ../sass/_m-modal-detail.scss */
 .cgi-c-nodata-pos-msg {
   display: block;
   position: absolute;
@@ -1360,24 +1386,24 @@ table.dataTable thead .sorting_desc::after {
   transform: translate(-50%, -50%);
 }
 
-/* line 358, ../sass/_m-modal-detail.scss */
+/* line 372, ../sass/_m-modal-detail.scss */
 .cth-md, .ctd-md {
   padding: 0.5em 0.5em;
 }
 
-/* line 362, ../sass/_m-modal-detail.scss */
+/* line 376, ../sass/_m-modal-detail.scss */
 .ctd-md {
   border-left: 1px solid #f0f0f0;
 }
 
-/* line 366, ../sass/_m-modal-detail.scss */
+/* line 380, ../sass/_m-modal-detail.scss */
 .data-i {
   display: inline-block;
   padding: 2px 4px;
   border-radius: 3px;
 }
 
-/* line 372, ../sass/_m-modal-detail.scss */
+/* line 386, ../sass/_m-modal-detail.scss */
 .data-i-round {
   display: inline-block;
   width: 14px;
@@ -1385,17 +1411,17 @@ table.dataTable thead .sorting_desc::after {
   border-radius: 50em;
 }
 
-/* line 379, ../sass/_m-modal-detail.scss */
+/* line 393, ../sass/_m-modal-detail.scss */
 .data-i-comp {
   background-color: #B8E986;
 }
 
-/* line 383, ../sass/_m-modal-detail.scss */
+/* line 397, ../sass/_m-modal-detail.scss */
 .data-i-incomp {
   background-color: #FF8787;
 }
 
-/* line 387, ../sass/_m-modal-detail.scss */
+/* line 401, ../sass/_m-modal-detail.scss */
 .data-i-updated {
   background-color: #F8E71C;
 }
@@ -1440,7 +1466,16 @@ table.dataTable thead .sorting_desc::after {
   color: #000;
 }
 
-/* line 42, ../sass/_m-generales.scss */
+/* line 40, ../sass/_m-generales.scss */
+.nv-arrow {
+  background-image: url("../img/toggle-arrow-top.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+  padding-right: 15px;
+  margin-right: 5px;
+}
+
+/* line 50, ../sass/_m-generales.scss */
 .header-acc-buttons {
   position: absolute;
   right: 20px;
@@ -1449,7 +1484,7 @@ table.dataTable thead .sorting_desc::after {
   z-index: 20;
 }
 
-/* line 50, ../sass/_m-generales.scss */
+/* line 58, ../sass/_m-generales.scss */
 .cbtn-acc-h {
   display: block;
   width: 64px;
@@ -1458,7 +1493,7 @@ table.dataTable thead .sorting_desc::after {
   margin-top: 2px;
 }
 
-/* line 61, ../sass/_m-generales.scss */
+/* line 69, ../sass/_m-generales.scss */
 .count-filters {
   border-radius: 50em;
   width: 24px;
@@ -1472,37 +1507,37 @@ table.dataTable thead .sorting_desc::after {
 }
 
 @-moz-document url-prefix() {
-  /* line 75, ../sass/_m-generales.scss */
+  /* line 83, ../sass/_m-generales.scss */
   .count-filters {
     line-height: 23px;
   }
 }
-/* line 80, ../sass/_m-generales.scss */
+/* line 88, ../sass/_m-generales.scss */
 .bg-selected {
   border-top: 4px solid #FFEC00;
 }
 
-/* line 84, ../sass/_m-generales.scss */
+/* line 92, ../sass/_m-generales.scss */
 .bg-section {
   background-color: #F3F3F3;
 }
 
-/* line 88, ../sass/_m-generales.scss */
+/* line 96, ../sass/_m-generales.scss */
 .bg-highlights {
   background-color: #FFEC00;
 }
 
-/* line 92, ../sass/_m-generales.scss */
+/* line 100, ../sass/_m-generales.scss */
 .bg-hero-map {
   background-color: rgba(84, 199, 252, 0.2);
 }
 
-/* line 96, ../sass/_m-generales.scss */
+/* line 104, ../sass/_m-generales.scss */
 .top-filters {
   background-color: #fff;
 }
 
-/* line 100, ../sass/_m-generales.scss */
+/* line 108, ../sass/_m-generales.scss */
 .list-inl {
   padding-left: 0px;
   padding-right: 0px;
@@ -1511,18 +1546,18 @@ table.dataTable thead .sorting_desc::after {
   list-style-type: none;
 }
 
-/* line 108, ../sass/_m-generales.scss */
+/* line 116, ../sass/_m-generales.scss */
 .item-lin {
   display: inline-block;
 }
 
-/* line 112, ../sass/_m-generales.scss */
+/* line 120, ../sass/_m-generales.scss */
 .leg-region {
   display: inline-block;
   margin-left: 10px;
 }
 
-/* line 117, ../sass/_m-generales.scss */
+/* line 125, ../sass/_m-generales.scss */
 .leg-region:before {
   content: '';
   width: 11px;
@@ -1535,42 +1570,42 @@ table.dataTable thead .sorting_desc::after {
   top: 3px;
 }
 
-/* line 136, ../sass/_m-generales.scss */
+/* line 144, ../sass/_m-generales.scss */
 .leg-region.leg-r-1:before {
   background-color: #FF3700;
 }
 
-/* line 140, ../sass/_m-generales.scss */
+/* line 148, ../sass/_m-generales.scss */
 .leg-region.leg-r-2:before {
   background-color: #7E85AF;
 }
 
-/* line 144, ../sass/_m-generales.scss */
+/* line 152, ../sass/_m-generales.scss */
 .leg-region.leg-r-3:before {
   background-color: #0C5D8E;
 }
 
-/* line 148, ../sass/_m-generales.scss */
+/* line 156, ../sass/_m-generales.scss */
 .leg-region.leg-r-4:before {
   background-color: #8D9B00;
 }
 
-/* line 152, ../sass/_m-generales.scss */
+/* line 160, ../sass/_m-generales.scss */
 .leg-region.leg-r-5:before {
   background-color: #8B572A;
 }
 
-/* line 156, ../sass/_m-generales.scss */
+/* line 164, ../sass/_m-generales.scss */
 .leg-region.leg-r-6:before {
   background-color: #00B3D7;
 }
 
-/* line 160, ../sass/_m-generales.scss */
+/* line 168, ../sass/_m-generales.scss */
 .leg-region.leg-r-7:before {
   background-color: #BD10E0;
 }
 
-/* line 166, ../sass/_m-generales.scss */
+/* line 174, ../sass/_m-generales.scss */
 .cover-help {
   width: 24px;
   height: 24px;
@@ -1581,7 +1616,7 @@ table.dataTable thead .sorting_desc::after {
   display: inline-block;
 }
 
-/* line 176, ../sass/_m-generales.scss */
+/* line 184, ../sass/_m-generales.scss */
 .th-main {
   background-color: #79B042;
   color: #fff;
@@ -1589,24 +1624,24 @@ table.dataTable thead .sorting_desc::after {
   box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* line 183, ../sass/_m-generales.scss */
+/* line 191, ../sass/_m-generales.scss */
 .ct-th, .ct-td {
   padding: 1em 0.6em;
   border-bottom: 1px solid #F0F0F0;
 }
 
-/* line 188, ../sass/_m-generales.scss */
+/* line 196, ../sass/_m-generales.scss */
 .ct-th {
   border-right: 1px solid #73E500;
 }
 
-/* line 192, ../sass/_m-generales.scss */
+/* line 200, ../sass/_m-generales.scss */
 .ct-th-st, .ct-td-st {
   display: block;
   font-weight: normal;
 }
 
-/* line 197, ../sass/_m-generales.scss */
+/* line 205, ../sass/_m-generales.scss */
 .flag, .flag-md-header {
   display: inline-block;
   width: 38px;
@@ -1617,18 +1652,18 @@ table.dataTable thead .sorting_desc::after {
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* line 210, ../sass/_m-generales.scss */
+/* line 218, ../sass/_m-generales.scss */
 .flag-md-header {
   width: 32px;
   height: 32px;
 }
 
-/* line 216, ../sass/_m-generales.scss */
+/* line 224, ../sass/_m-generales.scss */
 .ct-country {
   display: inline-block;
 }
 
-/* line 220, ../sass/_m-generales.scss */
+/* line 228, ../sass/_m-generales.scss */
 .arrow-up {
   display: inline-block;
   width: 0;
@@ -1640,7 +1675,7 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 235, ../sass/_m-generales.scss */
+/* line 243, ../sass/_m-generales.scss */
 .arrow-down {
   display: inline-block;
   width: 0;
@@ -1652,28 +1687,28 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 250, ../sass/_m-generales.scss */
+/* line 258, ../sass/_m-generales.scss */
 .data-sp {
   position: relative;
   top: -2px;
 }
 
-/* line 255, ../sass/_m-generales.scss */
+/* line 263, ../sass/_m-generales.scss */
 .data-readiness {
   color: #F1C40F;
 }
 
-/* line 259, ../sass/_m-generales.scss */
+/* line 267, ../sass/_m-generales.scss */
 .data-implementation {
   color: #92EFDA;
 }
 
-/* line 263, ../sass/_m-generales.scss */
+/* line 271, ../sass/_m-generales.scss */
 .data-impact {
   color: #CB97F9;
 }
 
-/* line 267, ../sass/_m-generales.scss */
+/* line 275, ../sass/_m-generales.scss */
 .dataTables_empty {
   padding: 40px 10px;
   color: #999;
@@ -1681,7 +1716,7 @@ table.dataTable thead .sorting_desc::after {
 }
 
 /* ## MODAL COMPARTIR ## */
-/* line 276, ../sass/_m-generales.scss */
+/* line 284, ../sass/_m-generales.scss */
 .cmodal-addons {
   position: fixed;
   top: 50%;
@@ -1697,20 +1732,20 @@ table.dataTable thead .sorting_desc::after {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 276, ../sass/_m-generales.scss */
+  /* line 284, ../sass/_m-generales.scss */
   .cmodal-addons {
     /* width: 90%; */
   }
 }
 
-/* line 302, ../sass/_m-generales.scss */
+/* line 310, ../sass/_m-generales.scss */
 .cmodal-a-share-open {
   background-color: rgba(255, 255, 255, 0.8);
   visibility: visible;
   opacity: 1;
 }
 
-/* line 308, ../sass/_m-generales.scss */
+/* line 316, ../sass/_m-generales.scss */
 .cmodal-addns-content {
   position: absolute;
   top: 50%;
@@ -1721,7 +1756,7 @@ table.dataTable thead .sorting_desc::after {
   width: 300px;
 }
 
-/* line 318, ../sass/_m-generales.scss */
+/* line 326, ../sass/_m-generales.scss */
 .share-item {
   display: inline-block;
   width: 64px;
@@ -1730,12 +1765,12 @@ table.dataTable thead .sorting_desc::after {
   transition: all .3s ease-out;
 }
 
-/* line 326, ../sass/_m-generales.scss */
+/* line 334, ../sass/_m-generales.scss */
 .share-item:hover {
   transform: scale(1.2, 1.2);
 }
 
-/* line 330, ../sass/_m-generales.scss */
+/* line 338, ../sass/_m-generales.scss */
 .close-cmodal-share {
   display: block;
   width: 64px;
@@ -1745,7 +1780,7 @@ table.dataTable thead .sorting_desc::after {
   right: 40px;
 }
 
-/* line 343, ../sass/_m-generales.scss */
+/* line 351, ../sass/_m-generales.scss */
 .cmodal-handsup {
   position: fixed;
   top: 50%;
@@ -1760,20 +1795,20 @@ table.dataTable thead .sorting_desc::after {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 343, ../sass/_m-generales.scss */
+  /* line 351, ../sass/_m-generales.scss */
   .cmodal-handsup {
     /* width: 90%; */
   }
 }
 
-/* line 369, ../sass/_m-generales.scss */
+/* line 377, ../sass/_m-generales.scss */
 .cmodal-handsup-open {
   background-color: white;
   visibility: visible;
   opacity: 1;
 }
 
-/* line 375, ../sass/_m-generales.scss */
+/* line 383, ../sass/_m-generales.scss */
 .cm-hu-content {
   padding: 10px 20px 0px 10px;
 }
