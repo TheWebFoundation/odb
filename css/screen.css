@@ -997,6 +997,378 @@ table.dataTable thead .sorting_desc::after {
   border-bottom: 0 none;
 }
 
+/* line 144, ../sass/_m-3parties.scss */
+.text_align_center {
+  text-align: center;
+}
+
+/* line 148, ../sass/_m-3parties.scss */
+.container_full {
+  width: 100%;
+}
+
+/* line 151, ../sass/_m-3parties.scss */
+.without_padding {
+  padding: 0;
+}
+
+/* line 154, ../sass/_m-3parties.scss */
+.without_margin {
+  margin: 0;
+}
+
+/* line 158, ../sass/_m-3parties.scss */
+.lung_xs_top {
+  padding-top: 14px;
+}
+@media (min-width: 768px) {
+  /* line 158, ../sass/_m-3parties.scss */
+  .lung_xs_top {
+    padding-top: 15px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 158, ../sass/_m-3parties.scss */
+  .lung_xs_top {
+    padding-top: 18px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 158, ../sass/_m-3parties.scss */
+  .lung_xs_top {
+    padding-top: 20px;
+  }
+}
+
+/* line 171, ../sass/_m-3parties.scss */
+.bg_color_grey {
+  background-color: #e5e5e5;
+}
+
+/* line 175, ../sass/_m-3parties.scss */
+.bg_color_grey_2 {
+  background-color: #C7C7C7;
+  color: #fff;
+}
+
+/* line 180, ../sass/_m-3parties.scss */
+.bg_color_grey_3 {
+  background-color: #666666;
+  color: #fff;
+}
+
+/* line 185, ../sass/_m-3parties.scss */
+.enlace_pie {
+  color: #fff;
+  text-decoration: underline;
+}
+/* line 188, ../sass/_m-3parties.scss */
+.enlace_pie:hover {
+  color: #fff;
+}
+
+/* footer */
+/* line 195, ../sass/_m-3parties.scss */
+.heading_foot {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  /* line 195, ../sass/_m-3parties.scss */
+  .heading_foot {
+    font-size: 16px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 195, ../sass/_m-3parties.scss */
+  .heading_foot {
+    font-size: 17px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 195, ../sass/_m-3parties.scss */
+  .heading_foot {
+    font-size: 18px;
+  }
+}
+
+/* line 210, ../sass/_m-3parties.scss */
+#content_footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 214, ../sass/_m-3parties.scss */
+#about_footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 218, ../sass/_m-3parties.scss */
+#previous_edit {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 222, ../sass/_m-3parties.scss */
+#share {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 227, ../sass/_m-3parties.scss */
+ul.list_foot {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 233, ../sass/_m-3parties.scss */
+.list_foot li {
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+/* line 238, ../sass/_m-3parties.scss */
+.footer_bottom {
+  padding: 14px 0;
+  font-size: 13px;
+}
+
+/* line 243, ../sass/_m-3parties.scss */
+#logos_footer {
+  margin: 0 auto;
+  background-color: #fabada;
+  text-align: center;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+/* line 250, ../sass/_m-3parties.scss */
+#logos_footer li {
+  width: 200px;
+  display: inline;
+  text-align: center;
+}
+/* line 254, ../sass/_m-3parties.scss */
+#logos_footer li a {
+  text-align: center;
+  width: 200px;
+  display: block;
+  float: left;
+}
+/* line 260, ../sass/_m-3parties.scss */
+#logos_footer li img {
+  text-align: center;
+  width: 200px;
+  display: inline;
+}
+
+/* line 268, ../sass/_m-3parties.scss */
+.lung_xxs_bottom {
+  padding-bottom: 5px;
+}
+@media (min-width: 768px) {
+  /* line 268, ../sass/_m-3parties.scss */
+  .lung_xxs_bottom {
+    padding-bottom: 6px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 268, ../sass/_m-3parties.scss */
+  .lung_xxs_bottom {
+    padding-bottom: 8px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 268, ../sass/_m-3parties.scss */
+  .lung_xxs_bottom {
+    padding-bottom: 10px;
+  }
+}
+
+/* line 281, ../sass/_m-3parties.scss */
+.lung_xs_bottom {
+  padding-bottom: 14px;
+}
+@media (min-width: 768px) {
+  /* line 281, ../sass/_m-3parties.scss */
+  .lung_xs_bottom {
+    padding-bottom: 15px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 281, ../sass/_m-3parties.scss */
+  .lung_xs_bottom {
+    padding-bottom: 18px;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 281, ../sass/_m-3parties.scss */
+  .lung_xs_bottom {
+    padding-bottom: 20px;
+  }
+}
+
+/* line 294, ../sass/_m-3parties.scss */
+.credit_foot {
+  font-size: 11px;
+  color: #222;
+  text-align: center;
+}
+
+/*.co-st {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+	list-style-type: none;
+}
+
+.co-subop {
+	margin-left: 2em;
+}
+
+.co-item, .co-i-a {
+	display: block;
+	text-decoration: none!important;
+}
+
+.co-i-a{
+	//padding: 6px 0px;
+}
+
+ol > li.co-item {
+	border-bottom: 1px solid #ededed!important;
+}
+
+.displayib {
+	display:inline-block;
+}
+
+.co-indicator {
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	border-radius: 50em;
+	background-color:#666;
+	text-align: center;
+	line-height: 26px;
+	color:#fff;
+}
+
+.co-icon{
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	//background-color:#ededed;
+	line-height: 26px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.co-i-table {
+	background-image: url("../img/ico-tables.png");
+}
+
+.co-i-figure {
+	background-image: url("../img/ico-figure.png");
+}
+
+.co-header {
+	padding: 10px 0px;
+	border-bottom: 1px solid #ededed;
+}
+
+.co-m-control {
+	position: relative;;
+}
+
+.co-i-control{
+	cursor: pointer;
+	display: block;
+	position: absolute!important;
+	right: 0px;
+	width: 10px;
+	height: 10px;
+	top:6px;
+	border-bottom: none !important;
+}
+
+.co-bg-readdiness {
+	background-color: #F1C40F;
+	color: #fff;
+}
+
+.co-bg-implementation {
+	background-color: #7AC7B6;
+	color: #fff;
+}
+
+.co-bg-impact {
+	background-color: #BE8FE7;
+	color: #fff;
+}
+
+
+[data-accordion] [data-control] {
+	padding-bottom: 30px;
+}
+
+[data-accordion] > [data-control]::after {
+
+}
+
+[data-control], [data-content] > * {
+	padding: 10px 0px;
+	border-bottom: none!important;
+}
+
+
+
+//##LISTAS REPORT ##//
+
+.report_listado.rlistado {
+	margin: 0;
+	margin-bottom: 20px;
+	padding: 0;
+	list-style-type: none;
+}
+
+.report_listado_elemento.report_listado_new {
+	position: relative;
+	margin-top: 40px;
+	padding: 20px;
+	background-color:#ededed;
+}
+
+.conclusion-num {
+	display: inline-block;
+	width:32px;
+	height: 32px;
+	background-color: green;
+	color: #fff;
+	font-size: 1.2em;
+	border-radius:50em;
+	text-align: center;
+	line-height: 30px;
+	position: absolute;
+	left:20px;
+	top:-15px;
+}
+
+.conclusion-txt {
+	display: block;
+	font-size: 1.3em;
+	line-height: 32px;
+	color:green;
+	margin-bottom: 5px;
+	//font-weight: lighter;
+}
+
+
+*/
 /* line 1, ../sass/_m-modal-detail.scss */
 .overlay {
   position: fixed;
@@ -1661,9 +2033,12 @@ table.dataTable thead .sorting_desc::after {
 /* line 224, ../sass/_m-generales.scss */
 .ct-country {
   display: inline-block;
+  /*	left: 5px;
+      position: relative;
+      top: 0px;*/
 }
 
-/* line 228, ../sass/_m-generales.scss */
+/* line 231, ../sass/_m-generales.scss */
 .arrow-up {
   display: inline-block;
   width: 0;
@@ -1675,7 +2050,7 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 243, ../sass/_m-generales.scss */
+/* line 246, ../sass/_m-generales.scss */
 .arrow-down {
   display: inline-block;
   width: 0;
@@ -1687,28 +2062,28 @@ table.dataTable thead .sorting_desc::after {
   top: -8px;
 }
 
-/* line 258, ../sass/_m-generales.scss */
+/* line 261, ../sass/_m-generales.scss */
 .data-sp {
   position: relative;
   top: -2px;
 }
 
-/* line 263, ../sass/_m-generales.scss */
+/* line 266, ../sass/_m-generales.scss */
 .data-readiness {
   color: #F1C40F;
 }
 
-/* line 267, ../sass/_m-generales.scss */
+/* line 270, ../sass/_m-generales.scss */
 .data-implementation {
   color: #92EFDA;
 }
 
-/* line 271, ../sass/_m-generales.scss */
+/* line 274, ../sass/_m-generales.scss */
 .data-impact {
   color: #CB97F9;
 }
 
-/* line 275, ../sass/_m-generales.scss */
+/* line 278, ../sass/_m-generales.scss */
 .dataTables_empty {
   padding: 40px 10px;
   color: #999;
@@ -1716,7 +2091,7 @@ table.dataTable thead .sorting_desc::after {
 }
 
 /* ## MODAL COMPARTIR ## */
-/* line 284, ../sass/_m-generales.scss */
+/* line 287, ../sass/_m-generales.scss */
 .cmodal-addons {
   position: fixed;
   top: 50%;
@@ -1732,20 +2107,20 @@ table.dataTable thead .sorting_desc::after {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 284, ../sass/_m-generales.scss */
+  /* line 287, ../sass/_m-generales.scss */
   .cmodal-addons {
     /* width: 90%; */
   }
 }
 
-/* line 310, ../sass/_m-generales.scss */
+/* line 313, ../sass/_m-generales.scss */
 .cmodal-a-share-open {
   background-color: rgba(255, 255, 255, 0.8);
   visibility: visible;
   opacity: 1;
 }
 
-/* line 316, ../sass/_m-generales.scss */
+/* line 319, ../sass/_m-generales.scss */
 .cmodal-addns-content {
   position: absolute;
   top: 50%;
@@ -1756,7 +2131,7 @@ table.dataTable thead .sorting_desc::after {
   width: 300px;
 }
 
-/* line 326, ../sass/_m-generales.scss */
+/* line 329, ../sass/_m-generales.scss */
 .share-item {
   display: inline-block;
   width: 64px;
@@ -1765,12 +2140,12 @@ table.dataTable thead .sorting_desc::after {
   transition: all .3s ease-out;
 }
 
-/* line 334, ../sass/_m-generales.scss */
+/* line 337, ../sass/_m-generales.scss */
 .share-item:hover {
   transform: scale(1.2, 1.2);
 }
 
-/* line 338, ../sass/_m-generales.scss */
+/* line 341, ../sass/_m-generales.scss */
 .close-cmodal-share {
   display: block;
   width: 64px;
@@ -1780,7 +2155,7 @@ table.dataTable thead .sorting_desc::after {
   right: 40px;
 }
 
-/* line 351, ../sass/_m-generales.scss */
+/* line 354, ../sass/_m-generales.scss */
 .cmodal-handsup {
   position: fixed;
   top: 50%;
@@ -1795,22 +2170,51 @@ table.dataTable thead .sorting_desc::after {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 351, ../sass/_m-generales.scss */
+  /* line 354, ../sass/_m-generales.scss */
   .cmodal-handsup {
     /* width: 90%; */
   }
 }
 
-/* line 377, ../sass/_m-generales.scss */
+/* line 380, ../sass/_m-generales.scss */
 .cmodal-handsup-open {
   background-color: white;
   visibility: visible;
   opacity: 1;
 }
 
-/* line 383, ../sass/_m-generales.scss */
+/* line 386, ../sass/_m-generales.scss */
 .cm-hu-content {
   padding: 10px 20px 0px 10px;
+}
+
+/* line 392, ../sass/_m-generales.scss */
+.overlay-loader-init {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 150;
+  display: none;
+}
+
+/* line 403, ../sass/_m-generales.scss */
+.overlay-loader-init-open {
+  display: block;
+}
+
+/* line 407, ../sass/_m-generales.scss */
+.pos-loader-init {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-left: -60px;
+  top: 50%;
+  left: 50%;
+  z-index: 155;
 }
 
 /* line 3, ../sass/_m-formularios.scss */

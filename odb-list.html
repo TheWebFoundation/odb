@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+   
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ODB, Open Data Barometer 2015</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <meta property="og:url"         content="http://www.opendatabarometer.org/data-explorer/?_year=2015&indicator=ODB" />
+        <meta property="og:type"        content="article" />
+        <meta property="og:title"       content="Open Data Barometer 2015" />
+        <meta property="og:description" content="In a well-functioning democratic society, citizens need to be informed and have access to information on government policies and progress." />
+        <meta property="og:image"       content="http://www.opendatabarometer.org/data-explorer/img/ogg_dob_img.jpg" />
+
+        <!--Fonts-->
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Merriweather:400,300,700,900|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/svg-fonts.css">
+
+        
+        <!-- Map styles -->
+        <!--link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="js/vendor/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
+       
+        <!--3 parties/vendor styles-->
+        
+        <link rel="stylesheet" href="css/jquery.multiselect.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/easy-autocomplete.css">
+        <link rel="stylesheet" href="css/jquery.dropdown.css">
+        <link rel="stylesheet" href="css/jquery.accordion.css">
+        
+        
+        <!--Main styles-->
+        <link rel="stylesheet" href="css/screen.css">
+        
+        <!--[if lt IE 9]>
+            <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body class="body-default">
+       
+        <nav class="nav-top r-pos txt-c">
+            
+            <!--div class="nav-top-brand displayib fleft">
+                <a href="http://devodb.wpengine.com/"><img src="img/odb-logo-top.png" class="m-s-top p-xs-top"></a>
+            </div-->
+
+            <div class="nav-top-mnu displayib">
+                <ul class="nv-top">
+                    <li class="nv-top-item"><a href="/" class="nv-top-a txt-m">Home</a></li>
+                    <li class="nv-top-item"><a href="/3rdEdition-report" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-report">Report</a></li>
+                    <li class="nv-top-item"><a class="nv-top-a nv-top-a-acc txt-m">Rankings & Data</a></li>
+                    <li class="nv-top-item"><a href="/3rdEdition-methodology/" class="nv-top-a txt-m">Methodology</a></li>
+                    <li class="nv-top-item"><a href="/2ndEdition" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-predition">Previous Editions</a></li>
+                    <li class="nv-top-item"><a href="/contact/" class="nv-top-a txt-m">Contact</a></li>
+                    <li class="nv-top-item"><a href="/open-data/" class="nv-top-a txt-m nv-arrow" data-jq-dropdown="#smnu-about">About</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        
+
+        <div class="container p-xl-top">        
+            <div class="row">
+                <div class="col-xs-offset-2 col-xs-8">
+                   
+                   <nav id="mainNav" class="p-xl-bottom">
+                        <ul class="co-st">
+                            <li class="co-item co-header"><a href="#executive_summary" class="co-i-a"><span class="co-indicator co-bg-index">1</span> Executive summary and key findings <i class="co-open"></i></a></li>
+                            <li class="co-item co-m-control" data-accordion>
+                                <a href="#readiness" class="co-i-a co-header"><span class="co-indicator co-bg-readdiness">2</span> Readiness</a>
+                                <span class="co-i-control" data-control></span>
+                                <ol class="co-st co-subop" data-content>
+                                    <li class="co-item"><a href="#policies" class="co-i-a">2. 1. Policies and data management approaches</a></li>
+                                    <li class="co-item"><a href="#government" class="co-i-a">2. 2. Civil rights and the role of citizens</a></li>
+                                    <li class="co-item"><a href="#civil_rights" class="co-i-a">2. 3. Civil rights and the role of citizens</a></li>
+                                    <li class="co-item"><a href="#business" class="co-i-a">2. 3. Civil rights and the role of citizens</a></li>
+                                </ol>
+                            </li>
+                            <li class="co-item co-m-control" data-accordion>
+                                <a href="#implementation" class="co-i-a co-header"><span class="co-indicator co-bg-implementation">3</span> Implementation</a>
+                                <span class="co-i-control" data-control></span>
+                                <ol class="co-st co-subop" data-content>
+                                    <li class="co-item"><a href="#availability" class="co-i-a">3. 1. Open government data availability</a></li>
+                                    <li class="co-item"><a href="#quality" class="co-i-a">3. 2. Open government data quality</a></li>
+                                </ol>
+                            </li>
+                            <li class="co-item co-m-control" data-accordion>
+                                <a href="#impact" class="co-i-a co-header"><span class="co-indicator co-bg-impact">4</span> Impact</a>
+                                <span class="co-i-control" data-control></span>
+                                <ol class="co-st co-subop" data-content>
+                                    <li class="co-item"><a href="#impact_examples" class="co-i-a">4. 1. Impact examples</a></li>
+                                    <li class="co-item"><a href="#impact_sdgs" class="co-i-a">4. 2. Impact and the SDGs</a></li>
+                                </ol>
+                            </li>
+                            <li class="co-item co-m-control" data-accordion>
+                                <a href="#rankings" class="co-i-a co-header"><span class="co-indicator">5</span> Rankings</a>
+                                <span class="co-i-control" data-control></span>
+                                <ol class="co-st co-subop" data-content>
+                                    <li class="co-item"><a href="#top_ten" class="co-i-a">5. 1. Top ten</a></li>
+                                    <li class="co-item"><a href="#bottom_ten" class="co-i-a">5. 2. Bottom ten</a></li>
+                                </ol>
+                            </li>
+                            <li class="co-item co-header"><a href="#conclusion_recommendations" class="co-i-a"><span class="co-indicator">6</span> Conclusion and recommendations</a></li>
+                            <li class="co-item co-m-control" data-accordion>
+                                <a class="co-i-a co-header"><span class="co-icon co-i-table">&nbsp;</span> List of tables and figures </a>
+                                <span class="co-i-control" data-control></span>
+                                <ol class="co-st co-subop" data-content>
+                                    <li class="co-item"><a href="#figure1" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 1: Evolution of the availability of online data and open data.</a></li>
+                                    <li class="co-item"><a href="#figure2" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 2: Strength of open data policies and data management approaches.</a></li>
+                                    <li class="co-item"><a href="#figure3" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 3: Evolution of Open Government data initiatives at national and subnational level.</a></li>
+                                    <li class="co-item"><a href="#figure4" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 4: Evolution of the average scores for the Government Action indicators.</a></li>
+                                    <li class="co-item"><a href="#figure5" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 5: Correlation between the score of the civil society engagement indicator and final impact.</a></li>
+                                    <li class="co-item"><a href="#figure6" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 6: Evolution of data protection and right to information indicators.</a></li>
+                                    <li class="co-item"><a href="#figure7" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 7: Readiness for business and entrepreneurship.</a></li>
+                                    <li class="co-item"><a href="#figure8" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 8: Evolution of the average scores for each of the datasets groups in the survey.</a></li>
+                                    <li class="co-item"><a href="#figure9" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 9: Number of countries with significant impact on key areas.</a></li>
+                                    <li class="co-item"><a href="#figure10" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 10: Evolution of impact indicators.</a></li>
+                                    <li class="co-item"><a href="#figure11" class="co-i-a"><span class="co-icon co-i-figure">&nbsp;</span> Figure 11: Regional distribution of open data remains irregular.</a></li>
+
+
+                                    <li class="co-item"><a href="#table1" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 1: Economic and development classifications of the top ten countries in this year’s Open Data Barometer.Top ten countries by rank in this year’s Open Data Barometer.</a></li>
+                                    <li class="co-item"><a href="#table2" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 2: New generation of open data adopters challenging the usual global and regional ranking leaders.</a></li>
+                                    <li class="co-item"><a href="#table3" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 3: Summary of data availability, openness and quality.</a></li>
+                                    <li class="co-item"><a href="#table4" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 4: Summary of data quality checklist results.</a></li>
+                                    <li class="co-item"><a href="#table5" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 5: Top ten countries in the Open Data Barometer 3rd edition ranking.</a></li>
+                                    <li class="co-item"><a href="#table6" class="co-i-a"><span class="co-icon co-i-table">&nbsp;</span> Table 6: Bottom ten countries in the Open Data Barometer 3rd edition ranking.</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+
+                    <ul class="report_listado rlistado">
+                        <ul class="report_listado rlistado">
+                            <li class="report_listado_elemento report_listado_new style_none">
+                                <span class="conclusion-num">1</span>
+                                <span class="conclusion-txt">Open data is entering the mainstream.</span> 
+                                <span class="conclusion-content">
+                                The majority of the countries in the survey (55%) now have an open data initiative in place and a national data catalogue providing access to datasets available for re-use. Moreover, new open data initiatives are getting underway or are promised for the near future in a number of countries, including Ecuador, Jamaica, St. Lucia, Nepal, Thailand, Botswana, Ethiopia, Nigeria, Rwanda and Uganda. Demand is high: civil society and the tech community are using government data in 93% of countries surveyed, even in countries where that data is not yet fully open.
+                            </li>
+                            <li class="report_listado_elemento report_listado_new style_none">
+                                <span class="conclusion-num">2</span>
+                                <span class="conclusion-txt">Despite this, there’s been little to no progress on the number of truly open datasets around the world.</span> 
+                                Even with the rapid spread of open government data plans and policies, too much critical data remains locked in government filing cabinets. For example, only two countries publish acceptable detailed open public spending data. Of all 1,380 government datasets surveyed, almost 90% are still closed &mdash; roughly the same as in the last edition of the Open Data Barometer (when only 130 out of 1,290 datasets, or 10%, were open). What is more, much of the approximately 10% of data that meets the open definition is of poor quality, making it difficult for potential data users to access, process and work with it effectively.
+                            </li>
+                        </ul>
+                    </ul>
+
+
+<!--                         <ul class="content_options">
+                            <li><a href="#executive_summary">1. Executive summary and key findings</a></li>
+                            <li><a href="#readiness">2. Readiness</a></li>
+                            <li class="subcontent"><a href="#policies">2. 1. Policies and data management approaches</a></li>
+                            <li class="subcontent"><a href="#government">2. 2. Government action at the national and subnational level</a></li>
+                            <li class="subcontent"><a href="#civil_rights">2. 3. Civil rights and the role of citizens</a></li>
+                            <li class="subcontent"><a href="#business">2. 4. Business and entrepreneurship</a></li>
+                            <li><a href="#implementation">3. Implementation</a></li>
+                            <li class="subcontent"><a href="#availability">3. 1. Open government data availability</a></li>
+                            <li class="subcontent"><a href="#quality">3. 2. Open government data quality</a></li>
+                            <li><a href="#impact">4. Impact</a></li>
+                            <li class="subcontent"><a href="#impact_examples">4. 1. Impact examples</a></li>
+                            <li class="subcontent"><a href="#impact_sdgs">4. 2. Impact and the SDGs</a></li>
+                            <li><a href="#rankings">5. Rankings</a></li>
+                            <li class="subcontent"><a href="#top_ten">5. 1. Top ten</a></li>
+                            <li class="subcontent"><a href="#bottom_ten">5. 2. Bottom ten</a></li>
+                            <li><a href="#conclusion_recommendations">6. Conclusion and recommendations</a></li>
+                            <li><a id="list_tables_figures">List of tables and figures</a></li>
+                            <div class="layer_figures">
+                                <li class="subcontent link_figure"><a href="#figure1">Figure 1: Evolution of the availability of online data and open data.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure2">Figure 2: Strength of open data policies and data management approaches.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure3">Figure 3: Evolution of Open Government data initiatives at national and subnational level.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure4">Figure 4: Evolution of the average scores for the Government Action indicators.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure5">Figure 5: Correlation between the score of the civil society engagement indicator and final impact.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure6">Figure 6: Evolution of data protection and right to information indicators.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure7">Figure 7: Readiness for business and entrepreneurship.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure8">Figure 8: Evolution of the average scores for each of the datasets groups in the survey.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure9">Figure 9: Number of countries with significant impact on key areas.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure10">Figure 10: Evolution of impact indicators.</a></li>
+                                <li class="subcontent link_figure"><a href="#figure11">Figure 11: Regional distribution of open data remains irregular.</a></li>
+                                <li class="subcontent link_table"><a href="#table1">Table 1:  Economic and development classifications of the top ten countries in this year’s Open Data Barometer.Top ten countries by rank in this year’s Open Data Barometer.</a></li>
+                                <li class="subcontent link_table"><a href="#table2">Table 2: New generation of open data adopters challenging the usual global and regional ranking leaders.</a></li>
+                                <li class="subcontent link_table"><a href="#table3">Table 3: Summary of data availability, openness and quality.</a></li>
+                                <li class="subcontent link_table"><a href="#table4">Table 4: Summary of data quality checklist results.</a></li>
+                                <li class="subcontent link_table"><a href="#table5">Table 5: Top ten countries in the Open Data Barometer 3rd edition ranking.</a></li>
+                                <li class="subcontent link_table"><a href="#table6">Table 6: Bottom ten countries in the Open Data Barometer 3rd edition ranking.</a></li>
+                            </div>
+                        </ul> -->
+                </div>
+            </div>
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!--Main scripts-->
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <!-- Dropdown top menu --> 
+        <script src="js/vendor/jquery.dropdown.js" type="text/javascript"></script>
+        <!-- Accordion -->   
+        <script src="js/vendor/jquery.accordion.js" type="text/javascript"></script>         
+       
+        <script type="text/javascript">
+    
+            $(document).ready(function() {
+                $('#mainNav [data-accordion]').accordion({
+                    "transitionSpeed": 400
+                });
+                // $('.accordion').accordion({
+                //     
+                // });
+
+            });
+
+        </script>
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+   <!--     <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+        -->
+    </body>
+
+    <div id="smnu-report" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/3rdEdition/report">Table of contets</a></li>
+            <li><a href="/3rdEdition/report#executive_summary">Executive summary and key findings</a></li>
+            <li><a href="/3rdEdition/report#readiness">Readiness</a></li>
+            <li><a href="/3rdEdition/report/#implementation">Implementation</a></li>
+            <li><a href="/3rdEdition/report#impact">Impact</a></li>
+            <li><a href="/3rdEdition/report#rankings">Rankings</a></li>
+            <li><a href="/3rdEdition/report#conclusion_recommendations">Conclusion and recommendations</a></li>
+        </ul>
+    </div>
+
+    <div id="smnu-predition" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/2ndEdition">Open Data Barometer 2nd edition</a></li>
+            <li><a href="/1stEdition">Open Data Barometer 1st edition</a></li>
+   
+        </ul>
+    </div>
+
+    <div id="smnu-about" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="/open-data/">Open Data</a></li>
+            <li><a href="/barometer/">The Open Data Barometer</a></li>
+            <li><a href="/web-foundation/">The Web Foundation</a></li>
+            <li><a href="/od4d-network/">The OD4D network</a></li>
+            <li><a href="/3rdEdition/acknowledgements">Acknowledgements</a></li>
+            <li><a href="/3rdEdition/data/">Get the data</a></li>
+        </ul>
+    </div>
+
+    <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip">
+        <ul class="jq-dropdown-menu">
+            <li><a href="#1">Item 1</a></li>
+            <li><a href="#2">Item 2</a></li>
+            <li><a href="#3">Item 3</a></li>
+            <li class="jq-dropdown-divider"></li>
+            <li><a href="#4">Item 4</a></li>
+            <li><a href="#5">Item 5</a></li>
+            <li><a href="#5">Item 6</a></li>
+        </ul>
+    </div>
+
+</html>

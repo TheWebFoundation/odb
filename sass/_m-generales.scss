@@ -223,7 +223,11 @@
 
 .ct-country {
 	display:inline-block;
+/*	left: 5px;
+    position: relative;
+    top: 0px;*/
 }
+
 
 .arrow-up {
 	
@@ -382,5 +386,33 @@
 
 .cm-hu-content {
 	padding: 10px 20px 0px 10px;
+}
+
+
+//## OVERLAY DE CARGA INICIAL ##//
+.overlay-loader-init {
+	position:fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	z-index: 150;
+	display:none;
+}
+
+.overlay-loader-init-open {
+	display: block;
+}
+
+.pos-loader-init {
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	margin-top: -60px;
+	margin-left: -60px;
+	top:50%;
+	left: 50%;
+	z-index:155;
 }
 

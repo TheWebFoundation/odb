@@ -7,6 +7,8 @@
     	return vars;
 	}
 
+	$(".overlay-loader-init").addClass("overlay-loader-init-open");
+
 	//variables de preproceso para el json de barras y paises
 	var columns_data;
 	var table_data;
@@ -389,10 +391,10 @@ function drawNewCountryChart(idISO){
             valueSuffix: ''
         },
         legend: {
-        	width:'100%',
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom',
+        	//width:'100%',
+            //layout: 'horizontal',
+            //align: 'center',
+            //verticalAlign: 'bottom',
             borderWidth: 0
         },
         series: [{
@@ -717,10 +719,10 @@ function drawModal() {
 		            valueSuffix: ''
 		        },*/
 		        legend: {
-		        	width:'100%',
-		            layout: 'horizontal',
-		            align: 'center',
-		            verticalAlign: 'bottom',
+		        	// width:'100%',
+		         //    layout: 'horizontal',
+		         //    align: 'center',
+		         //    verticalAlign: 'bottom',
 		            borderWidth: 0
 		        },
 		        series: [{
@@ -1045,8 +1047,10 @@ function drawModalCountryComp (idISO,intro) {
 function addCountrySpider() {
 
 	//alert(isoCountry);
-
+	//alert(loaded_countries[carousel_current_country]);
 	country_data_add = _.filter(table_data, {iso3:loaded_countries[carousel_current_country]});
+	if(loaded_countries.length>1){
+		
 		//Generamos la serie
 		//console.log("add polar to "+country_data_add[0].name);
 
@@ -1056,9 +1060,14 @@ function addCountrySpider() {
 	    	data: country_data_add[0].components_data,
 	    	color: '#D0021B'
 	    });
-	    //chart_add.redraw();
+	    //chart_init.redraw();
 	    //polarOptions.addSeries.data = country_data[0].components_data;
 	    //chart_clone = new Highcharts.Chart(polarOptions);
+	}else{
+		polarOptions.series[1].name = mean_current_region_data.name;
+		polarOptions.series[1].data = mean_current_region_data.components_data;
+		chart_init = new Highcharts.Chart(polarOptions);
+	}
 }
 
 
@@ -1086,9 +1095,9 @@ function drawIndicatorsTableModal(){
 	var thead_readiness = '<th class="cth-md uppc txt-s c-g40 fwlight" >Country</th>';
 	var tbody_readiness = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 	$.each(readiness_indicators, function (index,indicator) {
-		//console.log("year: "+indicator);
+		//console.log("index: "+index+" indicator: "+indicator.substring(indicator.lastIndexOf(".") + 1));
 		if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null && loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
-			thead_readiness += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
+			thead_readiness += '<th class="cth-md txt-c uppc fwlight txt-s"> '+indicator.substring(indicator.lastIndexOf(".") + 1)+' <span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+readiness_name[index]+'"></span></th>';
 			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
 				tbody_readiness += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
 			}else{
@@ -1104,7 +1113,7 @@ function drawIndicatorsTableModal(){
 	var tbody_impact = '<td class="ctd-md"><span class="flag-md-small flag-country"><img src="img/flags/' + cdata[0].iso2.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span> <span class="displaib m-left-xs">' + cdata[0].name + '</span></td>';
 	$.each(impact_indicators, function (index,indicator) {
 		if(loaded_countries_data[selected_country].years[selected_year].observations[indicator]!=null) {
-			thead_impact += '<th class="cth-md txt-c uppc"><span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
+			thead_impact += '<th class="cth-md txt-c uppc txt-s fwlight"> '+indicator.substring(indicator.lastIndexOf(".") + 1)+' <span class="cicon-info txt-xl click" data-toggle="tooltip" data-placement="bottom" data-original-title="'+impact_name[index]+'"></span></th>';
 			if(loaded_countries_data[selected_country].years[selected_year].observations[indicator].value!=null) {
 				tbody_impact += '<td class="ctd-md txt-c">'+loaded_countries_data[selected_country].years[selected_year].observations[indicator].value.toFixed(2)+'</td>';
 			}else{
@@ -1159,6 +1168,11 @@ function drawIndicatorsTableModal(){
 
 //Funcion generica para abrir el modal de country recibiendo como parámetro la iso3 del pais
 function OpenCountryData (isoData) {
+
+	if($(".overlay-loader-init").is(".overlay-loader-init-open")){
+		$(".overlay-loader-init").removeClass("overlay-loader-init-open");
+	}
+
 	var country = isoData;
 	loaded_countries.push(country);
 	if(getUrlVars()["open"]===undefined) {
@@ -1771,7 +1785,9 @@ doChunk();
 //CASO 0: Aquí solo abrian las countries filtradas
 function openModalMap() {
 	//alert(this.code);
+	$(".overlay-loader-init").addClass("overlay-loader-init-open");
 	$("#table-data tbody a[data-iso='"+this.code+"']").trigger("click");
+
 }
 
 //CASO 1: Función para mostrar el modal de countries con independencia de la información filtrada
@@ -1790,12 +1806,14 @@ function showCountryData (data) {
         setCountryDataset(country);
         //Solo necesitamos unos milisegundos
        	drawModal();
+       	$(".overlay-loader-init").addClass("overlay-loader-init-open");
        	showModal();
     });
 }
 
 function openModalBars() {
 	//alert("click: "+this.iso3);
+	$(".overlay-loader-init").addClass("overlay-loader-init-open");
 	$("#table-data tbody a[data-iso='"+this.iso3+"']").trigger("click");
 }
 
@@ -2065,6 +2083,8 @@ $('#wrapper-map').highcharts('Map', {
 
 		e.preventDefault();
 
+		$(".overlay-loader-init").addClass("overlay-loader-init-open");
+
 		var country = $(this).attr("data-iso");
 		loaded_countries.push(country);
 
@@ -2117,7 +2137,9 @@ $('#wrapper-map').highcharts('Map', {
                 var dataExist = _.includes(_.find(countries,{iso3:selectedItemId}).years_with_data,parseInt(selected_year));
                	if(dataExist){
                		$("#cinput-s-country").val("");
+               		$(".overlay-loader-init").addClass("overlay-loader-init-open");
                		OpenCountryData(selectedItemId);
+
                	}else{
                		openModalAdv("No data country available on "+yearNow);
                	}
@@ -2753,4 +2775,18 @@ $('#wrapper-map').highcharts('Map', {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 	}
+});
+
+$(document).on({
+	ajaxStart: function() { 
+		//alert("go");	
+	},
+	ajaxStop: function() { 
+		setTimeout(function(){
+			//alert("yes");
+			if($(".overlay-loader-init").is(".overlay-loader-init-open")){
+				$(".overlay-loader-init").removeClass("overlay-loader-init-open");
+			}
+		},1200);
+	}    
 });
