@@ -576,9 +576,13 @@ function drawModal() {
 	if(country_data[0].odb % 1 != 0){
 		var odbRaw = country_data[0].odb;
 		var odbDec = odbRaw.toString().split('.');
-		var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+		var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1])+'</span>';
 	}else{
-		var odbPrint = country_data[0].odb;
+		if(country_data[0].odb!=100){
+			var odbPrint = country_data[0].odb+'<span class="txt-xs c-g40">.00</span>';
+		}else{
+			var odbPrint = country_data[0].odb;
+		}
 	}
 
 	var headerModal = '<div class="container-fluid">' +
@@ -613,7 +617,7 @@ function drawModal() {
 				'			<div class="col-md-12 txt-c">'+
 				'				<ul class="ilist overfh displayib ">'+
 				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB Rank</label><span class="displayb cinput-txt txt-med m-xs-top">' + country_data[0].odb_rank + '</span></li>'+
-				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med m-xs-top">' + odbPrint + '</span></li>'+
+				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">ODB</label><span class="displayb cinput-txt txt-med m-xs-top">' + odbPrint + ' </li>'+
 				'					<li class="il-item-resp"><label class="uppc txt-xs c-g40 p-s-top">Readiness</label>'+
 				'						<span class="displayb m-s-top">'+
 				'							<span class="displayib" data-labels="' + country_data[0].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + country_data[0].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + country_data[0].readiness + '</span>'+
@@ -2647,9 +2651,15 @@ $('#wrapper-map').highcharts('Map', {
 				if(data[i].odb % 1 != 0){
 					var odbRaw = data[i].odb;
 					var odbDec = odbRaw.toString().split('.');
-					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+					var odbDecRound = parseInt(odbDec[1]);
+					if(odbDecRound<10) odbDecRound = odbDecRound * 10;
+					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ odbDecRound +'</span>';
 				}else{
-					var odbPrint = data[i].odb;
+					if(data[i].odb!=100){
+						var odbPrint = data[i].odb+'<span class="txt-xs c-g40">.00</span>';
+					}else{
+						var odbPrint = data[i].odb;
+					}
 				}
 
 				var flagtlwc = data[i].iso2;
@@ -2659,7 +2669,7 @@ $('#wrapper-map').highcharts('Map', {
 						'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 				   '</td>' +
 				   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
-				   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
+				   '<td class="ct-td txt-c txt-med">' + odbPrint +'</td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
@@ -2723,9 +2733,13 @@ $('#wrapper-map').highcharts('Map', {
 				if(data[i].odb % 1 != 0){
 					var odbRaw = data[i].odb;
 					var odbDec = odbRaw.toString().split('.');
-					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]);
+					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1])+'</span>';
 				}else{
-					var odbPrint = data[i].odb;
+					if(data[i].odb!=100){
+						var odbPrint = data[i].odb+'<span class="txt-xs c-g40">.00</span>';
+					}else{
+						var odbPrint = data[i].odb;
+					}
 				}
 
 				var flagtlwc = data[i].iso2;
@@ -2736,7 +2750,7 @@ $('#wrapper-map').highcharts('Map', {
 				   '</td>' +
 				   '<td class="ct-td txt-c txt-med">' + data[i].selected_indicator_value + '</td>' +
 				   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
-				   '<td class="ct-td txt-c txt-med">' + odbPrint +'</span></td>' +
+				   '<td class="ct-td txt-c txt-med">' + odbPrint +' </td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].implementation_data_labels + '" data-subindex = "implementation" data-sparkline="' + data[i].implementation_data + ' ; column"></span><span class="data-sp data-implementation displayib txt-xl m-left">' + data[i].implementation + '</span></td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].impact_data_labels + '" data-subindex="impact" data-sparkline="' + data[i].impact_data + ' ; column"></span><span class="data-sp data-impact displayib txt-xl m-left">' + data[i].impact + '</span></td>' +
