@@ -574,7 +574,7 @@ function drawModal() {
 
 	//Manipulamos la cifra para estilarla un poco
 	if(country_data[0].odb % 1 != 0){
-		var odbRaw = country_data[0].odb;
+		var odbRaw = parseFloat(Math.round(country_data[0].odb * 100) / 100).toFixed(2); //country_data[0].odb;
 		var odbDec = odbRaw.toString().split('.');
 		var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1])+'</span>';
 	}else{
@@ -644,6 +644,15 @@ function drawModal() {
 
 	var indicator_percentage = (parseInt(country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
 	var svgFlag = country_data[0].iso2;
+
+	
+	if(country_data[0].selected_indicator_value!=null){
+		var indicatorRaw = country_data[0].selected_indicator_value.toFixed(2);
+	}else{
+		var indicatorRaw = '<span class="txt-xs c-g40 uppc">NA</span>';
+		var indicator_percentage = 0;
+	}
+
 	var contentModal = '<header class="ca-header txt-c">' +
 						'		<h5 class="txt-al no-m-top no-m-bottom displayib c-obj">' +
 						'			<span class="flag-md flag-country"><img src="img/flags/' + svgFlag.toLowerCase() + '.svg" class="adj-img-ca-h img-responsive"></span>' +
@@ -653,7 +662,7 @@ function drawModal() {
 						'		</h5>' +
 						'</header>' +
 						'<div class="static-indicator r-pos">' +
-						'	<h5 class="txt-m displayb si-tit-current">' + selected_indicator_name + '<span class="displayib fright txt-xl si-val-current">' + country_data[0].selected_indicator_value + '</span></h5>' +
+						'	<h5 class="txt-m displayb si-tit-current">' + selected_indicator_name + '<span class="displayib fright txt-xl si-val-current">' + indicatorRaw + '</span></h5>' +
 						'	<div class="indicator-cover">' +
 						'		<div class="indicator-progress i-p-current" style="width:' + indicator_percentage + '%"></div>' +
 						'	</div>' +
@@ -1023,6 +1032,13 @@ function drawModalCountryComp (idISO,intro) {
 	var indicator_percentage = (parseInt(new_country_data[0].selected_indicator_value) * 100) / parseInt(selected_indicator_range_max);
 	var svgFlag = new_country_data[0].iso2;
 
+	if(new_country_data[0].selected_indicator_value!=null){
+		var indicatorRaw = new_country_data[0].selected_indicator_value.toFixed(2);
+	}else{
+		var indicatorRaw = '<span class="txt-xs c-g40 uppc">NA</span>';
+		var indicator_percentage = 0;
+	}
+
 	var $end = $cloned.removeClass('country-item-cloned'),
 	$end = $cloned.removeClass('hddn'),
 	$end = $cloned.attr("data-id",idISO),
@@ -1030,7 +1046,7 @@ function drawModalCountryComp (idISO,intro) {
 	$end = $cloned.find("img.adj-img-ca-h").attr("src","img/flags/" + svgFlag.toLowerCase() + ".svg"),
 	$end = $cloned.find("span.ca-h-tit").text(new_country_data[0].name),
 	$end = $cloned.find("span.ca-h-indicator-name").text(selected_indicator_name),
-	$end = $cloned.find("span.ca-h-indicator-value").text(new_country_data[0].selected_indicator_value),
+	$end = $cloned.find("span.ca-h-indicator-value").html(indicatorRaw),
 		$end = $cloned.find("span.ca-h-indicator-init").text(selected_indicator_range_min),
 		$end = $cloned.find("span.ca-h-indicator-end").text(selected_indicator_range_max),
 	$end = $cloned.find("div.ca-h-indicator-progress").css("width",indicator_percentage+"%");
@@ -2649,11 +2665,11 @@ $('#wrapper-map').highcharts('Map', {
 
 				//Manipulamos la cifra para estilarla un poco
 				if(data[i].odb % 1 != 0){
-					var odbRaw = data[i].odb;
+					var odbRaw = parseFloat(Math.round(data[i].odb * 100) / 100).toFixed(2); //data[i].odb.toFixed(2);
 					var odbDec = odbRaw.toString().split('.');
 					var odbDecRound = parseInt(odbDec[1]);
-					if(odbDecRound<10) odbDecRound = odbDecRound * 10;
-					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ odbDecRound +'</span>';
+					//if(odbDecRound<10) odbDecRound = odbDecRound * 10;
+					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1]) +'</span>';
 				}else{
 					if(data[i].odb!=100){
 						var odbPrint = data[i].odb+'<span class="txt-xs c-g40">.00</span>';
@@ -2731,7 +2747,7 @@ $('#wrapper-map').highcharts('Map', {
 
 				//Manipulamos la cifra para estilarla un poco
 				if(data[i].odb % 1 != 0){
-					var odbRaw = data[i].odb;
+					var odbRaw = parseFloat(Math.round(data[i].odb * 100) / 100).toFixed(2);
 					var odbDec = odbRaw.toString().split('.');
 					var odbPrint = parseInt(odbDec[0]) + '<span class="txt-xs c-g40">.'+ parseInt(odbDec[1])+'</span>';
 				}else{
@@ -2742,13 +2758,35 @@ $('#wrapper-map').highcharts('Map', {
 					}
 				}
 
+
+
+				if(data[i].selected_indicator_value!=null){
+					if(data[i].selected_indicator_value % 1 != 0){
+						var cindicatorCurrent = parseFloat(Math.round(data[i].selected_indicator_value * 100) / 100).toFixed(2);
+						var cindicatorDec = cindicatorCurrent.toString().split('.');
+						//var cindDecRound = parseInt(cindicatorDec[1]);
+						//if (cindDecRound >1 && cindDecRound<10) cindDecRound = cindDecRound * 10;
+						var cindicatorPrint = parseInt(cindicatorDec[0]) + '<span class="txt-xs c-g40">.'+ cindicatorDec[1]+'</span>';
+					}else{
+						if(data[i].odb!=100){
+							var cindicatorPrint = data[i].selected_indicator_value+'<span class="txt-xs c-g40">.00</span>';
+						}else{
+							var cindicatorPrint = data[i].selected_indicator_value;
+						}
+					}
+				}else{
+					var cindicatorPrint = '<span class="txt-xxs c-g40 uppc">- NA</span>';
+				}
+
+
+
 				var flagtlwc = data[i].iso2;
 				current_row = current_row + '<tr>' +
 				'<td class="ct-td txt-al p-left-l">' +
 						'<span class="flag"><img src="img/flags/' + flagtlwc.toLowerCase() + '.svg" class="img-responsive"></span>' +
 						'<span class="ct-country"><span class="">' + data[i].name + '</span> <a href="#" class="txt-s more-info displayb" data-iso="' + data[i].iso3 + '"> See details</a></span>' +
 				   '</td>' +
-				   '<td class="ct-td txt-c txt-med">' + data[i].selected_indicator_value + '</td>' +
+				   '<td class="ct-td txt-c txt-med">' + cindicatorPrint + '</td>' +
 				   '<td class="ct-td txt-c txt-med">' + data[i].odb_rank + '</td>' +
 				   '<td class="ct-td txt-c txt-med">' + odbPrint +' </td>' +
 				   '<td class="ct-td txt-c"><span class="displayib" data-labels="' + data[i].readiness_data_labels + '" data-subindex="readiness" data-sparkline="' + data[i].readiness_data + ' ; column"></span><span class="data-sp data-readiness displayib txt-xl m-left">' + data[i].readiness + '</span></td>' +

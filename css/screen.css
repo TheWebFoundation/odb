@@ -2038,7 +2038,7 @@ ol > li.co-item {
       top: 0px;*/
 }
 
-/* line 231, ../sass/_m-generales.scss */
+/* line 232, ../sass/_m-generales.scss */
 .arrow-up {
   display: inline-block;
   width: 0;
@@ -2050,7 +2050,7 @@ ol > li.co-item {
   top: -8px;
 }
 
-/* line 246, ../sass/_m-generales.scss */
+/* line 247, ../sass/_m-generales.scss */
 .arrow-down {
   display: inline-block;
   width: 0;
@@ -2062,28 +2062,28 @@ ol > li.co-item {
   top: -8px;
 }
 
-/* line 261, ../sass/_m-generales.scss */
+/* line 262, ../sass/_m-generales.scss */
 .data-sp {
   position: relative;
   top: -2px;
 }
 
-/* line 266, ../sass/_m-generales.scss */
+/* line 267, ../sass/_m-generales.scss */
 .data-readiness {
   color: #F1C40F;
 }
 
-/* line 270, ../sass/_m-generales.scss */
+/* line 271, ../sass/_m-generales.scss */
 .data-implementation {
   color: #92EFDA;
 }
 
-/* line 274, ../sass/_m-generales.scss */
+/* line 275, ../sass/_m-generales.scss */
 .data-impact {
   color: #CB97F9;
 }
 
-/* line 278, ../sass/_m-generales.scss */
+/* line 279, ../sass/_m-generales.scss */
 .dataTables_empty {
   padding: 40px 10px;
   color: #999;
@@ -2091,7 +2091,7 @@ ol > li.co-item {
 }
 
 /* ## MODAL COMPARTIR ## */
-/* line 287, ../sass/_m-generales.scss */
+/* line 288, ../sass/_m-generales.scss */
 .cmodal-addons {
   position: fixed;
   top: 50%;
@@ -2107,20 +2107,20 @@ ol > li.co-item {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 287, ../sass/_m-generales.scss */
+  /* line 288, ../sass/_m-generales.scss */
   .cmodal-addons {
     /* width: 90%; */
   }
 }
 
-/* line 313, ../sass/_m-generales.scss */
+/* line 314, ../sass/_m-generales.scss */
 .cmodal-a-share-open {
   background-color: rgba(255, 255, 255, 0.8);
   visibility: visible;
   opacity: 1;
 }
 
-/* line 319, ../sass/_m-generales.scss */
+/* line 320, ../sass/_m-generales.scss */
 .cmodal-addns-content {
   position: absolute;
   top: 50%;
@@ -2131,7 +2131,7 @@ ol > li.co-item {
   width: 300px;
 }
 
-/* line 329, ../sass/_m-generales.scss */
+/* line 330, ../sass/_m-generales.scss */
 .share-item {
   display: inline-block;
   width: 64px;
@@ -2140,12 +2140,12 @@ ol > li.co-item {
   transition: all .3s ease-out;
 }
 
-/* line 337, ../sass/_m-generales.scss */
+/* line 338, ../sass/_m-generales.scss */
 .share-item:hover {
   transform: scale(1.2, 1.2);
 }
 
-/* line 341, ../sass/_m-generales.scss */
+/* line 342, ../sass/_m-generales.scss */
 .close-cmodal-share {
   display: block;
   width: 64px;
@@ -2155,7 +2155,7 @@ ol > li.co-item {
   right: 40px;
 }
 
-/* line 354, ../sass/_m-generales.scss */
+/* line 355, ../sass/_m-generales.scss */
 .cmodal-handsup {
   position: fixed;
   top: 50%;
@@ -2170,25 +2170,25 @@ ol > li.co-item {
   transition: all .6s ease-out;
 }
 @media (min-width: 768px) {
-  /* line 354, ../sass/_m-generales.scss */
+  /* line 355, ../sass/_m-generales.scss */
   .cmodal-handsup {
     /* width: 90%; */
   }
 }
 
-/* line 380, ../sass/_m-generales.scss */
+/* line 381, ../sass/_m-generales.scss */
 .cmodal-handsup-open {
   background-color: white;
   visibility: visible;
   opacity: 1;
 }
 
-/* line 386, ../sass/_m-generales.scss */
+/* line 387, ../sass/_m-generales.scss */
 .cm-hu-content {
   padding: 10px 20px 0px 10px;
 }
 
-/* line 392, ../sass/_m-generales.scss */
+/* line 393, ../sass/_m-generales.scss */
 .overlay-loader-init {
   position: fixed;
   top: 0;
@@ -2200,12 +2200,12 @@ ol > li.co-item {
   display: none;
 }
 
-/* line 403, ../sass/_m-generales.scss */
+/* line 404, ../sass/_m-generales.scss */
 .overlay-loader-init-open {
   display: block;
 }
 
-/* line 407, ../sass/_m-generales.scss */
+/* line 408, ../sass/_m-generales.scss */
 .pos-loader-init {
   position: absolute;
   width: 120px;
@@ -2442,12 +2442,17 @@ ol > li.co-item {
 }
 
 /* line 251, ../sass/_m-formularios.scss */
+select::-ms-expand {
+  display: none;
+}
+
+/* line 255, ../sass/_m-formularios.scss */
 .cinput-search {
   float: left;
   text-overflow: ellipsis;
 }
 
-/* line 256, ../sass/_m-formularios.scss */
+/* line 260, ../sass/_m-formularios.scss */
 .cinput-table-search {
   padding: 1.2em 1.2em 1em 2em;
   background-image: url("../img/img-cinput-table-search.svg");
@@ -2455,7 +2460,7 @@ ol > li.co-item {
   background-position: center left;
 }
 
-/* line 264, ../sass/_m-formularios.scss */
+/* line 268, ../sass/_m-formularios.scss */
 .cinput-s-arrow {
   background-image: url("../img/toggle-arrow.png");
   background-repeat: no-repeat;

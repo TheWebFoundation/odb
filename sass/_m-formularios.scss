@@ -248,6 +248,10 @@
 	}
 }
 
+select::-ms-expand {
+    display: none;
+}
+
 .cinput-search {
 	float:left;
 	text-overflow: ellipsis; 

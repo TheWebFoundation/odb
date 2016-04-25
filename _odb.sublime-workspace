@@ -91,7 +91,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 42828,
+				"buffer_size": 43231,
 				"line_ending": "Unix"
 			}
 		},
@@ -99,15 +99,7 @@
 			"file": "js/dataload.js",
 			"settings":
 			{
-				"buffer_size": 113190,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sass/_base.scss",
-			"settings":
-			{
-				"buffer_size": 7012,
+				"buffer_size": 115030,
 				"line_ending": "Unix"
 			}
 		},
@@ -115,39 +107,7 @@
 			"file": "sass/_m-formularios.scss",
 			"settings":
 			{
-				"buffer_size": 3902,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "sass/_m-modal-detail.scss",
-			"settings":
-			{
-				"buffer_size": 5570,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sass/_m-generales.scss",
-			"settings":
-			{
-				"buffer_size": 5136,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sass/_m-3parties.scss",
-			"settings":
-			{
-				"buffer_size": 2788,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sass/_variables.scss",
-			"settings":
-			{
-				"buffer_size": 2651,
+				"buffer_size": 3945,
 				"line_ending": "Windows"
 			}
 		}
@@ -213,12 +173,21 @@
 	"expanded_folders":
 	[
 		"/Applications/MAMP/htdocs/odb",
+		"/Applications/MAMP/htdocs/odb/.sass-cache",
 		"/Applications/MAMP/htdocs/odb/css",
 		"/Applications/MAMP/htdocs/odb/js",
 		"/Applications/MAMP/htdocs/odb/sass"
 	],
 	"file_history":
 	[
+		"/Applications/MAMP/htdocs/odb/sass/_base.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_m-formularios.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_m-generales.scss",
+		"/Applications/MAMP/htdocs/odb/css/screen.css",
+		"/Applications/MAMP/htdocs/odb/sass/_m-3parties.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_variables.scss",
+		"/Applications/MAMP/htdocs/odb/sass/_m-modal-detail.scss",
+		"/Applications/MAMP/htdocs/odb/css/spinkit.css",
 		"/Applications/MAMP/htdocs/odb/_odb.sublime-project",
 		"/Applications/MAMP/htdocs/odb/js/dataload.js",
 		"/Applications/MAMP/htdocs/odb/index.html",
@@ -240,8 +209,6 @@
 		"/Volumes/proyectos/libreto2/web-original/www/_old/index.html",
 		"/Applications/MAMP/htdocs/mylibreto/js/login.js",
 		"/Applications/MAMP/htdocs/mylibreto/acceso.php",
-		"/Applications/MAMP/htdocs/odb/sass/_m-formularios.scss",
-		"/Applications/MAMP/htdocs/odb/sass/_m-generales.scss",
 		"/Users/simbiosys/Desktop/dataload.js",
 		"/Users/simbiosys/Desktop/index.html",
 		"/Applications/MAMP/htdocs/odb/json/odb_2013.json",
@@ -257,7 +224,6 @@
 		"/Applications/MAMP/htdocs/odb/sass/_modulos.scss",
 		"/Applications/MAMP/htdocs/odb/css/svg-fonts.css",
 		"/Volumes/proyectos/pruebas/odb/json/countries-population.json",
-		"/Applications/MAMP/htdocs/odb/sass/_variables.scss",
 		"/Applications/MAMP/htdocs/odb/json/countries-population.json",
 		"/Applications/MAMP/htdocs/odb/index copia.html",
 		"/Volumes/proyectos/sone/sass/_base.scss",
@@ -337,6 +303,47 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"select",
+			"odbPrint",
+			"localhost",
+			"odbPrint",
+			"country-",
+			"lung_xs_bottom",
+			"list-style",
+			"credit_foot",
+			"lung_xxs_bottom",
+			"heading_foot",
+			"list_foot",
+			"enlace_pie",
+			".ct-country",
+			"open d",
+			"OpenCountryData",
+			"ready",
+			"openModal",
+			"more-info",
+			"open-modal",
+			"polarOptions",
+			"spider",
+			"drawmodal",
+			"addCountrySpide",
+			"owl",
+			"wol",
+			"addCountrySpider",
+			"owl",
+			".addSeries",
+			"add-co",
+			".addSeries",
+			"addCou",
+			"addCout",
+			"addCoutt",
+			"meang",
+			"mean",
+			"spider",
+			"addCountrySpider",
+			"add-",
+			"drawDatasetTable",
+			"add-co",
+			"drawIndicators",
 			"gci-mnu-item",
 			".gci-mnu-item-ac",
 			"bb",
@@ -423,48 +430,7 @@
 			"ODB.2013.C.CSOC",
 			"ready",
 			"sindicator",
-			"map",
-			"control_acceso_taller",
-			"ctrIsoCompare",
-			"openCountryData",
-			"showContry",
-			"OpenCountryData",
-			"options_mod",
-			"showMOdal",
-			"OpenCountryData",
-			"showCountry",
-			"showCountryData",
-			"showModal",
-			"CountryData",
-			"filtered_data_map",
-			"filtered_data",
-			"map_data",
-			"_filter(",
-			"more-info",
-			"_filter",
-			"drawtable",
-			"drawModal",
-			"drawtable",
-			"wrapper-filters",
-			"count-filters",
-			"filters appli",
-			"filters applied",
-			"drawmodal",
-			"drawMOdal",
-			"income",
-			"il-item-resp",
-			"2016",
-			"sharing",
-			"hostname",
-			"drawModal",
-			"source:",
-			"hostname",
-			"localhost",
-			"hostname",
-			"drawIndi",
-			"implementation",
-			"localhost",
-			"flags/"
+			"map"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -487,7 +453,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -496,15 +462,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 42828,
+						"buffer_size": 43231,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3526,
-								3526
+								38134,
+								38134
 							]
 						],
 						"settings":
@@ -514,10 +480,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 922.0,
+						"translation.y": 13026.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -526,15 +492,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 113190,
+						"buffer_size": 115030,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								89360,
-								88801
+								106657,
+								106657
 							]
 						],
 						"settings":
@@ -543,172 +509,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 45783.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "sass/_base.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7012,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3375,
-								3375
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 6996.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "sass/_m-formularios.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3902,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "sass/_m-modal-detail.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5570,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3822,
-								3822
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5717.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "sass/_m-generales.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5136,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								629,
-								629
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3528.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "sass/_m-3parties.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2788,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2665,
-								2665
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2079.0,
+						"translation.y": 55296.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "sass/_variables.scss",
+					"buffer": 2,
+					"file": "sass/_m-formularios.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2651,
+						"buffer_size": 3945,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2056,
-								2048
+								3383,
+								3383
 							]
 						],
 						"settings":
@@ -717,7 +538,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2108.0,
+						"translation.y": 4617.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -774,6 +595,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"scre",
+				"css/screen.css"
+			],
+			[
+				"spin",
+				"css/spinkit.css"
+			],
 			[
 				"ajax_co",
 				"ajax/ajax_control_acceso.php"
