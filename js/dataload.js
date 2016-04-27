@@ -75,33 +75,33 @@
 	}
 
 	//## Cargamos las variables globales en funcion del idioma ##
-	//var jsonCountries = 'json/countries-'+LANG+'.json'
+	var jsonCountries = 'json/countries-'+LANG+'.json'
 	$.ajax({
           async: false,
           type: "GET",
-          url: "json/countries-en.json",
+          url: jsonCountries,
           dataType: "json",
           success : function(data) {
           		window.countries = data;
 	      }
     });
 
-	//var jsonIndicators = 'json/indicators-'+LANG+'.json'
+	var jsonIndicators = 'json/indicators-'+LANG+'.json'
 	$.ajax({
           async: false,
           type: "GET",
-          url: "json/indicators-en.json",
+          url: jsonIndicators,
           dataType: "json",
           success : function(data) {
           		window.indicators = data;
 	      }
     });
 
-	//var jsonIndicatorsm = 'json/indicators_meta-'+LANG+'.json'
+	var jsonIndicatorsm = 'json/indicators_meta-'+LANG+'.json'
     $.ajax({
           async: false,
           type: "GET",
-          url: "json/indicators_meta-en.json",
+          url: jsonIndicatorsm,
           dataType: "json",
           success : function(data) {
           		window.indicators_meta = data;
