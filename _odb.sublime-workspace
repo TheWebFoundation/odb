@@ -91,7 +91,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 43231,
+				"buffer_size": 46401,
 				"line_ending": "Unix"
 			}
 		},
@@ -99,7 +99,7 @@
 			"file": "js/dataload.js",
 			"settings":
 			{
-				"buffer_size": 115030,
+				"buffer_size": 121871,
 				"line_ending": "Unix"
 			}
 		},
@@ -107,7 +107,7 @@
 			"file": "sass/_m-formularios.scss",
 			"settings":
 			{
-				"buffer_size": 3945,
+				"buffer_size": 4167,
 				"line_ending": "Windows"
 			}
 		}
@@ -453,7 +453,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -462,15 +462,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 43231,
+						"buffer_size": 46401,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								38134,
-								38134
+								0,
+								0
 							]
 						],
 						"settings":
@@ -480,10 +480,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 13026.0,
+						"translation.y": 4026.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -492,15 +492,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 115030,
+						"buffer_size": 121871,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								106657,
-								106657
+								0,
+								0
 							]
 						],
 						"settings":
@@ -512,7 +512,7 @@
 						"translation.y": 55296.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -521,15 +521,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3945,
+						"buffer_size": 4167,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3383,
-								3383
+								0,
+								0
 							]
 						],
 						"settings":
@@ -541,7 +541,7 @@
 						"translation.y": 4617.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
