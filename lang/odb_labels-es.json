@@ -42,6 +42,7 @@
     "sshara" : "África Subsahariana"
   },
   "valbase" : {
+    "select" : "Seleccione ...",
     "allm" : "Todos",
     "allf" : "Todas",
     "lowi" : "Bajos",
@@ -85,5 +86,11 @@
   },
   "datasets" : {
     "dscored" : "Conjunto de datos y puntuaciones"
+  },
+  "feedback" : {
+    "gtitle" : "Aviso",
+    "nodatac" : "No hay datos disponibles para el ",
+    "cselected" : "Este país ya está agregado",
+    "nodatay" : "El indicador seleccionado no tiene datos para el "
   }
 }

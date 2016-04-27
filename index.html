@@ -99,7 +99,7 @@
                                     <div class="rinput p-left">
                                         <label for="syear" class="clbl uppc txt-s c-g40 displayb p-s-top" data-localize="labels.year">Year</label>
                                         <select name="syear" id="syear" class="cinput cinput-search cinput-s-arrow">
-                                            <option>Select...</option>
+                                            <option data-localize="valbase.select">Select...</option>
                                             <option value="2013">2013</option>
                                             <option value="2014">2014</option>
                                             <option value="2015">2015</option>
@@ -297,12 +297,16 @@
         <!-- ## MODAL FEEDBACK ## -->
         <div class="cmodal-handsup">
             <header class="cm-hu-header">
-                <h3 class="txt-c fwbold no-m-bottom">Hands up!</h3>
+                <h3 class="txt-c fwbold no-m-bottom" data-localize="feedback.gtitle">Hands up!</h3>
             </header>
             <div class="cm-hu-content">
-                <p class="msg-cm-hu txt-c">No data available</p>
+                <p class="msg-cm-hu txt-c">...</p>
+                <span class="txt_fb_nodatac hddn" data-localize="feedback.nodatac">No data country available on</span>
+                <span class="txt_fb_cselected hddn" data-localize="feedback.cselected">This country has already been selected here</span>
+                 <span class="txt_fb_nodatayear hddn" data-localize="feedback.nodatay">The selected indicator has no data on</span>
+                
             </div>
-            <button name="closeAdv" class="cbtn cbtn-close-adv cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-close-adv w100">Close</button>
+            <button name="closeAdv" class="cbtn cbtn-close-adv cbtn-s-acc cbtn-s-sh uppc fosc fwbold cbtn-close-adv w100" data-localize="globals.close">Close</button>
         </div>
 
 

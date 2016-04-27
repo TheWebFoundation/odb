@@ -42,6 +42,7 @@
     "sshara" : "Sub-Saharan Africa"
   },
   "valbase" : {
+    "select" : "Select ...",
     "allm" : "All",
     "allf" : "All",
     "lowi" : "Low income",
@@ -85,5 +86,11 @@
   },
   "datasets" : {
     "dscored" : "Dataset scored"
+  },
+  "feedback" : {
+    "gtitle" : "Hands up!",
+    "nodatac" : "No data country available on ",
+    "cselected" : "This country has already been selected here",
+    "nodatay" : "The selected indicator has no data on "
   }
 }

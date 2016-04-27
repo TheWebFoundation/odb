@@ -1418,7 +1418,8 @@ $(".cbtn-search-home-select").on("click", function(){
 		});
 
 		if(noDataYear == 0) {
-			openModalAdv("The selected indicator has no data on "+current_year_select);
+			var fb_lang = $(".txt_fb_nodatayear").text();
+			openModalAdv(fb_lang+" "+current_year_select);
 			//console.log("This indicator does not exist on "+current_year_select);
 			return false;
 		}else{
@@ -1549,7 +1550,8 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 		});
 
 		if(noDataYear == 0) {
-			openModalAdv("The selected indicator has no data on "+nyear);
+			var fb_lang = $(".txt_fb_nodatayear").text();
+			openModalAdv(fb_lang+" "+nyear);
 			//console.log("This indicator does not exist on "+current_year_select);
 			return false;
 		}else{
@@ -2268,7 +2270,8 @@ $('#wrapper-map').highcharts('Map', {
                		OpenCountryData(selectedItemId);
 
                	}else{
-               		openModalAdv("No data country available on "+yearNow);
+               		var fb_lang = $(".txt_fb_nodatac").text();
+               		openModalAdv(fb_lang+" "+yearNow);
                	}
                 //$("#table-data tbody a[data-iso='"+selectedItemId+"']").trigger("click");
                 //$(".cbtn-search-home-input").attr("data-id",selectedItemId);
@@ -2322,7 +2325,8 @@ $('#wrapper-map').highcharts('Map', {
                		$(".cbtn-md-add-country").click();
                		$("#cinput-s-country-modal").val("");
                	}else{
-               		openModalAdv("No data country available on "+selected_year);
+               		var fb_lang = $(".txt_fb_nodatac").text();
+               		openModalAdv(fb_lang+" "+selected_year);
                	}
                 //$("#cinput-s-country").val(value).trigger("change");
                 //console.log("ID2: "+selectedItemId);
@@ -2423,7 +2427,8 @@ $('#wrapper-map').highcharts('Map', {
 		var idAddCtr = $(this).attr("data-id");
 
         if(loaded_countries.contains(idAddCtr)) {
-        	openModalAdv("This country has already been selected here");
+        	var fb_lang = $(".txt_fb_cselected").text();
+        	openModalAdv(fb_lang);
 			//alert("This country has already been selected here");
 			return false;
 		}
@@ -2443,7 +2448,8 @@ $('#wrapper-map').highcharts('Map', {
 
 		if(cont !=0) {
 			//alert("This country has already been selected");
-			openModalAdv("This country has already been selected");
+			var fb_lang = $(".txt_fb_cselected").text();
+        	openModalAdv(fb_lang);
 			return false;
 		}
 
@@ -2762,7 +2768,7 @@ $('#wrapper-map').highcharts('Map', {
 				//console.log("Rank change: "+data[i].odb_rank_change);
 
 				if (rank_change == null) {
-					rank_print = '<span class="txt-xxs cprimary uppc" >New</span>';
+					rank_print = '<span class="txt-xxs cprimary uppc" data-localize="globals.new">New</span>';
 				}else{
 					if(rank_change<0){
 						var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
