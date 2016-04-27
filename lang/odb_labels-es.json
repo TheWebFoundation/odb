@@ -40,7 +40,8 @@
     "sshara" : "África Subsahariana"
   },
   "valbase" : {
-    "all" : "Todos",
+    "allm" : "Todos",
+    "allf" : "Todas",
     "lowi" : "Bajos",
     "loweri" : "Por debajo de la media",
     "uppermi" : "Por encima de la media",

@@ -40,7 +40,8 @@
     "sshara" : "Sub-Saharan Africa"
   },
   "valbase" : {
-    "all" : "All",
+    "allm" : "All",
+    "allf" : "All",
     "lowi" : "Low income",
     "loweri" : "Lower middle income",
     "uppermi" : "Upper middle income",

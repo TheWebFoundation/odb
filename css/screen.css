@@ -2467,7 +2467,14 @@ select::-ms-expand {
   background-position: right 10px center;
 }
 
-/* line 276, ../sass/_m-formularios.scss */
+/* line 274, ../sass/_m-formularios.scss */
+.cinput-b-arrow {
+  background-image: url("../img/toggle-arrow-top.png");
+  background-repeat: no-repeat;
+  background-position: right 5px top 12px;
+}
+
+/* line 282, ../sass/_m-formularios.scss */
 .adj-rimput-lang {
   position: relative;
   top: -2px;

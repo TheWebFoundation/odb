@@ -333,7 +333,7 @@
 	function setRegion(sregion) {
 		var $selRegion = $("#sregion");
 		$selRegion.html('');
-		$selRegion.append('<option value="0">All ...</option>');
+		$selRegion.append('<option value="0" data-localize="valbase.allf">All ...</option>');
 		$.each(window.regions, function( index, value ) {
 			if(value.iso3 == sregion) {
 				$selRegion.append('<option value="'+value.iso3+'" selected="selected">'+value.name+'</option>');
@@ -1464,6 +1464,34 @@ $(".cbtn-clear-filters").on("click", function(e){
 })
 
 
+$(document).delegate("#slang","change", function(){
+
+	var nyear = $("#syear-modal").val();
+	var nindicator = $("#sindicator-modal").val();
+	var nregion = "";
+	var nincome = "";
+	var nhdirate = "";
+	var nG20 = "";
+	var nG7 = "";
+	var nOECD = "";
+	var nIODCH = "";
+	var clang = '&lang='+$(this).val();
+
+	if(getUrlVars()["region"] != undefined) nregion = '&region='+getUrlVars()["region"];
+	if(getUrlVars()["income"] != undefined) nincome = '&income='+getUrlVars()["income"];
+	if(getUrlVars()["hdirate"] != undefined) nhdirate = '&hdirate='+getUrlVars()["hdirate"];
+	if(getUrlVars()["G20"] != undefined) nG20 = '&G20='+getUrlVars()["G20"];
+	if(getUrlVars()["G7"] != undefined) nG7 = '&G7='+getUrlVars()["G7"];
+	if(getUrlVars()["OECD"] != undefined) nOECD = '&OECD='+getUrlVars()["OECD"];
+	if(getUrlVars()["IODCH"] != undefined) nIODCH = '&IODCH='+getUrlVars()["IODCH"];
+
+	//var newURLang = 'http://'+location.hostname+'/data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH;
+	var newURLang = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+clang+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH;
+	window.location.href = newURLang;
+
+});
+
+
 $(document).delegate(".cbtn-search-modal-go","click", function(){
 
 	var typeValue = $(this).attr("data-type");
@@ -1481,6 +1509,7 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 	var nG7 = "";
 	var nOECD = "";
 	var nIODCH = "";
+	var clang = '&lang='+LANG;
 
 	if(getUrlVars()["region"] != undefined) nregion = '&region='+getUrlVars()["region"];
 	if(getUrlVars()["income"] != undefined) nincome = '&income='+getUrlVars()["income"];
@@ -1492,7 +1521,7 @@ $(document).delegate(".cbtn-search-modal-go","click", function(){
 	if(getUrlVars()["comparew"] != undefined) ncomparew = '&comparew='+getUrlVars()["comparew"];
 	
 	//var newURLModal = 'http://'+location.hostname+'/data-explorer/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
-	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
+	var newURLModal = 'http://'+location.hostname+':8888/odb/?_year='+nyear+'&indicator='+nindicator+clang+nregion+nincome+nhdirate+nG20+nG7+nOECD+nIODCH+'&open='+nopen+ncomparew;
 	noDataYear = 0;
 
 	$.getJSON('json/years_with_data.json', function(data) {
