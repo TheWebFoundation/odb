@@ -1,0 +1,86 @@
+{
+  "globals" : {
+    "title" : "ODB, Open Data Barometer 2015",
+    "share" : "Compartir",
+    "close" : "Cerrar",
+    "source" : "Fuente: ",
+    "sharing" : "Compartir es ayudar",
+    "average" : "Promedio"
+  },
+  "labels" : {
+    "year" : "Año",
+    "indicator" : "Indicador",
+    "country" : "Pais",
+    "comparew" : "Comparar con",
+    "region" : "Region",
+    "income" : "Ingresos",
+    "hdirate" : "Rango HDI",
+    "group" : "Grupo",
+    "fapplied" : "Filtros aplicados",
+    "clsfilters" : "[borrar filtros]",
+    "expand" : "Expander",
+    "rank" : "Posición",
+    "choose" : "Ninguno",
+    "lang" : "Idioma: "
+  },
+  "inputs" : {
+    "scountry": "Escriba un país...",
+    "go" : "Ir",
+    "show" : "Mostrar",
+    "appfilters" : "Aplicar filtros",
+    "add" : "Agregar"
+  },
+  "regions" : {
+    "easia" : "Asia Oriental y Pacífico",
+    "ecentral" : "Europa y Asia Central",
+    "latincab" : "América Latina y el Caribe",
+    "meast" : "Oriente Medio y África del Norte",
+    "namerica" : "Norte América",
+    "sasia" : "Asia del sur",
+    "sshara" : "África Subsahariana"
+  },
+  "valbase" : {
+    "all" : "Todos",
+    "lowi" : "Bajos",
+    "loweri" : "Por debajo de la media",
+    "uppermi" : "Por encima de la media",
+    "higheri" : "Elevados",
+    "low" : "Bajo",
+    "med" : "Medio",
+    "high" : "Alto",
+    "vhigh" : "Muy alto"
+  },
+  "maplinks" : {
+    "report" : "Informe",
+    "download" : "Descargar",
+    "info" : "Info",
+    "share" : "Compartir"
+  },
+  "tabledata" : {
+    "sdetails" : "Detalles",
+    "country" : "País",
+    "outof" : "sobre 100",
+    "change" : "variación"
+  },
+  "modal" : {
+    "income" : "Ingresos",
+    "odbs" : "Puntuación ODB",
+    "rank" : "Posición",
+    "hdirank" : "Posición HDI",
+    "odbrank" : "Posición ODB",
+    "odbrankc" : "Variacion del ODB",
+    "dato" : "texto",
+    "dato" : "texto",
+    "dato" : "texto",
+    "dato" : "texto"
+  },
+  "indicators" : {
+    "default" : "Indicador",
+    "readiness" : "Disponibilidad",
+    "implementation" : "Implementación",
+    "impact" : "Impacto"
+  },
+  "datasets" : {
+    "dscored" : "Conjunto de datos y puntuaciones"
+  }
+}

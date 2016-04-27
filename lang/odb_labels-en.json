@@ -1,0 +1,86 @@
+{
+  "globals" : {
+    "title" : "ODB, Open Data Barometer 2015",
+    "share" : "Share",
+    "close" : "Close",
+    "source" : "Source: ",
+    "sharing" : "Sharing is caring",
+    "average" : "Average"
+  },
+  "labels" : {
+    "year" : "Year",
+    "indicator" : "Indicator",
+    "country" : "Country",
+    "comparew" : "Compare with",
+    "region" : "Region",
+    "income" : "income",
+    "hdirate" : "HDI Rate",
+    "group" : "Group",
+    "fapplied" : "Filter applieds",
+    "clsfilters" : "[clear filters]",
+    "expand" : "Exapand",
+    "rank" : "Rank",
+    "choose" : "Choose ...",
+    "lang" : "Lang: "
+  },
+  "inputs" : {
+    "scountry" : "Type a country...",
+    "go" : "go",
+    "show" : "show",
+    "appfilters" : "Apply Filters",
+    "add" : "Add"
+  },
+  "regions" : {
+    "easia" : "East Asia & Pacific",
+    "ecentral" : "Europe & Central Asia",
+    "latincab" : "Latin America & Caribbean",
+    "meast" : "Middle East & North Africa",
+    "namerica" : "North America",
+    "sasia" : "South Asia",
+    "sshara" : "Sub-Saharan Africa"
+  },
+  "valbase" : {
+    "all" : "All",
+    "lowi" : "Low income",
+    "loweri" : "Lower middle income",
+    "uppermi" : "Upper middle income",
+    "higheri" : "High income",
+    "low" : "low",
+    "med" : "medium",
+    "high" : "High",
+    "vhigh" : "Very High"
+  },
+  "maplinks" : {
+    "report" : "Report",
+    "download" : "Download",
+    "info" : "Info",
+    "share" : "Share"
+  },
+  "tabledata" : {
+    "sdetails" : "See details",
+    "country" : "Country",
+    "outof" : "Out of 100",
+    "change" : "change"
+  },
+  "modal" : {
+    "income" : "income",
+    "odbs" : "ODB Score",
+    "rank" : "Rank",
+    "hdirank" : "HDI Rank",
+    "odbrank" : "ODB Rank",
+    "odbrankc" : "ODB Rank Change",
+    "dato" : "texto",
+    "dato" : "texto",
+    "dato" : "texto",
+    "dato" : "texto"
+  },
+  "indicators" : {
+    "default" : "Indicator",
+    "readiness" : "Readiness",
+    "implementation" : "Implementation",
+    "impact" : "Impact"
+  },
+  "datasets" : {
+    "dscored" : "Dataset scored"
+  }
+}
