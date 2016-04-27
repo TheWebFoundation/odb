@@ -109,6 +109,18 @@
     });
 
 
+    //Cargamos la variable global de datos de paises
+    $.ajax({
+          async: false,
+          type: "GET",
+          url: "json/stats.json",
+          dataType: "json",
+          success : function(data) {
+          		window.stats = data;
+	      }
+    });
+
+
 
 	var $div = $("#wrapper-pspider");
 	var polarOptions = {
@@ -610,7 +622,7 @@ function drawModal() {
 	rank_change = country_data[0].odb_rank_change;
 
 	if (rank_change == null) {
-		rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
+		rank_print = '<span class="txt-xxs cprimary uppc" data-localize="globals.new">New</span>';
 	}else{
 		if(rank_change<0){
 			var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
@@ -1238,6 +1250,9 @@ function drawIndicatorsTableModal(){
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip();
 	});
+
+	//Reicializamos el localize ? 
+	$("[data-localize]").localize("lang/odb_labels", { language: LANG });
 
 }
 
@@ -2700,10 +2715,12 @@ $('#wrapper-map').highcharts('Map', {
 		e.preventDefault();
 		if($(".global-content-indicators").is(".cgi-c-expanded")) {
 			$(".global-content-indicators").removeClass("cgi-c-expanded");
-			$(".cbtn-expand-table").text("Expand");
+			var expand = $(".txt_expand_lang").text();
+			$(".cbtn-expand-table").text(expand);
 		}else{
 			$(".global-content-indicators").addClass("cgi-c-expanded");
-			$(".cbtn-expand-table").text("Collapse");
+			var collapse = $(".txt_collapse_lang").text();
+			$(".cbtn-expand-table").text(collapse);
 		}
 	})
 
@@ -2745,7 +2762,7 @@ $('#wrapper-map').highcharts('Map', {
 				//console.log("Rank change: "+data[i].odb_rank_change);
 
 				if (rank_change == null) {
-					rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
+					rank_print = '<span class="txt-xxs cprimary uppc" >New</span>';
 				}else{
 					if(rank_change<0){
 						var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
@@ -2827,7 +2844,7 @@ $('#wrapper-map').highcharts('Map', {
 				//console.log("Rank change: "+data[i].odb_rank_change);
 
 				if (rank_change == null) {
-					rank_print = '<span class="txt-xxs cprimary uppc">New</span>';
+					rank_print = '<span class="txt-xxs cprimary uppc" data-localize="globals.new">New</span>';
 				}else{
 					if(rank_change<0){
 						var rank_print = '<span class="arrow-down"></span> '+ Math.abs(rank_change);
@@ -2921,11 +2938,13 @@ $('#wrapper-map').highcharts('Map', {
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 
-		if(translated) {
-			console.log("Lang: "+LANG);
-			$("[data-localize]").localize("lang/odb_labels", { language: LANG });
-			translated = false;
-		}
+		// if(translated) {
+		// 	console.log("Lang: "+LANG);
+		// 	$("[data-localize]").localize("lang/odb_labels", { language: LANG });
+		// 	translated = false;
+		// }
+
+		$("[data-localize]").localize("lang/odb_labels", { language: LANG });
 
 		//Inicializamos el select
 		var choose = $("#sgroup_lang").text();

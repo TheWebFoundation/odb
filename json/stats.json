@@ -1,0 +1,4536 @@
+{
+  "2013": {
+    ":ME": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 29.444444444444443,
+        "median": 16.0
+      },
+      "ODB.2013.D2": {
+        "mean": 7.222222222222222,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 10.0,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 3.7777777777777777,
+        "median": 3.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 41.77777777777778,
+        "median": 47.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.7777777777777777,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 3.7777777777777777,
+        "median": 4.0
+      },
+      "ODB.2013.D13": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.54720515925,
+        "median": 4.41041527
+      },
+      "ODB.2013.D6": {
+        "mean": 22.22222222222222,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.5374111111111112,
+        "median": 0.4771
+      },
+      "ECONOMIC": {
+        "mean": 6.555555555555555,
+        "median": 0.0
+      },
+      "INNOVATION": {
+        "mean": 21.805555555555557,
+        "median": 22.5
+      },
+      "ODB.2013.D14": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "ODB.2013.D9": {
+        "mean": 16.11111111111111,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 19.666666666666668,
+        "median": 17.0
+      },
+      "ODB.2013.D4": {
+        "mean": 35.55555555555556,
+        "median": 15.0
+      },
+      "ODB.2013.D11": {
+        "mean": 18.88888888888889,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 1.1111111111111112,
+        "median": 1.0
+      },
+      "ODB.2013.D8": {
+        "mean": 13.88888888888889,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 15.0,
+        "median": 5.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 17.666666666666668,
+        "median": 11.0
+      },
+      "IMPACT": {
+        "mean": 9.555555555555555,
+        "median": 6.0
+      },
+      "ODB.2013.D7": {
+        "mean": 13.88888888888889,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 52.56078699777778,
+        "median": 54.0
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 1.3333333333333333,
+        "median": 0.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 2.7777777777777777,
+        "median": 2.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.2222222222222222,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.6666666666666666,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.0,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 26.666666666666668,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.2222222222222222,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 19.01222222222222,
+        "median": 18.18
+      },
+      "IMPLEMENTATION": {
+        "mean": 17.333333333333332,
+        "median": 12.0
+      },
+      "ODB.2013.D10": {
+        "mean": 42.22222222222222,
+        "median": 45.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 54.22222222222222,
+        "median": 63.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.5555555555555554,
+        "median": 3.0
+      },
+      "READINESS": {
+        "mean": 41.111111111111114,
+        "median": 41.0
+      },
+      "ODB.2013.D1": {
+        "mean": 10.555555555555555,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 3.5555555555555554,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 21.555555555555557,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.1226425120000005,
+        "median": 5.49104301
+      },
+      "FH": {
+        "mean": 37.44444444444444,
+        "median": 34.0
+      }
+    },
+    ":EU": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 73.78260869565217,
+        "median": 80.0
+      },
+      "ODB.2013.D2": {
+        "mean": 23.26086956521739,
+        "median": 15.0
+      },
+      "ODB.2013.D12": {
+        "mean": 62.82608695652174,
+        "median": 65.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.869565217391305,
+        "median": 7.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 62.47826086956522,
+        "median": 61.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 2.9565217391304346,
+        "median": 3.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 5.521739130434782,
+        "median": 5.0
+      },
+      "ODB.2013.D13": {
+        "mean": 61.52173913043478,
+        "median": 65.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.189031730782609,
+        "median": 4.309508356
+      },
+      "ODB.2013.D6": {
+        "mean": 35.65217391304348,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.7246434782608695,
+        "median": 0.7451
+      },
+      "ECONOMIC": {
+        "mean": 38.95652173913044,
+        "median": 38.0
+      },
+      "INNOVATION": {
+        "mean": 54.18478260869565,
+        "median": 48.75
+      },
+      "ODB.2013.D14": {
+        "mean": 55.869565217391305,
+        "median": 60.0
+      },
+      "ODB.2013.D9": {
+        "mean": 40.0,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 51.73913043478261,
+        "median": 50.0
+      },
+      "ODB.2013.D4": {
+        "mean": 68.26086956521739,
+        "median": 65.0
+      },
+      "ODB.2013.D11": {
+        "mean": 48.47826086956522,
+        "median": 65.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 3.347826086956522,
+        "median": 3.0
+      },
+      "ODB.2013.D8": {
+        "mean": 34.56521739130435,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 49.130434782608695,
+        "median": 60.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 41.73913043478261,
+        "median": 37.0
+      },
+      "IMPACT": {
+        "mean": 33.95652173913044,
+        "median": 27.0
+      },
+      "ODB.2013.D7": {
+        "mean": 38.47826086956522,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 76.99724648347826,
+        "median": 81.0
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 4.086956521739131,
+        "median": 4.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 5.3478260869565215,
+        "median": 5.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 2.0434782608695654,
+        "median": 2.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 3.130434782608696,
+        "median": 3.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.9130434782608696,
+        "median": 2.0
+      },
+      "ODB.2013.D5": {
+        "mean": 50.869565217391305,
+        "median": 60.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.6521739130434783,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 50.463913043478264,
+        "median": 46.03
+      },
+      "IMPLEMENTATION": {
+        "mean": 49.30434782608695,
+        "median": 42.0
+      },
+      "ODB.2013.D10": {
+        "mean": 62.391304347826086,
+        "median": 65.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 64.43478260869566,
+        "median": 64.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 7.913043478260869,
+        "median": 9.0
+      },
+      "READINESS": {
+        "mean": 67.43478260869566,
+        "median": 67.0
+      },
+      "ODB.2013.D1": {
+        "mean": 52.82608695652174,
+        "median": 60.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "SOCIAL": {
+        "mean": 17.869565217391305,
+        "median": 14.0
+      },
+      "POLITICAL": {
+        "mean": 38.91304347826087,
+        "median": 36.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 1.434782608695652,
+        "median": 1.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.392602835304348,
+        "median": 5.592900057
+      },
+      "FH": {
+        "mean": 88.08695652173913,
+        "median": 96.0
+      }
+    },
+    ":PA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 58.333333333333336,
+        "median": 50.0
+      },
+      "ODB.2013.D2": {
+        "mean": 24.444444444444443,
+        "median": 15.0
+      },
+      "ODB.2013.D12": {
+        "mean": 54.44444444444444,
+        "median": 60.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.111111111111111,
+        "median": 6.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 56.22222222222222,
+        "median": 71.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.5555555555555556,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "ODB.2013.D13": {
+        "mean": 42.22222222222222,
+        "median": 50.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.587189157111111,
+        "median": 4.7325412
+      },
+      "ODB.2013.D6": {
+        "mean": 42.77777777777778,
+        "median": 50.0
+      },
+      "UN.OSI": {
+        "mean": 0.7269222222222222,
+        "median": 0.7843
+      },
+      "ECONOMIC": {
+        "mean": 20.444444444444443,
+        "median": 7.0
+      },
+      "INNOVATION": {
+        "mean": 38.75,
+        "median": 36.25
+      },
+      "ODB.2013.D14": {
+        "mean": 46.111111111111114,
+        "median": 60.0
+      },
+      "ODB.2013.D9": {
+        "mean": 16.11111111111111,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 43.333333333333336,
+        "median": 43.0
+      },
+      "ODB.2013.D4": {
+        "mean": 57.22222222222222,
+        "median": 60.0
+      },
+      "ODB.2013.D11": {
+        "mean": 34.44444444444444,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 3.111111111111111,
+        "median": 4.0
+      },
+      "ODB.2013.D8": {
+        "mean": 33.888888888888886,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 40.0,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 38.0,
+        "median": 36.0
+      },
+      "IMPACT": {
+        "mean": 25.333333333333332,
+        "median": 15.0
+      },
+      "ODB.2013.D7": {
+        "mean": 24.444444444444443,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 58.84305177666666,
+        "median": 74.1818
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 3.0,
+        "median": 4.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.2222222222222223,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.4444444444444444,
+        "median": 1.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.7777777777777777,
+        "median": 1.0
+      },
+      "ODB.2013.D5": {
+        "mean": 48.888888888888886,
+        "median": 60.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.5555555555555556,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 41.04555555555556,
+        "median": 36.29
+      },
+      "IMPLEMENTATION": {
+        "mean": 39.55555555555556,
+        "median": 39.0
+      },
+      "ODB.2013.D10": {
+        "mean": 53.333333333333336,
+        "median": 65.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 66.77777777777777,
+        "median": 74.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 6.444444444444445,
+        "median": 7.0
+      },
+      "READINESS": {
+        "mean": 61.0,
+        "median": 70.0
+      },
+      "ODB.2013.D1": {
+        "mean": 43.333333333333336,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 5.111111111111111,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 22.333333333333332,
+        "median": 7.0
+      },
+      "POLITICAL": {
+        "mean": 27.444444444444443,
+        "median": 16.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 2.2222222222222223,
+        "median": 1.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.463408776666666,
+        "median": 5.708560161
+      },
+      "FH": {
+        "mean": 68.66666666666667,
+        "median": 65.0
+      }
+    },
+    ":AF": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 31.842105263157894,
+        "median": 36.0
+      },
+      "ODB.2013.D2": {
+        "mean": 3.1578947368421053,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 26.05263157894737,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 3.1052631578947367,
+        "median": 3.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 16.42105263157895,
+        "median": 11.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.47368421052631576,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 2.736842105263158,
+        "median": 3.0
+      },
+      "ODB.2013.D13": {
+        "mean": 18.68421052631579,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.066265785263158,
+        "median": 4.01645926
+      },
+      "ODB.2013.D6": {
+        "mean": 15.789473684210526,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.3588,
+        "median": 0.3203
+      },
+      "ECONOMIC": {
+        "mean": 2.8421052631578947,
+        "median": 0.0
+      },
+      "INNOVATION": {
+        "mean": 15.723684210526315,
+        "median": 11.25
+      },
+      "ODB.2013.D14": {
+        "mean": 17.36842105263158,
+        "median": 5.0
+      },
+      "ODB.2013.D9": {
+        "mean": 11.052631578947368,
+        "median": 0.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 18.0,
+        "median": 13.0
+      },
+      "ODB.2013.D4": {
+        "mean": 26.842105263157894,
+        "median": 15.0
+      },
+      "ODB.2013.D11": {
+        "mean": 22.105263157894736,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 1.263157894736842,
+        "median": 0.0
+      },
+      "ODB.2013.D8": {
+        "mean": 12.631578947368421,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 19.210526315789473,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 16.736842105263158,
+        "median": 13.0
+      },
+      "IMPACT": {
+        "mean": 4.105263157894737,
+        "median": 0.0
+      },
+      "ODB.2013.D7": {
+        "mean": 8.157894736842104,
+        "median": 5.0
+      },
+      "WB.NETUSERS": {
+        "mean": 19.263483512789474,
+        "median": 13.0803
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.21052631578947367,
+        "median": 0.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 2.1578947368421053,
+        "median": 2.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.2631578947368421,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.10526315789473684,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.2631578947368421,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 26.31578947368421,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.10526315789473684,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 13.249473684210527,
+        "median": 8.7
+      },
+      "IMPLEMENTATION": {
+        "mean": 14.31578947368421,
+        "median": 11.0
+      },
+      "ODB.2013.D10": {
+        "mean": 23.42105263157895,
+        "median": 15.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 30.263157894736842,
+        "median": 28.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.736842105263158,
+        "median": 3.0
+      },
+      "READINESS": {
+        "mean": 23.42105263157895,
+        "median": 20.0
+      },
+      "ODB.2013.D1": {
+        "mean": 11.31578947368421,
+        "median": 5.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 2.210526315789474,
+        "median": 1.0
+      },
+      "SOCIAL": {
+        "mean": 2.526315789473684,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 6.0,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.562219466210526,
+        "median": 4.529180506
+      },
+      "FH": {
+        "mean": 54.73684210526316,
+        "median": 60.0
+      }
+    },
+    ":::": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 52.66233766233766,
+        "median": 50.0
+      },
+      "ODB.2013.D2": {
+        "mean": 13.636363636363637,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 43.246753246753244,
+        "median": 55.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.9480519480519485,
+        "median": 6.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 42.23376623376623,
+        "median": 40.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.7012987012987013,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 4.467532467532467,
+        "median": 5.0
+      },
+      "ODB.2013.D13": {
+        "mean": 34.48051948051948,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.152744787552632,
+        "median": 4.150097410000001
+      },
+      "ODB.2013.D6": {
+        "mean": 31.038961038961038,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.5808506493506493,
+        "median": 0.5359
+      },
+      "ECONOMIC": {
+        "mean": 18.51948051948052,
+        "median": 7.0
+      },
+      "INNOVATION": {
+        "mean": 34.496753246753244,
+        "median": 28.75
+      },
+      "ODB.2013.D14": {
+        "mean": 37.142857142857146,
+        "median": 45.0
+      },
+      "ODB.2013.D9": {
+        "mean": 23.246753246753247,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 35.493506493506494,
+        "median": 36.0
+      },
+      "ODB.2013.D4": {
+        "mean": 48.57142857142857,
+        "median": 60.0
+      },
+      "ODB.2013.D11": {
+        "mean": 34.87012987012987,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.324675324675325,
+        "median": 2.0
+      },
+      "ODB.2013.D8": {
+        "mean": 24.22077922077922,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 34.54545454545455,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 30.025974025974026,
+        "median": 26.0
+      },
+      "IMPACT": {
+        "mean": 18.623376623376622,
+        "median": 11.0
+      },
+      "ODB.2013.D7": {
+        "mean": 21.558441558441558,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 50.238021085753246,
+        "median": 49.84799936
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.311688311688312,
+        "median": 1.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.857142857142857,
+        "median": 4.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.0129870129870129,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.4415584415584415,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.1168831168831168,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 38.76623376623377,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.44155844155844154,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 32.46987012987013,
+        "median": 27.58
+      },
+      "IMPLEMENTATION": {
+        "mean": 32.18181818181818,
+        "median": 29.0
+      },
+      "ODB.2013.D10": {
+        "mean": 47.4025974025974,
+        "median": 60.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 51.506493506493506,
+        "median": 54.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.597402597402597,
+        "median": 7.0
+      },
+      "READINESS": {
+        "mean": 48.0,
+        "median": 44.0
+      },
+      "ODB.2013.D1": {
+        "mean": 32.857142857142854,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.246753246753247,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 11.311688311688311,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 22.51948051948052,
+        "median": 16.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.8571428571428571,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.013586729818182,
+        "median": 4.999347565
+      },
+      "FH": {
+        "mean": 68.14285714285714,
+        "median": 75.0
+      }
+    },
+    ":LA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 56.72727272727273,
+        "median": 59.0
+      },
+      "ODB.2013.D2": {
+        "mean": 6.818181818181818,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 48.63636363636363,
+        "median": 60.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.909090909090909,
+        "median": 6.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 34.90909090909091,
+        "median": 32.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.1818181818181819,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 4.545454545454546,
+        "median": 6.0
+      },
+      "ODB.2013.D13": {
+        "mean": 14.090909090909092,
+        "median": 5.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.7101583494545456,
+        "median": 3.912258834
+      },
+      "ODB.2013.D6": {
+        "mean": 40.90909090909091,
+        "median": 50.0
+      },
+      "UN.OSI": {
+        "mean": 0.5763363636363636,
+        "median": 0.5294
+      },
+      "ECONOMIC": {
+        "mean": 5.2727272727272725,
+        "median": 7.0
+      },
+      "INNOVATION": {
+        "mean": 28.40909090909091,
+        "median": 28.75
+      },
+      "ODB.2013.D14": {
+        "mean": 36.81818181818182,
+        "median": 45.0
+      },
+      "ODB.2013.D9": {
+        "mean": 14.090909090909092,
+        "median": 0.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 36.18181818181818,
+        "median": 37.0
+      },
+      "ODB.2013.D4": {
+        "mean": 50.45454545454545,
+        "median": 60.0
+      },
+      "ODB.2013.D11": {
+        "mean": 38.18181818181818,
+        "median": 45.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.090909090909091,
+        "median": 2.0
+      },
+      "ODB.2013.D8": {
+        "mean": 20.90909090909091,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 32.27272727272727,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 30.181818181818183,
+        "median": 29.0
+      },
+      "IMPACT": {
+        "mean": 8.727272727272727,
+        "median": 5.0
+      },
+      "ODB.2013.D7": {
+        "mean": 19.09090909090909,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 47.36055395090909,
+        "median": 47.50091452
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.0,
+        "median": 1.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.4545454545454546,
+        "median": 3.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.18181818181818182,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.5454545454545454,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.2727272727272727,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 37.72727272727273,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.36363636363636365,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 29.06,
+        "median": 31.21
+      },
+      "IMPLEMENTATION": {
+        "mean": 30.454545454545453,
+        "median": 32.0
+      },
+      "ODB.2013.D10": {
+        "mean": 48.18181818181818,
+        "median": 60.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 46.27272727272727,
+        "median": 54.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 6.181818181818182,
+        "median": 6.0
+      },
+      "READINESS": {
+        "mean": 44.63636363636363,
+        "median": 46.0
+      },
+      "ODB.2013.D1": {
+        "mean": 37.27272727272727,
+        "median": 45.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 3.3636363636363638,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 8.181818181818182,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 11.090909090909092,
+        "median": 7.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.5454545454545454,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.622216027545455,
+        "median": 4.560026972
+      },
+      "FH": {
+        "mean": 74.0,
+        "median": 73.0
+      }
+    },
+    ":NA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 83.5,
+        "median": 83.5
+      },
+      "ODB.2013.D2": {
+        "mean": 45.0,
+        "median": 45.0
+      },
+      "ODB.2013.D12": {
+        "mean": 82.5,
+        "median": 82.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 7.0,
+        "median": 7.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 76.0,
+        "median": 76.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 8.0,
+        "median": 8.0
+      },
+      "ODB.2013.D13": {
+        "mean": 82.5,
+        "median": 82.5
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.3698991695,
+        "median": 4.3698991695
+      },
+      "ODB.2013.D6": {
+        "mean": 87.5,
+        "median": 87.5
+      },
+      "UN.OSI": {
+        "mean": 0.94445,
+        "median": 0.94445
+      },
+      "ECONOMIC": {
+        "mean": 80.0,
+        "median": 80.0
+      },
+      "INNOVATION": {
+        "mean": 86.875,
+        "median": 86.875
+      },
+      "ODB.2013.D14": {
+        "mean": 90.0,
+        "median": 90.0
+      },
+      "ODB.2013.D9": {
+        "mean": 85.0,
+        "median": 85.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 73.5,
+        "median": 73.5
+      },
+      "ODB.2013.D4": {
+        "mean": 80.0,
+        "median": 80.0
+      },
+      "ODB.2013.D11": {
+        "mean": 70.0,
+        "median": 70.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 5.5,
+        "median": 5.5
+      },
+      "ODB.2013.D8": {
+        "mean": 55.0,
+        "median": 55.0
+      },
+      "ODB.2013.D15": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 60.0,
+        "median": 60.0
+      },
+      "IMPACT": {
+        "mean": 76.0,
+        "median": 76.0
+      },
+      "ODB.2013.D7": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "WB.NETUSERS": {
+        "mean": 83.89553219999999,
+        "median": 83.89553219999999
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 9.0,
+        "median": 9.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 5.5,
+        "median": 5.5
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 5.5,
+        "median": 5.5
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 4.5,
+        "median": 4.5
+      },
+      "ODB.2013.D5": {
+        "mean": 55.0,
+        "median": 55.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "ODB": {
+        "mean": 79.625,
+        "median": 79.625
+      },
+      "IMPLEMENTATION": {
+        "mean": 75.5,
+        "median": 75.5
+      },
+      "ODB.2013.D10": {
+        "mean": 87.5,
+        "median": 87.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 94.0,
+        "median": 94.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "READINESS": {
+        "mean": 87.0,
+        "median": 87.0
+      },
+      "ODB.2013.D1": {
+        "mean": 92.5,
+        "median": 92.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 9.0,
+        "median": 9.0
+      },
+      "SOCIAL": {
+        "mean": 60.5,
+        "median": 60.5
+      },
+      "POLITICAL": {
+        "mean": 70.0,
+        "median": 70.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 3.5,
+        "median": 3.5
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.7211095775,
+        "median": 5.7211095775
+      },
+      "FH": {
+        "mean": 95.5,
+        "median": 95.5
+      }
+    },
+    ":SA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 43.0,
+        "median": 39.0
+      },
+      "ODB.2013.D2": {
+        "mean": 1.25,
+        "median": 0.0
+      },
+      "ODB.2013.D12": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 7.0,
+        "median": 7.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 21.25,
+        "median": 17.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.75,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 2.75,
+        "median": 2.0
+      },
+      "ODB.2013.D13": {
+        "mean": 12.5,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.6969850637499997,
+        "median": 3.6403612484999996
+      },
+      "ODB.2013.D6": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.40847500000000003,
+        "median": 0.4052
+      },
+      "ECONOMIC": {
+        "mean": 3.75,
+        "median": 3.5
+      },
+      "INNOVATION": {
+        "mean": 20.0,
+        "median": 21.25
+      },
+      "ODB.2013.D14": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.D9": {
+        "mean": 11.25,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 22.25,
+        "median": 12.5
+      },
+      "ODB.2013.D4": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.D11": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 1.5,
+        "median": 0.0
+      },
+      "ODB.2013.D8": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 31.25,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 20.25,
+        "median": 20.0
+      },
+      "IMPACT": {
+        "mean": 3.25,
+        "median": 1.5
+      },
+      "ODB.2013.D7": {
+        "mean": 12.5,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 9.9982652275,
+        "median": 10.5565
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.5,
+        "median": 4.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 17.085,
+        "median": 12.7
+      },
+      "IMPLEMENTATION": {
+        "mean": 18.5,
+        "median": 15.0
+      },
+      "ODB.2013.D10": {
+        "mean": 51.25,
+        "median": 62.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 30.75,
+        "median": 27.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 2.0,
+        "median": 1.5
+      },
+      "READINESS": {
+        "mean": 29.0,
+        "median": 22.0
+      },
+      "ODB.2013.D1": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 3.5,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 5.5,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.4432715175,
+        "median": 4.4019620335
+      },
+      "FH": {
+        "mean": 55.25,
+        "median": 51.5
+      }
+    }
+  },
+  "2014": {
+    ":ME": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 28.1,
+        "median": 18.5
+      },
+      "ODB.2013.D2": {
+        "mean": 5.5,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 31.5,
+        "median": 40.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 2.6,
+        "median": 2.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 47.5,
+        "median": 50.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.2,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 3.8,
+        "median": 4.0
+      },
+      "ODB.2013.D13": {
+        "mean": 12.5,
+        "median": 5.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.4564141489999995,
+        "median": 4.477737588
+      },
+      "ODB.2013.D6": {
+        "mean": 11.5,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.686609,
+        "median": 0.673225
+      },
+      "ECONOMIC": {
+        "mean": 6.3,
+        "median": 0.0
+      },
+      "INNOVATION": {
+        "mean": 16.9,
+        "median": 12.5
+      },
+      "ODB.2013.D14": {
+        "mean": 16.5,
+        "median": 10.0
+      },
+      "ODB.2013.D9": {
+        "mean": 16.0,
+        "median": 12.5
+      },
+      "SOCIAL_POLICY": {
+        "mean": 25.0,
+        "median": 25.5
+      },
+      "ODB.2013.D4": {
+        "mean": 50.0,
+        "median": 55.0
+      },
+      "ODB.2013.D11": {
+        "mean": 21.5,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 0.6,
+        "median": 0.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 2.9,
+        "median": 3.0
+      },
+      "ODB.2013.D8": {
+        "mean": 11.0,
+        "median": 10.0
+      },
+      "ODB.2013.D15": {
+        "mean": 22.0,
+        "median": 10.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 17.7,
+        "median": 12.0
+      },
+      "IMPACT": {
+        "mean": 10.2,
+        "median": 1.5
+      },
+      "ODB.2013.D7": {
+        "mean": 17.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 60.815999999999995,
+        "median": 58.25
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 1.1,
+        "median": 0.0
+      },
+      "ODB.2013.D16": {
+        "mean": 16.5,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.1,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.9,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.9,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 27.0,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.2,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 20.809,
+        "median": 15.629999999999999
+      },
+      "IMPLEMENTATION": {
+        "mean": 18.1,
+        "median": 15.0
+      },
+      "ODB.2013.D10": {
+        "mean": 31.5,
+        "median": 27.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 54.7,
+        "median": 60.5
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.8,
+        "median": 3.5
+      },
+      "READINESS": {
+        "mean": 43.4,
+        "median": 44.5
+      },
+      "ODB.2013.D1": {
+        "mean": 8.0,
+        "median": 7.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 2.2,
+        "median": 2.0
+      },
+      "SOCIAL": {
+        "mean": 2.8,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 17.2,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.2282529346,
+        "median": 5.541685005
+      },
+      "FH": {
+        "mean": 34.7,
+        "median": 28.5
+      }
+    },
+    ":EU": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 79.12,
+        "median": 85.0
+      },
+      "ODB.2013.D2": {
+        "mean": 28.2,
+        "median": 15.0
+      },
+      "ODB.2013.D12": {
+        "mean": 61.8,
+        "median": 65.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 6.4,
+        "median": 7.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 69.56,
+        "median": 72.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 3.44,
+        "median": 4.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 5.84,
+        "median": 6.0
+      },
+      "ODB.2013.D13": {
+        "mean": 62.8,
+        "median": 65.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.07570452516,
+        "median": 4.241160053
+      },
+      "ODB.2013.D6": {
+        "mean": 37.0,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.68283,
+        "median": 0.67716
+      },
+      "ECONOMIC": {
+        "mean": 43.52,
+        "median": 48.0
+      },
+      "INNOVATION": {
+        "mean": 54.24,
+        "median": 53.0
+      },
+      "ODB.2013.D14": {
+        "mean": 48.0,
+        "median": 45.0
+      },
+      "ODB.2013.D9": {
+        "mean": 59.4,
+        "median": 75.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 54.08,
+        "median": 51.0
+      },
+      "ODB.2013.D4": {
+        "mean": 75.0,
+        "median": 75.0
+      },
+      "ODB.2013.D11": {
+        "mean": 57.4,
+        "median": 65.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 3.72,
+        "median": 3.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 5.8,
+        "median": 6.0
+      },
+      "ODB.2013.D8": {
+        "mean": 36.8,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 53.6,
+        "median": 65.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 44.12,
+        "median": 41.0
+      },
+      "IMPACT": {
+        "mean": 48.2,
+        "median": 49.0
+      },
+      "ODB.2013.D7": {
+        "mean": 34.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 75.799888,
+        "median": 80.0043
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 4.88,
+        "median": 5.0
+      },
+      "ODB.2013.D16": {
+        "mean": 29.4,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 2.76,
+        "median": 3.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 3.8,
+        "median": 4.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 2.68,
+        "median": 2.0
+      },
+      "ODB.2013.D5": {
+        "mean": 59.2,
+        "median": 75.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 1.04,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 55.2184,
+        "median": 51.33
+      },
+      "IMPLEMENTATION": {
+        "mean": 52.0,
+        "median": 50.0
+      },
+      "ODB.2013.D10": {
+        "mean": 68.0,
+        "median": 70.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 67.84,
+        "median": 71.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 7.72,
+        "median": 8.0
+      },
+      "READINESS": {
+        "mean": 72.96,
+        "median": 78.0
+      },
+      "ODB.2013.D1": {
+        "mean": 51.6,
+        "median": 50.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 6.16,
+        "median": 7.0
+      },
+      "SOCIAL": {
+        "mean": 29.0,
+        "median": 17.0
+      },
+      "POLITICAL": {
+        "mean": 50.24,
+        "median": 48.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 1.64,
+        "median": 2.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.30076642284,
+        "median": 5.536914781
+      },
+      "FH": {
+        "mean": 86.88,
+        "median": 96.0
+      }
+    },
+    ":PA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 50.416666666666664,
+        "median": 44.0
+      },
+      "ODB.2013.D2": {
+        "mean": 19.583333333333332,
+        "median": 7.5
+      },
+      "ODB.2013.D12": {
+        "mean": 60.416666666666664,
+        "median": 65.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 54.0,
+        "median": 58.5
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.0,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 5.0,
+        "median": 6.0
+      },
+      "ODB.2013.D13": {
+        "mean": 45.0,
+        "median": 45.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.550056806166666,
+        "median": 4.669347420499999
+      },
+      "ODB.2013.D6": {
+        "mean": 12.916666666666666,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.5603625,
+        "median": 0.5433
+      },
+      "ECONOMIC": {
+        "mean": 19.75,
+        "median": 10.0
+      },
+      "INNOVATION": {
+        "mean": 37.166666666666664,
+        "median": 37.5
+      },
+      "ODB.2013.D14": {
+        "mean": 42.083333333333336,
+        "median": 57.5
+      },
+      "ODB.2013.D9": {
+        "mean": 34.166666666666664,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 48.25,
+        "median": 54.0
+      },
+      "ODB.2013.D4": {
+        "mean": 64.58333333333333,
+        "median": 72.5
+      },
+      "ODB.2013.D11": {
+        "mean": 54.583333333333336,
+        "median": 65.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.75,
+        "median": 2.5
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.9166666666666665,
+        "median": 4.5
+      },
+      "ODB.2013.D8": {
+        "mean": 26.25,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 35.0,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 32.083333333333336,
+        "median": 22.0
+      },
+      "IMPACT": {
+        "mean": 22.416666666666668,
+        "median": 18.0
+      },
+      "ODB.2013.D7": {
+        "mean": 33.75,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 54.119166666666665,
+        "median": 56.385
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.25,
+        "median": 1.5
+      },
+      "ODB.2013.D16": {
+        "mean": 17.916666666666668,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.1666666666666667,
+        "median": 1.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.8333333333333333,
+        "median": 1.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.4166666666666667,
+        "median": 1.0
+      },
+      "ODB.2013.D5": {
+        "mean": 52.5,
+        "median": 65.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.4166666666666667,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 38.358333333333334,
+        "median": 33.47
+      },
+      "IMPLEMENTATION": {
+        "mean": 39.333333333333336,
+        "median": 38.0
+      },
+      "ODB.2013.D10": {
+        "mean": 54.166666666666664,
+        "median": 62.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 58.25,
+        "median": 64.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.083333333333333,
+        "median": 5.5
+      },
+      "READINESS": {
+        "mean": 54.416666666666664,
+        "median": 55.0
+      },
+      "ODB.2013.D1": {
+        "mean": 34.583333333333336,
+        "median": 10.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.416666666666667,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 16.75,
+        "median": 11.5
+      },
+      "POLITICAL": {
+        "mean": 20.583333333333332,
+        "median": 17.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 1.25,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.093852900833333,
+        "median": 5.337701531
+      },
+      "FH": {
+        "mean": 59.583333333333336,
+        "median": 58.5
+      }
+    },
+    ":AF": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 34.38095238095238,
+        "median": 37.0
+      },
+      "ODB.2013.D2": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 24.285714285714285,
+        "median": 10.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 2.6666666666666665,
+        "median": 2.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 24.904761904761905,
+        "median": 21.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.3333333333333333,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 1.5238095238095237,
+        "median": 1.0
+      },
+      "ODB.2013.D13": {
+        "mean": 21.428571428571427,
+        "median": 10.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.9671752532857143,
+        "median": 3.920471395
+      },
+      "ODB.2013.D6": {
+        "mean": 12.857142857142858,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.28496,
+        "median": 0.30708
+      },
+      "ECONOMIC": {
+        "mean": 1.8095238095238095,
+        "median": 0.0
+      },
+      "INNOVATION": {
+        "mean": 14.285714285714286,
+        "median": 9.0
+      },
+      "ODB.2013.D14": {
+        "mean": 14.523809523809524,
+        "median": 5.0
+      },
+      "ODB.2013.D9": {
+        "mean": 2.380952380952381,
+        "median": 0.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 22.428571428571427,
+        "median": 22.0
+      },
+      "ODB.2013.D4": {
+        "mean": 42.61904761904762,
+        "median": 45.0
+      },
+      "ODB.2013.D11": {
+        "mean": 25.714285714285715,
+        "median": 15.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 0.5714285714285714,
+        "median": 0.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 1.380952380952381,
+        "median": 1.0
+      },
+      "ODB.2013.D8": {
+        "mean": 11.19047619047619,
+        "median": 10.0
+      },
+      "ODB.2013.D15": {
+        "mean": 21.19047619047619,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 14.0,
+        "median": 10.0
+      },
+      "IMPACT": {
+        "mean": 2.9523809523809526,
+        "median": 0.0
+      },
+      "ODB.2013.D7": {
+        "mean": 5.9523809523809526,
+        "median": 5.0
+      },
+      "WB.NETUSERS": {
+        "mean": 15.361904761904762,
+        "median": 12.3
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.23809523809523808,
+        "median": 0.0
+      },
+      "ODB.2013.D16": {
+        "mean": 12.142857142857142,
+        "median": 10.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.09523809523809523,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.19047619047619047,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.19047619047619047,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 18.80952380952381,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.09523809523809523,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 13.89809523809524,
+        "median": 11.53
+      },
+      "IMPLEMENTATION": {
+        "mean": 14.80952380952381,
+        "median": 10.0
+      },
+      "ODB.2013.D10": {
+        "mean": 26.904761904761905,
+        "median": 15.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 25.904761904761905,
+        "median": 26.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.761904761904762,
+        "median": 4.0
+      },
+      "READINESS": {
+        "mean": 26.571428571428573,
+        "median": 25.0
+      },
+      "ODB.2013.D1": {
+        "mean": 8.571428571428571,
+        "median": 5.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 1.9523809523809523,
+        "median": 2.0
+      },
+      "SOCIAL": {
+        "mean": 1.3333333333333333,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 4.142857142857143,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.416826018,
+        "median": 4.395001274
+      },
+      "FH": {
+        "mean": 57.23809523809524,
+        "median": 59.0
+      }
+    },
+    ":::": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 54.104651162790695,
+        "median": 54.5
+      },
+      "ODB.2013.D2": {
+        "mean": 16.569767441860463,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 47.7906976744186,
+        "median": 55.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.6395348837209305,
+        "median": 5.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 48.98837209302326,
+        "median": 46.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.627906976744186,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 4.093023255813954,
+        "median": 5.0
+      },
+      "ODB.2013.D13": {
+        "mean": 38.66279069767442,
+        "median": 35.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.07234273927907,
+        "median": 4.1354783425
+      },
+      "ODB.2013.D6": {
+        "mean": 24.941860465116278,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.5446759302325581,
+        "median": 0.55905
+      },
+      "ECONOMIC": {
+        "mean": 19.872093023255815,
+        "median": 6.0
+      },
+      "INNOVATION": {
+        "mean": 34.94186046511628,
+        "median": 31.0
+      },
+      "ODB.2013.D14": {
+        "mean": 33.604651162790695,
+        "median": 15.0
+      },
+      "ODB.2013.D9": {
+        "mean": 33.83720930232558,
+        "median": 15.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 40.52325581395349,
+        "median": 42.0
+      },
+      "ODB.2013.D4": {
+        "mean": 60.58139534883721,
+        "median": 65.0
+      },
+      "ODB.2013.D11": {
+        "mean": 44.06976744186046,
+        "median": 47.5
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.244186046511628,
+        "median": 2.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.627906976744186,
+        "median": 3.0
+      },
+      "ODB.2013.D8": {
+        "mean": 23.488372093023255,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 36.80232558139535,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 29.46511627906977,
+        "median": 22.0
+      },
+      "IMPACT": {
+        "mean": 22.58139534883721,
+        "median": 8.0
+      },
+      "ODB.2013.D7": {
+        "mean": 21.1046511627907,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 49.43094051430232,
+        "median": 50.58
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.488372093023256,
+        "median": 1.0
+      },
+      "ODB.2013.D16": {
+        "mean": 22.558139534883722,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.1627906976744187,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.8488372093023255,
+        "median": 1.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.2790697674418605,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 40.98837209302326,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.4883720930232558,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 34.90720930232558,
+        "median": 30.73
+      },
+      "IMPLEMENTATION": {
+        "mean": 34.66279069767442,
+        "median": 32.0
+      },
+      "ODB.2013.D10": {
+        "mean": 49.41860465116279,
+        "median": 60.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 50.604651162790695,
+        "median": 52.5
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.337209302325581,
+        "median": 6.0
+      },
+      "READINESS": {
+        "mean": 50.883720930232556,
+        "median": 47.0
+      },
+      "ODB.2013.D1": {
+        "mean": 30.232558139534884,
+        "median": 10.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.023255813953488,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 13.674418604651162,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 23.848837209302324,
+        "median": 8.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.7790697674418605,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.913665416744186,
+        "median": 4.856172138
+      },
+      "FH": {
+        "mean": 66.33720930232558,
+        "median": 69.0
+      }
+    },
+    ":LA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 57.333333333333336,
+        "median": 60.5
+      },
+      "ODB.2013.D2": {
+        "mean": 16.25,
+        "median": 10.0
+      },
+      "ODB.2013.D12": {
+        "mean": 67.08333333333333,
+        "median": 80.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.583333333333333,
+        "median": 6.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 42.833333333333336,
+        "median": 44.5
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.0,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 4.333333333333333,
+        "median": 5.5
+      },
+      "ODB.2013.D13": {
+        "mean": 30.416666666666668,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.5727012175,
+        "median": 3.7462090750000003
+      },
+      "ODB.2013.D6": {
+        "mean": 44.166666666666664,
+        "median": 40.0
+      },
+      "UN.OSI": {
+        "mean": 0.580705,
+        "median": 0.606295
+      },
+      "ECONOMIC": {
+        "mean": 11.0,
+        "median": 13.0
+      },
+      "INNOVATION": {
+        "mean": 38.833333333333336,
+        "median": 45.0
+      },
+      "ODB.2013.D14": {
+        "mean": 37.5,
+        "median": 30.0
+      },
+      "ODB.2013.D9": {
+        "mean": 48.333333333333336,
+        "median": 45.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 49.833333333333336,
+        "median": 56.5
+      },
+      "ODB.2013.D4": {
+        "mean": 72.91666666666667,
+        "median": 80.0
+      },
+      "ODB.2013.D11": {
+        "mean": 55.416666666666664,
+        "median": 67.5
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.0833333333333335,
+        "median": 2.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.0833333333333335,
+        "median": 3.0
+      },
+      "ODB.2013.D8": {
+        "mean": 18.333333333333332,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 35.416666666666664,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 30.416666666666668,
+        "median": 26.0
+      },
+      "IMPACT": {
+        "mean": 11.416666666666666,
+        "median": 8.5
+      },
+      "ODB.2013.D7": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 46.67280701916667,
+        "median": 48.78
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.5,
+        "median": 2.0
+      },
+      "ODB.2013.D16": {
+        "mean": 27.083333333333332,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.4166666666666667,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.25,
+        "median": 2.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.4166666666666667,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 39.166666666666664,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.16666666666666666,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 35.1925,
+        "median": 35.370000000000005
+      },
+      "IMPLEMENTATION": {
+        "mean": 39.833333333333336,
+        "median": 40.0
+      },
+      "ODB.2013.D10": {
+        "mean": 53.75,
+        "median": 77.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 47.416666666666664,
+        "median": 50.5
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.333333333333333,
+        "median": 6.0
+      },
+      "READINESS": {
+        "mean": 48.25,
+        "median": 51.0
+      },
+      "ODB.2013.D1": {
+        "mean": 34.583333333333336,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 3.5833333333333335,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 6.666666666666667,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 11.166666666666666,
+        "median": 7.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.5,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.556554125833333,
+        "median": 4.5254145765
+      },
+      "FH": {
+        "mean": 71.41666666666667,
+        "median": 72.5
+      }
+    },
+    ":NA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 87.5,
+        "median": 87.5
+      },
+      "ODB.2013.D2": {
+        "mean": 50.0,
+        "median": 50.0
+      },
+      "ODB.2013.D12": {
+        "mean": 52.5,
+        "median": 52.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 90.0,
+        "median": 90.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 8.0,
+        "median": 8.0
+      },
+      "ODB.2013.D13": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.344641963,
+        "median": 4.344641963
+      },
+      "ODB.2013.D6": {
+        "mean": 50.0,
+        "median": 50.0
+      },
+      "UN.OSI": {
+        "mean": 0.92913,
+        "median": 0.92913
+      },
+      "ECONOMIC": {
+        "mean": 69.5,
+        "median": 69.5
+      },
+      "INNOVATION": {
+        "mean": 93.5,
+        "median": 93.5
+      },
+      "ODB.2013.D14": {
+        "mean": 85.0,
+        "median": 85.0
+      },
+      "ODB.2013.D9": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 74.5,
+        "median": 74.5
+      },
+      "ODB.2013.D4": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ODB.2013.D11": {
+        "mean": 90.0,
+        "median": 90.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 7.0,
+        "median": 7.0
+      },
+      "ODB.2013.D8": {
+        "mean": 82.5,
+        "median": 82.5
+      },
+      "ODB.2013.D15": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 65.5,
+        "median": 65.5
+      },
+      "IMPACT": {
+        "mean": 79.0,
+        "median": 79.0
+      },
+      "ODB.2013.D7": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 85.0,
+        "median": 85.0
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 8.0,
+        "median": 8.0
+      },
+      "ODB.2013.D16": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 4.5,
+        "median": 4.5
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "ODB.2013.D5": {
+        "mean": 85.0,
+        "median": 85.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 2.5,
+        "median": 2.5
+      },
+      "ODB": {
+        "mean": 83.59,
+        "median": 83.59
+      },
+      "IMPLEMENTATION": {
+        "mean": 81.5,
+        "median": 81.5
+      },
+      "ODB.2013.D10": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "READINESS": {
+        "mean": 93.0,
+        "median": 93.0
+      },
+      "ODB.2013.D1": {
+        "mean": 87.5,
+        "median": 87.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 8.5,
+        "median": 8.5
+      },
+      "SOCIAL": {
+        "mean": 57.0,
+        "median": 57.0
+      },
+      "POLITICAL": {
+        "mean": 74.0,
+        "median": 74.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 2.5,
+        "median": 2.5
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.7211095775,
+        "median": 5.7211095775
+      },
+      "FH": {
+        "mean": 95.0,
+        "median": 95.0
+      }
+    },
+    ":SA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 51.0,
+        "median": 50.0
+      },
+      "ODB.2013.D2": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "ODB.2013.D12": {
+        "mean": 26.25,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 6.75,
+        "median": 7.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 33.5,
+        "median": 35.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 2.0,
+        "median": 1.5
+      },
+      "ODB.2013.D13": {
+        "mean": 21.25,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.5729151075,
+        "median": 3.5452663355
+      },
+      "ODB.2013.D6": {
+        "mean": 12.5,
+        "median": 15.0
+      },
+      "UN.OSI": {
+        "mean": 0.342515,
+        "median": 0.33464
+      },
+      "ECONOMIC": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "INNOVATION": {
+        "mean": 20.25,
+        "median": 17.0
+      },
+      "ODB.2013.D14": {
+        "mean": 23.75,
+        "median": 10.0
+      },
+      "ODB.2013.D9": {
+        "mean": 8.75,
+        "median": 10.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 21.5,
+        "median": 11.5
+      },
+      "ODB.2013.D4": {
+        "mean": 25.0,
+        "median": 12.5
+      },
+      "ODB.2013.D11": {
+        "mean": 25.0,
+        "median": 12.5
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.25,
+        "median": 2.5
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 2.75,
+        "median": 2.5
+      },
+      "ODB.2013.D8": {
+        "mean": 13.75,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 31.25,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 19.75,
+        "median": 19.5
+      },
+      "IMPACT": {
+        "mean": 2.25,
+        "median": 3.0
+      },
+      "ODB.2013.D7": {
+        "mean": 13.75,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 11.45,
+        "median": 12.100000000000001
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.75,
+        "median": 0.0
+      },
+      "ODB.2013.D16": {
+        "mean": 13.75,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.5,
+        "median": 0.5
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 27.5,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 17.955,
+        "median": 13.585
+      },
+      "IMPLEMENTATION": {
+        "mean": 19.0,
+        "median": 14.0
+      },
+      "ODB.2013.D10": {
+        "mean": 46.25,
+        "median": 52.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 26.75,
+        "median": 19.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.0,
+        "median": 3.5
+      },
+      "READINESS": {
+        "mean": 35.5,
+        "median": 31.0
+      },
+      "ODB.2013.D1": {
+        "mean": 11.25,
+        "median": 12.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.0,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 1.75,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.4432715175,
+        "median": 4.4019620335
+      },
+      "FH": {
+        "mean": 55.5,
+        "median": 51.5
+      }
+    }
+  },
+  "2015": {
+    ":ME": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 25.6,
+        "median": 17.0
+      },
+      "ODB.2013.D2": {
+        "mean": 7.5,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 26.5,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 2.0,
+        "median": 1.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.2,
+        "median": 3.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 0.8,
+        "median": 0.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.5,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 3.2,
+        "median": 4.0
+      },
+      "ODB.2013.D13": {
+        "mean": 18.5,
+        "median": 10.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.4367235340999995,
+        "median": 4.5860068265
+      },
+      "ODB.2013.D6": {
+        "mean": 3.0,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.686609,
+        "median": 0.673225
+      },
+      "ECONOMIC": {
+        "mean": 8.0,
+        "median": 0.0
+      },
+      "ODB.2013.D11": {
+        "mean": 38.5,
+        "median": 45.0
+      },
+      "ODB.2013.D14": {
+        "mean": 31.0,
+        "median": 22.5
+      },
+      "ODB.2013.D9": {
+        "mean": 20.5,
+        "median": 15.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 43.0,
+        "median": 42.5
+      },
+      "ODB.2013.D4": {
+        "mean": 44.0,
+        "median": 37.5
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 38.8,
+        "median": 39.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 1.0,
+        "median": 1.0
+      },
+      "ODB.2013.D8": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 25.5,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 17.1,
+        "median": 13.0
+      },
+      "INNOVATION": {
+        "mean": 21.9,
+        "median": 18.0
+      },
+      "ODB.2013.D7": {
+        "mean": 19.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 60.924998,
+        "median": 60.25
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 1.0,
+        "median": 0.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 1.7,
+        "median": 1.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 29.5,
+        "median": 29.5
+      },
+      "ODB.2013.D16": {
+        "mean": 13.0,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.5,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.8,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.8,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 23.0,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 19.313,
+        "median": 17.125
+      },
+      "IMPLEMENTATION": {
+        "mean": 18.5,
+        "median": 15.0
+      },
+      "ODB.2013.D10": {
+        "mean": 40.0,
+        "median": 30.0
+      },
+      "IMPACT": {
+        "mean": 7.2,
+        "median": 1.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 41.4,
+        "median": 48.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.1,
+        "median": 2.0
+      },
+      "READINESS": {
+        "mean": 35.2,
+        "median": 37.5
+      },
+      "ODB.2013.D1": {
+        "mean": 17.5,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 2.4,
+        "median": 1.5
+      },
+      "SOCIAL": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 13.0,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.0417270803,
+        "median": 5.3285225185
+      },
+      "FH": {
+        "mean": 36.2,
+        "median": 27.0
+      }
+    },
+    ":EU": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 78.62068965517241,
+        "median": 83.0
+      },
+      "ODB.2013.D2": {
+        "mean": 28.103448275862068,
+        "median": 15.0
+      },
+      "ODB.2013.D12": {
+        "mean": 60.86206896551724,
+        "median": 65.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.931034482758621,
+        "median": 6.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 5.344827586206897,
+        "median": 6.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 4.206896551724138,
+        "median": 4.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 2.2758620689655173,
+        "median": 2.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 6.0,
+        "median": 6.0
+      },
+      "ODB.2013.D13": {
+        "mean": 65.17241379310344,
+        "median": 65.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.069245945896552,
+        "median": 4.191389826
+      },
+      "ODB.2013.D6": {
+        "mean": 8.10344827586207,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.6527237931034482,
+        "median": 0.66929
+      },
+      "ECONOMIC": {
+        "mean": 35.58620689655172,
+        "median": 31.0
+      },
+      "ODB.2013.D11": {
+        "mean": 61.37931034482759,
+        "median": 65.0
+      },
+      "ODB.2013.D14": {
+        "mean": 66.03448275862068,
+        "median": 75.0
+      },
+      "ODB.2013.D9": {
+        "mean": 42.06896551724138,
+        "median": 15.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 63.89655172413793,
+        "median": 68.0
+      },
+      "ODB.2013.D4": {
+        "mean": 75.51724137931035,
+        "median": 80.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 60.172413793103445,
+        "median": 63.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 4.137931034482759,
+        "median": 4.0
+      },
+      "ODB.2013.D8": {
+        "mean": 36.37931034482759,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 61.03448275862069,
+        "median": 80.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 39.275862068965516,
+        "median": 36.0
+      },
+      "INNOVATION": {
+        "mean": 53.62068965517241,
+        "median": 53.0
+      },
+      "ODB.2013.D7": {
+        "mean": 31.724137931034484,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 75.82,
+        "median": 79.71
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 4.620689655172414,
+        "median": 5.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 4.689655172413793,
+        "median": 5.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 58.37931034482759,
+        "median": 62.0
+      },
+      "ODB.2013.D16": {
+        "mean": 31.896551724137932,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 2.1724137931034484,
+        "median": 2.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 3.6551724137931036,
+        "median": 3.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.8275862068965518,
+        "median": 1.0
+      },
+      "ODB.2013.D5": {
+        "mean": 59.13793103448276,
+        "median": 75.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.5862068965517241,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 50.092413793103454,
+        "median": 50.63
+      },
+      "IMPLEMENTATION": {
+        "mean": 50.13793103448276,
+        "median": 49.0
+      },
+      "ODB.2013.D10": {
+        "mean": 70.6896551724138,
+        "median": 80.0
+      },
+      "IMPACT": {
+        "mean": 35.41379310344828,
+        "median": 29.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 62.689655172413794,
+        "median": 62.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 7.620689655172414,
+        "median": 8.0
+      },
+      "READINESS": {
+        "mean": 65.93103448275862,
+        "median": 67.0
+      },
+      "ODB.2013.D1": {
+        "mean": 58.275862068965516,
+        "median": 60.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 6.172413793103448,
+        "median": 6.0
+      },
+      "SOCIAL": {
+        "mean": 26.586206896551722,
+        "median": 19.0
+      },
+      "POLITICAL": {
+        "mean": 41.03448275862069,
+        "median": 30.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 1.7586206896551724,
+        "median": 1.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.137844542793103,
+        "median": 5.386605437
+      },
+      "FH": {
+        "mean": 84.13793103448276,
+        "median": 95.0
+      }
+    },
+    ":PA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 53.166666666666664,
+        "median": 49.0
+      },
+      "ODB.2013.D2": {
+        "mean": 26.666666666666668,
+        "median": 15.0
+      },
+      "ODB.2013.D12": {
+        "mean": 48.333333333333336,
+        "median": 57.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 4.583333333333333,
+        "median": 5.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 3.0833333333333335,
+        "median": 3.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.4166666666666667,
+        "median": 1.5
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 5.416666666666667,
+        "median": 6.5
+      },
+      "ODB.2013.D13": {
+        "mean": 51.25,
+        "median": 62.5
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.544919148416667,
+        "median": 4.588721496
+      },
+      "ODB.2013.D6": {
+        "mean": 11.25,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.6410708333333334,
+        "median": 0.641725
+      },
+      "ECONOMIC": {
+        "mean": 26.833333333333332,
+        "median": 18.5
+      },
+      "ODB.2013.D11": {
+        "mean": 40.416666666666664,
+        "median": 37.5
+      },
+      "ODB.2013.D14": {
+        "mean": 49.583333333333336,
+        "median": 62.5
+      },
+      "ODB.2013.D9": {
+        "mean": 42.916666666666664,
+        "median": 37.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 55.916666666666664,
+        "median": 55.5
+      },
+      "ODB.2013.D4": {
+        "mean": 67.91666666666667,
+        "median": 80.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 57.75,
+        "median": 58.5
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 4.083333333333333,
+        "median": 4.0
+      },
+      "ODB.2013.D8": {
+        "mean": 26.666666666666668,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 35.416666666666664,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 29.916666666666668,
+        "median": 24.5
+      },
+      "INNOVATION": {
+        "mean": 44.333333333333336,
+        "median": 48.5
+      },
+      "ODB.2013.D7": {
+        "mean": 28.75,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 57.15833333333333,
+        "median": 58.4
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 3.4545454545454546,
+        "median": 3.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 3.6666666666666665,
+        "median": 3.5
+      },
+      "SOCIAL_POLICY": {
+        "mean": 46.583333333333336,
+        "median": 41.0
+      },
+      "ODB.2013.D16": {
+        "mean": 26.25,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.75,
+        "median": 1.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 2.5833333333333335,
+        "median": 2.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.75,
+        "median": 1.0
+      },
+      "ODB.2013.D5": {
+        "mean": 47.5,
+        "median": 40.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.8333333333333334,
+        "median": 1.0
+      },
+      "ODB": {
+        "mean": 40.236666666666665,
+        "median": 34.375
+      },
+      "IMPLEMENTATION": {
+        "mean": 38.333333333333336,
+        "median": 34.0
+      },
+      "ODB.2013.D10": {
+        "mean": 65.0,
+        "median": 75.0
+      },
+      "IMPACT": {
+        "mean": 29.916666666666668,
+        "median": 22.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 56.0,
+        "median": 54.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 4.5,
+        "median": 5.0
+      },
+      "READINESS": {
+        "mean": 54.833333333333336,
+        "median": 50.5
+      },
+      "ODB.2013.D1": {
+        "mean": 36.25,
+        "median": 30.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 5.666666666666667,
+        "median": 6.0
+      },
+      "SOCIAL": {
+        "mean": 29.0,
+        "median": 18.0
+      },
+      "POLITICAL": {
+        "mean": 31.666666666666668,
+        "median": 25.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 1.5833333333333333,
+        "median": 1.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.059096100500001,
+        "median": 5.259338097500001
+      },
+      "FH": {
+        "mean": 57.416666666666664,
+        "median": 57.0
+      }
+    },
+    ":AF": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 33.714285714285715,
+        "median": 33.0
+      },
+      "ODB.2013.D2": {
+        "mean": 4.285714285714286,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 27.61904761904762,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 2.1904761904761907,
+        "median": 2.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 2.857142857142857,
+        "median": 3.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 0.8095238095238095,
+        "median": 1.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.19047619047619047,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 2.380952380952381,
+        "median": 2.0
+      },
+      "ODB.2013.D13": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.891283597142857,
+        "median": 3.817491883
+      },
+      "ODB.2013.D6": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.28496,
+        "median": 0.30708
+      },
+      "ECONOMIC": {
+        "mean": 3.3333333333333335,
+        "median": 0.0
+      },
+      "ODB.2013.D11": {
+        "mean": 26.428571428571427,
+        "median": 15.0
+      },
+      "ODB.2013.D14": {
+        "mean": 10.952380952380953,
+        "median": 5.0
+      },
+      "ODB.2013.D9": {
+        "mean": 3.8095238095238093,
+        "median": 0.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 24.761904761904763,
+        "median": 22.0
+      },
+      "ODB.2013.D4": {
+        "mean": 30.0,
+        "median": 15.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 27.428571428571427,
+        "median": 24.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 0.8571428571428571,
+        "median": 1.0
+      },
+      "ODB.2013.D8": {
+        "mean": 17.61904761904762,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 21.904761904761905,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 14.904761904761905,
+        "median": 11.0
+      },
+      "INNOVATION": {
+        "mean": 15.0,
+        "median": 10.0
+      },
+      "ODB.2013.D7": {
+        "mean": 10.238095238095237,
+        "median": 5.0
+      },
+      "WB.NETUSERS": {
+        "mean": 17.444285714285712,
+        "median": 14.84
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.2857142857142857,
+        "median": 0.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 0.6190476190476191,
+        "median": 0.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 19.857142857142858,
+        "median": 13.0
+      },
+      "ODB.2013.D16": {
+        "mean": 12.380952380952381,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.14285714285714285,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 0.42857142857142855,
+        "median": 0.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.14285714285714285,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 19.761904761904763,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.14285714285714285,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 11.464761904761904,
+        "median": 8.47
+      },
+      "IMPLEMENTATION": {
+        "mean": 11.095238095238095,
+        "median": 9.0
+      },
+      "ODB.2013.D10": {
+        "mean": 30.476190476190474,
+        "median": 15.0
+      },
+      "IMPACT": {
+        "mean": 3.238095238095238,
+        "median": 0.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 20.238095238095237,
+        "median": 19.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 3.7142857142857144,
+        "median": 3.0
+      },
+      "READINESS": {
+        "mean": 23.19047619047619,
+        "median": 21.0
+      },
+      "ODB.2013.D1": {
+        "mean": 13.333333333333334,
+        "median": 5.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 2.238095238095238,
+        "median": 2.0
+      },
+      "SOCIAL": {
+        "mean": 2.857142857142857,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 3.3333333333333335,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.047619047619047616,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.350866076380952,
+        "median": 4.306345745
+      },
+      "FH": {
+        "mean": 56.42857142857143,
+        "median": 60.0
+      }
+    },
+    ":::": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 54.5,
+        "median": 55.5
+      },
+      "ODB.2013.D2": {
+        "mean": 18.369565217391305,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 43.09782608695652,
+        "median": 47.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.173913043478261,
+        "median": 4.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 4.1521739130434785,
+        "median": 4.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 2.532608695652174,
+        "median": 2.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.2608695652173914,
+        "median": 1.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 4.369565217391305,
+        "median": 5.0
+      },
+      "ODB.2013.D13": {
+        "mean": 39.45652173913044,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.023546253703297,
+        "median": 3.991239684
+      },
+      "ODB.2013.D6": {
+        "mean": 8.315217391304348,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.5450141304347826,
+        "median": 0.555115
+      },
+      "ECONOMIC": {
+        "mean": 20.315217391304348,
+        "median": 9.5
+      },
+      "ODB.2013.D11": {
+        "mean": 44.72826086956522,
+        "median": 52.5
+      },
+      "ODB.2013.D14": {
+        "mean": 41.03260869565217,
+        "median": 40.0
+      },
+      "ODB.2013.D9": {
+        "mean": 29.130434782608695,
+        "median": 15.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 47.391304347826086,
+        "median": 45.5
+      },
+      "ODB.2013.D4": {
+        "mean": 56.358695652173914,
+        "median": 65.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 45.90217391304348,
+        "median": 44.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 2.880434782608696,
+        "median": 2.0
+      },
+      "ODB.2013.D8": {
+        "mean": 26.847826086956523,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 43.69565217391305,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 29.01086956521739,
+        "median": 23.0
+      },
+      "INNOVATION": {
+        "mean": 37.380434782608695,
+        "median": 32.0
+      },
+      "ODB.2013.D7": {
+        "mean": 21.630434782608695,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 51.95826065217392,
+        "median": 51.019999999999996
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.6483516483516483,
+        "median": 1.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 3.032608695652174,
+        "median": 2.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 40.71739130434783,
+        "median": 39.0
+      },
+      "ODB.2013.D16": {
+        "mean": 27.554347826086957,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 1.2065217391304348,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 2.130434782608696,
+        "median": 1.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.1630434782608696,
+        "median": 1.0
+      },
+      "ODB.2013.D5": {
+        "mean": 44.56521739130435,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.4673913043478261,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 32.95652173913044,
+        "median": 27.305
+      },
+      "IMPLEMENTATION": {
+        "mean": 33.141304347826086,
+        "median": 31.5
+      },
+      "ODB.2013.D10": {
+        "mean": 53.91304347826087,
+        "median": 65.0
+      },
+      "IMPACT": {
+        "mean": 20.847826086956523,
+        "median": 11.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 45.76086956521739,
+        "median": 45.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.163043478260869,
+        "median": 5.5
+      },
+      "READINESS": {
+        "mean": 46.76086956521739,
+        "median": 43.0
+      },
+      "ODB.2013.D1": {
+        "mean": 36.84782608695652,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.434782608695652,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 16.32608695652174,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 24.23913043478261,
+        "median": 10.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.8913043478260869,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.803172502472528,
+        "median": 4.74923391
+      },
+      "FH": {
+        "mean": 66.25,
+        "median": 68.0
+      }
+    },
+    ":LA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 56.07142857142857,
+        "median": 62.5
+      },
+      "ODB.2013.D2": {
+        "mean": 17.857142857142858,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 37.5,
+        "median": 32.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 4.642857142857143,
+        "median": 5.5
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.7857142857142856,
+        "median": 3.5
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 2.0714285714285716,
+        "median": 1.5
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 1.2142857142857142,
+        "median": 0.5
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 3.9285714285714284,
+        "median": 3.5
+      },
+      "ODB.2013.D13": {
+        "mean": 26.071428571428573,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.454514514,
+        "median": 3.586411728
+      },
+      "ODB.2013.D6": {
+        "mean": 11.071428571428571,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.5314921428571429,
+        "median": 0.5748
+      },
+      "ECONOMIC": {
+        "mean": 13.928571428571429,
+        "median": 8.0
+      },
+      "ODB.2013.D11": {
+        "mean": 49.285714285714285,
+        "median": 55.0
+      },
+      "ODB.2013.D14": {
+        "mean": 34.642857142857146,
+        "median": 15.0
+      },
+      "ODB.2013.D9": {
+        "mean": 29.285714285714285,
+        "median": 15.0
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 43.285714285714285,
+        "median": 42.5
+      },
+      "ODB.2013.D4": {
+        "mean": 56.42857142857143,
+        "median": 65.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 37.642857142857146,
+        "median": 30.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 3.2857142857142856,
+        "median": 3.0
+      },
+      "ODB.2013.D8": {
+        "mean": 25.0,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 59.642857142857146,
+        "median": 77.5
+      },
+      "ACCOUNTABILITY": {
+        "mean": 34.642857142857146,
+        "median": 38.0
+      },
+      "INNOVATION": {
+        "mean": 39.357142857142854,
+        "median": 36.0
+      },
+      "ODB.2013.D7": {
+        "mean": 15.0,
+        "median": 5.0
+      },
+      "WB.NETUSERS": {
+        "mean": 49.184285714285714,
+        "median": 50.205
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 2.2857142857142856,
+        "median": 2.5
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 3.2857142857142856,
+        "median": 3.5
+      },
+      "SOCIAL_POLICY": {
+        "mean": 39.142857142857146,
+        "median": 40.0
+      },
+      "ODB.2013.D16": {
+        "mean": 47.857142857142854,
+        "median": 62.5
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.6428571428571429,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.7142857142857142,
+        "median": 1.0
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 1.0714285714285714,
+        "median": 0.5
+      },
+      "ODB.2013.D5": {
+        "mean": 62.5,
+        "median": 75.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.5,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 31.428571428571427,
+        "median": 28.725
+      },
+      "IMPLEMENTATION": {
+        "mean": 35.42857142857143,
+        "median": 39.5
+      },
+      "ODB.2013.D10": {
+        "mean": 55.0,
+        "median": 62.5
+      },
+      "IMPACT": {
+        "mean": 16.214285714285715,
+        "median": 9.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 42.214285714285715,
+        "median": 42.5
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 5.0,
+        "median": 5.5
+      },
+      "READINESS": {
+        "mean": 42.92857142857143,
+        "median": 42.5
+      },
+      "ODB.2013.D1": {
+        "mean": 38.57142857142857,
+        "median": 37.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.071428571428571,
+        "median": 5.0
+      },
+      "SOCIAL": {
+        "mean": 11.142857142857142,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 22.857142857142858,
+        "median": 10.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.2857142857142857,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.422411204538461,
+        "median": 4.478589331
+      },
+      "FH": {
+        "mean": 72.0,
+        "median": 72.5
+      }
+    },
+    ":NA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 88.0,
+        "median": 88.0
+      },
+      "ODB.2013.D2": {
+        "mean": 55.0,
+        "median": 55.0
+      },
+      "ODB.2013.D12": {
+        "mean": 67.5,
+        "median": 67.5
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 6.5,
+        "median": 6.5
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 3.5,
+        "median": 3.5
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 8.0,
+        "median": 8.0
+      },
+      "ODB.2013.D13": {
+        "mean": 82.5,
+        "median": 82.5
+      },
+      "WEF.GITR.8.01": {
+        "mean": 4.334799198500001,
+        "median": 4.334799198500001
+      },
+      "ODB.2013.D6": {
+        "mean": 42.5,
+        "median": 42.5
+      },
+      "UN.OSI": {
+        "mean": 0.92913,
+        "median": 0.92913
+      },
+      "ECONOMIC": {
+        "mean": 64.0,
+        "median": 64.0
+      },
+      "ODB.2013.D11": {
+        "mean": 75.0,
+        "median": 75.0
+      },
+      "ODB.2013.D14": {
+        "mean": 90.0,
+        "median": 90.0
+      },
+      "ODB.2013.D9": {
+        "mean": 77.5,
+        "median": 77.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 89.5,
+        "median": 89.5
+      },
+      "ODB.2013.D4": {
+        "mean": 97.5,
+        "median": 97.5
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 91.0,
+        "median": 91.0
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 7.5,
+        "median": 7.5
+      },
+      "ODB.2013.D8": {
+        "mean": 82.5,
+        "median": 82.5
+      },
+      "ODB.2013.D15": {
+        "mean": 75.0,
+        "median": 75.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 64.0,
+        "median": 64.0
+      },
+      "INNOVATION": {
+        "mean": 88.0,
+        "median": 88.0
+      },
+      "ODB.2013.D7": {
+        "mean": 25.0,
+        "median": 25.0
+      },
+      "WB.NETUSERS": {
+        "mean": 87.24000000000001,
+        "median": 87.24000000000001
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 9.0,
+        "median": 9.0
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 8.0,
+        "median": 8.0
+      },
+      "SOCIAL_POLICY": {
+        "mean": 77.0,
+        "median": 77.0
+      },
+      "ODB.2013.D16": {
+        "mean": 87.5,
+        "median": 87.5
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 6.5,
+        "median": 6.5
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "ODB.2013.D5": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "ODB": {
+        "mean": 81.12,
+        "median": 81.12
+      },
+      "IMPLEMENTATION": {
+        "mean": 80.0,
+        "median": 80.0
+      },
+      "ODB.2013.D10": {
+        "mean": 95.0,
+        "median": 95.0
+      },
+      "IMPACT": {
+        "mean": 71.5,
+        "median": 71.5
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 95.5,
+        "median": 95.5
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 6.5,
+        "median": 6.5
+      },
+      "READINESS": {
+        "mean": 93.0,
+        "median": 93.0
+      },
+      "ODB.2013.D1": {
+        "mean": 97.5,
+        "median": 97.5
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 8.5,
+        "median": 8.5
+      },
+      "SOCIAL": {
+        "mean": 78.5,
+        "median": 78.5
+      },
+      "POLITICAL": {
+        "mean": 65.0,
+        "median": 65.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 5.749664729,
+        "median": 5.749664729
+      },
+      "FH": {
+        "mean": 95.0,
+        "median": 95.0
+      }
+    },
+    ":SA": {
+      "REGULATORY_AND_CIVIL": {
+        "mean": 42.75,
+        "median": 43.0
+      },
+      "ODB.2013.D2": {
+        "mean": 7.5,
+        "median": 5.0
+      },
+      "ODB.2013.D12": {
+        "mean": 28.75,
+        "median": 15.0
+      },
+      "ODB.2013.C.RTI": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "ODB.2013.C.TRAIN": {
+        "mean": 3.0,
+        "median": 3.0
+      },
+      "ODB.2015.C.MANAG": {
+        "mean": 1.25,
+        "median": 0.0
+      },
+      "ODB.2013.I.ACCOUNT": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB.2013.C.INIT": {
+        "mean": 2.5,
+        "median": 2.0
+      },
+      "ODB.2013.D13": {
+        "mean": 23.75,
+        "median": 15.0
+      },
+      "WEF.GITR.8.01": {
+        "mean": 3.48326722875,
+        "median": 3.509526051
+      },
+      "ODB.2013.D6": {
+        "mean": 5.0,
+        "median": 5.0
+      },
+      "UN.OSI": {
+        "mean": 0.342515,
+        "median": 0.33464
+      },
+      "ECONOMIC": {
+        "mean": 10.5,
+        "median": 6.5
+      },
+      "ODB.2013.D11": {
+        "mean": 17.5,
+        "median": 10.0
+      },
+      "ODB.2013.D14": {
+        "mean": 15.0,
+        "median": 7.5
+      },
+      "ODB.2013.D9": {
+        "mean": 23.75,
+        "median": 7.5
+      },
+      "BUSINESS_AND_ENTREPRENEURSHIP": {
+        "mean": 25.25,
+        "median": 27.5
+      },
+      "ODB.2013.D4": {
+        "mean": 31.25,
+        "median": 15.0
+      },
+      "GOVERNMENT_POLICIES": {
+        "mean": 28.0,
+        "median": 17.5
+      },
+      "ODB.2013.C.SUPIN": {
+        "mean": 1.75,
+        "median": 2.0
+      },
+      "ODB.2013.D8": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "ODB.2013.D15": {
+        "mean": 31.25,
+        "median": 15.0
+      },
+      "ACCOUNTABILITY": {
+        "mean": 18.5,
+        "median": 17.5
+      },
+      "INNOVATION": {
+        "mean": 22.75,
+        "median": 16.0
+      },
+      "ODB.2013.D7": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "WB.NETUSERS": {
+        "mean": 14.21,
+        "median": 14.620000000000001
+      },
+      "ODB.2013.C.CITY": {
+        "mean": 0.75,
+        "median": 0.5
+      },
+      "ODB.2015.C.POLI": {
+        "mean": 1.75,
+        "median": 0.5
+      },
+      "SOCIAL_POLICY": {
+        "mean": 20.0,
+        "median": 10.5
+      },
+      "ODB.2013.D16": {
+        "mean": 15.0,
+        "median": 15.0
+      },
+      "ODB.2013.I.ECON": {
+        "mean": 0.5,
+        "median": 0.5
+      },
+      "ODB.2013.I.ENTR": {
+        "mean": 1.25,
+        "median": 0.5
+      },
+      "ODB.2013.I.GOV": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "ODB.2013.D5": {
+        "mean": 26.25,
+        "median": 15.0
+      },
+      "ODB.2013.I.INC": {
+        "mean": 0.0,
+        "median": 0.0
+      },
+      "ODB": {
+        "mean": 15.087499999999999,
+        "median": 10.07
+      },
+      "IMPLEMENTATION": {
+        "mean": 15.25,
+        "median": 9.5
+      },
+      "ODB.2013.D10": {
+        "mean": 32.5,
+        "median": 32.5
+      },
+      "IMPACT": {
+        "mean": 5.5,
+        "median": 4.0
+      },
+      "GOVERNMENT_ACTION": {
+        "mean": 24.75,
+        "median": 18.0
+      },
+      "ODB.2013.C.DPL": {
+        "mean": 2.0,
+        "median": 2.0
+      },
+      "READINESS": {
+        "mean": 26.5,
+        "median": 20.5
+      },
+      "ODB.2013.D1": {
+        "mean": 18.75,
+        "median": 15.0
+      },
+      "ODB.2013.C.CSOC": {
+        "mean": 4.0,
+        "median": 4.0
+      },
+      "SOCIAL": {
+        "mean": 2.5,
+        "median": 0.0
+      },
+      "POLITICAL": {
+        "mean": 2.5,
+        "median": 0.0
+      },
+      "ODB.2013.I.ENV": {
+        "mean": 0.25,
+        "median": 0.0
+      },
+      "WEF.GCI.9.02": {
+        "mean": 4.1514798135,
+        "median": 4.158932002
+      },
+      "FH": {
+        "mean": 55.25,
+        "median": 50.5
+      }
+    }
+  }
+}

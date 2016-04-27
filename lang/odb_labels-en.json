@@ -5,7 +5,8 @@
     "close" : "Close",
     "source" : "Source: ",
     "sharing" : "Sharing is caring",
-    "average" : "Average"
+    "average" : "Average",
+    "new" : "new"
   },
   "labels" : {
     "year" : "Year",
@@ -18,7 +19,8 @@
     "group" : "Group",
     "fapplied" : "Filter applieds",
     "clsfilters" : "[clear filters]",
-    "expand" : "Exapand",
+    "expand" : "Expand",
+    "collapse" : "Collapse",
     "rank" : "Rank",
     "choose" : "Choose ...",
     "lang" : "Lang: "

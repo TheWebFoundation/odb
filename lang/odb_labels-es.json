@@ -5,7 +5,8 @@
     "close" : "Cerrar",
     "source" : "Fuente: ",
     "sharing" : "Compartir es ayudar",
-    "average" : "Promedio"
+    "average" : "Promedio",
+    "new" : "Nuevo"
   },
   "labels" : {
     "year" : "Año",
@@ -18,7 +19,8 @@
     "group" : "Grupo",
     "fapplied" : "Filtros aplicados",
     "clsfilters" : "[borrar filtros]",
-    "expand" : "Expander",
+    "expand" : "Ampliar",
+    "collapse" : "Ocultar",
     "rank" : "Posición",
     "choose" : "Ninguno",
     "lang" : "Idioma: "
