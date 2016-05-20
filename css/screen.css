@@ -1218,157 +1218,161 @@ ul.list_foot {
   text-align: center;
 }
 
-/*.co-st {
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 0;
-	padding-right: 0;
-	list-style-type: none;
+/* line 302, ../sass/_m-3parties.scss */
+.co-st {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  list-style-type: none;
 }
 
+/* line 310, ../sass/_m-3parties.scss */
 .co-subop {
-	margin-left: 2em;
+  margin-left: 2em;
 }
 
+/* line 314, ../sass/_m-3parties.scss */
 .co-item, .co-i-a {
-	display: block;
-	text-decoration: none!important;
+  display: block;
+  text-decoration: none !important;
 }
 
-.co-i-a{
-	//padding: 6px 0px;
-}
-
+/* line 323, ../sass/_m-3parties.scss */
 ol > li.co-item {
-	border-bottom: 1px solid #ededed!important;
+  border-bottom: 1px solid #ededed !important;
 }
 
+/* line 327, ../sass/_m-3parties.scss */
 .displayib {
-	display:inline-block;
+  display: inline-block;
 }
 
+/* line 331, ../sass/_m-3parties.scss */
 .co-indicator {
-	display: inline-block;
-	width: 28px;
-	height: 28px;
-	border-radius: 50em;
-	background-color:#666;
-	text-align: center;
-	line-height: 26px;
-	color:#fff;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50em;
+  background-color: #666;
+  text-align: center;
+  line-height: 26px;
+  color: #fff;
 }
 
-.co-icon{
-	display: inline-block;
-	width: 28px;
-	height: 28px;
-	//background-color:#ededed;
-	line-height: 26px;
-	background-repeat: no-repeat;
-	background-position: center center;
+/* line 342, ../sass/_m-3parties.scss */
+.co-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 26px;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
+/* line 352, ../sass/_m-3parties.scss */
 .co-i-table {
-	background-image: url("../img/ico-tables.png");
+  background-image: url("../img/ico-tables.png");
 }
 
+/* line 356, ../sass/_m-3parties.scss */
 .co-i-figure {
-	background-image: url("../img/ico-figure.png");
+  background-image: url("../img/ico-figure.png");
 }
 
+/* line 360, ../sass/_m-3parties.scss */
 .co-header {
-	padding: 10px 0px;
-	border-bottom: 1px solid #ededed;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ededed;
 }
 
+/* line 365, ../sass/_m-3parties.scss */
 .co-m-control {
-	position: relative;;
+  position: relative;
 }
 
-.co-i-control{
-	cursor: pointer;
-	display: block;
-	position: absolute!important;
-	right: 0px;
-	width: 10px;
-	height: 10px;
-	top:6px;
-	border-bottom: none !important;
+/* line 369, ../sass/_m-3parties.scss */
+.co-i-control {
+  cursor: pointer;
+  display: block;
+  position: absolute !important;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  top: 6px;
+  border-bottom: none !important;
 }
 
+/* line 380, ../sass/_m-3parties.scss */
 .co-bg-readdiness {
-	background-color: #F1C40F;
-	color: #fff;
+  background-color: #F1C40F;
+  color: #fff;
 }
 
+/* line 385, ../sass/_m-3parties.scss */
 .co-bg-implementation {
-	background-color: #7AC7B6;
-	color: #fff;
+  background-color: #7AC7B6;
+  color: #fff;
 }
 
+/* line 390, ../sass/_m-3parties.scss */
 .co-bg-impact {
-	background-color: #BE8FE7;
-	color: #fff;
+  background-color: #BE8FE7;
+  color: #fff;
 }
 
-
+/* line 396, ../sass/_m-3parties.scss */
 [data-accordion] [data-control] {
-	padding-bottom: 30px;
+  padding-bottom: 30px;
 }
 
-[data-accordion] > [data-control]::after {
-
-}
-
+/* line 404, ../sass/_m-3parties.scss */
 [data-control], [data-content] > * {
-	padding: 10px 0px;
-	border-bottom: none!important;
+  padding: 10px 0px;
+  border-bottom: none !important;
 }
 
-
-
-//##LISTAS REPORT ##//
-
+/* line 413, ../sass/_m-3parties.scss */
 .report_listado.rlistado {
-	margin: 0;
-	margin-bottom: 20px;
-	padding: 0;
-	list-style-type: none;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style-type: none;
 }
 
+/* line 420, ../sass/_m-3parties.scss */
 .report_listado_elemento.report_listado_new {
-	position: relative;
-	margin-top: 40px;
-	padding: 20px;
-	background-color:#ededed;
+  position: relative;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ededed;
 }
 
+/* line 427, ../sass/_m-3parties.scss */
 .conclusion-num {
-	display: inline-block;
-	width:32px;
-	height: 32px;
-	background-color: green;
-	color: #fff;
-	font-size: 1.2em;
-	border-radius:50em;
-	text-align: center;
-	line-height: 30px;
-	position: absolute;
-	left:20px;
-	top:-15px;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-color: green;
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 50em;
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  left: 20px;
+  top: -15px;
 }
 
+/* line 442, ../sass/_m-3parties.scss */
 .conclusion-txt {
-	display: block;
-	font-size: 1.3em;
-	line-height: 32px;
-	color:green;
-	margin-bottom: 5px;
-	//font-weight: lighter;
+  display: block;
+  font-size: 1.3em;
+  line-height: 32px;
+  color: green;
+  margin-bottom: 5px;
 }
 
-
-*/
 /* line 1, ../sass/_m-modal-detail.scss */
 .overlay {
   position: fixed;
