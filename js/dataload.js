@@ -7,6 +7,19 @@
     	return vars;
 	}
 
+
+	var ellipsis = "...";
+	function TrimLength(text, maxLength) {
+		text = $.trim(text);
+		if (text.length > maxLength) {
+			text = text.substring(0, maxLength - ellipsis.length)
+			return text.substring(0, text.lastIndexOf(" ")) + ellipsis;
+		}else{
+			return text;
+		}
+	}
+	
+
 	Array.prototype.remove = function() {
 	    //Añado el método remove a la clase Array para borrar posiciones de un array por su valor.
 	    var what, a = arguments, L = a.length, ax;
@@ -407,16 +420,17 @@ function loadMeansSelectedCountry(){
 
 function drawRegionMean() {
     //Metemos la gráfica del nuevo país
+
 	var current_area = _.find(window.countries, {iso3:loaded_countries[0]}).area;
 	//var selected_region = _.find(window.regions, {iso3:current_area}).name;
 	//var new_country_odb_series_mean = //window.indicators_stats["2013"][":EU"].ODB
 	var new_country_odb_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].ODB.mean.toFixed(2));});
 	//console.log(new_country_odb_series_mean);
+
 	var new_country_readiness_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].READINESS.mean.toFixed(2));});
 	var new_country_implementation_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPLEMENTATION.mean.toFixed(2));});
 	var new_country_impact_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPACT.mean.toFixed(2));});
 	var new_country_years_series_mean = _.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].ODB.mean; return result;});
-
 
 
 	window.chart = new Highcharts.Chart({
@@ -471,12 +485,26 @@ function drawRegionMean() {
 	            data: new_country_impact_series_mean,
 	            color:'#CB97F9'
 	        },{
-	            name: 'ODB',
+	            name: "ODB",
 	            data: new_country_odb_series_mean,
 	            color:'#000'
         }]
 
     });
+
+
+	if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+		var new_country_sindicator_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area][selected_indicator].mean.toFixed(2));});
+		var name_indicator = TrimLength(selected_indicator_name,25);
+		//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
+	    window.chart.addSeries({
+	    	name: name_indicator,
+	    	data: new_country_sindicator_series_mean,
+	    	color: '#FE13B4'
+	    });
+	}
+
+
 }
 
 
@@ -551,6 +579,17 @@ function drawNewCountryChart(idISO){
         }]
 
     });
+
+    if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+		var new_country_sindicator_series = _.map(added_country.years, function(year){ return year.observations[selected_indicator].value;});
+		var name_indicator = TrimLength(selected_indicator_name,25);
+		//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
+	    window.chart.addSeries({
+	    	name: name_indicator,
+	    	data: new_country_sindicator_series,
+	    	color: '#FE13B4'
+	    });
+	}
 }
 
 
@@ -887,6 +926,16 @@ function drawModal() {
 	};
 
 	chart_country = new Highcharts.Chart(country_odb_chart);
+	
+	if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+		var new_country_sindicator_series_init = _.map(firstCountryData.years, function(year){ return year.observations[selected_indicator].value;});
+		var name_indicator = TrimLength(selected_indicator_name,25);
+	    chart_country.addSeries({
+	    	name: name_indicator,
+	    	data: new_country_sindicator_series_init,
+	    	color: '#FE13B4'
+	    });
+	}
 
     //Generamos las categorias e iniciamos la grafica polar
     polarOptions.xAxis.categories = country_data[0].components_data_labels;
@@ -1100,7 +1149,9 @@ function drawModal() {
                 setCountryDataset(iso3c);
                 drawModalCountryComp(iso3c,0);
                 //Clonamos el pais
-                addCountrySpider();
+                if(carousel_current_country != 0) {
+                	addCountrySpider();
+                }
                 drawDatasetTable();
                 owl.trigger('refresh.owl.carousel');
             });
