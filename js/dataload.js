@@ -461,8 +461,8 @@ function drawRegionMean() {
             title: {
                 text: ''
             },
-            min: 0,
-			max: 100
+            min: selected_indicator_range_min,
+			max: selected_indicator_range_max
         },
         tooltip: {
             valueSuffix: ''
@@ -567,8 +567,8 @@ function drawNewCountryChart(idISO){
             title: {
                 text: ''
             },
-            min: 0,
-			max: 100
+            min: selected_indicator_range_min,
+			max: selected_indicator_range_max
         },
         tooltip: {
             valueSuffix: ''
@@ -922,8 +922,8 @@ function drawModal() {
             title: {
                 text: ''
             },
-            min: 0,
-			max: 100
+            min: selected_indicator_range_min,
+			max: selected_indicator_range_max
         },
         /*tooltip: {
             valueSuffix: ''
