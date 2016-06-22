@@ -211,7 +211,7 @@
 	top: 5px;
 	width:10px;
 	height: 10px;
-	border-top: solid 10px $bg-in-base;
+	border-top: solid 10px transparent; //$bg-in-base;
     border-left: solid 10px $ccontrast;
     border-right: solid 10px $ccontrast;
     transform: rotate(-90deg);
