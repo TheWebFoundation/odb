@@ -424,14 +424,16 @@ function drawRegionMean() {
 	var current_area = _.find(window.countries, {iso3:loaded_countries[0]}).area;
 	//var selected_region = _.find(window.regions, {iso3:current_area}).name;
 	//var new_country_odb_series_mean = //window.indicators_stats["2013"][":EU"].ODB
-	var new_country_odb_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].ODB.mean.toFixed(2));});
+	//var new_country_odb_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].ODB.mean.toFixed(2));});
 	//console.log(new_country_odb_series_mean);
 
-	var new_country_readiness_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].READINESS.mean.toFixed(2));});
-	var new_country_implementation_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPLEMENTATION.mean.toFixed(2));});
-	var new_country_impact_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPACT.mean.toFixed(2));});
+	//var new_country_readiness_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].READINESS.mean.toFixed(2));});
+	//var new_country_implementation_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPLEMENTATION.mean.toFixed(2));});
+	//var new_country_impact_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area].IMPACT.mean.toFixed(2));});
 	var new_country_years_series_mean = _.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].ODB.mean; return result;});
 
+	var new_country_sindicator_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area][selected_indicator].mean.toFixed(2));});
+	var name_indicator = TrimLength(selected_indicator_name,25);
 
 	window.chart = new Highcharts.Chart({
 		credits: {
@@ -473,36 +475,52 @@ function drawRegionMean() {
             borderWidth: 0
         },
         series: [{
-            name: 'Readiness',
-            data: new_country_readiness_series_mean,
-            color:'#F1C40F'
-	        }, {
-	            name: 'Implementation',
-	            data: new_country_implementation_series_mean,
-	            color:'#92EFDA'
-	        }, {
-	            name: 'Impact',
-	            data: new_country_impact_series_mean,
-	            color:'#CB97F9'
-	        },{
-	            name: "ODB",
-	            data: new_country_odb_series_mean,
-	            color:'#000'
+            name: name_indicator,
+            data: new_country_sindicator_series_mean,
+            color:'#000'
         }]
 
+
+        // series: [{
+        //     name: 'Readiness',
+        //     data: new_country_readiness_series_mean,
+        //     color:'#F1C40F'
+	       //  }, {
+	       //      name: 'Implementation',
+	       //      data: new_country_implementation_series_mean,
+	       //      color:'#92EFDA'
+	       //  }, {
+	       //      name: 'Impact',
+	       //      data: new_country_impact_series_mean,
+	       //      color:'#CB97F9'
+	       //  },{
+	       //      name: "ODB",
+	       //      data: new_country_odb_series_mean,
+	       //      color:'#000'
+        // }]
+
     });
+	// if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+	// 	var new_country_sindicator_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area][selected_indicator].mean.toFixed(2));});
+	// 	var name_indicator = TrimLength(selected_indicator_name,25);
+	// 	//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
+	//     window.chart.addSeries({
+	//     	name: name_indicator,
+	//     	data: new_country_sindicator_series_mean,
+	//     	color: '#FE13B4'
+	//     });
+	// }
 
-
-	if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
-		var new_country_sindicator_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area][selected_indicator].mean.toFixed(2));});
-		var name_indicator = TrimLength(selected_indicator_name,25);
-		//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
-	    window.chart.addSeries({
-	    	name: name_indicator,
-	    	data: new_country_sindicator_series_mean,
-	    	color: '#FE13B4'
-	    });
-	}
+	// if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+	// 	var new_country_sindicator_series_mean = _.map(window.indicators_stats, function(year_data, year_key){return +(year_data[current_area][selected_indicator].mean.toFixed(2));});
+	// 	var name_indicator = TrimLength(selected_indicator_name,25);
+	// 	//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
+	//     window.chart.addSeries({
+	//     	name: name_indicator,
+	//     	data: new_country_sindicator_series_mean,
+	//     	color: '#FE13B4'
+	//     });
+	// }
 
 
 }
@@ -515,11 +533,13 @@ function drawNewCountryChart(idISO){
     //Metemos la gráfica del nuevo país
 	//$.getJSON('json/odb_' + idISO + '.json', function (data) {
 		var added_country = loaded_countries_data[idISO];
-		var new_country_odb_series = _.map(added_country.years, function(year){ return year.observations.ODB.value;});
-		var new_country_readiness_series = _.map(added_country.years, function(year){ return year.observations.READINESS.value;});
-		var new_country_implementation_series = _.map(added_country.years, function(year){ return year.observations.IMPLEMENTATION.value;});
-		var new_country_impact_series = _.map(added_country.years, function(year){ return year.observations.IMPACT.value;});
+		// var new_country_odb_series = _.map(added_country.years, function(year){ return year.observations.ODB.value;});
+		// var new_country_readiness_series = _.map(added_country.years, function(year){ return year.observations.READINESS.value;});
+		// var new_country_implementation_series = _.map(added_country.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+		// var new_country_impact_series = _.map(added_country.years, function(year){ return year.observations.IMPACT.value;});
 		var new_country_years_series = _.keys(added_country.years);
+		var new_country_sindicator_series = _.map(added_country.years, function(year){ return year.observations[selected_indicator].value;});
+		var name_indicator = TrimLength(selected_indicator_name,25);
 
 	window.chart = new Highcharts.Chart({
 		credits: {
@@ -561,35 +581,41 @@ function drawNewCountryChart(idISO){
             borderWidth: 0
         },
         series: [{
-            name: 'Readiness',
-            data: new_country_readiness_series,
-            color:'#F1C40F'
-	        }, {
-	            name: 'Implementation',
-	            data: new_country_implementation_series,
-	            color:'#92EFDA'
-	        }, {
-	            name: 'Impact',
-	            data: new_country_impact_series,
-	            color:'#CB97F9'
-	        },{
-	            name: 'ODB',
-	            data: new_country_odb_series,
-	            color:'#000'
+            name: name_indicator,
+            data: new_country_sindicator_series,
+            color:'#000'
         }]
+
+        // series: [{
+        //     name: 'Readiness',
+        //     data: new_country_readiness_series,
+        //     color:'#F1C40F'
+	       //  }, {
+	       //      name: 'Implementation',
+	       //      data: new_country_implementation_series,
+	       //      color:'#92EFDA'
+	       //  }, {
+	       //      name: 'Impact',
+	       //      data: new_country_impact_series,
+	       //      color:'#CB97F9'
+	       //  },{
+	       //      name: 'ODB',
+	       //      data: new_country_odb_series,
+	       //      color:'#000'
+        // }]
 
     });
 
-    if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
-		var new_country_sindicator_series = _.map(added_country.years, function(year){ return year.observations[selected_indicator].value;});
-		var name_indicator = TrimLength(selected_indicator_name,25);
-		//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
-	    window.chart.addSeries({
-	    	name: name_indicator,
-	    	data: new_country_sindicator_series,
-	    	color: '#FE13B4'
-	    });
-	}
+ //    if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+	// 	var new_country_sindicator_series = _.map(added_country.years, function(year){ return year.observations[selected_indicator].value;});
+	// 	var name_indicator = TrimLength(selected_indicator_name,25);
+	// 	//_.keys(window.indicators_stats, function(year_data, year_key){ var result= {}; result[year_key] = year_data[current_area].selected_indicator.mean; return result;});
+	//     window.chart.addSeries({
+	//     	name: name_indicator,
+	//     	data: new_country_sindicator_series,
+	//     	color: '#FE13B4'
+	//     });
+	// }
 }
 
 
@@ -853,11 +879,14 @@ function drawModal() {
 	$("#country-selected").html(contentModal);
 	//CARGA DE DATOS DEL DETALLE PAÍS
     var firstCountryData = loaded_countries_data[loaded_countries[0]];
-	country_odb_series = _.map(firstCountryData.years, function(year){ return year.observations.ODB.value;});
-	country_readiness_series = _.map(firstCountryData.years, function(year){ return year.observations.READINESS.value;});
-	country_implementation_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPLEMENTATION.value;});
-	country_impact_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPACT.value;});
+	//country_odb_series = _.map(firstCountryData.years, function(year){ return year.observations.ODB.value;});
+	//country_readiness_series = _.map(firstCountryData.years, function(year){ return year.observations.READINESS.value;});
+	//country_implementation_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPLEMENTATION.value;});
+	//country_impact_series = _.map(firstCountryData.years, function(year){ return year.observations.IMPACT.value;});
 	country_years_series = _.keys(firstCountryData.years);
+
+	var new_country_sindicator_series = _.map(firstCountryData.years, function(year){ return year.observations[selected_indicator].value;});
+	var name_indicator = TrimLength(selected_indicator_name,25);
 
     drawDatasetTable();
 
@@ -907,35 +936,41 @@ function drawModal() {
             borderWidth: 0
         },
         series: [{
-            name: 'Readiness',
-            data: country_readiness_series,
-            color:'#F1C40F'
-        }, {
-            name: 'Implementation',
-            data: country_implementation_series,
-            color:'#92EFDA'
-        }, {
-            name: 'Impact',
-            data: country_impact_series,
-            color:'#CB97F9'
-        },{
-            name: 'ODB',
-            data: country_odb_series,
+            name: name_indicator,
+            data: new_country_sindicator_series,
             color:'#000'
         }]
+
+        // series: [{
+        //     name: 'Readiness',
+        //     data: country_readiness_series,
+        //     color:'#F1C40F'
+        // }, {
+        //     name: 'Implementation',
+        //     data: country_implementation_series,
+        //     color:'#92EFDA'
+        // }, {
+        //     name: 'Impact',
+        //     data: country_impact_series,
+        //     color:'#CB97F9'
+        // },{
+        //     name: 'ODB',
+        //     data: country_odb_series,
+        //     color:'#000'
+        // }]       
 	};
 
 	chart_country = new Highcharts.Chart(country_odb_chart);
 	
-	if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
-		var new_country_sindicator_series_init = _.map(firstCountryData.years, function(year){ return year.observations[selected_indicator].value;});
-		var name_indicator = TrimLength(selected_indicator_name,25);
-	    chart_country.addSeries({
-	    	name: name_indicator,
-	    	data: new_country_sindicator_series_init,
-	    	color: '#FE13B4'
-	    });
-	}
+	// if(selected_indicator != "ODB" && selected_indicator != "IMPLEMENTATION" && selected_indicator!="IMPACT" && selected_indicator != "READINESS") {
+	// 	var new_country_sindicator_series_init = _.map(firstCountryData.years, function(year){ return year.observations[selected_indicator].value;});
+	// 	var name_indicator = TrimLength(selected_indicator_name,25);
+	//     chart_country.addSeries({
+	//     	name: name_indicator,
+	//     	data: new_country_sindicator_series_init,
+	//     	color: '#FE13B4'
+	//     });
+	// }
 
     //Generamos las categorias e iniciamos la grafica polar
     polarOptions.xAxis.categories = country_data[0].components_data_labels;
